@@ -1,0 +1,9 @@
+# TerminateJobRunResponse
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `httpMeta`                                                                                       | [components.HTTPMetadata](../../models/components/httpmetadata.md)                               | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `object`                                                                                         | [operations.TerminateJobRunResponseBody](../../models/operations/terminatejobrunresponsebody.md) | :heavy_minus_sign:                                                                               | Job run terminated                                                                               |

@@ -1,0 +1,15 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    intunedClientApi:
+        inputs:
+            - location: ../docs/openapi/jobs.yaml
+            # - location: ../docs/openapi/queues.yaml
+            - location: ../docs/openapi/files.yaml
+            # - location: ../docs/openapi/run.yaml
+        registry:
+            location: registry.speakeasyapi.dev/intuned/intuned/intuned-client-api
+targets:
+    my-first-target:
+        target: typescript
+        source: intunedClientApi

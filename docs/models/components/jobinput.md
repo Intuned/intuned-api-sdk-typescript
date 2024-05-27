@@ -1,0 +1,14 @@
+# JobInput
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `id`                                                                       | *string*                                                                   | :heavy_check_mark:                                                         | N/A                                                                        |
+| `configuration`                                                            | [components.Configuration](../../models/components/configuration.md)       | :heavy_check_mark:                                                         | N/A                                                                        |
+| `sink`                                                                     | *components.Sink*                                                          | :heavy_check_mark:                                                         | N/A                                                                        |
+| `payload`                                                                  | [components.Payload](../../models/components/payload.md)[]                 | :heavy_check_mark:                                                         | N/A                                                                        |
+| `schedule`                                                                 | [components.Schedule](../../models/components/schedule.md)                 | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `identity`                                                                 | [components.JobInputIdentity](../../models/components/jobinputidentity.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+| `proxy`                                                                    | [components.JobInputProxy](../../models/components/jobinputproxy.md)       | :heavy_minus_sign:                                                         | N/A                                                                        |
