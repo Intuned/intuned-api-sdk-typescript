@@ -1,0 +1,11 @@
+# QueueItemResult2
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `runId`                                                                                | *string*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `status`                                                                               | [components.QueueItemResult2Status](../../models/components/queueitemresult2status.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `result`                                                                               | Record<string, *any*>                                                                  | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `statusCode`                                                                           | *number*                                                                               | :heavy_minus_sign:                                                                     | N/A                                                                                    |

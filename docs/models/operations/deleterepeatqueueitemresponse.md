@@ -1,0 +1,9 @@
+# DeleteRepeatQueueItemResponse
+
+
+## Fields
+
+| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| `httpMeta`                                                                                                   | [components.HTTPMetadata](../../models/components/httpmetadata.md)                                           | :heavy_check_mark:                                                                                           | N/A                                                                                                          |
+| `object`                                                                                                     | [operations.DeleteRepeatQueueItemResponseBody](../../models/operations/deleterepeatqueueitemresponsebody.md) | :heavy_minus_sign:                                                                                           | Queue repeatable item deleted                                                                                |

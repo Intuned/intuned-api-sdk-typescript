@@ -12,7 +12,7 @@ export enum Status {
     Paused = "PAUSED",
 }
 
-export enum Type {
+export enum JobRunType {
     Manual = "MANUAL",
 }
 
@@ -23,7 +23,7 @@ export type JobRun = {
     startTime?: Date | undefined;
     status?: Status | undefined;
     summary?: { [k: string]: any } | undefined;
-    type?: Type | undefined;
+    type?: JobRunType | undefined;
     workspaceId?: string | undefined;
 };
 
@@ -34,8 +34,8 @@ export namespace Status$ {
 }
 
 /** @internal */
-export namespace Type$ {
-    export const inboundSchema = z.nativeEnum(Type);
+export namespace JobRunType$ {
+    export const inboundSchema = z.nativeEnum(JobRunType);
     export const outboundSchema = inboundSchema;
 }
 
@@ -53,7 +53,7 @@ export namespace JobRun$ {
                 .optional(),
             status: Status$.inboundSchema.optional(),
             summary: z.record(z.any()).optional(),
-            type: Type$.inboundSchema.optional(),
+            type: JobRunType$.inboundSchema.optional(),
             workspace_id: z.string().optional(),
         })
         .transform((v) => {
@@ -93,7 +93,7 @@ export namespace JobRun$ {
                 .optional(),
             status: Status$.outboundSchema.optional(),
             summary: z.record(z.any()).optional(),
-            type: Type$.outboundSchema.optional(),
+            type: JobRunType$.outboundSchema.optional(),
             workspaceId: z.string().optional(),
         })
         .transform((v) => {

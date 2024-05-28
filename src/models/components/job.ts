@@ -8,11 +8,11 @@ import { Schedule, Schedule$ } from "./schedule";
 import { Sink, Sink$ } from "./sink";
 import * as z from "zod";
 
-export type Identity = {
+export type JobIdentity = {
     id?: string | undefined;
 };
 
-export enum Proxy {
+export enum JobProxy {
     UsWa = "US-WA",
     UsTx = "US-TX",
     UsFl = "US-FL",
@@ -29,8 +29,8 @@ export type Job = {
     sink: Sink;
     payload: Array<Payload>;
     schedule?: Schedule | undefined;
-    identity?: Identity | undefined;
-    proxy?: Proxy | undefined;
+    identity?: JobIdentity | undefined;
+    proxy?: JobProxy | undefined;
     createdAt?: Date | undefined;
     nextRunTime?: Date | null | undefined;
     lastRunTime?: Date | undefined;
@@ -40,8 +40,8 @@ export type Job = {
 };
 
 /** @internal */
-export namespace Identity$ {
-    export const inboundSchema: z.ZodType<Identity, z.ZodTypeDef, unknown> = z
+export namespace JobIdentity$ {
+    export const inboundSchema: z.ZodType<JobIdentity, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
         })
@@ -55,7 +55,7 @@ export namespace Identity$ {
         id?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Identity> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobIdentity> = z
         .object({
             id: z.string().optional(),
         })
@@ -67,8 +67,8 @@ export namespace Identity$ {
 }
 
 /** @internal */
-export namespace Proxy$ {
-    export const inboundSchema = z.nativeEnum(Proxy);
+export namespace JobProxy$ {
+    export const inboundSchema = z.nativeEnum(JobProxy);
     export const outboundSchema = inboundSchema;
 }
 
@@ -108,8 +108,8 @@ export namespace Job$ {
             sink: Sink$.inboundSchema,
             payload: z.array(Payload$.inboundSchema),
             schedule: Schedule$.inboundSchema.optional(),
-            identity: z.lazy(() => Identity$.inboundSchema).optional(),
-            proxy: Proxy$.inboundSchema.optional(),
+            identity: z.lazy(() => JobIdentity$.inboundSchema).optional(),
+            proxy: JobProxy$.inboundSchema.optional(),
             created_at: z
                 .string()
                 .datetime({ offset: true })
@@ -156,7 +156,7 @@ export namespace Job$ {
         sink: Sink$.Outbound;
         payload: Array<Payload$.Outbound>;
         schedule?: Schedule$.Outbound | undefined;
-        identity?: Identity$.Outbound | undefined;
+        identity?: JobIdentity$.Outbound | undefined;
         proxy?: string | undefined;
         created_at?: string | undefined;
         next_run_time?: string | null | undefined;
@@ -173,8 +173,8 @@ export namespace Job$ {
             sink: Sink$.outboundSchema,
             payload: z.array(Payload$.outboundSchema),
             schedule: Schedule$.outboundSchema.optional(),
-            identity: z.lazy(() => Identity$.outboundSchema).optional(),
-            proxy: Proxy$.outboundSchema.optional(),
+            identity: z.lazy(() => JobIdentity$.outboundSchema).optional(),
+            proxy: JobProxy$.outboundSchema.optional(),
             createdAt: z
                 .date()
                 .transform((v) => v.toISOString())

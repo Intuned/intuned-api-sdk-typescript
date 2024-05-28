@@ -77,6 +77,27 @@ run();
 * [getJobRuns](docs/sdks/jobs/README.md#getjobruns) - Get all job runs of a job.
 * [terminateJobRun](docs/sdks/jobs/README.md#terminatejobrun) - Terminate a job run.
 
+### [project.queues](docs/sdks/queues/README.md)
+
+* [getQueues](docs/sdks/queues/README.md#getqueues) - Get all queues in a project.
+* [createQueue](docs/sdks/queues/README.md#createqueue) - Create a new queue for a project.
+* [getQueue](docs/sdks/queues/README.md#getqueue) - Get a queue in a project by ID.
+* [deleteQueue](docs/sdks/queues/README.md#deletequeue) - Delete a queue of a project by ID.
+* [addItem](docs/sdks/queues/README.md#additem) - Append an item to the queue.
+* [getQueueItemResult](docs/sdks/queues/README.md#getqueueitemresult) - Get queue item result.
+* [deleteQueueItem](docs/sdks/queues/README.md#deletequeueitem) - Delete queued item
+* [getRepeatItems](docs/sdks/queues/README.md#getrepeatitems) - Get repeat items for the queue.
+* [addRepeatItem](docs/sdks/queues/README.md#addrepeatitem) - Create a repeat item for the queue.
+* [getRepeatQueueItem](docs/sdks/queues/README.md#getrepeatqueueitem) - Get repeat queue item with last result.
+* [updateRepeatQueueItem](docs/sdks/queues/README.md#updaterepeatqueueitem) - Update queue repeatable item
+* [deleteRepeatQueueItem](docs/sdks/queues/README.md#deleterepeatqueueitem) - Delete queued item
+
+### [project.run](docs/sdks/run/README.md)
+
+* [runSync](docs/sdks/run/README.md#runsync) - Run a project API synchronously
+* [runStart](docs/sdks/run/README.md#runstart) - Start a project API run operation
+* [runResult](docs/sdks/run/README.md#runresult) - Retrieve the result of a started project API run operation
+
 ### [files](docs/sdks/files/README.md)
 
 * [extractStructuredData](docs/sdks/files/README.md#extractstructureddata) - Extract structured data from a file - supports image, pdf (more coming soon!)

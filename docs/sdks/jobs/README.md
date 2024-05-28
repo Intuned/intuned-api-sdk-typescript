@@ -68,7 +68,7 @@ Creates a new job.
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
-import { RunMode, Sink1Type } from "@intuned/client/models/components";
+import { RunMode, Type } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -80,10 +80,10 @@ async function run() {
     configuration: {
       runMode: RunMode.OrderIrrelevant,
     },
-  sink:     {
-        type: Sink1Type.Webhook,
-        url: "http://round-fuel.org",
-      },
+    sink: {
+      type: Type.Webhook,
+      url: "http://insidious-publishing.info",
+    },
     payload: [
       {},
     ],

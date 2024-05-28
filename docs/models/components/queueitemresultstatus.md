@@ -1,8 +1,8 @@
-# Sink1Type
+# QueueItemResultStatus
 
 
 ## Values
 
 | Name      | Value     |
 | --------- | --------- |
-| `Webhook` | webhook   |
+| `Pending` | pending   |

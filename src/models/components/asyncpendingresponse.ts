@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 /**
- * Operation status.
+ * The status of the asynchronous operation
  */
 export enum AsyncPendingResponseStatus {
     Pending = "pending",
@@ -13,13 +13,13 @@ export enum AsyncPendingResponseStatus {
 
 export type AsyncPendingResponse = {
     /**
-     * Operation ID
-     */
-    operationId?: string | undefined;
-    /**
-     * Operation status.
+     * The status of the asynchronous operation
      */
     status?: AsyncPendingResponseStatus | undefined;
+    /**
+     * The operation ID
+     */
+    operationId?: string | undefined;
 };
 
 /** @internal */
@@ -32,30 +32,30 @@ export namespace AsyncPendingResponseStatus$ {
 export namespace AsyncPendingResponse$ {
     export const inboundSchema: z.ZodType<AsyncPendingResponse, z.ZodTypeDef, unknown> = z
         .object({
-            operationId: z.string().optional(),
             status: AsyncPendingResponseStatus$.inboundSchema.optional(),
+            operationId: z.string().optional(),
         })
         .transform((v) => {
             return {
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
                 ...(v.status === undefined ? null : { status: v.status }),
+                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
             };
         });
 
     export type Outbound = {
-        operationId?: string | undefined;
         status?: string | undefined;
+        operationId?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncPendingResponse> = z
         .object({
-            operationId: z.string().optional(),
             status: AsyncPendingResponseStatus$.outboundSchema.optional(),
+            operationId: z.string().optional(),
         })
         .transform((v) => {
             return {
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
                 ...(v.status === undefined ? null : { status: v.status }),
+                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
             };
         });
 }

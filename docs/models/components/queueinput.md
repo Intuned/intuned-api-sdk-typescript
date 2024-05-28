@@ -1,0 +1,14 @@
+# QueueInput
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `id`                                                                           | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `name`                                                                         | *string*                                                                       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `configuration`                                                                | [components.QueueConfiguration](../../models/components/queueconfiguration.md) | :heavy_check_mark:                                                             | N/A                                                                            |
+| `sink`                                                                         | [components.Sink](../../models/components/sink.md)                             | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `identity`                                                                     | [components.Identity](../../models/components/identity.md)                     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `proxy`                                                                        | [components.Proxy](../../models/components/proxy.md)                           | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `metadata`                                                                     | Record<string, *any*>                                                          | :heavy_minus_sign:                                                             | N/A                                                                            |

@@ -1,5 +1,8 @@
 configVersion: 2.0.0
 generation:
+  devContainers:
+    enabled: true
+    schemaPath: ./openapi.yaml
   sdkClassName: IntunedApiSDK
   maintainOpenAPIOrder: true
   usageSnippets:
@@ -12,7 +15,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.2.6
+  version: 0.2.7
   additionalDependencies:
     dependencies: {}
     devDependencies: {}

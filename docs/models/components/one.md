@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `type`                                                       | [components.Sink1Type](../../models/components/sink1type.md) | :heavy_check_mark:                                           | N/A                                                          |
-| `url`                                                        | *string*                                                     | :heavy_check_mark:                                           | N/A                                                          |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `min`              | *number*           | :heavy_check_mark: | N/A                |
+| `max`              | *number*           | :heavy_check_mark: | N/A                |

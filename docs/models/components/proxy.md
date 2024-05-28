@@ -1,11 +1,9 @@
 # Proxy
 
 
-## Values
+## Fields
 
-| Name   | Value  |
-| ------ | ------ |
-| `UsWa` | US-WA  |
-| `UsTx` | US-TX  |
-| `UsFl` | US-FL  |
-| `UsCa` | US-CA  |
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `enabled`                                                  | *boolean*                                                  | :heavy_check_mark:                                         | N/A                                                        |
+| `location`                                                 | [components.Location](../../models/components/location.md) | :heavy_minus_sign:                                         | N/A                                                        |

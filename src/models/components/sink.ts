@@ -4,105 +4,26 @@
 
 import * as z from "zod";
 
-export enum SinkType {
-    S3 = "s3",
-}
-
-export type Two = {
-    type: SinkType;
-    bucket: string;
-    accessKeyId?: string | undefined;
-    secretAccessKey: string;
-    region: string;
-    prefix?: string | undefined;
-    skipOnFail?: boolean | undefined;
-};
-
-export enum Sink1Type {
+export enum Type {
     Webhook = "webhook",
 }
 
-export type One = {
-    type: Sink1Type;
+export type Sink = {
+    type: Type;
     url: string;
 };
 
-export type Sink = One | Two;
-
 /** @internal */
-export namespace SinkType$ {
-    export const inboundSchema = z.nativeEnum(SinkType);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace Two$ {
-    export const inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
+export namespace Sink$ {
+    export const inboundSchema: z.ZodType<Sink, z.ZodTypeDef, unknown> = z
         .object({
-            type: SinkType$.inboundSchema,
-            bucket: z.string(),
-            accessKeyId: z.string().optional(),
-            secretAccessKey: z.string(),
-            region: z.string(),
-            prefix: z.string().optional(),
-            skipOnFail: z.boolean().default(false),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                bucket: v.bucket,
-                ...(v.accessKeyId === undefined ? null : { accessKeyId: v.accessKeyId }),
-                secretAccessKey: v.secretAccessKey,
-                region: v.region,
-                ...(v.prefix === undefined ? null : { prefix: v.prefix }),
-                skipOnFail: v.skipOnFail,
-            };
-        });
-
-    export type Outbound = {
-        type: string;
-        bucket: string;
-        accessKeyId?: string | undefined;
-        secretAccessKey: string;
-        region: string;
-        prefix?: string | undefined;
-        skipOnFail: boolean;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Two> = z
-        .object({
-            type: SinkType$.outboundSchema,
-            bucket: z.string(),
-            accessKeyId: z.string().optional(),
-            secretAccessKey: z.string(),
-            region: z.string(),
-            prefix: z.string().optional(),
-            skipOnFail: z.boolean().default(false),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                bucket: v.bucket,
-                ...(v.accessKeyId === undefined ? null : { accessKeyId: v.accessKeyId }),
-                secretAccessKey: v.secretAccessKey,
-                region: v.region,
-                ...(v.prefix === undefined ? null : { prefix: v.prefix }),
-                skipOnFail: v.skipOnFail,
-            };
-        });
-}
-
-/** @internal */
-export namespace Sink1Type$ {
-    export const inboundSchema = z.nativeEnum(Sink1Type);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace One$ {
-    export const inboundSchema: z.ZodType<One, z.ZodTypeDef, unknown> = z
-        .object({
-            type: Sink1Type$.inboundSchema,
+            type: Type$.inboundSchema,
             url: z.string(),
         })
         .transform((v) => {
@@ -117,9 +38,9 @@ export namespace One$ {
         url: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, One> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Sink> = z
         .object({
-            type: Sink1Type$.outboundSchema,
+            type: Type$.outboundSchema,
             url: z.string(),
         })
         .transform((v) => {
@@ -128,18 +49,4 @@ export namespace One$ {
                 url: v.url,
             };
         });
-}
-
-/** @internal */
-export namespace Sink$ {
-    export const inboundSchema: z.ZodType<Sink, z.ZodTypeDef, unknown> = z.union([
-        z.lazy(() => One$.inboundSchema),
-        z.lazy(() => Two$.inboundSchema),
-    ]);
-
-    export type Outbound = One$.Outbound | Two$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Sink> = z.union([
-        z.lazy(() => One$.outboundSchema),
-        z.lazy(() => Two$.outboundSchema),
-    ]);
 }

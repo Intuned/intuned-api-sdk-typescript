@@ -7,6 +7,8 @@ import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
 import { Jobs } from "./jobs";
+import { Queues } from "./queues";
+import { Run } from "./run";
 
 export class Project extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -38,5 +40,15 @@ export class Project extends ClientSDK {
     private _jobs?: Jobs;
     get jobs(): Jobs {
         return (this._jobs ??= new Jobs(this.options$));
+    }
+
+    private _queues?: Queues;
+    get queues(): Queues {
+        return (this._queues ??= new Queues(this.options$));
+    }
+
+    private _run?: Run;
+    get run(): Run {
+        return (this._run ??= new Run(this.options$));
     }
 }

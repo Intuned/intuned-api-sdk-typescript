@@ -8,7 +8,7 @@ export enum RunMode {
     OrderIrrelevant = "Order-Irrelevant",
 }
 
-export type Retry = {
+export type ConfigurationRetry = {
     backoffCoefficent?: number | undefined;
     initialInterval?: string | undefined;
     maximumInterval?: string | undefined;
@@ -16,7 +16,7 @@ export type Retry = {
 
 export type Configuration = {
     runMode: RunMode;
-    retry?: Retry | undefined;
+    retry?: ConfigurationRetry | undefined;
     maxConcurrentRequests?: number | undefined;
 };
 
@@ -27,8 +27,8 @@ export namespace RunMode$ {
 }
 
 /** @internal */
-export namespace Retry$ {
-    export const inboundSchema: z.ZodType<Retry, z.ZodTypeDef, unknown> = z
+export namespace ConfigurationRetry$ {
+    export const inboundSchema: z.ZodType<ConfigurationRetry, z.ZodTypeDef, unknown> = z
         .object({
             backoffCoefficent: z.number().default(1),
             initialInterval: z.string().default("1s"),
@@ -50,7 +50,7 @@ export namespace Retry$ {
         maximumInterval?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Retry> = z
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ConfigurationRetry> = z
         .object({
             backoffCoefficent: z.number().default(1),
             initialInterval: z.string().default("1s"),
@@ -72,7 +72,7 @@ export namespace Configuration$ {
     export const inboundSchema: z.ZodType<Configuration, z.ZodTypeDef, unknown> = z
         .object({
             runMode: RunMode$.inboundSchema,
-            retry: z.lazy(() => Retry$.inboundSchema).optional(),
+            retry: z.lazy(() => ConfigurationRetry$.inboundSchema).optional(),
             maxConcurrentRequests: z.number().optional(),
         })
         .transform((v) => {
@@ -87,14 +87,14 @@ export namespace Configuration$ {
 
     export type Outbound = {
         runMode: string;
-        retry?: Retry$.Outbound | undefined;
+        retry?: ConfigurationRetry$.Outbound | undefined;
         maxConcurrentRequests?: number | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Configuration> = z
         .object({
             runMode: RunMode$.outboundSchema,
-            retry: z.lazy(() => Retry$.outboundSchema).optional(),
+            retry: z.lazy(() => ConfigurationRetry$.outboundSchema).optional(),
             maxConcurrentRequests: z.number().optional(),
         })
         .transform((v) => {
