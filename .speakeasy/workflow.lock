@@ -2,16 +2,16 @@ speakeasyVersion: 1.296.1
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:c2f60f9e2cca49e888f3660a91ad9e390bb3121de85f925e63a2e719afa01e30
-        sourceBlobDigest: sha256:ebbca6f01c690741d43fddc30dd7e127da1675099f82ef710b75191db9c0f7ed
+        sourceRevisionDigest: sha256:439aaebcb334debb24c21b536675bb2c007bea508e9e3c244668e2cc5a1ddf9c
+        sourceBlobDigest: sha256:46b8b5d2cfeb5697708d0358cd6e83a3c3a241a2ce9dad2882309152904228c0
         tags:
             - latest
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:c2f60f9e2cca49e888f3660a91ad9e390bb3121de85f925e63a2e719afa01e30
-        sourceBlobDigest: sha256:ebbca6f01c690741d43fddc30dd7e127da1675099f82ef710b75191db9c0f7ed
+        sourceRevisionDigest: sha256:439aaebcb334debb24c21b536675bb2c007bea508e9e3c244668e2cc5a1ddf9c
+        sourceBlobDigest: sha256:46b8b5d2cfeb5697708d0358cd6e83a3c3a241a2ce9dad2882309152904228c0
         outLocation: /Users/faisal/src/intuned-api-sdk-typescript
     typescript-client-sdk:
         source: intunedClientApi
@@ -35,3 +35,5 @@ workflow:
         my-first-target:
             target: typescript
             source: intunedClientApi
+            codeSamples:
+                output: ../docs/_resources/openapi/generated/codeSamples.yaml
