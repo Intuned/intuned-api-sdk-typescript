@@ -40,7 +40,7 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Get all queues in a project.
+     * Get Queues
      *
      * @remarks
      * Gets all queues in a project.
@@ -116,7 +116,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetQueuesResponse>()
-            .json(200, operations.GetQueuesResponse$, { key: "QueueInputs" })
+            .json(200, operations.GetQueuesResponse$, { key: "GetQueues" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -126,7 +126,7 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Create a new queue for a project.
+     * Create Queue
      *
      * @remarks
      * Creates a new queue.
@@ -205,7 +205,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.CreateQueueResponse>()
-            .json(201, operations.CreateQueueResponse$, { key: "object" })
+            .json(201, operations.CreateQueueResponse$, { key: "CreateQueue" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -215,7 +215,7 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Get a queue in a project by ID.
+     * Get Queue
      *
      * @remarks
      * Gets a queue in a project by ID.
@@ -307,7 +307,7 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Delete a queue of a project by ID.
+     * Delete Queue
      *
      * @remarks
      * Deletes a queue by ID.
@@ -389,7 +389,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteQueueResponse>()
-            .json(204, operations.DeleteQueueResponse$, { key: "object" })
+            .json(204, operations.DeleteQueueResponse$, { key: "DeleteQueue" })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });
@@ -398,7 +398,7 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Append an item to the queue.
+     * Append item to Queue
      *
      * @remarks
      * Appends an item to the queue.
@@ -483,7 +483,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.AddItemResponse>()
-            .json(200, operations.AddItemResponse$, { key: "object" })
+            .json(200, operations.AddItemResponse$, { key: "AddQueueItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -493,7 +493,7 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Get queue item result.
+     * Get Queue item result
      *
      * @remarks
      * Get queue item result.
@@ -591,10 +591,10 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Delete queued item
+     * Delete Queue item
      *
      * @remarks
-     * Delete queued item.
+     * Delete queued item. If the item is currently processing, the delete will fail.
      */
     async deleteQueueItem(
         queueId: string,
@@ -679,7 +679,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteQueueItemResponse>()
-            .json(204, operations.DeleteQueueItemResponse$, { key: "object" })
+            .json(204, operations.DeleteQueueItemResponse$, { key: "DeleteQueueItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -689,10 +689,10 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Get repeat items for the queue.
+     * Get Queue repeat item
      *
      * @remarks
-     * Appends an item to the queue.
+     * Gets all repeatable items of a queue.
      */
     async getRepeatItems(
         queueId: string,
@@ -771,7 +771,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetRepeatItemsResponse>()
-            .json(200, operations.GetRepeatItemsResponse$, { key: "QueueRepeatItems" })
+            .json(200, operations.GetRepeatItemsResponse$, { key: "GetQueueRepeatItems" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -781,10 +781,10 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Create a repeat item for the queue.
+     * Create Queue repeat item
      *
      * @remarks
-     * Appends an item to the queue.
+     * Creates and appends a repeatable item to the queue. Repeatable items will automatically re-append to the queue according to the repeat settings.
      */
     async addRepeatItem(
         queueId: string,
@@ -866,7 +866,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.AddRepeatItemResponse>()
-            .json(200, operations.AddRepeatItemResponse$, { key: "object" })
+            .json(200, operations.AddRepeatItemResponse$, { key: "AddQueueRepeatItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -876,10 +876,10 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Get repeat queue item with last result.
+     * Get Queue repeat item
      *
      * @remarks
-     * Get queue repeatable item.
+     * Gets a repeatable item from a queue by ID. The last execution result of the item is also returned.
      */
     async getRepeatQueueItem(
         queueId: string,
@@ -974,10 +974,10 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Update queue repeatable item
+     * Update Queue repeat item
      *
      * @remarks
-     * Update queue repeatable item.
+     * Updates the configurations of a repeatable item by ID.
      */
     async updateRepeatQueueItem(
         queueId: string,
@@ -1065,7 +1065,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.UpdateRepeatQueueItemResponse>()
-            .json(204, operations.UpdateRepeatQueueItemResponse$, { key: "object" })
+            .json(204, operations.UpdateRepeatQueueItemResponse$, { key: "UpdateQueueRepeatItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -1075,10 +1075,10 @@ export class Queues extends ClientSDK {
     }
 
     /**
-     * Delete queued item
+     * Delete Queue repeat item
      *
      * @remarks
-     * Delete queue repeatable item.
+     * Deletes a repeatable item by ID. The item will no longer be re-appended to the queue.
      */
     async deleteRepeatQueueItem(
         queueId: string,
@@ -1163,7 +1163,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteRepeatQueueItemResponse>()
-            .json(204, operations.DeleteRepeatQueueItemResponse$, { key: "object" })
+            .json(204, operations.DeleteRepeatQueueItemResponse$, { key: "DeleteQueueRepeatItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

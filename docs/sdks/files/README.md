@@ -7,15 +7,15 @@ Standalone Files API
 
 ### Available Operations
 
-* [extractStructuredData](#extractstructureddata) - Extract structured data from a file - supports image, pdf (more coming soon!)
-* [extractMarkdown](#extractmarkdown) - Extract markdown from a file - supports image, pdf (more coming soon!)
-* [extractTables](#extracttables) - Extract tables from a file - supports image, pdf (more coming soon!)
-* [extractStructuredDataStart](#extractstructureddatastart) - Asynchronously extract structured data from a file - supports image, pdf (more coming soon!)
-* [extractStructuredDataResult](#extractstructureddataresult) - Get result of extract structured data from a file
-* [extractMarkdownStart](#extractmarkdownstart) - Asynchronously extract markdown from a file - supports image, pdf (more coming soon!)
-* [extractMarkdownResult](#extractmarkdownresult) - Get result of extract markdown from a file
-* [extractTablesStart](#extracttablesstart) - Asynchronously extract tables from a file - supports image, pdf (more coming soon!)
-* [extractTablesResult](#extracttablesresult) - Get result of extract tables from a file
+* [extractStructuredData](#extractstructureddata) - Extract structured data
+* [extractMarkdown](#extractmarkdown) - Extract markdown
+* [extractTables](#extracttables) - Extract tables
+* [extractStructuredDataStart](#extractstructureddatastart) - Extract structured data - Async start
+* [extractStructuredDataResult](#extractstructureddataresult) - Extract structured data - Async result
+* [extractMarkdownStart](#extractmarkdownstart) - Extract markdown - Async start
+* [extractMarkdownResult](#extractmarkdownresult) - Extract markdown - Async result
+* [extractTablesStart](#extracttablesstart) - Extract tables - Async start
+* [extractTablesResult](#extracttablesresult) - Extract tables - Async result
 
 ## extractStructuredData
 
@@ -30,6 +30,8 @@ import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/compon
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
@@ -84,6 +86,8 @@ import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/compon
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
@@ -135,6 +139,8 @@ import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/compon
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
@@ -183,15 +189,17 @@ It responds with an ID to track the operation status and retrieve the result.
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
-import { FileUrlSourceType, ImageFileType } from "@intuned/client/models/components";
+import { FileUrlSourceType, Type } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
   const result = await intunedApiSDK.files.extractStructuredDataStart({
-      type: ImageFileType.Image,
+      type: Type.Image,
     source:     {
           type: FileUrlSourceType.Url,
           data: "<value>",
@@ -239,10 +247,12 @@ import { IntunedApiSDK } from "@intuned/client";
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.files.extractStructuredDataResult("<value>");
+  const result = await intunedApiSDK.files.extractStructuredDataResult("EVmDumBbkyhx3DU");
 
   // Handle the result
   console.log(result)
@@ -253,11 +263,11 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the operation ID provided by the start operation                                                                                                                               |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Operation Id.                                                                                                                                                                  | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
 
 ### Response
@@ -285,6 +295,8 @@ import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/compon
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
@@ -334,10 +346,12 @@ import { IntunedApiSDK } from "@intuned/client";
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.files.extractMarkdownResult("<value>");
+  const result = await intunedApiSDK.files.extractMarkdownResult("EVmDumBbkyhx3DU");
 
   // Handle the result
   console.log(result)
@@ -348,11 +362,11 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the operation ID provided by the start operation                                                                                                                               |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Operation Id.                                                                                                                                                                  | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
 
 ### Response
@@ -376,15 +390,17 @@ The API responds with an ID to track the operation status and retrieve the resul
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
-import { FileUrlSourceType, ImageFileType } from "@intuned/client/models/components";
+import { FileUrlSourceType, Type } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
   const result = await intunedApiSDK.files.extractTablesStart({
-      type: ImageFileType.Image,
+      type: Type.Image,
     source:     {
           type: FileUrlSourceType.Url,
           data: "<value>",
@@ -429,10 +445,12 @@ import { IntunedApiSDK } from "@intuned/client";
 
 const intunedApiSDK = new IntunedApiSDK({
   apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.files.extractTablesResult("<value>");
+  const result = await intunedApiSDK.files.extractTablesResult("EVmDumBbkyhx3DU");
 
   // Handle the result
   console.log(result)
@@ -443,11 +461,11 @@ run();
 
 ### Parameters
 
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | the operation ID provided by the start operation                                                                                                                               |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Operation Id.                                                                                                                                                                  | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
 
 ### Response

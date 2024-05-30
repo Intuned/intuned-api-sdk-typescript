@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field                                                        | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `version`                                                    | *string*                                                     | :heavy_minus_sign:                                           | N/A                                                          |
-| `intervals`                                                  | [components.Interval](../../models/components/interval.md)[] | :heavy_minus_sign:                                           | N/A                                                          |
+| Field              | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `pause`            | *string*           | :heavy_check_mark: | N/A                |
+| `resume`           | *string*           | :heavy_check_mark: | N/A                |

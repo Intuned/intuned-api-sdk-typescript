@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type AddItemGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type AddItemRequest = {
@@ -31,54 +31,42 @@ export type AddItemRequest = {
     queueItem?: components.QueueItem | undefined;
 };
 
-export enum Status {
-    Queued = "queued",
-}
-
-/**
- * Item appended
- */
-export type AddItemResponseBody = {
-    runId?: string | undefined;
-    status?: Status | undefined;
-};
-
 export type AddItemResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Item appended
+     * Queue item appended
      */
-    object?: AddItemResponseBody | undefined;
+    addQueueItem?: components.AddQueueItem | undefined;
 };
 
 /** @internal */
 export namespace AddItemGlobals$ {
     export const inboundSchema: z.ZodType<AddItemGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddItemGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -121,71 +109,33 @@ export namespace AddItemRequest$ {
 }
 
 /** @internal */
-export namespace Status$ {
-    export const inboundSchema = z.nativeEnum(Status);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace AddItemResponseBody$ {
-    export const inboundSchema: z.ZodType<AddItemResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            runId: z.string().optional(),
-            status: Status$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.runId === undefined ? null : { runId: v.runId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
-
-    export type Outbound = {
-        runId?: string | undefined;
-        status?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddItemResponseBody> = z
-        .object({
-            runId: z.string().optional(),
-            status: Status$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.runId === undefined ? null : { runId: v.runId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
-}
-
-/** @internal */
 export namespace AddItemResponse$ {
     export const inboundSchema: z.ZodType<AddItemResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => AddItemResponseBody$.inboundSchema).optional(),
+            AddQueueItem: components.AddQueueItem$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.AddQueueItem === undefined ? null : { addQueueItem: v.AddQueueItem }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: AddItemResponseBody$.Outbound | undefined;
+        AddQueueItem?: components.AddQueueItem$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddItemResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => AddItemResponseBody$.outboundSchema).optional(),
+            addQueueItem: components.AddQueueItem$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.addQueueItem === undefined ? null : { AddQueueItem: v.addQueueItem }),
             };
         });
 }

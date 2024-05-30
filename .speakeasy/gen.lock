@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 3606079a4c2558806fd711807b6ec01e
+  docChecksum: 703dfa910cbdfaa982567620a90d0875
   docVersion: 0.0.1
-  speakeasyVersion: 1.296.1
-  generationVersion: 2.338.1
-  releaseVersion: 0.2.9
-  configChecksum: 470ae514f8dde29b17966b883e1ffe71
+  speakeasyVersion: 1.299.3
+  generationVersion: 2.338.7
+  releaseVersion: 0.2.11
+  configChecksum: c6b1b9e81fb47ec1125ac33058cc6535
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.9
+    core: 3.9.10
     devContainers: 2.90.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -25,11 +25,12 @@ features:
     sdkHooks: 0.1.0
     unions: 2.85.5
 generatedFiles:
+  - src/sdk/files.ts
   - src/sdk/jobs.ts
   - src/sdk/queues.ts
   - src/sdk/run.ts
   - src/sdk/project.ts
-  - src/sdk/files.ts
+  - src/sdk/authsessions.ts
   - src/sdk/sdk.ts
   - .eslintrc.js
   - .npmignore
@@ -56,6 +57,15 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
+  - src/models/operations/extractstructureddata.ts
+  - src/models/operations/extractmarkdown.ts
+  - src/models/operations/extracttables.ts
+  - src/models/operations/extractstructureddatastart.ts
+  - src/models/operations/extractstructureddataresult.ts
+  - src/models/operations/extractmarkdownstart.ts
+  - src/models/operations/extractmarkdownresult.ts
+  - src/models/operations/extracttablesstart.ts
+  - src/models/operations/extracttablesresult.ts
   - src/models/operations/getjobs.ts
   - src/models/operations/createjob.ts
   - src/models/operations/getjob.ts
@@ -80,41 +90,15 @@ generatedFiles:
   - src/models/operations/runsync.ts
   - src/models/operations/runstart.ts
   - src/models/operations/runresult.ts
-  - src/models/operations/extractstructureddata.ts
-  - src/models/operations/extractmarkdown.ts
-  - src/models/operations/extracttables.ts
-  - src/models/operations/extractstructureddatastart.ts
-  - src/models/operations/extractstructureddataresult.ts
-  - src/models/operations/extractmarkdownstart.ts
-  - src/models/operations/extractmarkdownresult.ts
-  - src/models/operations/extracttablesstart.ts
-  - src/models/operations/extracttablesresult.ts
-  - src/models/components/job.ts
-  - src/models/components/schedule.ts
-  - src/models/components/interval.ts
-  - src/models/components/payload.ts
-  - src/models/components/sink.ts
-  - src/models/components/configuration.ts
-  - src/models/components/httpmetadata.ts
-  - src/models/components/jobinput.ts
-  - src/models/components/jobrun.ts
-  - src/models/components/queueinput.ts
-  - src/models/components/proxy.ts
-  - src/models/components/identity.ts
-  - src/models/components/queueconfiguration.ts
-  - src/models/components/retry.ts
-  - src/models/components/queueitem.ts
-  - src/models/components/queueitemresult.ts
-  - src/models/components/queuerepeatitem.ts
-  - src/models/components/queuerepeatiteminput.ts
-  - src/models/components/failedrunresult.ts
-  - src/models/components/completedrunresult.ts
-  - src/models/components/runprojectapirequest.ts
-  - src/models/components/asyncpendingresponse.ts
-  - src/models/components/asyncresultresponse.ts
-  - src/models/components/asynccompletedresponse.ts
-  - src/models/components/asyncfailedresponse.ts
+  - src/models/operations/getauthsessions.ts
+  - src/models/operations/getauthsession.ts
+  - src/models/operations/deleteauthsession.ts
+  - src/models/operations/createauthsession.ts
+  - src/models/operations/getcreateauthsessionresult.ts
+  - src/models/operations/resumecreateauthsession.ts
+  - src/models/operations/refreshauthsession.ts
   - src/models/components/structureddataextractionresponse.ts
+  - src/models/components/httpmetadata.ts
   - src/models/components/extractstructureddatarequest.ts
   - src/models/components/file.ts
   - src/models/components/imagefile.ts
@@ -125,109 +109,67 @@ generatedFiles:
   - src/models/components/markdownextractionresponse.ts
   - src/models/components/generalextractrequest.ts
   - src/models/components/tableextractionresponse.ts
+  - src/models/components/asyncfilependingresponse.ts
   - src/models/components/structureddataextractionasyncresponse.ts
+  - src/models/components/asyncfailedresponse.ts
   - src/models/components/markdownextractionasyncresponse.ts
   - src/models/components/tableextractionasyncresponse.ts
+  - src/models/components/job.ts
+  - src/models/components/proxy.ts
+  - src/models/components/authsession.ts
+  - src/models/components/jobschedule.ts
+  - src/models/components/jobcalendarvalue.ts
+  - src/models/components/jobcalendarrange.ts
+  - src/models/components/jobpayload.ts
+  - src/models/components/jobsink.ts
+  - src/models/components/jobconfiguration.ts
+  - src/models/components/createjob.ts
+  - src/models/components/jobinput.ts
+  - src/models/components/deletejob.ts
+  - src/models/components/pausejob.ts
+  - src/models/components/resumejob.ts
+  - src/models/components/triggerjob.ts
+  - src/models/components/jobrun.ts
+  - src/models/components/terminatejobrun.ts
+  - src/models/components/queueinput.ts
+  - src/models/components/queuesink.ts
+  - src/models/components/queueconfiguration.ts
+  - src/models/components/queueretry.ts
+  - src/models/components/createqueue.ts
+  - src/models/components/deletequeue.ts
+  - src/models/components/addqueueitem.ts
+  - src/models/components/queueitem.ts
+  - src/models/components/queueitemresult.ts
+  - src/models/components/deletequeueitem.ts
+  - src/models/components/queuerepeatitem.ts
+  - src/models/components/addqueuerepeatitem.ts
+  - src/models/components/queuerepeatiteminput.ts
+  - src/models/components/updatequeuerepeatitem.ts
+  - src/models/components/deletequeuerepeatitem.ts
+  - src/models/components/failedrunresult.ts
+  - src/models/components/completedrunresult.ts
+  - src/models/components/runprojectapirequest.ts
+  - src/models/components/asyncrunpendingresponse.ts
+  - src/models/components/asyncresultresponse.ts
+  - src/models/components/asyncfilecompletedresponse.ts
+  - src/models/components/asyncfilefailedresponse.ts
+  - src/models/components/authsessioninfo.ts
+  - src/models/components/deleteauthsession.ts
+  - src/models/components/createauthsessionstart.ts
+  - src/models/components/authsessioncreateresult.ts
+  - src/models/components/authsessioncreatedoneresult.ts
+  - src/models/components/authsessioncreatependingresult.ts
+  - src/models/components/authsessioncreaterequestedmoreinforesult.ts
+  - src/models/components/authsessioncreatefailedresult.ts
+  - src/models/components/createauthsessionresume.ts
+  - src/models/components/authsessioncreateresume.ts
+  - src/models/components/refreshauthsession.ts
   - src/models/components/security.ts
   - src/models/errors/apierrorinvalidinput.ts
   - src/models/errors/apierrorunauthorized.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/getjobsglobals.md
-  - docs/models/operations/getjobsrequest.md
-  - docs/models/operations/getjobsresponse.md
-  - docs/models/operations/createjobglobals.md
-  - docs/models/operations/createjobrequest.md
-  - docs/models/operations/message.md
-  - docs/models/operations/createjobresponsebody.md
-  - docs/models/operations/createjobresponse.md
-  - docs/models/operations/getjobglobals.md
-  - docs/models/operations/getjobrequest.md
-  - docs/models/operations/getjobresponse.md
-  - docs/models/operations/deletejobglobals.md
-  - docs/models/operations/deletejobrequest.md
-  - docs/models/operations/deletejobmessage.md
-  - docs/models/operations/deletejobresponsebody.md
-  - docs/models/operations/deletejobresponse.md
-  - docs/models/operations/pausejobglobals.md
-  - docs/models/operations/pausejobrequest.md
-  - docs/models/operations/pausejobmessage.md
-  - docs/models/operations/pausejobresponsebody.md
-  - docs/models/operations/pausejobresponse.md
-  - docs/models/operations/resumejobglobals.md
-  - docs/models/operations/resumejobrequest.md
-  - docs/models/operations/resumejobmessage.md
-  - docs/models/operations/resumejobresponsebody.md
-  - docs/models/operations/resumejobresponse.md
-  - docs/models/operations/triggerjobglobals.md
-  - docs/models/operations/triggerjobrequest.md
-  - docs/models/operations/triggerjobmessage.md
-  - docs/models/operations/triggerjobresponsebody.md
-  - docs/models/operations/triggerjobresponse.md
-  - docs/models/operations/getjobrunsglobals.md
-  - docs/models/operations/getjobrunsrequest.md
-  - docs/models/operations/getjobrunsresponse.md
-  - docs/models/operations/terminatejobrunglobals.md
-  - docs/models/operations/terminatejobrunrequest.md
-  - docs/models/operations/terminatejobrunmessage.md
-  - docs/models/operations/terminatejobrunresponsebody.md
-  - docs/models/operations/terminatejobrunresponse.md
-  - docs/models/operations/getqueuesglobals.md
-  - docs/models/operations/getqueuesrequest.md
-  - docs/models/operations/getqueuesresponse.md
-  - docs/models/operations/createqueueglobals.md
-  - docs/models/operations/createqueuerequest.md
-  - docs/models/operations/createqueueresponsebody.md
-  - docs/models/operations/createqueueresponse.md
-  - docs/models/operations/getqueueglobals.md
-  - docs/models/operations/getqueuerequest.md
-  - docs/models/operations/getqueueresponse.md
-  - docs/models/operations/deletequeueglobals.md
-  - docs/models/operations/deletequeuerequest.md
-  - docs/models/operations/deletequeueresponsebody.md
-  - docs/models/operations/deletequeueresponse.md
-  - docs/models/operations/additemglobals.md
-  - docs/models/operations/additemrequest.md
-  - docs/models/operations/status.md
-  - docs/models/operations/additemresponsebody.md
-  - docs/models/operations/additemresponse.md
-  - docs/models/operations/getqueueitemresultglobals.md
-  - docs/models/operations/getqueueitemresultrequest.md
-  - docs/models/operations/getqueueitemresultresponse.md
-  - docs/models/operations/deletequeueitemglobals.md
-  - docs/models/operations/deletequeueitemrequest.md
-  - docs/models/operations/deletequeueitemresponsebody.md
-  - docs/models/operations/deletequeueitemresponse.md
-  - docs/models/operations/getrepeatitemsglobals.md
-  - docs/models/operations/getrepeatitemsrequest.md
-  - docs/models/operations/getrepeatitemsresponse.md
-  - docs/models/operations/addrepeatitemglobals.md
-  - docs/models/operations/addrepeatitemrequest.md
-  - docs/models/operations/addrepeatitemstatus.md
-  - docs/models/operations/addrepeatitemresponsebody.md
-  - docs/models/operations/addrepeatitemresponse.md
-  - docs/models/operations/getrepeatqueueitemglobals.md
-  - docs/models/operations/getrepeatqueueitemrequest.md
-  - docs/models/operations/getrepeatqueueitemresponse.md
-  - docs/models/operations/updaterepeatqueueitemglobals.md
-  - docs/models/operations/updaterepeatqueueitemrequest.md
-  - docs/models/operations/updaterepeatqueueitemmessage.md
-  - docs/models/operations/updaterepeatqueueitemresponsebody.md
-  - docs/models/operations/updaterepeatqueueitemresponse.md
-  - docs/models/operations/deleterepeatqueueitemglobals.md
-  - docs/models/operations/deleterepeatqueueitemrequest.md
-  - docs/models/operations/deleterepeatqueueitemresponsebody.md
-  - docs/models/operations/deleterepeatqueueitemresponse.md
-  - docs/models/operations/runsyncglobals.md
-  - docs/models/operations/runsyncrequest.md
-  - docs/models/operations/runsyncresponse.md
-  - docs/models/operations/runstartglobals.md
-  - docs/models/operations/runstartrequest.md
-  - docs/models/operations/runstartresponse.md
-  - docs/models/operations/runresultglobals.md
-  - docs/models/operations/runresultrequest.md
-  - docs/models/operations/runresultresponse.md
   - docs/models/operations/extractstructureddataglobals.md
   - docs/models/operations/extractstructureddataresponse.md
   - docs/models/operations/extractmarkdownglobals.md
@@ -249,65 +191,104 @@ generatedFiles:
   - docs/models/operations/extracttablesresultglobals.md
   - docs/models/operations/extracttablesresultrequest.md
   - docs/models/operations/extracttablesresultresponse.md
-  - docs/models/components/jobidentity.md
-  - docs/models/components/jobproxy.md
-  - docs/models/components/state.md
-  - docs/models/components/job.md
-  - docs/models/components/schedule.md
-  - docs/models/components/interval.md
-  - docs/models/components/payload.md
-  - docs/models/components/type.md
-  - docs/models/components/sink.md
-  - docs/models/components/runmode.md
-  - docs/models/components/configurationretry.md
-  - docs/models/components/configuration.md
-  - docs/models/components/httpmetadata.md
-  - docs/models/components/jobinputidentity.md
-  - docs/models/components/jobinputproxy.md
-  - docs/models/components/jobinput.md
-  - docs/models/components/status.md
-  - docs/models/components/jobruntype.md
-  - docs/models/components/jobrun.md
-  - docs/models/components/queueinput.md
-  - docs/models/components/location.md
-  - docs/models/components/proxy.md
-  - docs/models/components/identity.md
-  - docs/models/components/queueconfigurationrunmode.md
-  - docs/models/components/ratelimits.md
-  - docs/models/components/queueconfigurationschedule.md
-  - docs/models/components/two.md
-  - docs/models/components/one.md
-  - docs/models/components/randomwait.md
-  - docs/models/components/queueconfiguration.md
-  - docs/models/components/retry.md
-  - docs/models/components/queueitem.md
-  - docs/models/components/queueitemresult3status.md
-  - docs/models/components/three.md
-  - docs/models/components/queueitemresult2status.md
-  - docs/models/components/queueitemresult2.md
-  - docs/models/components/queueitemresultstatus.md
-  - docs/models/components/queueitemresult1.md
-  - docs/models/components/queueitemresult.md
-  - docs/models/components/queuerepeatitem.md
-  - docs/models/components/queuerepeatiteminput.md
-  - docs/models/components/failedrunresult.md
-  - docs/models/components/completedrunresult.md
-  - docs/models/components/runprojectapirequestretry.md
-  - docs/models/components/runprojectapirequestidentity.md
-  - docs/models/components/enabled.md
-  - docs/models/components/runprojectapirequestproxy.md
-  - docs/models/components/runprojectapirequest.md
-  - docs/models/components/asyncpendingresponsestatus.md
-  - docs/models/components/asyncpendingresponse.md
-  - docs/models/components/asyncresultresponse.md
-  - docs/models/components/asynccompletedresponsestatus.md
-  - docs/models/components/asynccompletedresponse.md
-  - docs/models/components/asyncfailedresponsestatus.md
-  - docs/models/components/asyncfailedresponse.md
+  - docs/models/operations/getjobsglobals.md
+  - docs/models/operations/getjobsrequest.md
+  - docs/models/operations/getjobsresponse.md
+  - docs/models/operations/createjobglobals.md
+  - docs/models/operations/createjobrequest.md
+  - docs/models/operations/createjobresponse.md
+  - docs/models/operations/getjobglobals.md
+  - docs/models/operations/getjobrequest.md
+  - docs/models/operations/getjobresponse.md
+  - docs/models/operations/deletejobglobals.md
+  - docs/models/operations/deletejobrequest.md
+  - docs/models/operations/deletejobresponse.md
+  - docs/models/operations/pausejobglobals.md
+  - docs/models/operations/pausejobrequest.md
+  - docs/models/operations/pausejobresponse.md
+  - docs/models/operations/resumejobglobals.md
+  - docs/models/operations/resumejobrequest.md
+  - docs/models/operations/resumejobresponse.md
+  - docs/models/operations/triggerjobglobals.md
+  - docs/models/operations/triggerjobrequest.md
+  - docs/models/operations/triggerjobresponse.md
+  - docs/models/operations/getjobrunsglobals.md
+  - docs/models/operations/getjobrunsrequest.md
+  - docs/models/operations/getjobrunsresponse.md
+  - docs/models/operations/terminatejobrunglobals.md
+  - docs/models/operations/terminatejobrunrequest.md
+  - docs/models/operations/terminatejobrunresponse.md
+  - docs/models/operations/getqueuesglobals.md
+  - docs/models/operations/getqueuesrequest.md
+  - docs/models/operations/getqueuesresponse.md
+  - docs/models/operations/createqueueglobals.md
+  - docs/models/operations/createqueuerequest.md
+  - docs/models/operations/createqueueresponse.md
+  - docs/models/operations/getqueueglobals.md
+  - docs/models/operations/getqueuerequest.md
+  - docs/models/operations/getqueueresponse.md
+  - docs/models/operations/deletequeueglobals.md
+  - docs/models/operations/deletequeuerequest.md
+  - docs/models/operations/deletequeueresponse.md
+  - docs/models/operations/additemglobals.md
+  - docs/models/operations/additemrequest.md
+  - docs/models/operations/additemresponse.md
+  - docs/models/operations/getqueueitemresultglobals.md
+  - docs/models/operations/getqueueitemresultrequest.md
+  - docs/models/operations/getqueueitemresultresponse.md
+  - docs/models/operations/deletequeueitemglobals.md
+  - docs/models/operations/deletequeueitemrequest.md
+  - docs/models/operations/deletequeueitemresponse.md
+  - docs/models/operations/getrepeatitemsglobals.md
+  - docs/models/operations/getrepeatitemsrequest.md
+  - docs/models/operations/getrepeatitemsresponse.md
+  - docs/models/operations/addrepeatitemglobals.md
+  - docs/models/operations/addrepeatitemrequest.md
+  - docs/models/operations/addrepeatitemresponse.md
+  - docs/models/operations/getrepeatqueueitemglobals.md
+  - docs/models/operations/getrepeatqueueitemrequest.md
+  - docs/models/operations/getrepeatqueueitemresponse.md
+  - docs/models/operations/updaterepeatqueueitemglobals.md
+  - docs/models/operations/updaterepeatqueueitemrequest.md
+  - docs/models/operations/updaterepeatqueueitemresponse.md
+  - docs/models/operations/deleterepeatqueueitemglobals.md
+  - docs/models/operations/deleterepeatqueueitemrequest.md
+  - docs/models/operations/deleterepeatqueueitemresponse.md
+  - docs/models/operations/runsyncglobals.md
+  - docs/models/operations/runsyncrequest.md
+  - docs/models/operations/runsyncresponse.md
+  - docs/models/operations/runstartglobals.md
+  - docs/models/operations/runstartrequest.md
+  - docs/models/operations/runstartresponse.md
+  - docs/models/operations/runresultglobals.md
+  - docs/models/operations/runresultrequest.md
+  - docs/models/operations/runresultresponse.md
+  - docs/models/operations/getauthsessionsglobals.md
+  - docs/models/operations/getauthsessionsrequest.md
+  - docs/models/operations/getauthsessionsresponse.md
+  - docs/models/operations/getauthsessionglobals.md
+  - docs/models/operations/getauthsessionrequest.md
+  - docs/models/operations/getauthsessionresponse.md
+  - docs/models/operations/deleteauthsessionglobals.md
+  - docs/models/operations/deleteauthsessionrequest.md
+  - docs/models/operations/deleteauthsessionresponse.md
+  - docs/models/operations/createauthsessionglobals.md
+  - docs/models/operations/createauthsessionrequest.md
+  - docs/models/operations/createauthsessionresponse.md
+  - docs/models/operations/getcreateauthsessionresultglobals.md
+  - docs/models/operations/getcreateauthsessionresultrequest.md
+  - docs/models/operations/getcreateauthsessionresultresponse.md
+  - docs/models/operations/resumecreateauthsessionglobals.md
+  - docs/models/operations/resumecreateauthsessionrequest.md
+  - docs/models/operations/resumecreateauthsessionresponse.md
+  - docs/models/operations/refreshauthsessionglobals.md
+  - docs/models/operations/refreshauthsessionrequest.md
+  - docs/models/operations/refreshauthsessionresponse.md
   - docs/models/components/structureddataextractionresponse.md
+  - docs/models/components/httpmetadata.md
   - docs/models/components/extractstructureddatarequest.md
   - docs/models/components/filet.md
-  - docs/models/components/imagefiletype.md
+  - docs/models/components/type.md
   - docs/models/components/imagefile.md
   - docs/models/components/filesource.md
   - docs/models/components/fileurlsourcetype.md
@@ -320,9 +301,13 @@ generatedFiles:
   - docs/models/components/generalextractrequest.md
   - docs/models/components/result.md
   - docs/models/components/tableextractionresponse.md
+  - docs/models/components/status.md
+  - docs/models/components/asyncfilependingresponse.md
   - docs/models/components/structureddataextractionasyncresponsestatus.md
   - docs/models/components/structureddataextractionasyncresponse1.md
   - docs/models/components/structureddataextractionasyncresponse.md
+  - docs/models/components/asyncfailedresponsestatus.md
+  - docs/models/components/asyncfailedresponse.md
   - docs/models/components/markdownextractionasyncresponsestatus.md
   - docs/models/components/markdownextractionasyncresponse1.md
   - docs/models/components/markdownextractionasyncresponse.md
@@ -330,15 +315,124 @@ generatedFiles:
   - docs/models/components/tableextractionasyncresponsestatus.md
   - docs/models/components/tableextractionasyncresponse1.md
   - docs/models/components/tableextractionasyncresponse.md
+  - docs/models/components/state.md
+  - docs/models/components/job.md
+  - docs/models/components/location.md
+  - docs/models/components/proxy.md
+  - docs/models/components/authsession.md
+  - docs/models/components/every.md
+  - docs/models/components/intervals.md
+  - docs/models/components/calendars.md
+  - docs/models/components/jobschedule.md
+  - docs/models/components/jobcalendarvalue2.md
+  - docs/models/components/jobcalendarvalue1.md
+  - docs/models/components/jobcalendarvalue.md
+  - docs/models/components/start.md
+  - docs/models/components/end.md
+  - docs/models/components/jobcalendarrange.md
+  - docs/models/components/jobpayload.md
+  - docs/models/components/jobsink2type.md
+  - docs/models/components/jobsink2.md
+  - docs/models/components/jobsinktype.md
+  - docs/models/components/jobsink1.md
+  - docs/models/components/jobsink.md
+  - docs/models/components/runmode.md
+  - docs/models/components/retry.md
+  - docs/models/components/jobconfiguration.md
+  - docs/models/components/message.md
+  - docs/models/components/createjob.md
+  - docs/models/components/jobinput.md
+  - docs/models/components/deletejobmessage.md
+  - docs/models/components/deletejob.md
+  - docs/models/components/pausejobmessage.md
+  - docs/models/components/pausejob.md
+  - docs/models/components/resumejobmessage.md
+  - docs/models/components/resumejob.md
+  - docs/models/components/triggerjobmessage.md
+  - docs/models/components/triggerjob.md
+  - docs/models/components/jobrunstatus.md
+  - docs/models/components/jobruntype.md
+  - docs/models/components/jobrun.md
+  - docs/models/components/terminatejobrunmessage.md
+  - docs/models/components/terminatejobrun.md
+  - docs/models/components/queueinput.md
+  - docs/models/components/queuesinktype.md
+  - docs/models/components/queuesink.md
+  - docs/models/components/queueconfigurationrunmode.md
+  - docs/models/components/ratelimits.md
+  - docs/models/components/schedule.md
+  - docs/models/components/two.md
+  - docs/models/components/one.md
+  - docs/models/components/randomwait.md
+  - docs/models/components/queueconfiguration.md
+  - docs/models/components/queueretry.md
+  - docs/models/components/createqueue.md
+  - docs/models/components/deletequeue.md
+  - docs/models/components/addqueueitemstatus.md
+  - docs/models/components/addqueueitem.md
+  - docs/models/components/queueitem.md
+  - docs/models/components/queueitemresult3status.md
+  - docs/models/components/three.md
+  - docs/models/components/queueitemresult2status.md
+  - docs/models/components/queueitemresult2.md
+  - docs/models/components/queueitemresultstatus.md
+  - docs/models/components/queueitemresult1.md
+  - docs/models/components/queueitemresult.md
+  - docs/models/components/deletequeueitem.md
+  - docs/models/components/queuerepeatitem.md
+  - docs/models/components/addqueuerepeatitemstatus.md
+  - docs/models/components/addqueuerepeatitem.md
+  - docs/models/components/queuerepeatiteminput.md
+  - docs/models/components/updatequeuerepeatitemmessage.md
+  - docs/models/components/updatequeuerepeatitem.md
+  - docs/models/components/deletequeuerepeatitem.md
+  - docs/models/components/failedrunresult.md
+  - docs/models/components/completedrunresult.md
+  - docs/models/components/runprojectapirequestretry.md
+  - docs/models/components/runprojectapirequest.md
+  - docs/models/components/asyncrunpendingresponsestatus.md
+  - docs/models/components/asyncrunpendingresponse.md
+  - docs/models/components/asyncresultresponse.md
+  - docs/models/components/asyncfilecompletedresponsestatus.md
+  - docs/models/components/asyncfilecompletedresponse.md
+  - docs/models/components/asyncfilefailedresponsestatus.md
+  - docs/models/components/asyncfilefailedresponse.md
+  - docs/models/components/authsessioninfo.md
+  - docs/models/components/deleteauthsessionmessage.md
+  - docs/models/components/deleteauthsession.md
+  - docs/models/components/createauthsessionstartstatus.md
+  - docs/models/components/createauthsessionstart.md
+  - docs/models/components/authsessioncreateresult.md
+  - docs/models/components/authsessioncreatedoneresultstatus.md
+  - docs/models/components/authsessioncreatedoneresult.md
+  - docs/models/components/authsessioncreatependingresultstatus.md
+  - docs/models/components/authsessioncreatependingresult.md
+  - docs/models/components/authsessioncreaterequestedmoreinforesultstatus.md
+  - docs/models/components/detailsrequesttype.md
+  - docs/models/components/detailsaction.md
+  - docs/models/components/details2.md
+  - docs/models/components/requesttype.md
+  - docs/models/components/action.md
+  - docs/models/components/details1.md
+  - docs/models/components/details.md
+  - docs/models/components/authsessioncreaterequestedmoreinforesult.md
+  - docs/models/components/authsessioncreatefailedresultstatus.md
+  - docs/models/components/authsessioncreatefailedresult.md
+  - docs/models/components/createauthsessionresumeresult.md
+  - docs/models/components/createauthsessionresume.md
+  - docs/models/components/authsessioncreateresume.md
+  - docs/models/components/refreshauthsessionstatus.md
+  - docs/models/components/refreshauthsession.md
   - docs/models/components/security.md
   - docs/models/errors/apierrorinvalidinput.md
   - docs/models/errors/apierrorunauthorized.md
   - docs/sdks/intunedapisdk/README.md
+  - docs/sdks/files/README.md
   - docs/sdks/project/README.md
   - docs/sdks/jobs/README.md
   - docs/sdks/queues/README.md
   - docs/sdks/run/README.md
-  - docs/sdks/files/README.md
+  - docs/sdks/authsessions/README.md
   - USAGE.md
   - .gitattributes
   - .devcontainer/README.md

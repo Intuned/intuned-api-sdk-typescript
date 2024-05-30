@@ -7,9 +7,9 @@ import * as z from "zod";
 
 export type ExtractStructuredDataStartGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
 };
 
 export type ExtractStructuredDataStartResponse = {
@@ -17,7 +17,7 @@ export type ExtractStructuredDataStartResponse = {
     /**
      * Operation started successfully
      */
-    asyncPendingResponse?: components.AsyncPendingResponse | undefined;
+    asyncFilePendingResponse?: components.AsyncFilePendingResponse | undefined;
 };
 
 /** @internal */
@@ -28,16 +28,16 @@ export namespace ExtractStructuredDataStartGlobals$ {
         unknown
     > = z
         .object({
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
+        workspaceId: string;
     };
 
     export const outboundSchema: z.ZodType<
@@ -46,11 +46,11 @@ export namespace ExtractStructuredDataStartGlobals$ {
         ExtractStructuredDataStartGlobals
     > = z
         .object({
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
             };
         });
 }
@@ -64,20 +64,20 @@ export namespace ExtractStructuredDataStartResponse$ {
     > = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            AsyncPendingResponse: components.AsyncPendingResponse$.inboundSchema.optional(),
+            AsyncFilePendingResponse: components.AsyncFilePendingResponse$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.AsyncPendingResponse === undefined
+                ...(v.AsyncFilePendingResponse === undefined
                     ? null
-                    : { asyncPendingResponse: v.AsyncPendingResponse }),
+                    : { asyncFilePendingResponse: v.AsyncFilePendingResponse }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        AsyncPendingResponse?: components.AsyncPendingResponse$.Outbound | undefined;
+        AsyncFilePendingResponse?: components.AsyncFilePendingResponse$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -87,14 +87,15 @@ export namespace ExtractStructuredDataStartResponse$ {
     > = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            asyncPendingResponse: components.AsyncPendingResponse$.outboundSchema.optional(),
+            asyncFilePendingResponse:
+                components.AsyncFilePendingResponse$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.asyncPendingResponse === undefined
+                ...(v.asyncFilePendingResponse === undefined
                     ? null
-                    : { AsyncPendingResponse: v.asyncPendingResponse }),
+                    : { AsyncFilePendingResponse: v.asyncFilePendingResponse }),
             };
         });
 }

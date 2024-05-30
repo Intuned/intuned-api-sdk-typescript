@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type TriggerJobGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type TriggerJobRequest = {
@@ -27,54 +27,42 @@ export type TriggerJobRequest = {
     jobId: string;
 };
 
-export enum TriggerJobMessage {
-    Triggered = "Triggered",
-}
-
-/**
- * Triggered successfully
- */
-export type TriggerJobResponseBody = {
-    id?: string | undefined;
-    message?: TriggerJobMessage | undefined;
-};
-
 export type TriggerJobResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Triggered successfully
+     * Successfully triggered job manually
      */
-    object?: TriggerJobResponseBody | undefined;
+    triggerJob?: components.TriggerJob | undefined;
 };
 
 /** @internal */
 export namespace TriggerJobGlobals$ {
     export const inboundSchema: z.ZodType<TriggerJobGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerJobGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -112,71 +100,33 @@ export namespace TriggerJobRequest$ {
 }
 
 /** @internal */
-export namespace TriggerJobMessage$ {
-    export const inboundSchema = z.nativeEnum(TriggerJobMessage);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace TriggerJobResponseBody$ {
-    export const inboundSchema: z.ZodType<TriggerJobResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            message: TriggerJobMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerJobResponseBody> = z
-        .object({
-            id: z.string().optional(),
-            message: TriggerJobMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-}
-
-/** @internal */
 export namespace TriggerJobResponse$ {
     export const inboundSchema: z.ZodType<TriggerJobResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => TriggerJobResponseBody$.inboundSchema).optional(),
+            TriggerJob: components.TriggerJob$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.TriggerJob === undefined ? null : { triggerJob: v.TriggerJob }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: TriggerJobResponseBody$.Outbound | undefined;
+        TriggerJob?: components.TriggerJob$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerJobResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => TriggerJobResponseBody$.outboundSchema).optional(),
+            triggerJob: components.TriggerJob$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.triggerJob === undefined ? null : { TriggerJob: v.triggerJob }),
             };
         });
 }

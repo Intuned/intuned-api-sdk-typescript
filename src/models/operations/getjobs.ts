@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type GetJobsGlobals = {
     /**
-     * Project Name.
+     * Workspace ID
      */
-    projectName?: string | undefined;
+    workspaceId: string;
     /**
-     * Workspace Id.
+     * Project name
      */
-    workspaceId?: string | undefined;
+    projectName: string;
 };
 
 export type GetJobsRequest = {
@@ -26,39 +26,39 @@ export type GetJobsRequest = {
 export type GetJobsResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Successful operation
+     * Array of jobs
      */
-    jobs?: Array<components.Job> | undefined;
+    getJobs?: Array<components.Job> | undefined;
 };
 
 /** @internal */
 export namespace GetJobsGlobals$ {
     export const inboundSchema: z.ZodType<GetJobsGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
-        workspaceId?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobsGlobals> = z
         .object({
-            projectName: z.string().optional(),
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -95,29 +95,29 @@ export namespace GetJobsResponse$ {
     export const inboundSchema: z.ZodType<GetJobsResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            Jobs: z.array(components.Job$.inboundSchema).optional(),
+            GetJobs: z.array(components.Job$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.Jobs === undefined ? null : { jobs: v.Jobs }),
+                ...(v.GetJobs === undefined ? null : { getJobs: v.GetJobs }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        Jobs?: Array<components.Job$.Outbound> | undefined;
+        GetJobs?: Array<components.Job$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobsResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            jobs: z.array(components.Job$.outboundSchema).optional(),
+            getJobs: z.array(components.Job$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.jobs === undefined ? null : { Jobs: v.jobs }),
+                ...(v.getJobs === undefined ? null : { GetJobs: v.getJobs }),
             };
         });
 }

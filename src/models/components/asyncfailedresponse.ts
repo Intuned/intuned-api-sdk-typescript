@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 /**
- * The status of the asynchronous operation
+ * Operation status.
  */
 export enum AsyncFailedResponseStatus {
     Failed = "failed",
@@ -13,25 +13,25 @@ export enum AsyncFailedResponseStatus {
 
 export type AsyncFailedResponse = {
     /**
-     * Error code
-     */
-    error: string;
-    /**
-     * Error message
-     */
-    message: string;
-    /**
-     * The status of the asynchronous operation
-     */
-    status?: AsyncFailedResponseStatus | undefined;
-    /**
-     * The operation ID
+     * Operation ID
      */
     operationId?: string | undefined;
     /**
-     * The HTTP status code of the API run
+     * Operation status.
+     */
+    status?: AsyncFailedResponseStatus | undefined;
+    /**
+     * HTTP status code of the operation.
      */
     statusCode?: number | undefined;
+    /**
+     * Error code.
+     */
+    error?: string | undefined;
+    /**
+     * Error message.
+     */
+    message?: string | undefined;
 };
 
 /** @internal */
@@ -44,45 +44,45 @@ export namespace AsyncFailedResponseStatus$ {
 export namespace AsyncFailedResponse$ {
     export const inboundSchema: z.ZodType<AsyncFailedResponse, z.ZodTypeDef, unknown> = z
         .object({
-            error: z.string(),
-            message: z.string(),
-            status: AsyncFailedResponseStatus$.inboundSchema.optional(),
             operationId: z.string().optional(),
-            statusCode: z.number().optional(),
+            status: AsyncFailedResponseStatus$.inboundSchema.optional(),
+            statusCode: z.number().int().optional(),
+            error: z.string().optional(),
+            message: z.string().optional(),
         })
         .transform((v) => {
             return {
-                error: v.error,
-                message: v.message,
-                ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.operationId === undefined ? null : { operationId: v.operationId }),
+                ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.statusCode === undefined ? null : { statusCode: v.statusCode }),
+                ...(v.error === undefined ? null : { error: v.error }),
+                ...(v.message === undefined ? null : { message: v.message }),
             };
         });
 
     export type Outbound = {
-        error: string;
-        message: string;
-        status?: string | undefined;
         operationId?: string | undefined;
+        status?: string | undefined;
         statusCode?: number | undefined;
+        error?: string | undefined;
+        message?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncFailedResponse> = z
         .object({
-            error: z.string(),
-            message: z.string(),
-            status: AsyncFailedResponseStatus$.outboundSchema.optional(),
             operationId: z.string().optional(),
-            statusCode: z.number().optional(),
+            status: AsyncFailedResponseStatus$.outboundSchema.optional(),
+            statusCode: z.number().int().optional(),
+            error: z.string().optional(),
+            message: z.string().optional(),
         })
         .transform((v) => {
             return {
-                error: v.error,
-                message: v.message,
-                ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.operationId === undefined ? null : { operationId: v.operationId }),
+                ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.statusCode === undefined ? null : { statusCode: v.statusCode }),
+                ...(v.error === undefined ? null : { error: v.error }),
+                ...(v.message === undefined ? null : { message: v.message }),
             };
         });
 }

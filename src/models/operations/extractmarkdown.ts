@@ -7,9 +7,9 @@ import * as z from "zod";
 
 export type ExtractMarkdownGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
 };
 
 export type ExtractMarkdownResponse = {
@@ -24,25 +24,25 @@ export type ExtractMarkdownResponse = {
 export namespace ExtractMarkdownGlobals$ {
     export const inboundSchema: z.ZodType<ExtractMarkdownGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
+        workspaceId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExtractMarkdownGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
             };
         });
 }

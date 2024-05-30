@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `workspaceId`      | *string*           | :heavy_minus_sign: | Workspace Id.      |
+| Field                                | Type                                 | Required                             | Description                          | Example                              |
+| ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
+| `workspaceId`                        | *string*                             | :heavy_check_mark:                   | Workspace ID                         | aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee |

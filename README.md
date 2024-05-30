@@ -45,13 +45,27 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
+import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
     apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    projectName: "my-project",
 });
 
 async function run() {
-    const result = await intunedApiSDK.project.jobs.getJobs("<value>");
+    const result = await intunedApiSDK.files.extractStructuredData(
+        {
+            type: PdfFileType.Pdf,
+            source: {
+                type: FileBase64SourceType.Base64,
+                data: "<value>",
+            },
+        },
+        {
+            key: "<value>",
+        }
+    );
 
     // Handle the result
     console.log(result);
@@ -65,50 +79,61 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+### [files](docs/sdks/files/README.md)
+
+* [extractStructuredData](docs/sdks/files/README.md#extractstructureddata) - Extract structured data
+* [extractMarkdown](docs/sdks/files/README.md#extractmarkdown) - Extract markdown
+* [extractTables](docs/sdks/files/README.md#extracttables) - Extract tables
+* [extractStructuredDataStart](docs/sdks/files/README.md#extractstructureddatastart) - Extract structured data - Async start
+* [extractStructuredDataResult](docs/sdks/files/README.md#extractstructureddataresult) - Extract structured data - Async result
+* [extractMarkdownStart](docs/sdks/files/README.md#extractmarkdownstart) - Extract markdown - Async start
+* [extractMarkdownResult](docs/sdks/files/README.md#extractmarkdownresult) - Extract markdown - Async result
+* [extractTablesStart](docs/sdks/files/README.md#extracttablesstart) - Extract tables - Async start
+* [extractTablesResult](docs/sdks/files/README.md#extracttablesresult) - Extract tables - Async result
+
+
 ### [project.jobs](docs/sdks/jobs/README.md)
 
-* [getJobs](docs/sdks/jobs/README.md#getjobs) - Get all jobs in a project.
-* [createJob](docs/sdks/jobs/README.md#createjob) - Create a new job for a project.
-* [getJob](docs/sdks/jobs/README.md#getjob) - Get a job in a project by ID.
-* [deleteJob](docs/sdks/jobs/README.md#deletejob) - Delete a job of a project by ID.
-* [pauseJob](docs/sdks/jobs/README.md#pausejob) - Pause a job.
-* [resumeJob](docs/sdks/jobs/README.md#resumejob) - Resume a paused job.
-* [triggerJob](docs/sdks/jobs/README.md#triggerjob) - Manually triggers a job run for a job.
-* [getJobRuns](docs/sdks/jobs/README.md#getjobruns) - Get all job runs of a job.
-* [terminateJobRun](docs/sdks/jobs/README.md#terminatejobrun) - Terminate a job run.
+* [getJobs](docs/sdks/jobs/README.md#getjobs) - Get Jobs
+* [createJob](docs/sdks/jobs/README.md#createjob) - Create Job
+* [getJob](docs/sdks/jobs/README.md#getjob) - Get Job
+* [deleteJob](docs/sdks/jobs/README.md#deletejob) - Delete Job
+* [pauseJob](docs/sdks/jobs/README.md#pausejob) - Pause Job
+* [resumeJob](docs/sdks/jobs/README.md#resumejob) - Resume Job
+* [triggerJob](docs/sdks/jobs/README.md#triggerjob) - Trigger Job
+* [getJobRuns](docs/sdks/jobs/README.md#getjobruns) - Get Job Runs
+* [terminateJobRun](docs/sdks/jobs/README.md#terminatejobrun) - Terminate Job Run
 
 ### [project.queues](docs/sdks/queues/README.md)
 
-* [getQueues](docs/sdks/queues/README.md#getqueues) - Get all queues in a project.
-* [createQueue](docs/sdks/queues/README.md#createqueue) - Create a new queue for a project.
-* [getQueue](docs/sdks/queues/README.md#getqueue) - Get a queue in a project by ID.
-* [deleteQueue](docs/sdks/queues/README.md#deletequeue) - Delete a queue of a project by ID.
-* [addItem](docs/sdks/queues/README.md#additem) - Append an item to the queue.
-* [getQueueItemResult](docs/sdks/queues/README.md#getqueueitemresult) - Get queue item result.
-* [deleteQueueItem](docs/sdks/queues/README.md#deletequeueitem) - Delete queued item
-* [getRepeatItems](docs/sdks/queues/README.md#getrepeatitems) - Get repeat items for the queue.
-* [addRepeatItem](docs/sdks/queues/README.md#addrepeatitem) - Create a repeat item for the queue.
-* [getRepeatQueueItem](docs/sdks/queues/README.md#getrepeatqueueitem) - Get repeat queue item with last result.
-* [updateRepeatQueueItem](docs/sdks/queues/README.md#updaterepeatqueueitem) - Update queue repeatable item
-* [deleteRepeatQueueItem](docs/sdks/queues/README.md#deleterepeatqueueitem) - Delete queued item
+* [getQueues](docs/sdks/queues/README.md#getqueues) - Get Queues
+* [createQueue](docs/sdks/queues/README.md#createqueue) - Create Queue
+* [getQueue](docs/sdks/queues/README.md#getqueue) - Get Queue
+* [deleteQueue](docs/sdks/queues/README.md#deletequeue) - Delete Queue
+* [addItem](docs/sdks/queues/README.md#additem) - Append item to Queue
+* [getQueueItemResult](docs/sdks/queues/README.md#getqueueitemresult) - Get Queue item result
+* [deleteQueueItem](docs/sdks/queues/README.md#deletequeueitem) - Delete Queue item
+* [getRepeatItems](docs/sdks/queues/README.md#getrepeatitems) - Get Queue repeat item
+* [addRepeatItem](docs/sdks/queues/README.md#addrepeatitem) - Create Queue repeat item
+* [getRepeatQueueItem](docs/sdks/queues/README.md#getrepeatqueueitem) - Get Queue repeat item
+* [updateRepeatQueueItem](docs/sdks/queues/README.md#updaterepeatqueueitem) - Update Queue repeat item
+* [deleteRepeatQueueItem](docs/sdks/queues/README.md#deleterepeatqueueitem) - Delete Queue repeat item
 
 ### [project.run](docs/sdks/run/README.md)
 
-* [runSync](docs/sdks/run/README.md#runsync) - Run a project API synchronously
-* [runStart](docs/sdks/run/README.md#runstart) - Start a project API run operation
-* [runResult](docs/sdks/run/README.md#runresult) - Retrieve the result of a started project API run operation
+* [runSync](docs/sdks/run/README.md#runsync) - Run API
+* [runStart](docs/sdks/run/README.md#runstart) - Run API - Async start
+* [runResult](docs/sdks/run/README.md#runresult) - API Async result
 
-### [files](docs/sdks/files/README.md)
+### [authSessions](docs/sdks/authsessions/README.md)
 
-* [extractStructuredData](docs/sdks/files/README.md#extractstructureddata) - Extract structured data from a file - supports image, pdf (more coming soon!)
-* [extractMarkdown](docs/sdks/files/README.md#extractmarkdown) - Extract markdown from a file - supports image, pdf (more coming soon!)
-* [extractTables](docs/sdks/files/README.md#extracttables) - Extract tables from a file - supports image, pdf (more coming soon!)
-* [extractStructuredDataStart](docs/sdks/files/README.md#extractstructureddatastart) - Asynchronously extract structured data from a file - supports image, pdf (more coming soon!)
-* [extractStructuredDataResult](docs/sdks/files/README.md#extractstructureddataresult) - Get result of extract structured data from a file
-* [extractMarkdownStart](docs/sdks/files/README.md#extractmarkdownstart) - Asynchronously extract markdown from a file - supports image, pdf (more coming soon!)
-* [extractMarkdownResult](docs/sdks/files/README.md#extractmarkdownresult) - Get result of extract markdown from a file
-* [extractTablesStart](docs/sdks/files/README.md#extracttablesstart) - Asynchronously extract tables from a file - supports image, pdf (more coming soon!)
-* [extractTablesResult](docs/sdks/files/README.md#extracttablesresult) - Get result of extract tables from a file
+* [getAuthSessions](docs/sdks/authsessions/README.md#getauthsessions) - Get Auth Sessions
+* [getAuthSession](docs/sdks/authsessions/README.md#getauthsession) - Get Auth Session
+* [deleteAuthSession](docs/sdks/authsessions/README.md#deleteauthsession) - Delete Auth Session
+* [createAuthSession](docs/sdks/authsessions/README.md#createauthsession) - Start create Auth Session
+* [getCreateAuthSessionResult](docs/sdks/authsessions/README.md#getcreateauthsessionresult) - Get create Auth Session result
+* [resumeCreateAuthSession](docs/sdks/authsessions/README.md#resumecreateauthsession) - Resume create Auth Session
+* [refreshAuthSession](docs/sdks/authsessions/README.md#refreshauthsession) - Refresh Auth Session
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -127,16 +152,30 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
+import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/components";
 import * as errors from "@intuned/client/models/errors";
 
 const intunedApiSDK = new IntunedApiSDK({
     apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    projectName: "my-project",
 });
 
 async function run() {
     let result;
     try {
-        result = await intunedApiSDK.project.jobs.getJobs("<value>");
+        result = await intunedApiSDK.files.extractStructuredData(
+            {
+                type: PdfFileType.Pdf,
+                source: {
+                    type: FileBase64SourceType.Base64,
+                    data: "<value>",
+                },
+            },
+            {
+                key: "<value>",
+            }
+        );
     } catch (err) {
         switch (true) {
             case err instanceof errors.SDKValidationError: {
@@ -182,14 +221,28 @@ You can override the default server globally by passing a server index to the `s
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
+import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
     serverIdx: 0,
     apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    projectName: "my-project",
 });
 
 async function run() {
-    const result = await intunedApiSDK.project.jobs.getJobs("<value>");
+    const result = await intunedApiSDK.files.extractStructuredData(
+        {
+            type: PdfFileType.Pdf,
+            source: {
+                type: FileBase64SourceType.Base64,
+                data: "<value>",
+            },
+        },
+        {
+            key: "<value>",
+        }
+    );
 
     // Handle the result
     console.log(result);
@@ -206,14 +259,28 @@ The default server can also be overridden globally by passing a URL to the `serv
 
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
+import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
     serverURL: "https://app.intuned.io/api/v1/workspace",
     apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    projectName: "my-project",
 });
 
 async function run() {
-    const result = await intunedApiSDK.project.jobs.getJobs("<value>");
+    const result = await intunedApiSDK.files.extractStructuredData(
+        {
+            type: PdfFileType.Pdf,
+            source: {
+                type: FileBase64SourceType.Base64,
+                data: "<value>",
+            },
+        },
+        {
+            key: "<value>",
+        }
+    );
 
     // Handle the result
     console.log(result);
@@ -287,13 +354,27 @@ This SDK supports the following security scheme globally:
 To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
 ```typescript
 import { IntunedApiSDK } from "@intuned/client";
+import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/components";
 
 const intunedApiSDK = new IntunedApiSDK({
     apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    projectName: "my-project",
 });
 
 async function run() {
-    const result = await intunedApiSDK.project.jobs.getJobs("<value>");
+    const result = await intunedApiSDK.files.extractStructuredData(
+        {
+            type: PdfFileType.Pdf,
+            source: {
+                type: FileBase64SourceType.Base64,
+                data: "<value>",
+            },
+        },
+        {
+            key: "<value>",
+        }
+    );
 
     // Handle the result
     console.log(result);
@@ -307,19 +388,19 @@ run();
 <!-- Start Global Parameters [global-parameters] -->
 ## Global Parameters
 
-Certain parameters are configured globally. These parameters may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
+Certain parameters are configured globally. These parameters must be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, These global values will be used as defaults on the operations that use them. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceId` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getJobs`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceId` to `"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getJobs`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
-The following global parameters are available.
+The following global parameters are available. The required parameters must be set when you initialize the SDK client.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| workspaceId | string |  | Workspace Id. |
-| projectName | string |  | Project Name. |
+| workspaceId | string | ✔️ | Workspace ID |
+| projectName | string | ✔️ | Project name |
 
 
 ### Example
@@ -329,10 +410,12 @@ import { IntunedApiSDK } from "@intuned/client";
 
 const intunedApiSDK = new IntunedApiSDK({
     apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    projectName: "my-project",
 });
 
 async function run() {
-    const result = await intunedApiSDK.project.jobs.getJobs("<value>");
+    const result = await intunedApiSDK.project.jobs.getJobs("my-project");
 
     // Handle the result
     console.log(result);

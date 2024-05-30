@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type GetJobGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type GetJobRequest = {
@@ -30,7 +30,7 @@ export type GetJobRequest = {
 export type GetJobResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Successful operation
+     * Job object
      */
     job?: components.Job | undefined;
 };
@@ -39,30 +39,30 @@ export type GetJobResponse = {
 export namespace GetJobGlobals$ {
     export const inboundSchema: z.ZodType<GetJobGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }

@@ -4,7 +4,7 @@
 
 import * as z from "zod";
 
-export enum Status {
+export enum JobRunStatus {
     Failed = "FAILED",
     Completed = "COMPLETED",
     Pending = "PENDING",
@@ -14,22 +14,23 @@ export enum Status {
 
 export enum JobRunType {
     Manual = "MANUAL",
+    Scheduled = "SCHEDULED",
 }
 
 export type JobRun = {
     id?: string | undefined;
-    integrationId?: string | undefined;
-    integrationJobId?: string | undefined;
+    projectId?: string | undefined;
+    jobId?: string | undefined;
     startTime?: Date | undefined;
-    status?: Status | undefined;
+    status?: JobRunStatus | undefined;
     summary?: { [k: string]: any } | undefined;
     type?: JobRunType | undefined;
     workspaceId?: string | undefined;
 };
 
 /** @internal */
-export namespace Status$ {
-    export const inboundSchema = z.nativeEnum(Status);
+export namespace JobRunStatus$ {
+    export const inboundSchema = z.nativeEnum(JobRunStatus);
     export const outboundSchema = inboundSchema;
 }
 
@@ -44,14 +45,14 @@ export namespace JobRun$ {
     export const inboundSchema: z.ZodType<JobRun, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string().optional(),
-            integration_id: z.string().optional(),
-            integration_job_id: z.string().optional(),
+            projectId: z.string().optional(),
+            jobId: z.string().optional(),
             start_time: z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
                 .optional(),
-            status: Status$.inboundSchema.optional(),
+            status: JobRunStatus$.inboundSchema.optional(),
             summary: z.record(z.any()).optional(),
             type: JobRunType$.inboundSchema.optional(),
             workspace_id: z.string().optional(),
@@ -59,10 +60,8 @@ export namespace JobRun$ {
         .transform((v) => {
             return {
                 ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.integration_id === undefined ? null : { integrationId: v.integration_id }),
-                ...(v.integration_job_id === undefined
-                    ? null
-                    : { integrationJobId: v.integration_job_id }),
+                ...(v.projectId === undefined ? null : { projectId: v.projectId }),
+                ...(v.jobId === undefined ? null : { jobId: v.jobId }),
                 ...(v.start_time === undefined ? null : { startTime: v.start_time }),
                 ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.summary === undefined ? null : { summary: v.summary }),
@@ -73,8 +72,8 @@ export namespace JobRun$ {
 
     export type Outbound = {
         id?: string | undefined;
-        integration_id?: string | undefined;
-        integration_job_id?: string | undefined;
+        projectId?: string | undefined;
+        jobId?: string | undefined;
         start_time?: string | undefined;
         status?: string | undefined;
         summary?: { [k: string]: any } | undefined;
@@ -85,13 +84,13 @@ export namespace JobRun$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobRun> = z
         .object({
             id: z.string().optional(),
-            integrationId: z.string().optional(),
-            integrationJobId: z.string().optional(),
+            projectId: z.string().optional(),
+            jobId: z.string().optional(),
             startTime: z
                 .date()
                 .transform((v) => v.toISOString())
                 .optional(),
-            status: Status$.outboundSchema.optional(),
+            status: JobRunStatus$.outboundSchema.optional(),
             summary: z.record(z.any()).optional(),
             type: JobRunType$.outboundSchema.optional(),
             workspaceId: z.string().optional(),
@@ -99,10 +98,8 @@ export namespace JobRun$ {
         .transform((v) => {
             return {
                 ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.integrationId === undefined ? null : { integration_id: v.integrationId }),
-                ...(v.integrationJobId === undefined
-                    ? null
-                    : { integration_job_id: v.integrationJobId }),
+                ...(v.projectId === undefined ? null : { projectId: v.projectId }),
+                ...(v.jobId === undefined ? null : { jobId: v.jobId }),
                 ...(v.startTime === undefined ? null : { start_time: v.startTime }),
                 ...(v.status === undefined ? null : { status: v.status }),
                 ...(v.summary === undefined ? null : { summary: v.summary }),

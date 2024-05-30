@@ -3,6 +3,6 @@
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Webhook` | webhook   |
+| Name    | Value   |
+| ------- | ------- |
+| `Image` | image   |

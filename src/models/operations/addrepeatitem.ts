@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type AddRepeatItemGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type AddRepeatItemRequest = {
@@ -31,54 +31,42 @@ export type AddRepeatItemRequest = {
     queueRepeatItemInput?: components.QueueRepeatItemInput | undefined;
 };
 
-export enum AddRepeatItemStatus {
-    RepeatableItemCreated = "repeatable item created",
-}
-
-/**
- * Item appended
- */
-export type AddRepeatItemResponseBody = {
-    id?: string | undefined;
-    status?: AddRepeatItemStatus | undefined;
-};
-
 export type AddRepeatItemResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Item appended
+     * Successfully created repeatable item
      */
-    object?: AddRepeatItemResponseBody | undefined;
+    addQueueRepeatItem?: components.AddQueueRepeatItem | undefined;
 };
 
 /** @internal */
 export namespace AddRepeatItemGlobals$ {
     export const inboundSchema: z.ZodType<AddRepeatItemGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddRepeatItemGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -125,71 +113,37 @@ export namespace AddRepeatItemRequest$ {
 }
 
 /** @internal */
-export namespace AddRepeatItemStatus$ {
-    export const inboundSchema = z.nativeEnum(AddRepeatItemStatus);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace AddRepeatItemResponseBody$ {
-    export const inboundSchema: z.ZodType<AddRepeatItemResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            status: AddRepeatItemStatus$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-        status?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddRepeatItemResponseBody> = z
-        .object({
-            id: z.string().optional(),
-            status: AddRepeatItemStatus$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
-}
-
-/** @internal */
 export namespace AddRepeatItemResponse$ {
     export const inboundSchema: z.ZodType<AddRepeatItemResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => AddRepeatItemResponseBody$.inboundSchema).optional(),
+            AddQueueRepeatItem: components.AddQueueRepeatItem$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.AddQueueRepeatItem === undefined
+                    ? null
+                    : { addQueueRepeatItem: v.AddQueueRepeatItem }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: AddRepeatItemResponseBody$.Outbound | undefined;
+        AddQueueRepeatItem?: components.AddQueueRepeatItem$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddRepeatItemResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => AddRepeatItemResponseBody$.outboundSchema).optional(),
+            addQueueRepeatItem: components.AddQueueRepeatItem$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.addQueueRepeatItem === undefined
+                    ? null
+                    : { AddQueueRepeatItem: v.addQueueRepeatItem }),
             };
         });
 }

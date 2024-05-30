@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type RunResultGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type RunResultRequest = {
@@ -22,9 +22,9 @@ export type RunResultRequest = {
      */
     projectName?: string | undefined;
     /**
-     * Run ID provided from start API
+     * Run ID
      */
-    runId: string;
+    operationId: string;
 };
 
 export type RunResultResponse = {
@@ -39,30 +39,30 @@ export type RunResultResponse = {
 export namespace RunResultGlobals$ {
     export const inboundSchema: z.ZodType<RunResultGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunResultGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -72,29 +72,29 @@ export namespace RunResultRequest$ {
     export const inboundSchema: z.ZodType<RunResultRequest, z.ZodTypeDef, unknown> = z
         .object({
             projectName: z.string().optional(),
-            runId: z.string(),
+            operationId: z.string(),
         })
         .transform((v) => {
             return {
                 ...(v.projectName === undefined ? null : { projectName: v.projectName }),
-                runId: v.runId,
+                operationId: v.operationId,
             };
         });
 
     export type Outbound = {
         projectName?: string | undefined;
-        runId: string;
+        operationId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunResultRequest> = z
         .object({
             projectName: z.string().optional(),
-            runId: z.string(),
+            operationId: z.string(),
         })
         .transform((v) => {
             return {
                 ...(v.projectName === undefined ? null : { projectName: v.projectName }),
-                runId: v.runId,
+                operationId: v.operationId,
             };
         });
 }

@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type GetRepeatItemsGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type GetRepeatItemsRequest = {
@@ -30,39 +30,39 @@ export type GetRepeatItemsRequest = {
 export type GetRepeatItemsResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Item appended
+     * List of queue repeatable items
      */
-    queueRepeatItems?: Array<components.QueueRepeatItem> | undefined;
+    getQueueRepeatItems?: Array<components.QueueRepeatItem> | undefined;
 };
 
 /** @internal */
 export namespace GetRepeatItemsGlobals$ {
     export const inboundSchema: z.ZodType<GetRepeatItemsGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetRepeatItemsGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -104,33 +104,33 @@ export namespace GetRepeatItemsResponse$ {
     export const inboundSchema: z.ZodType<GetRepeatItemsResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            QueueRepeatItems: z.array(components.QueueRepeatItem$.inboundSchema).optional(),
+            GetQueueRepeatItems: z.array(components.QueueRepeatItem$.inboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.QueueRepeatItems === undefined
+                ...(v.GetQueueRepeatItems === undefined
                     ? null
-                    : { queueRepeatItems: v.QueueRepeatItems }),
+                    : { getQueueRepeatItems: v.GetQueueRepeatItems }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        QueueRepeatItems?: Array<components.QueueRepeatItem$.Outbound> | undefined;
+        GetQueueRepeatItems?: Array<components.QueueRepeatItem$.Outbound> | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetRepeatItemsResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            queueRepeatItems: z.array(components.QueueRepeatItem$.outboundSchema).optional(),
+            getQueueRepeatItems: z.array(components.QueueRepeatItem$.outboundSchema).optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.queueRepeatItems === undefined
+                ...(v.getQueueRepeatItems === undefined
                     ? null
-                    : { QueueRepeatItems: v.queueRepeatItems }),
+                    : { GetQueueRepeatItems: v.getQueueRepeatItems }),
             };
         });
 }

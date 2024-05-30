@@ -3,7 +3,7 @@
  */
 
 import { AsyncFailedResponse, AsyncFailedResponse$ } from "./asyncfailedresponse";
-import { AsyncPendingResponse, AsyncPendingResponse$ } from "./asyncpendingresponse";
+import { AsyncFilePendingResponse, AsyncFilePendingResponse$ } from "./asyncfilependingresponse";
 import * as z from "zod";
 
 /**
@@ -33,7 +33,7 @@ export type StructuredDataExtractionAsyncResponse1 = {
 };
 
 export type StructuredDataExtractionAsyncResponse =
-    | AsyncPendingResponse
+    | AsyncFilePendingResponse
     | StructuredDataExtractionAsyncResponse1
     | AsyncFailedResponse;
 
@@ -100,13 +100,13 @@ export namespace StructuredDataExtractionAsyncResponse$ {
         z.ZodTypeDef,
         unknown
     > = z.union([
-        AsyncPendingResponse$.inboundSchema,
+        AsyncFilePendingResponse$.inboundSchema,
         z.lazy(() => StructuredDataExtractionAsyncResponse1$.inboundSchema),
         AsyncFailedResponse$.inboundSchema,
     ]);
 
     export type Outbound =
-        | AsyncPendingResponse$.Outbound
+        | AsyncFilePendingResponse$.Outbound
         | StructuredDataExtractionAsyncResponse1$.Outbound
         | AsyncFailedResponse$.Outbound;
     export const outboundSchema: z.ZodType<
@@ -114,7 +114,7 @@ export namespace StructuredDataExtractionAsyncResponse$ {
         z.ZodTypeDef,
         StructuredDataExtractionAsyncResponse
     > = z.union([
-        AsyncPendingResponse$.outboundSchema,
+        AsyncFilePendingResponse$.outboundSchema,
         z.lazy(() => StructuredDataExtractionAsyncResponse1$.outboundSchema),
         AsyncFailedResponse$.outboundSchema,
     ]);

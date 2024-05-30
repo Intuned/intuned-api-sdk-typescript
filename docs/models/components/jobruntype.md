@@ -3,6 +3,7 @@
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Manual` | MANUAL   |
+| Name        | Value       |
+| ----------- | ----------- |
+| `Manual`    | MANUAL      |
+| `Scheduled` | SCHEDULED   |

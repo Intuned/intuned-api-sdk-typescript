@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type DeleteQueueGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type DeleteQueueRequest = {
@@ -27,49 +27,42 @@ export type DeleteQueueRequest = {
     queueId: string;
 };
 
-/**
- * Deleted
- */
-export type DeleteQueueResponseBody = {
-    id?: string | undefined;
-};
-
 export type DeleteQueueResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Deleted
+     * Successfully deleted
      */
-    object?: DeleteQueueResponseBody | undefined;
+    deleteQueue?: components.DeleteQueue | undefined;
 };
 
 /** @internal */
 export namespace DeleteQueueGlobals$ {
     export const inboundSchema: z.ZodType<DeleteQueueGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -107,60 +100,33 @@ export namespace DeleteQueueRequest$ {
 }
 
 /** @internal */
-export namespace DeleteQueueResponseBody$ {
-    export const inboundSchema: z.ZodType<DeleteQueueResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueResponseBody> = z
-        .object({
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
-}
-
-/** @internal */
 export namespace DeleteQueueResponse$ {
     export const inboundSchema: z.ZodType<DeleteQueueResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => DeleteQueueResponseBody$.inboundSchema).optional(),
+            DeleteQueue: components.DeleteQueue$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.DeleteQueue === undefined ? null : { deleteQueue: v.DeleteQueue }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: DeleteQueueResponseBody$.Outbound | undefined;
+        DeleteQueue?: components.DeleteQueue$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => DeleteQueueResponseBody$.outboundSchema).optional(),
+            deleteQueue: components.DeleteQueue$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.deleteQueue === undefined ? null : { DeleteQueue: v.deleteQueue }),
             };
         });
 }

@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type CreateJobGlobals = {
     /**
-     * Project Name.
+     * Workspace ID
      */
-    projectName?: string | undefined;
+    workspaceId: string;
     /**
-     * Workspace Id.
+     * Project name
      */
-    workspaceId?: string | undefined;
+    projectName: string;
 };
 
 export type CreateJobRequest = {
@@ -27,54 +27,42 @@ export type CreateJobRequest = {
     jobInput: components.JobInput;
 };
 
-export enum Message {
-    Created = "created",
-}
-
-/**
- * Successful operation
- */
-export type CreateJobResponseBody = {
-    id?: string | undefined;
-    message?: Message | undefined;
-};
-
 export type CreateJobResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Successful operation
+     * Successfully created job
      */
-    object?: CreateJobResponseBody | undefined;
+    createJob?: components.CreateJob | undefined;
 };
 
 /** @internal */
 export namespace CreateJobGlobals$ {
     export const inboundSchema: z.ZodType<CreateJobGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
-        workspaceId?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJobGlobals> = z
         .object({
-            projectName: z.string().optional(),
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -112,71 +100,33 @@ export namespace CreateJobRequest$ {
 }
 
 /** @internal */
-export namespace Message$ {
-    export const inboundSchema = z.nativeEnum(Message);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace CreateJobResponseBody$ {
-    export const inboundSchema: z.ZodType<CreateJobResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            message: Message$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJobResponseBody> = z
-        .object({
-            id: z.string().optional(),
-            message: Message$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-}
-
-/** @internal */
 export namespace CreateJobResponse$ {
     export const inboundSchema: z.ZodType<CreateJobResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => CreateJobResponseBody$.inboundSchema).optional(),
+            CreateJob: components.CreateJob$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.CreateJob === undefined ? null : { createJob: v.CreateJob }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: CreateJobResponseBody$.Outbound | undefined;
+        CreateJob?: components.CreateJob$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJobResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => CreateJobResponseBody$.outboundSchema).optional(),
+            createJob: components.CreateJob$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.createJob === undefined ? null : { CreateJob: v.createJob }),
             };
         });
 }

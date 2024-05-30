@@ -1,5 +1,7 @@
 # Location
 
+The proxy location. If not provided, a rotating proxy will be enabled.
+
 
 ## Values
 

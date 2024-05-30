@@ -40,10 +40,10 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Get all jobs in a project.
+     * Get Jobs
      *
      * @remarks
-     * Gets all Jobs in a project.
+     * Gets all jobs in a project.
      */
     async getJobs(
         projectName?: string | undefined,
@@ -116,7 +116,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetJobsResponse>()
-            .json(200, operations.GetJobsResponse$, { key: "Jobs" })
+            .json(200, operations.GetJobsResponse$, { key: "GetJobs" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -126,10 +126,10 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Create a new job for a project.
+     * Create Job
      *
      * @remarks
-     * Creates a new job.
+     * Creates a new job for a project.
      */
     async createJob(
         jobInput: components.JobInput,
@@ -205,7 +205,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.CreateJobResponse>()
-            .json(201, operations.CreateJobResponse$, { key: "object" })
+            .json(201, operations.CreateJobResponse$, { key: "CreateJob" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -215,7 +215,7 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Get a job in a project by ID.
+     * Get Job
      *
      * @remarks
      * Gets a job in a project by ID.
@@ -307,7 +307,7 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Delete a job of a project by ID.
+     * Delete Job
      *
      * @remarks
      * Deletes a job by ID.
@@ -389,7 +389,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteJobResponse>()
-            .json(204, operations.DeleteJobResponse$, { key: "object" })
+            .json(204, operations.DeleteJobResponse$, { key: "DeleteJob" })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });
@@ -398,7 +398,7 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Pause a job.
+     * Pause Job
      *
      * @remarks
      * Pauses a job. Will pause any job runs and the job schedule if applicable.
@@ -480,7 +480,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.PauseJobResponse>()
-            .json(200, operations.PauseJobResponse$, { key: "object" })
+            .json(200, operations.PauseJobResponse$, { key: "PauseJob" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -490,7 +490,7 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Resume a paused job.
+     * Resume Job
      *
      * @remarks
      * Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
@@ -572,7 +572,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.ResumeJobResponse>()
-            .json(200, operations.ResumeJobResponse$, { key: "object" })
+            .json(200, operations.ResumeJobResponse$, { key: "ResumeJob" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -582,10 +582,10 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Manually triggers a job run for a job.
+     * Trigger Job
      *
      * @remarks
-     * Triggers a job run for a job. If the job is paused, the trigger fails.
+     * Manually triggers a job run for a job. If the job is paused, the trigger fails.
      */
     async triggerJob(
         jobId: string,
@@ -664,7 +664,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.TriggerJobResponse>()
-            .json(200, operations.TriggerJobResponse$, { key: "object" })
+            .json(200, operations.TriggerJobResponse$, { key: "TriggerJob" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -674,7 +674,7 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Get all job runs of a job.
+     * Get Job Runs
      *
      * @remarks
      * Get all job runs of a job.
@@ -756,7 +756,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.GetJobRunsResponse>()
-            .json(200, operations.GetJobRunsResponse$, { key: "JobRuns" })
+            .json(200, operations.GetJobRunsResponse$, { key: "GetJobRuns" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -766,7 +766,7 @@ export class Jobs extends ClientSDK {
     }
 
     /**
-     * Terminate a job run.
+     * Terminate Job Run
      *
      * @remarks
      * Terminate a job run by ID.
@@ -854,7 +854,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.TerminateJobRunResponse>()
-            .json(200, operations.TerminateJobRunResponse$, { key: "object" })
+            .json(200, operations.TerminateJobRunResponse$, { key: "TerminateJobRun" })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });

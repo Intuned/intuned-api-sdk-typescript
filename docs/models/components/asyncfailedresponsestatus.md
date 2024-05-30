@@ -1,6 +1,6 @@
 # AsyncFailedResponseStatus
 
-The status of the asynchronous operation
+Operation status.
 
 
 ## Values

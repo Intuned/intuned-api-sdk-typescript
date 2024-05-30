@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type DeleteJobGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type DeleteJobRequest = {
@@ -27,53 +27,42 @@ export type DeleteJobRequest = {
     jobId: string;
 };
 
-export enum DeleteJobMessage {
-    Deleted = "Deleted",
-}
-
-/**
- * Deleted
- */
-export type DeleteJobResponseBody = {
-    message?: DeleteJobMessage | undefined;
-};
-
 export type DeleteJobResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Deleted
+     * Successfully deleted job
      */
-    object?: DeleteJobResponseBody | undefined;
+    deleteJob?: components.DeleteJob | undefined;
 };
 
 /** @internal */
 export namespace DeleteJobGlobals$ {
     export const inboundSchema: z.ZodType<DeleteJobGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteJobGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -111,66 +100,33 @@ export namespace DeleteJobRequest$ {
 }
 
 /** @internal */
-export namespace DeleteJobMessage$ {
-    export const inboundSchema = z.nativeEnum(DeleteJobMessage);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace DeleteJobResponseBody$ {
-    export const inboundSchema: z.ZodType<DeleteJobResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            message: DeleteJobMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-
-    export type Outbound = {
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteJobResponseBody> = z
-        .object({
-            message: DeleteJobMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-}
-
-/** @internal */
 export namespace DeleteJobResponse$ {
     export const inboundSchema: z.ZodType<DeleteJobResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => DeleteJobResponseBody$.inboundSchema).optional(),
+            DeleteJob: components.DeleteJob$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.DeleteJob === undefined ? null : { deleteJob: v.DeleteJob }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: DeleteJobResponseBody$.Outbound | undefined;
+        DeleteJob?: components.DeleteJob$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteJobResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => DeleteJobResponseBody$.outboundSchema).optional(),
+            deleteJob: components.DeleteJob$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.deleteJob === undefined ? null : { DeleteJob: v.deleteJob }),
             };
         });
 }

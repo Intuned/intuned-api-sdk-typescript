@@ -7,14 +7,14 @@ import * as z from "zod";
 
 export type ExtractMarkdownResultGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
 };
 
 export type ExtractMarkdownResultRequest = {
     /**
-     * the operation ID provided by the start operation
+     * Operation Id.
      */
     operationId: string;
 };
@@ -31,25 +31,25 @@ export type ExtractMarkdownResultResponse = {
 export namespace ExtractMarkdownResultGlobals$ {
     export const inboundSchema: z.ZodType<ExtractMarkdownResultGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
+        workspaceId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExtractMarkdownResultGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
+            workspaceId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
+                workspaceId: v.workspaceId,
             };
         });
 }

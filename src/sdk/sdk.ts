@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
+import { AuthSessions } from "./authsessions";
 import { Files } from "./files";
 import { Project } from "./project";
 
@@ -36,13 +37,18 @@ export class IntunedApiSDK extends ClientSDK {
         void this.options$;
     }
 
+    private _files?: Files;
+    get files(): Files {
+        return (this._files ??= new Files(this.options$));
+    }
+
     private _project?: Project;
     get project(): Project {
         return (this._project ??= new Project(this.options$));
     }
 
-    private _files?: Files;
-    get files(): Files {
-        return (this._files ??= new Files(this.options$));
+    private _authSessions?: AuthSessions;
+    get authSessions(): AuthSessions {
+        return (this._authSessions ??= new AuthSessions(this.options$));
     }
 }

@@ -40,7 +40,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Extract structured data from a file - supports image, pdf (more coming soon!)
+     * Extract structured data
      *
      * @remarks
      * Extracts structured data from a file. Supported file types are image, pdf (more coming soon!).
@@ -127,7 +127,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Extract markdown from a file - supports image, pdf (more coming soon!)
+     * Extract markdown
      *
      * @remarks
      * Extracts markdown from a file. Supported file types are image, pdf (more coming soon!).
@@ -210,7 +210,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Extract tables from a file - supports image, pdf (more coming soon!)
+     * Extract tables
      *
      * @remarks
      * Extracts tables from a file. Supported file types are image, pdf (more coming soon!).
@@ -291,7 +291,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Asynchronously extract structured data from a file - supports image, pdf (more coming soon!)
+     * Extract structured data - Async start
      *
      * @remarks
      * Starts an asynchronous operation to extract structred data from a file. Supported file types are image, pdf (more coming soon!).
@@ -368,7 +368,7 @@ export class Files extends ClientSDK {
 
         const [result$] = await this.matcher<operations.ExtractStructuredDataStartResponse>()
             .json(200, operations.ExtractStructuredDataStartResponse$, {
-                key: "AsyncPendingResponse",
+                key: "AsyncFilePendingResponse",
             })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
@@ -379,7 +379,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Get result of extract structured data from a file
+     * Extract structured data - Async result
      *
      * @remarks
      * Gets the result of the structured data extraction operation using the operation ID.
@@ -466,7 +466,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Asynchronously extract markdown from a file - supports image, pdf (more coming soon!)
+     * Extract markdown - Async start
      *
      * @remarks
      * Starts an asynchronous operation to extract markdown from a file. Supported file types are image, pdf (more coming soon!).
@@ -540,7 +540,9 @@ export class Files extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.ExtractMarkdownStartResponse>()
-            .json(200, operations.ExtractMarkdownStartResponse$, { key: "AsyncPendingResponse" })
+            .json(200, operations.ExtractMarkdownStartResponse$, {
+                key: "AsyncFilePendingResponse",
+            })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -550,7 +552,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Get result of extract markdown from a file
+     * Extract markdown - Async result
      *
      * @remarks
      * Gets the result of the markdown extraction operation using the operation ID.
@@ -637,7 +639,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Asynchronously extract tables from a file - supports image, pdf (more coming soon!)
+     * Extract tables - Async start
      *
      * @remarks
      * Starts an asynchronous operation to extract tables from a file. Supported file types are image, pdf (more coming soon!).
@@ -711,7 +713,7 @@ export class Files extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.ExtractTablesStartResponse>()
-            .json(200, operations.ExtractTablesStartResponse$, { key: "AsyncPendingResponse" })
+            .json(200, operations.ExtractTablesStartResponse$, { key: "AsyncFilePendingResponse" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -721,7 +723,7 @@ export class Files extends ClientSDK {
     }
 
     /**
-     * Get result of extract tables from a file
+     * Extract tables - Async result
      *
      * @remarks
      * Gets the result of the tables extraction operation using the operation ID.

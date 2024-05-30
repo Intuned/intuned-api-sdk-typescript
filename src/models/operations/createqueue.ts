@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type CreateQueueGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type CreateQueueRequest = {
@@ -27,49 +27,42 @@ export type CreateQueueRequest = {
     queueInput?: components.QueueInput | undefined;
 };
 
-/**
- * Successful operation
- */
-export type CreateQueueResponseBody = {
-    id?: string | undefined;
-};
-
 export type CreateQueueResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Successful operation
+     * Successfully created
      */
-    object?: CreateQueueResponseBody | undefined;
+    createQueue?: components.CreateQueue | undefined;
 };
 
 /** @internal */
 export namespace CreateQueueGlobals$ {
     export const inboundSchema: z.ZodType<CreateQueueGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -107,60 +100,33 @@ export namespace CreateQueueRequest$ {
 }
 
 /** @internal */
-export namespace CreateQueueResponseBody$ {
-    export const inboundSchema: z.ZodType<CreateQueueResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
-
-    export type Outbound = {
-        id?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueResponseBody> = z
-        .object({
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
-}
-
-/** @internal */
 export namespace CreateQueueResponse$ {
     export const inboundSchema: z.ZodType<CreateQueueResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => CreateQueueResponseBody$.inboundSchema).optional(),
+            CreateQueue: components.CreateQueue$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.CreateQueue === undefined ? null : { createQueue: v.CreateQueue }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: CreateQueueResponseBody$.Outbound | undefined;
+        CreateQueue?: components.CreateQueue$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => CreateQueueResponseBody$.outboundSchema).optional(),
+            createQueue: components.CreateQueue$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.createQueue === undefined ? null : { CreateQueue: v.createQueue }),
             };
         });
 }

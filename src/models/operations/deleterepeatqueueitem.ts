@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type DeleteRepeatQueueItemGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type DeleteRepeatQueueItemRequest = {
@@ -26,16 +26,9 @@ export type DeleteRepeatQueueItemRequest = {
      */
     queueId: string;
     /**
-     * Queue repeatable item ID
+     * Repeat Item ID
      */
     itemId: string;
-};
-
-/**
- * Queue repeatable item deleted
- */
-export type DeleteRepeatQueueItemResponseBody = {
-    itemId?: string | undefined;
 };
 
 export type DeleteRepeatQueueItemResponse = {
@@ -43,37 +36,37 @@ export type DeleteRepeatQueueItemResponse = {
     /**
      * Queue repeatable item deleted
      */
-    object?: DeleteRepeatQueueItemResponseBody | undefined;
+    deleteQueueRepeatItem?: components.DeleteQueueRepeatItem | undefined;
 };
 
 /** @internal */
 export namespace DeleteRepeatQueueItemGlobals$ {
     export const inboundSchema: z.ZodType<DeleteRepeatQueueItemGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteRepeatQueueItemGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -116,69 +109,38 @@ export namespace DeleteRepeatQueueItemRequest$ {
 }
 
 /** @internal */
-export namespace DeleteRepeatQueueItemResponseBody$ {
-    export const inboundSchema: z.ZodType<
-        DeleteRepeatQueueItemResponseBody,
-        z.ZodTypeDef,
-        unknown
-    > = z
-        .object({
-            itemId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.itemId === undefined ? null : { itemId: v.itemId }),
-            };
-        });
-
-    export type Outbound = {
-        itemId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        DeleteRepeatQueueItemResponseBody
-    > = z
-        .object({
-            itemId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.itemId === undefined ? null : { itemId: v.itemId }),
-            };
-        });
-}
-
-/** @internal */
 export namespace DeleteRepeatQueueItemResponse$ {
     export const inboundSchema: z.ZodType<DeleteRepeatQueueItemResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => DeleteRepeatQueueItemResponseBody$.inboundSchema).optional(),
+            DeleteQueueRepeatItem: components.DeleteQueueRepeatItem$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.DeleteQueueRepeatItem === undefined
+                    ? null
+                    : { deleteQueueRepeatItem: v.DeleteQueueRepeatItem }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: DeleteRepeatQueueItemResponseBody$.Outbound | undefined;
+        DeleteQueueRepeatItem?: components.DeleteQueueRepeatItem$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteRepeatQueueItemResponse> =
         z
             .object({
                 httpMeta: components.HTTPMetadata$.outboundSchema,
-                object: z.lazy(() => DeleteRepeatQueueItemResponseBody$.outboundSchema).optional(),
+                deleteQueueRepeatItem: components.DeleteQueueRepeatItem$.outboundSchema.optional(),
             })
             .transform((v) => {
                 return {
                     HttpMeta: v.httpMeta,
-                    ...(v.object === undefined ? null : { object: v.object }),
+                    ...(v.deleteQueueRepeatItem === undefined
+                        ? null
+                        : { DeleteQueueRepeatItem: v.deleteQueueRepeatItem }),
                 };
             });
 }

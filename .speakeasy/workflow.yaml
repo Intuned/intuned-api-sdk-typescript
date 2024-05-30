@@ -3,10 +3,7 @@ speakeasyVersion: latest
 sources:
     intunedClientApi:
         inputs:
-            - location: ../docs/_resources/openapi/jobs.yaml
-            - location: ../docs/_resources/openapi/queues.yaml
-            - location: ../docs/_resources/openapi/files.yaml
-            - location: ../docs/_resources/openapi/run.yaml
+            - location: ../docs/_resources/openapi/all.yaml
         registry:
             location: registry.speakeasyapi.dev/intuned/intuned/intuned-client-api
 targets:

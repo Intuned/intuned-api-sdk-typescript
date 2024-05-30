@@ -1,0 +1,9 @@
+# AsyncRunPendingResponse
+
+
+## Fields
+
+| Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `status`                                                                                             | [components.AsyncRunPendingResponseStatus](../../models/components/asyncrunpendingresponsestatus.md) | :heavy_minus_sign:                                                                                   | The status of the asynchronous operation                                                             |
+| `operationId`                                                                                        | *string*                                                                                             | :heavy_minus_sign:                                                                                   | The operation ID                                                                                     |

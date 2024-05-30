@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type RunStartGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type RunStartRequest = {
@@ -32,37 +32,37 @@ export type RunStartResponse = {
     /**
      * API run operation started
      */
-    asyncPendingResponse?: components.AsyncPendingResponse | undefined;
+    asyncRunPendingResponse?: components.AsyncRunPendingResponse | undefined;
 };
 
 /** @internal */
 export namespace RunStartGlobals$ {
     export const inboundSchema: z.ZodType<RunStartGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunStartGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -108,33 +108,33 @@ export namespace RunStartResponse$ {
     export const inboundSchema: z.ZodType<RunStartResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            AsyncPendingResponse: components.AsyncPendingResponse$.inboundSchema.optional(),
+            AsyncRunPendingResponse: components.AsyncRunPendingResponse$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.AsyncPendingResponse === undefined
+                ...(v.AsyncRunPendingResponse === undefined
                     ? null
-                    : { asyncPendingResponse: v.AsyncPendingResponse }),
+                    : { asyncRunPendingResponse: v.AsyncRunPendingResponse }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        AsyncPendingResponse?: components.AsyncPendingResponse$.Outbound | undefined;
+        AsyncRunPendingResponse?: components.AsyncRunPendingResponse$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunStartResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            asyncPendingResponse: components.AsyncPendingResponse$.outboundSchema.optional(),
+            asyncRunPendingResponse: components.AsyncRunPendingResponse$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.asyncPendingResponse === undefined
+                ...(v.asyncRunPendingResponse === undefined
                     ? null
-                    : { AsyncPendingResponse: v.asyncPendingResponse }),
+                    : { AsyncRunPendingResponse: v.asyncRunPendingResponse }),
             };
         });
 }

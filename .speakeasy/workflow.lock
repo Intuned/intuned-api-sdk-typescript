@@ -1,17 +1,17 @@
-speakeasyVersion: 1.296.1
+speakeasyVersion: 1.299.3
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:439aaebcb334debb24c21b536675bb2c007bea508e9e3c244668e2cc5a1ddf9c
-        sourceBlobDigest: sha256:46b8b5d2cfeb5697708d0358cd6e83a3c3a241a2ce9dad2882309152904228c0
+        sourceRevisionDigest: sha256:5c2b055c8ef1bc4edf02b17564969833e3f8771a87ef3774223c289e7d6181c2
+        sourceBlobDigest: sha256:6c924bb4c73a739f0f6a043c61c5bded6412d2b0a8a641872ffe5b2497f64fc1
         tags:
             - latest
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:439aaebcb334debb24c21b536675bb2c007bea508e9e3c244668e2cc5a1ddf9c
-        sourceBlobDigest: sha256:46b8b5d2cfeb5697708d0358cd6e83a3c3a241a2ce9dad2882309152904228c0
+        sourceRevisionDigest: sha256:5c2b055c8ef1bc4edf02b17564969833e3f8771a87ef3774223c289e7d6181c2
+        sourceBlobDigest: sha256:6c924bb4c73a739f0f6a043c61c5bded6412d2b0a8a641872ffe5b2497f64fc1
         outLocation: /Users/faisal/src/intuned-api-sdk-typescript
     typescript-client-sdk:
         source: intunedClientApi
@@ -25,10 +25,7 @@ workflow:
     sources:
         intunedClientApi:
             inputs:
-                - location: ../docs/_resources/openapi/jobs.yaml
-                - location: ../docs/_resources/openapi/queues.yaml
-                - location: ../docs/_resources/openapi/files.yaml
-                - location: ../docs/_resources/openapi/run.yaml
+                - location: ../docs/_resources/openapi/all.yaml
             registry:
                 location: registry.speakeasyapi.dev/intuned/intuned/intuned-client-api
     targets:

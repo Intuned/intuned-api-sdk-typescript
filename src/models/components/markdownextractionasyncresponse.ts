@@ -3,7 +3,7 @@
  */
 
 import { AsyncFailedResponse, AsyncFailedResponse$ } from "./asyncfailedresponse";
-import { AsyncPendingResponse, AsyncPendingResponse$ } from "./asyncpendingresponse";
+import { AsyncFilePendingResponse, AsyncFilePendingResponse$ } from "./asyncfilependingresponse";
 import * as z from "zod";
 
 /**
@@ -33,7 +33,7 @@ export type MarkdownExtractionAsyncResponse1 = {
 };
 
 export type MarkdownExtractionAsyncResponse =
-    | AsyncPendingResponse
+    | AsyncFilePendingResponse
     | MarkdownExtractionAsyncResponse1
     | AsyncFailedResponse;
 
@@ -94,13 +94,13 @@ export namespace MarkdownExtractionAsyncResponse1$ {
 export namespace MarkdownExtractionAsyncResponse$ {
     export const inboundSchema: z.ZodType<MarkdownExtractionAsyncResponse, z.ZodTypeDef, unknown> =
         z.union([
-            AsyncPendingResponse$.inboundSchema,
+            AsyncFilePendingResponse$.inboundSchema,
             z.lazy(() => MarkdownExtractionAsyncResponse1$.inboundSchema),
             AsyncFailedResponse$.inboundSchema,
         ]);
 
     export type Outbound =
-        | AsyncPendingResponse$.Outbound
+        | AsyncFilePendingResponse$.Outbound
         | MarkdownExtractionAsyncResponse1$.Outbound
         | AsyncFailedResponse$.Outbound;
     export const outboundSchema: z.ZodType<
@@ -108,7 +108,7 @@ export namespace MarkdownExtractionAsyncResponse$ {
         z.ZodTypeDef,
         MarkdownExtractionAsyncResponse
     > = z.union([
-        AsyncPendingResponse$.outboundSchema,
+        AsyncFilePendingResponse$.outboundSchema,
         z.lazy(() => MarkdownExtractionAsyncResponse1$.outboundSchema),
         AsyncFailedResponse$.outboundSchema,
     ]);

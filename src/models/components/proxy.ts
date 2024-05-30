@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 
+/**
+ * The proxy location. If not provided, a rotating proxy will be enabled.
+ */
 export enum Location {
     UsWa = "US-WA",
     UsTx = "US-TX",
@@ -13,6 +16,9 @@ export enum Location {
 
 export type Proxy = {
     enabled: boolean;
+    /**
+     * The proxy location. If not provided, a rotating proxy will be enabled.
+     */
     location?: Location | undefined;
 };
 

@@ -3,6 +3,6 @@
 
 ## Fields
 
-| Field                                            | Type                                             | Required                                         | Description                                      |
-| ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------ |
-| `operationId`                                    | *string*                                         | :heavy_check_mark:                               | the operation ID provided by the start operation |
+| Field              | Type               | Required           | Description        | Example            |
+| ------------------ | ------------------ | ------------------ | ------------------ | ------------------ |
+| `operationId`      | *string*           | :heavy_check_mark: | Operation Id.      | EVmDumBbkyhx3DU    |

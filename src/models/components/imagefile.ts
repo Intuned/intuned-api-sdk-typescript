@@ -5,18 +5,18 @@
 import { FileSource, FileSource$ } from "./filesource";
 import * as z from "zod";
 
-export enum ImageFileType {
+export enum Type {
     Image = "image",
 }
 
 export type ImageFile = {
-    type: ImageFileType;
+    type: Type;
     source: FileSource;
 };
 
 /** @internal */
-export namespace ImageFileType$ {
-    export const inboundSchema = z.nativeEnum(ImageFileType);
+export namespace Type$ {
+    export const inboundSchema = z.nativeEnum(Type);
     export const outboundSchema = inboundSchema;
 }
 
@@ -24,7 +24,7 @@ export namespace ImageFileType$ {
 export namespace ImageFile$ {
     export const inboundSchema: z.ZodType<ImageFile, z.ZodTypeDef, unknown> = z
         .object({
-            type: ImageFileType$.inboundSchema,
+            type: Type$.inboundSchema,
             source: FileSource$.inboundSchema,
         })
         .transform((v) => {
@@ -41,7 +41,7 @@ export namespace ImageFile$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ImageFile> = z
         .object({
-            type: ImageFileType$.outboundSchema,
+            type: Type$.outboundSchema,
             source: FileSource$.outboundSchema,
         })
         .transform((v) => {

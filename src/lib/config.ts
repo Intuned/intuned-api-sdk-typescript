@@ -22,12 +22,12 @@ export type SDKOptions = {
     /**
      * Allows setting the workspaceId parameter for all supported operations
      */
-    workspaceId?: string | undefined;
+    workspaceId?: string;
 
     /**
      * Allows setting the projectName parameter for all supported operations
      */
-    projectName?: string | undefined;
+    projectName?: string;
 
     httpClient?: HTTPClient;
     /**
@@ -64,7 +64,7 @@ export function serverURLFromOptions(options: SDKOptions): URL | null {
 export const SDK_METADATA = {
     language: "typescript",
     openapiDocVersion: "0.0.1",
-    sdkVersion: "0.2.9",
-    genVersion: "2.338.1",
-    userAgent: "speakeasy-sdk/typescript 0.2.9 2.338.1 0.0.1 @intuned/client",
+    sdkVersion: "0.2.11",
+    genVersion: "2.338.7",
+    userAgent: "speakeasy-sdk/typescript 0.2.11 2.338.7 0.0.1 @intuned/client",
 } as const;

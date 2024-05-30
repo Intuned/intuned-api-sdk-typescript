@@ -7,13 +7,13 @@ import * as z from "zod";
 
 export type TerminateJobRunGlobals = {
     /**
-     * Workspace Id.
+     * Workspace ID
      */
-    workspaceId?: string | undefined;
+    workspaceId: string;
     /**
-     * Project Name.
+     * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type TerminateJobRunRequest = {
@@ -31,53 +31,42 @@ export type TerminateJobRunRequest = {
     runId: string;
 };
 
-export enum TerminateJobRunMessage {
-    JobRunTerminated = "Job run terminated",
-}
-
-/**
- * Job run terminated
- */
-export type TerminateJobRunResponseBody = {
-    message?: TerminateJobRunMessage | undefined;
-};
-
 export type TerminateJobRunResponse = {
     httpMeta: components.HTTPMetadata;
     /**
-     * Job run terminated
+     * Successfully terminated job run
      */
-    object?: TerminateJobRunResponseBody | undefined;
+    terminateJobRun?: components.TerminateJobRun | undefined;
 };
 
 /** @internal */
 export namespace TerminateJobRunGlobals$ {
     export const inboundSchema: z.ZodType<TerminateJobRunGlobals, z.ZodTypeDef, unknown> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        workspaceId?: string | undefined;
-        projectName?: string | undefined;
+        workspaceId: string;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunGlobals> = z
         .object({
-            workspaceId: z.string().optional(),
-            projectName: z.string().optional(),
+            workspaceId: z.string(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.workspaceId === undefined ? null : { workspaceId: v.workspaceId }),
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                workspaceId: v.workspaceId,
+                projectName: v.projectName,
             };
         });
 }
@@ -120,66 +109,37 @@ export namespace TerminateJobRunRequest$ {
 }
 
 /** @internal */
-export namespace TerminateJobRunMessage$ {
-    export const inboundSchema = z.nativeEnum(TerminateJobRunMessage);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace TerminateJobRunResponseBody$ {
-    export const inboundSchema: z.ZodType<TerminateJobRunResponseBody, z.ZodTypeDef, unknown> = z
-        .object({
-            message: TerminateJobRunMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-
-    export type Outbound = {
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunResponseBody> = z
-        .object({
-            message: TerminateJobRunMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
-}
-
-/** @internal */
 export namespace TerminateJobRunResponse$ {
     export const inboundSchema: z.ZodType<TerminateJobRunResponse, z.ZodTypeDef, unknown> = z
         .object({
             HttpMeta: components.HTTPMetadata$.inboundSchema,
-            object: z.lazy(() => TerminateJobRunResponseBody$.inboundSchema).optional(),
+            TerminateJobRun: components.TerminateJobRun$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 httpMeta: v.HttpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.TerminateJobRun === undefined
+                    ? null
+                    : { terminateJobRun: v.TerminateJobRun }),
             };
         });
 
     export type Outbound = {
         HttpMeta: components.HTTPMetadata$.Outbound;
-        object?: TerminateJobRunResponseBody$.Outbound | undefined;
+        TerminateJobRun?: components.TerminateJobRun$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunResponse> = z
         .object({
             httpMeta: components.HTTPMetadata$.outboundSchema,
-            object: z.lazy(() => TerminateJobRunResponseBody$.outboundSchema).optional(),
+            terminateJobRun: components.TerminateJobRun$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
                 HttpMeta: v.httpMeta,
-                ...(v.object === undefined ? null : { object: v.object }),
+                ...(v.terminateJobRun === undefined
+                    ? null
+                    : { TerminateJobRun: v.terminateJobRun }),
             };
         });
 }
