@@ -10,17 +10,13 @@ export type CreateJobGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type CreateJobRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * create job request
      */
@@ -40,29 +36,24 @@ export namespace CreateJobGlobals$ {
     export const inboundSchema: z.ZodType<CreateJobGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJobGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -71,29 +62,29 @@ export namespace CreateJobGlobals$ {
 export namespace CreateJobRequest$ {
     export const inboundSchema: z.ZodType<CreateJobRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             JobInput: components.JobInput$.inboundSchema,
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 jobInput: v.JobInput,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         JobInput: components.JobInput$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJobRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             jobInput: components.JobInput$.outboundSchema,
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 JobInput: v.jobInput,
             };
         });

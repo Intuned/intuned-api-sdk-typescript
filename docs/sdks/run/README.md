@@ -7,27 +7,26 @@ Run Project's exposed APIs
 
 ### Available Operations
 
-* [runSync](#runsync) - Run API
-* [runStart](#runstart) - Run API - Async start
-* [runResult](#runresult) - API Async result
+* [sync](#sync) - Run API - Sync
+* [start](#start) - Run API - Async Start
+* [result](#result) - Run API - Async Result
 
-## runSync
+## sync
 
 Runs a project API synchronously.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.run.runSync("my-project", {
+  const result = await intunedClient.project.run.sync("my-project", {
     api: "get-contracts",
     parameters: {
       "page": 1,
@@ -52,7 +51,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `runProjectApiRequest`                                                                                                                                                         | [components.RunProjectApiRequest](../../models/components/runprojectapirequest.md)                                                                                             | :heavy_minus_sign:                                                                                                                                                             | run project api request                                                                                                                                                        |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
@@ -60,7 +59,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.RunSyncResponse](../../models/operations/runsyncresponse.md)\>**
+**Promise\<[operations.RunApiSyncResponse](../../models/operations/runapisyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -69,23 +68,22 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## runStart
+## start
 
 Starts a project API run operation
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.run.runStart("my-project", {
+  const result = await intunedClient.project.run.start("my-project", {
     api: "get-contracts",
     parameters: {
       "page": 1,
@@ -110,7 +108,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `runProjectApiRequest`                                                                                                                                                         | [components.RunProjectApiRequest](../../models/components/runprojectapirequest.md)                                                                                             | :heavy_minus_sign:                                                                                                                                                             | run project api request                                                                                                                                                        |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
@@ -118,7 +116,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.RunStartResponse](../../models/operations/runstartresponse.md)\>**
+**Promise\<[operations.RunApiStartResponse](../../models/operations/runapistartresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -127,23 +125,22 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## runResult
+## result
 
 Retrieves the result of a started project API run operation.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.run.runResult("aabbccddeeffggh", "my-project");
+  const result = await intunedClient.project.run.result("my-project", "aabbccddeeffggh");
 
   // Handle the result
   console.log(result)
@@ -156,15 +153,15 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Run ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise\<[operations.RunResultResponse](../../models/operations/runresultresponse.md)\>**
+**Promise\<[operations.RunApiResultResponse](../../models/operations/runapiresultresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

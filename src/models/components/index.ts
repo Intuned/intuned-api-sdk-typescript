@@ -59,7 +59,6 @@ export * from "./queuerepeatitem";
 export * from "./queuerepeatiteminput";
 export * from "./queueretry";
 export * from "./queuesink";
-export * from "./refreshauthsession";
 export * from "./resumejob";
 export * from "./runprojectapirequest";
 export * from "./security";

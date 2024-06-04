@@ -1,20 +1,19 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
-import { FileBase64SourceType, PdfFileType } from "@intuned/client/models/components";
+import { IntunedClient } from "@intuned/client";
+import { FileUrlSourceType, PdfFileType } from "@intuned/client/models/components";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
     apiKey: "<YOUR_API_KEY_HERE>",
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-    projectName: "my-project",
 });
 
 async function run() {
-    const result = await intunedApiSDK.files.extractStructuredData(
+    const result = await intunedClient.files.extractStructuredData.sync(
         {
             type: PdfFileType.Pdf,
             source: {
-                type: FileBase64SourceType.Base64,
+                type: FileUrlSourceType.Url,
                 data: "<value>",
             },
         },

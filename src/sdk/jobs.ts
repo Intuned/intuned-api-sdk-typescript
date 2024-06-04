@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import { Runs } from "./runs";
 
 export class Jobs extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -39,16 +40,18 @@ export class Jobs extends ClientSDK {
         void this.options$;
     }
 
+    private _runs?: Runs;
+    get runs(): Runs {
+        return (this._runs ??= new Runs(this.options$));
+    }
+
     /**
      * Get Jobs
      *
      * @remarks
      * Gets all jobs in a project.
      */
-    async getJobs(
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetJobsResponse> {
+    async all(projectName: string, options?: RequestOptions): Promise<operations.GetJobsResponse> {
         const input$: operations.GetJobsRequest = {
             projectName: projectName,
         };
@@ -64,11 +67,10 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -131,9 +133,9 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Creates a new job for a project.
      */
-    async createJob(
+    async create(
+        projectName: string,
         jobInput: components.JobInput,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.CreateJobResponse> {
         const input$: operations.CreateJobRequest = {
@@ -153,11 +155,10 @@ export class Jobs extends ClientSDK {
         const body$ = enc$.encodeJSON("body", payload$.JobInput, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -220,9 +221,9 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Gets a job in a project by ID.
      */
-    async getJob(
+    async one(
+        projectName: string,
         jobId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.GetJobResponse> {
         const input$: operations.GetJobRequest = {
@@ -245,11 +246,10 @@ export class Jobs extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -312,9 +312,9 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Deletes a job by ID.
      */
-    async deleteJob(
+    async delete(
+        projectName: string,
         jobId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.DeleteJobResponse> {
         const input$: operations.DeleteJobRequest = {
@@ -337,11 +337,10 @@ export class Jobs extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -403,9 +402,9 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Pauses a job. Will pause any job runs and the job schedule if applicable.
      */
-    async pauseJob(
+    async pause(
+        projectName: string,
         jobId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.PauseJobResponse> {
         const input$: operations.PauseJobRequest = {
@@ -428,11 +427,10 @@ export class Jobs extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -495,9 +493,9 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
      */
-    async resumeJob(
+    async resume(
+        projectName: string,
         jobId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.ResumeJobResponse> {
         const input$: operations.ResumeJobRequest = {
@@ -520,11 +518,10 @@ export class Jobs extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -588,8 +585,8 @@ export class Jobs extends ClientSDK {
      * Manually triggers a job run for a job. If the job is paused, the trigger fails.
      */
     async triggerJob(
+        projectName: string,
         jobId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.TriggerJobResponse> {
         const input$: operations.TriggerJobRequest = {
@@ -612,11 +609,10 @@ export class Jobs extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -666,195 +662,6 @@ export class Jobs extends ClientSDK {
         const [result$] = await this.matcher<operations.TriggerJobResponse>()
             .json(200, operations.TriggerJobResponse$, { key: "TriggerJob" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Get Job Runs
-     *
-     * @remarks
-     * Get all job runs of a job.
-     */
-    async getJobRuns(
-        jobId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetJobRunsResponse> {
-        const input$: operations.GetJobRunsRequest = {
-            projectName: projectName,
-            jobId: jobId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetJobRunsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/jobs/{jobId}/runs"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "getJobRuns",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetJobRunsResponse>()
-            .json(200, operations.GetJobRunsResponse$, { key: "GetJobRuns" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Terminate Job Run
-     *
-     * @remarks
-     * Terminate a job run by ID.
-     */
-    async terminateJobRun(
-        jobId: string,
-        runId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.TerminateJobRunResponse> {
-        const input$: operations.TerminateJobRunRequest = {
-            projectName: projectName,
-            jobId: jobId,
-            runId: runId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.TerminateJobRunRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            runId: enc$.encodeSimple("runId", payload$.runId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/jobs/{jobId}/runs/{runId}/terminate"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "terminateJobRun",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.TerminateJobRunResponse>()
-            .json(200, operations.TerminateJobRunResponse$, { key: "TerminateJobRun" })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });

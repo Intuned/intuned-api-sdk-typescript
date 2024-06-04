@@ -6,6 +6,7 @@ import { SDKHooks } from "../hooks";
 import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
+import { AuthSessions } from "./authsessions";
 import { Jobs } from "./jobs";
 import { Queues } from "./queues";
 import { Run } from "./run";
@@ -50,5 +51,10 @@ export class Project extends ClientSDK {
     private _run?: Run;
     get run(): Run {
         return (this._run ??= new Run(this.options$));
+    }
+
+    private _authSessions?: AuthSessions;
+    get authSessions(): AuthSessions {
+        return (this._authSessions ??= new AuthSessions(this.options$));
     }
 }

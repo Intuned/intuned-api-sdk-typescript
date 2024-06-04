@@ -10,17 +10,13 @@ export type DeleteAuthSessionGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type DeleteAuthSessionRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * Authentication session ID
      */
@@ -40,29 +36,24 @@ export namespace DeleteAuthSessionGlobals$ {
     export const inboundSchema: z.ZodType<DeleteAuthSessionGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteAuthSessionGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -71,29 +62,29 @@ export namespace DeleteAuthSessionGlobals$ {
 export namespace DeleteAuthSessionRequest$ {
     export const inboundSchema: z.ZodType<DeleteAuthSessionRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             authSessionId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 authSessionId: v.authSessionId,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         authSessionId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteAuthSessionRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             authSessionId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 authSessionId: v.authSessionId,
             };
         });

@@ -8,9 +8,9 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
-import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import { Create } from "./create";
 
 export class AuthSessions extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -39,14 +39,19 @@ export class AuthSessions extends ClientSDK {
         void this.options$;
     }
 
+    private _create?: Create;
+    get create(): Create {
+        return (this._create ??= new Create(this.options$));
+    }
+
     /**
      * Get Auth Sessions
      *
      * @remarks
      * Gets all authentication sessions of project
      */
-    async getAuthSessions(
-        projectName?: string | undefined,
+    async all(
+        projectName: string,
         options?: RequestOptions
     ): Promise<operations.GetAuthSessionsResponse> {
         const input$: operations.GetAuthSessionsRequest = {
@@ -64,11 +69,10 @@ export class AuthSessions extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -131,9 +135,9 @@ export class AuthSessions extends ClientSDK {
      * @remarks
      * Gets authentication session of project by ID
      */
-    async getAuthSession(
+    async one(
+        projectName: string,
         authSessionId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.GetAuthSessionResponse> {
         const input$: operations.GetAuthSessionRequest = {
@@ -156,11 +160,10 @@ export class AuthSessions extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -223,9 +226,9 @@ export class AuthSessions extends ClientSDK {
      * @remarks
      * Deletes an authentication session by ID.
      */
-    async deleteAuthSession(
+    async delete(
+        projectName: string,
         authSessionId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.DeleteAuthSessionResponse> {
         const input$: operations.DeleteAuthSessionRequest = {
@@ -248,11 +251,10 @@ export class AuthSessions extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -301,369 +303,6 @@ export class AuthSessions extends ClientSDK {
 
         const [result$] = await this.matcher<operations.DeleteAuthSessionResponse>()
             .json(204, operations.DeleteAuthSessionResponse$, { key: "DeleteAuthSession" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Start create Auth Session
-     *
-     * @remarks
-     * Starts creation process of an authentication session for a project with the authentication session creation setting enabled.
-     */
-    async createAuthSession(
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.CreateAuthSessionResponse> {
-        const input$: operations.CreateAuthSessionRequest = {
-            projectName: projectName,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.CreateAuthSessionRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/auth-sessions/create"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "createAuthSession",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.CreateAuthSessionResponse>()
-            .json(200, operations.CreateAuthSessionResponse$, { key: "CreateAuthSessionStart" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Get create Auth Session result
-     *
-     * @remarks
-     * Gets authentication session creation operation result.
-     */
-    async getCreateAuthSessionResult(
-        authSessionId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetCreateAuthSessionResultResponse> {
-        const input$: operations.GetCreateAuthSessionResultRequest = {
-            projectName: projectName,
-            authSessionId: authSessionId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetCreateAuthSessionResultRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            authSessionId: enc$.encodeSimple("authSessionId", payload$.authSessionId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/auth-sessions/create/{authSessionId}/result"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "getCreateAuthSessionResult",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetCreateAuthSessionResultResponse>()
-            .json(200, operations.GetCreateAuthSessionResultResponse$, {
-                key: "AuthSessionCreateResult",
-            })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Resume create Auth Session
-     *
-     * @remarks
-     * Resume authentication session creation operation. This is needed if the operation requests more info.
-     */
-    async resumeCreateAuthSession(
-        authSessionId: string,
-        projectName?: string | undefined,
-        authSessionCreateResume?: components.AuthSessionCreateResume | undefined,
-        options?: RequestOptions
-    ): Promise<operations.ResumeCreateAuthSessionResponse> {
-        const input$: operations.ResumeCreateAuthSessionRequest = {
-            projectName: projectName,
-            authSessionId: authSessionId,
-            authSessionCreateResume: authSessionCreateResume,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.ResumeCreateAuthSessionRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = enc$.encodeJSON("body", payload$.AuthSessionCreateResume, { explode: true });
-
-        const pathParams$ = {
-            authSessionId: enc$.encodeSimple("authSessionId", payload$.authSessionId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/auth-sessions/create/{authSessionId}/resume"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "resumeCreateAuthSession",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.ResumeCreateAuthSessionResponse>()
-            .json(201, operations.ResumeCreateAuthSessionResponse$, {
-                key: "CreateAuthSessionResume",
-            })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Refresh Auth Session
-     *
-     * @remarks
-     * Refreshes an expired authentication session.
-     */
-    async refreshAuthSession(
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.RefreshAuthSessionResponse> {
-        const input$: operations.RefreshAuthSessionRequest = {
-            projectName: projectName,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.RefreshAuthSessionRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/auth-sessions/refresh"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "refreshAuthSession",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.RefreshAuthSessionResponse>()
-            .json(200, operations.RefreshAuthSessionResponse$, { key: "RefreshAuthSession" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

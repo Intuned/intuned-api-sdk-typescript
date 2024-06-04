@@ -1,17 +1,17 @@
-speakeasyVersion: 1.299.3
+speakeasyVersion: 1.299.6
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:5c2b055c8ef1bc4edf02b17564969833e3f8771a87ef3774223c289e7d6181c2
-        sourceBlobDigest: sha256:6c924bb4c73a739f0f6a043c61c5bded6412d2b0a8a641872ffe5b2497f64fc1
+        sourceRevisionDigest: sha256:d92c8d44f01582dc6e13ce49243269887f4bf96bc9aed0d94b69f88b07ff8805
+        sourceBlobDigest: sha256:c00359fd0d1e6b77969d616b2b382f596ad835d60053907234507ed36a043b81
         tags:
             - latest
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:5c2b055c8ef1bc4edf02b17564969833e3f8771a87ef3774223c289e7d6181c2
-        sourceBlobDigest: sha256:6c924bb4c73a739f0f6a043c61c5bded6412d2b0a8a641872ffe5b2497f64fc1
+        sourceRevisionDigest: sha256:d92c8d44f01582dc6e13ce49243269887f4bf96bc9aed0d94b69f88b07ff8805
+        sourceBlobDigest: sha256:c00359fd0d1e6b77969d616b2b382f596ad835d60053907234507ed36a043b81
         outLocation: /Users/faisal/src/intuned-api-sdk-typescript
     typescript-client-sdk:
         source: intunedClientApi

@@ -10,17 +10,13 @@ export type ResumeJobGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type ResumeJobRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * Job ID
      */
@@ -40,29 +36,24 @@ export namespace ResumeJobGlobals$ {
     export const inboundSchema: z.ZodType<ResumeJobGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResumeJobGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -71,29 +62,29 @@ export namespace ResumeJobGlobals$ {
 export namespace ResumeJobRequest$ {
     export const inboundSchema: z.ZodType<ResumeJobRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             jobId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 jobId: v.jobId,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         jobId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResumeJobRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             jobId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 jobId: v.jobId,
             };
         });

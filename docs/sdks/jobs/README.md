@@ -7,33 +7,30 @@ Project Jobs API
 
 ### Available Operations
 
-* [getJobs](#getjobs) - Get Jobs
-* [createJob](#createjob) - Create Job
-* [getJob](#getjob) - Get Job
-* [deleteJob](#deletejob) - Delete Job
-* [pauseJob](#pausejob) - Pause Job
-* [resumeJob](#resumejob) - Resume Job
+* [all](#all) - Get Jobs
+* [create](#create) - Create Job
+* [one](#one) - Get Job
+* [delete](#delete) - Delete Job
+* [pause](#pause) - Pause Job
+* [resume](#resume) - Resume Job
 * [triggerJob](#triggerjob) - Trigger Job
-* [getJobRuns](#getjobruns) - Get Job Runs
-* [terminateJobRun](#terminatejobrun) - Terminate Job Run
 
-## getJobs
+## all
 
 Gets all jobs in a project.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.getJobs("my-project");
+  const result = await intunedClient.project.jobs.all("my-project");
 
   // Handle the result
   console.log(result)
@@ -46,7 +43,7 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -62,24 +59,23 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## createJob
+## create
 
 Creates a new job for a project.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 import { JobCalendarValue1, RunMode } from "@intuned/client/models/components";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.createJob({
+  const result = await intunedClient.project.jobs.create("my-project", {
     id: "my-sample-job",
     configuration: {
       runMode: RunMode.OrderIrrelevant,
@@ -110,20 +106,20 @@ async function run() {
             end: 30,
               step: 1,
             },
-        dayOfWeek: [object Object],
-        month:     [
+        dayOfWeek: "{\"start\":\"MONDAY\",\"end\":\"FRIDAY\",\"step\":1}",
+        month: 1343.65,
+        year:     [
               {
               start: 1,
               end: 30,
                 step: 1,
               },
             ],
-        year: "<value>",
           comment: "Trigger every midnight hour on work days",
         },
       ],
     },
-  }, "my-project");
+  });
 
   // Handle the result
   console.log(result)
@@ -136,8 +132,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `jobInput`                                                                                                                                                                     | [components.JobInput](../../models/components/jobinput.md)                                                                                                                     | :heavy_check_mark:                                                                                                                                                             | create job request                                                                                                                                                             |                                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -153,23 +149,22 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## getJob
+## one
 
 Gets a job in a project by ID.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.getJob("my-sample-job", "my-project");
+  const result = await intunedClient.project.jobs.one("my-project", "my-sample-job");
 
   // Handle the result
   console.log(result)
@@ -182,8 +177,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -199,23 +194,22 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## deleteJob
+## delete
 
 Deletes a job by ID.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.deleteJob("my-sample-job", "my-project");
+  const result = await intunedClient.project.jobs.delete("my-project", "my-sample-job");
 
   // Handle the result
   console.log(result)
@@ -228,8 +222,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -244,23 +238,22 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## pauseJob
+## pause
 
 Pauses a job. Will pause any job runs and the job schedule if applicable.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.pauseJob("my-sample-job", "my-project");
+  const result = await intunedClient.project.jobs.pause("my-project", "my-sample-job");
 
   // Handle the result
   console.log(result)
@@ -273,8 +266,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -290,23 +283,22 @@ run();
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
 
-## resumeJob
+## resume
 
 Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
 
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.resumeJob("my-sample-job", "my-project");
+  const result = await intunedClient.project.jobs.resume("my-project", "my-sample-job");
 
   // Handle the result
   console.log(result)
@@ -319,8 +311,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -343,16 +335,15 @@ Manually triggers a job run for a job. If the job is paused, the trigger fails.
 ### Example Usage
 
 ```typescript
-import { IntunedApiSDK } from "@intuned/client";
+import { IntunedClient } from "@intuned/client";
 
-const intunedApiSDK = new IntunedApiSDK({
+const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
 });
 
 async function run() {
-  const result = await intunedApiSDK.project.jobs.triggerJob("my-sample-job", "my-project");
+  const result = await intunedClient.project.jobs.triggerJob("my-project", "my-sample-job");
 
   // Handle the result
   console.log(result)
@@ -365,8 +356,8 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
@@ -379,97 +370,5 @@ run();
 | Error Object                | Status Code                 | Content Type                |
 | --------------------------- | --------------------------- | --------------------------- |
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
-
-## getJobRuns
-
-Get all job runs of a job.
-
-### Example Usage
-
-```typescript
-import { IntunedApiSDK } from "@intuned/client";
-
-const intunedApiSDK = new IntunedApiSDK({
-  apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
-});
-
-async function run() {
-  const result = await intunedApiSDK.project.jobs.getJobRuns("my-sample-job", "my-project");
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
-
-### Response
-
-**Promise\<[operations.GetJobRunsResponse](../../models/operations/getjobrunsresponse.md)\>**
-### Errors
-
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
-
-## terminateJobRun
-
-Terminate a job run by ID.
-
-### Example Usage
-
-```typescript
-import { IntunedApiSDK } from "@intuned/client";
-
-const intunedApiSDK = new IntunedApiSDK({
-  apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-  projectName: "my-project",
-});
-
-async function run() {
-  const result = await intunedApiSDK.project.jobs.terminateJobRun("my-sample-job", "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee", "my-project");
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job ID                                                                                                                                                                         | [object Object]                                                                                                                                                                |
-| `runId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Job run ID                                                                                                                                                                     | [object Object]                                                                                                                                                                |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                             | Project name                                                                                                                                                                   | [object Object]                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-
-
-### Response
-
-**Promise\<[operations.TerminateJobRunResponse](../../models/operations/terminatejobrunresponse.md)\>**
-### Errors
-
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |

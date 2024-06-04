@@ -10,17 +10,13 @@ export type GetJobsGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type GetJobsRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
 };
 
 export type GetJobsResponse = {
@@ -36,29 +32,24 @@ export namespace GetJobsGlobals$ {
     export const inboundSchema: z.ZodType<GetJobsGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobsGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -67,25 +58,25 @@ export namespace GetJobsGlobals$ {
 export namespace GetJobsRequest$ {
     export const inboundSchema: z.ZodType<GetJobsRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobsRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
             };
         });
 }

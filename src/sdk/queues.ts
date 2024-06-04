@@ -11,6 +11,8 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import { Items } from "./items";
+import { RepeatItems } from "./repeatitems";
 
 export class Queues extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -39,14 +41,24 @@ export class Queues extends ClientSDK {
         void this.options$;
     }
 
+    private _items?: Items;
+    get items(): Items {
+        return (this._items ??= new Items(this.options$));
+    }
+
+    private _repeatItems?: RepeatItems;
+    get repeatItems(): RepeatItems {
+        return (this._repeatItems ??= new RepeatItems(this.options$));
+    }
+
     /**
      * Get Queues
      *
      * @remarks
      * Gets all queues in a project.
      */
-    async getQueues(
-        projectName?: string | undefined,
+    async all(
+        projectName: string,
         options?: RequestOptions
     ): Promise<operations.GetQueuesResponse> {
         const input$: operations.GetQueuesRequest = {
@@ -64,11 +76,10 @@ export class Queues extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -131,8 +142,8 @@ export class Queues extends ClientSDK {
      * @remarks
      * Creates a new queue.
      */
-    async createQueue(
-        projectName?: string | undefined,
+    async create(
+        projectName: string,
         queueInput?: components.QueueInput | undefined,
         options?: RequestOptions
     ): Promise<operations.CreateQueueResponse> {
@@ -153,11 +164,10 @@ export class Queues extends ClientSDK {
         const body$ = enc$.encodeJSON("body", payload$.QueueInput, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -220,9 +230,9 @@ export class Queues extends ClientSDK {
      * @remarks
      * Gets a queue in a project by ID.
      */
-    async getQueue(
+    async one(
+        projectName: string,
         queueId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.GetQueueResponse> {
         const input$: operations.GetQueueRequest = {
@@ -241,11 +251,10 @@ export class Queues extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             queueId: enc$.encodeSimple("queueId", payload$.queueId, {
                 explode: false,
                 charEncoding: "percent",
@@ -312,9 +321,9 @@ export class Queues extends ClientSDK {
      * @remarks
      * Deletes a queue by ID.
      */
-    async deleteQueue(
+    async delete(
+        projectName: string,
         queueId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
     ): Promise<operations.DeleteQueueResponse> {
         const input$: operations.DeleteQueueRequest = {
@@ -333,11 +342,10 @@ export class Queues extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             queueId: enc$.encodeSimple("queueId", payload$.queueId, {
                 explode: false,
                 charEncoding: "percent",
@@ -390,781 +398,6 @@ export class Queues extends ClientSDK {
 
         const [result$] = await this.matcher<operations.DeleteQueueResponse>()
             .json(204, operations.DeleteQueueResponse$, { key: "DeleteQueue" })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Append item to Queue
-     *
-     * @remarks
-     * Appends an item to the queue.
-     */
-    async addItem(
-        queueId: string,
-        projectName?: string | undefined,
-        queueItem?: components.QueueItem | undefined,
-        options?: RequestOptions
-    ): Promise<operations.AddItemResponse> {
-        const input$: operations.AddItemRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            queueItem: queueItem,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.AddItemRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = enc$.encodeJSON("body", payload$.QueueItem, { explode: true });
-
-        const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/items"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "addItem",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.AddItemResponse>()
-            .json(200, operations.AddItemResponse$, { key: "AddQueueItem" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Get Queue item result
-     *
-     * @remarks
-     * Get queue item result.
-     */
-    async getQueueItemResult(
-        queueId: string,
-        itemRunId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetQueueItemResultResponse> {
-        const input$: operations.GetQueueItemResultRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            itemRunId: itemRunId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetQueueItemResultRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            itemRunId: enc$.encodeSimple("itemRunId", payload$.itemRunId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/items/{itemRunId}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "getQueueItemResult",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetQueueItemResultResponse>()
-            .json(200, operations.GetQueueItemResultResponse$, { key: "QueueItemResult" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Delete Queue item
-     *
-     * @remarks
-     * Delete queued item. If the item is currently processing, the delete will fail.
-     */
-    async deleteQueueItem(
-        queueId: string,
-        itemRunId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.DeleteQueueItemResponse> {
-        const input$: operations.DeleteQueueItemRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            itemRunId: itemRunId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.DeleteQueueItemRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            itemRunId: enc$.encodeSimple("itemRunId", payload$.itemRunId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/items/{itemRunId}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "deleteQueueItem",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.DeleteQueueItemResponse>()
-            .json(204, operations.DeleteQueueItemResponse$, { key: "DeleteQueueItem" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Get Queue repeat item
-     *
-     * @remarks
-     * Gets all repeatable items of a queue.
-     */
-    async getRepeatItems(
-        queueId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetRepeatItemsResponse> {
-        const input$: operations.GetRepeatItemsRequest = {
-            projectName: projectName,
-            queueId: queueId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetRepeatItemsRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/repeatItems"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "getRepeatItems",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetRepeatItemsResponse>()
-            .json(200, operations.GetRepeatItemsResponse$, { key: "GetQueueRepeatItems" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Create Queue repeat item
-     *
-     * @remarks
-     * Creates and appends a repeatable item to the queue. Repeatable items will automatically re-append to the queue according to the repeat settings.
-     */
-    async addRepeatItem(
-        queueId: string,
-        projectName?: string | undefined,
-        queueRepeatItemInput?: components.QueueRepeatItemInput | undefined,
-        options?: RequestOptions
-    ): Promise<operations.AddRepeatItemResponse> {
-        const input$: operations.AddRepeatItemRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            queueRepeatItemInput: queueRepeatItemInput,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.AddRepeatItemRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = enc$.encodeJSON("body", payload$.QueueRepeatItemInput, { explode: true });
-
-        const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/repeatItems"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "addRepeatItem",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "POST",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.AddRepeatItemResponse>()
-            .json(200, operations.AddRepeatItemResponse$, { key: "AddQueueRepeatItem" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Get Queue repeat item
-     *
-     * @remarks
-     * Gets a repeatable item from a queue by ID. The last execution result of the item is also returned.
-     */
-    async getRepeatQueueItem(
-        queueId: string,
-        itemId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.GetRepeatQueueItemResponse> {
-        const input$: operations.GetRepeatQueueItemRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            itemId: itemId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.GetRepeatQueueItemRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            itemId: enc$.encodeSimple("itemId", payload$.itemId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/repeatItems/{itemId}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "getRepeatQueueItem",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "GET",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.GetRepeatQueueItemResponse>()
-            .json(200, operations.GetRepeatQueueItemResponse$, { key: "QueueRepeatItem" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Update Queue repeat item
-     *
-     * @remarks
-     * Updates the configurations of a repeatable item by ID.
-     */
-    async updateRepeatQueueItem(
-        queueId: string,
-        itemId: string,
-        projectName?: string | undefined,
-        queueRepeatItemInput?: components.QueueRepeatItemInput | undefined,
-        options?: RequestOptions
-    ): Promise<operations.UpdateRepeatQueueItemResponse> {
-        const input$: operations.UpdateRepeatQueueItemRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            itemId: itemId,
-            queueRepeatItemInput: queueRepeatItemInput,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.UpdateRepeatQueueItemRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = enc$.encodeJSON("body", payload$.QueueRepeatItemInput, { explode: true });
-
-        const pathParams$ = {
-            itemId: enc$.encodeSimple("itemId", payload$.itemId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/repeatItems/{itemId}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "updateRepeatQueueItem",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "PUT",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.UpdateRepeatQueueItemResponse>()
-            .json(204, operations.UpdateRepeatQueueItemResponse$, { key: "UpdateQueueRepeatItem" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
-            .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
-
-        return result$;
-    }
-
-    /**
-     * Delete Queue repeat item
-     *
-     * @remarks
-     * Deletes a repeatable item by ID. The item will no longer be re-appended to the queue.
-     */
-    async deleteRepeatQueueItem(
-        queueId: string,
-        itemId: string,
-        projectName?: string | undefined,
-        options?: RequestOptions
-    ): Promise<operations.DeleteRepeatQueueItemResponse> {
-        const input$: operations.DeleteRepeatQueueItemRequest = {
-            projectName: projectName,
-            queueId: queueId,
-            itemId: itemId,
-        };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
-        const payload$ = schemas$.parse(
-            input$,
-            (value$) => operations.DeleteRepeatQueueItemRequest$.outboundSchema.parse(value$),
-            "Input validation failed"
-        );
-        const body$ = null;
-
-        const pathParams$ = {
-            itemId: enc$.encodeSimple("itemId", payload$.itemId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
-            queueId: enc$.encodeSimple("queueId", payload$.queueId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
-                explode: false,
-                charEncoding: "percent",
-            }),
-        };
-        const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/queues/{queueId}/repeatItems/{itemId}"
-        )(pathParams$);
-
-        const query$ = "";
-
-        let security$;
-        if (typeof this.options$.apiKey === "function") {
-            security$ = { apiKey: await this.options$.apiKey() };
-        } else if (this.options$.apiKey) {
-            security$ = { apiKey: this.options$.apiKey };
-        } else {
-            security$ = {};
-        }
-        const context = {
-            operationID: "deleteRepeatQueueItem",
-            oAuth2Scopes: [],
-            securitySource: this.options$.apiKey,
-        };
-        const securitySettings$ = this.resolveGlobalSecurity(security$);
-
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
-        const request$ = this.createRequest$(
-            context,
-            {
-                security: securitySettings$,
-                method: "DELETE",
-                path: path$,
-                headers: headers$,
-                query: query$,
-                body: body$,
-            },
-            options
-        );
-
-        const response = await this.do$(request$, doOptions);
-
-        const responseFields$ = {
-            HttpMeta: { Response: response, Request: request$ },
-        };
-
-        const [result$] = await this.matcher<operations.DeleteRepeatQueueItemResponse>()
-            .json(204, operations.DeleteRepeatQueueItemResponse$, { key: "DeleteQueueRepeatItem" })
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });

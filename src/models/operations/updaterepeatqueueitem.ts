@@ -10,17 +10,13 @@ export type UpdateRepeatQueueItemGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type UpdateRepeatQueueItemRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * Queue ID
      */
@@ -48,29 +44,24 @@ export namespace UpdateRepeatQueueItemGlobals$ {
     export const inboundSchema: z.ZodType<UpdateRepeatQueueItemGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateRepeatQueueItemGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -79,14 +70,14 @@ export namespace UpdateRepeatQueueItemGlobals$ {
 export namespace UpdateRepeatQueueItemRequest$ {
     export const inboundSchema: z.ZodType<UpdateRepeatQueueItemRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueId: z.string(),
             itemId: z.string(),
             QueueRepeatItemInput: components.QueueRepeatItemInput$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 queueId: v.queueId,
                 itemId: v.itemId,
                 ...(v.QueueRepeatItemInput === undefined
@@ -96,7 +87,7 @@ export namespace UpdateRepeatQueueItemRequest$ {
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         queueId: string;
         itemId: string;
         QueueRepeatItemInput?: components.QueueRepeatItemInput$.Outbound | undefined;
@@ -104,14 +95,14 @@ export namespace UpdateRepeatQueueItemRequest$ {
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateRepeatQueueItemRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueId: z.string(),
             itemId: z.string(),
             queueRepeatItemInput: components.QueueRepeatItemInput$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 queueId: v.queueId,
                 itemId: v.itemId,
                 ...(v.queueRepeatItemInput === undefined

@@ -6,11 +6,10 @@ import { SDKHooks } from "../hooks";
 import { SDKOptions, serverURLFromOptions } from "../lib/config";
 import { HTTPClient } from "../lib/http";
 import { ClientSDK } from "../lib/sdks";
-import { AuthSessions } from "./authsessions";
 import { Files } from "./files";
 import { Project } from "./project";
 
-export class IntunedApiSDK extends ClientSDK {
+export class IntunedClient extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
 
     constructor(options: SDKOptions = {}) {
@@ -45,10 +44,5 @@ export class IntunedApiSDK extends ClientSDK {
     private _project?: Project;
     get project(): Project {
         return (this._project ??= new Project(this.options$));
-    }
-
-    private _authSessions?: AuthSessions;
-    get authSessions(): AuthSessions {
-        return (this._authSessions ??= new AuthSessions(this.options$));
     }
 }

@@ -10,17 +10,13 @@ export type CreateQueueGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type CreateQueueRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * create queue request
      */
@@ -40,29 +36,24 @@ export namespace CreateQueueGlobals$ {
     export const inboundSchema: z.ZodType<CreateQueueGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -71,29 +62,29 @@ export namespace CreateQueueGlobals$ {
 export namespace CreateQueueRequest$ {
     export const inboundSchema: z.ZodType<CreateQueueRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             QueueInput: components.QueueInput$.inboundSchema.optional(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 ...(v.QueueInput === undefined ? null : { queueInput: v.QueueInput }),
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         QueueInput?: components.QueueInput$.Outbound | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueInput: components.QueueInput$.outboundSchema.optional(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 ...(v.queueInput === undefined ? null : { QueueInput: v.queueInput }),
             };
         });

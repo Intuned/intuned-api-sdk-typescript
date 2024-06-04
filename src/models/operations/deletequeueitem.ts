@@ -10,17 +10,13 @@ export type DeleteQueueItemGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type DeleteQueueItemRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * Queue ID
      */
@@ -44,29 +40,24 @@ export namespace DeleteQueueItemGlobals$ {
     export const inboundSchema: z.ZodType<DeleteQueueItemGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueItemGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -75,33 +66,33 @@ export namespace DeleteQueueItemGlobals$ {
 export namespace DeleteQueueItemRequest$ {
     export const inboundSchema: z.ZodType<DeleteQueueItemRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueId: z.string(),
             itemRunId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 queueId: v.queueId,
                 itemRunId: v.itemRunId,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         queueId: string;
         itemRunId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueItemRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueId: z.string(),
             itemRunId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 queueId: v.queueId,
                 itemRunId: v.itemRunId,
             };

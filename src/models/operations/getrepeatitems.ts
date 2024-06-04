@@ -10,17 +10,13 @@ export type GetRepeatItemsGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type GetRepeatItemsRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * Queue ID
      */
@@ -40,29 +36,24 @@ export namespace GetRepeatItemsGlobals$ {
     export const inboundSchema: z.ZodType<GetRepeatItemsGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetRepeatItemsGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -71,29 +62,29 @@ export namespace GetRepeatItemsGlobals$ {
 export namespace GetRepeatItemsRequest$ {
     export const inboundSchema: z.ZodType<GetRepeatItemsRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 queueId: v.queueId,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         queueId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetRepeatItemsRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             queueId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 queueId: v.queueId,
             };
         });

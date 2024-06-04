@@ -10,17 +10,13 @@ export type TerminateJobRunGlobals = {
      * Workspace ID
      */
     workspaceId: string;
-    /**
-     * Project name
-     */
-    projectName: string;
 };
 
 export type TerminateJobRunRequest = {
     /**
      * Project name
      */
-    projectName?: string | undefined;
+    projectName: string;
     /**
      * Job ID
      */
@@ -44,29 +40,24 @@ export namespace TerminateJobRunGlobals$ {
     export const inboundSchema: z.ZodType<TerminateJobRunGlobals, z.ZodTypeDef, unknown> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 
     export type Outbound = {
         workspaceId: string;
-        projectName: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunGlobals> = z
         .object({
             workspaceId: z.string(),
-            projectName: z.string(),
         })
         .transform((v) => {
             return {
                 workspaceId: v.workspaceId,
-                projectName: v.projectName,
             };
         });
 }
@@ -75,33 +66,33 @@ export namespace TerminateJobRunGlobals$ {
 export namespace TerminateJobRunRequest$ {
     export const inboundSchema: z.ZodType<TerminateJobRunRequest, z.ZodTypeDef, unknown> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             jobId: z.string(),
             runId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 jobId: v.jobId,
                 runId: v.runId,
             };
         });
 
     export type Outbound = {
-        projectName?: string | undefined;
+        projectName: string;
         jobId: string;
         runId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunRequest> = z
         .object({
-            projectName: z.string().optional(),
+            projectName: z.string(),
             jobId: z.string(),
             runId: z.string(),
         })
         .transform((v) => {
             return {
-                ...(v.projectName === undefined ? null : { projectName: v.projectName }),
+                projectName: v.projectName,
                 jobId: v.jobId,
                 runId: v.runId,
             };

@@ -40,17 +40,17 @@ export class Run extends ClientSDK {
     }
 
     /**
-     * Run API
+     * Run API - Sync
      *
      * @remarks
      * Runs a project API synchronously.
      */
-    async runSync(
-        projectName?: string | undefined,
+    async sync(
+        projectName: string,
         runProjectApiRequest?: components.RunProjectApiRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.RunSyncResponse> {
-        const input$: operations.RunSyncRequest = {
+    ): Promise<operations.RunApiSyncResponse> {
+        const input$: operations.RunApiSyncRequest = {
             projectName: projectName,
             runProjectApiRequest: runProjectApiRequest,
         };
@@ -61,17 +61,16 @@ export class Run extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RunSyncRequest$.outboundSchema.parse(value$),
+            (value$) => operations.RunApiSyncRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = enc$.encodeJSON("body", payload$.RunProjectApiRequest, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -92,7 +91,7 @@ export class Run extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "runSync",
+            operationID: "runApiSync",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -118,29 +117,29 @@ export class Run extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunSyncResponse>()
-            .json(200, operations.RunSyncResponse$, { key: "CompletedRunResult" })
+        const [result$] = await this.matcher<operations.RunApiSyncResponse>()
+            .json(200, operations.RunApiSyncResponse$, { key: "CompletedRunResult" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .json("default", operations.RunSyncResponse$, { key: "FailedRunResult" })
+            .json("default", operations.RunApiSyncResponse$, { key: "FailedRunResult" })
             .match(response, request$, { extraFields: responseFields$ });
 
         return result$;
     }
 
     /**
-     * Run API - Async start
+     * Run API - Async Start
      *
      * @remarks
      * Starts a project API run operation
      */
-    async runStart(
-        projectName?: string | undefined,
+    async start(
+        projectName: string,
         runProjectApiRequest?: components.RunProjectApiRequest | undefined,
         options?: RequestOptions
-    ): Promise<operations.RunStartResponse> {
-        const input$: operations.RunStartRequest = {
+    ): Promise<operations.RunApiStartResponse> {
+        const input$: operations.RunApiStartRequest = {
             projectName: projectName,
             runProjectApiRequest: runProjectApiRequest,
         };
@@ -151,17 +150,16 @@ export class Run extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RunStartRequest$.outboundSchema.parse(value$),
+            (value$) => operations.RunApiStartRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = enc$.encodeJSON("body", payload$.RunProjectApiRequest, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -182,7 +180,7 @@ export class Run extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "runStart",
+            operationID: "runApiStart",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -208,8 +206,8 @@ export class Run extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunStartResponse>()
-            .json(200, operations.RunStartResponse$, { key: "AsyncRunPendingResponse" })
+        const [result$] = await this.matcher<operations.RunApiStartResponse>()
+            .json(200, operations.RunApiStartResponse$, { key: "AsyncRunPendingResponse" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -219,17 +217,17 @@ export class Run extends ClientSDK {
     }
 
     /**
-     * API Async result
+     * Run API - Async Result
      *
      * @remarks
      * Retrieves the result of a started project API run operation.
      */
-    async runResult(
+    async result(
+        projectName: string,
         operationId: string,
-        projectName?: string | undefined,
         options?: RequestOptions
-    ): Promise<operations.RunResultResponse> {
-        const input$: operations.RunResultRequest = {
+    ): Promise<operations.RunApiResultResponse> {
+        const input$: operations.RunApiResultRequest = {
             projectName: projectName,
             operationId: operationId,
         };
@@ -239,7 +237,7 @@ export class Run extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RunResultRequest$.outboundSchema.parse(value$),
+            (value$) => operations.RunApiResultRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -249,11 +247,10 @@ export class Run extends ClientSDK {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple(
-                "projectName",
-                payload$.projectName ?? this.options$.projectName,
-                { explode: false, charEncoding: "percent" }
-            ),
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+                explode: false,
+                charEncoding: "percent",
+            }),
             workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
@@ -274,7 +271,7 @@ export class Run extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "runResult",
+            operationID: "runApiResult",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -300,8 +297,8 @@ export class Run extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunResultResponse>()
-            .json(200, operations.RunResultResponse$, { key: "AsyncResultResponse" })
+        const [result$] = await this.matcher<operations.RunApiResultResponse>()
+            .json(200, operations.RunApiResultResponse$, { key: "AsyncResultResponse" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

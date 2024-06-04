@@ -1,9 +1,0 @@
-# ExtractTablesResponse
-
-
-## Fields
-
-| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              | Example                                                                                  |
-| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| `httpMeta`                                                                               | [components.HTTPMetadata](../../models/components/httpmetadata.md)                       | :heavy_check_mark:                                                                       | N/A                                                                                      |                                                                                          |
-| `tableExtractionResponse`                                                                | [components.TableExtractionResponse](../../models/components/tableextractionresponse.md) | :heavy_minus_sign:                                                                       | The extracted tables                                                                     | {<br/>"$ref": "#/components/examples/TableExtractionResponse"<br/>}                      |

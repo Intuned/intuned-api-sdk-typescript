@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 703dfa910cbdfaa982567620a90d0875
+  docChecksum: 5f97cd5dbd27400141e546c8f4fa6a51
   docVersion: 0.0.1
-  speakeasyVersion: 1.299.3
-  generationVersion: 2.338.7
-  releaseVersion: 0.2.11
-  configChecksum: c6b1b9e81fb47ec1125ac33058cc6535
+  speakeasyVersion: 1.299.6
+  generationVersion: 2.338.12
+  releaseVersion: 0.3.6
+  configChecksum: 3bcdf2e20837fe855cd935eeded01340
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.10
+    core: 3.9.11
     devContainers: 2.90.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -20,17 +20,25 @@ features:
     globalServerURLs: 2.82.4
     globals: 2.82.1
     hiddenGlobals: 0.1.0
+    nameOverrides: 2.81.2
     nullables: 0.1.0
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
     unions: 2.85.5
 generatedFiles:
+  - src/sdk/extractstructureddata.ts
+  - src/sdk/extractmarkdown.ts
+  - src/sdk/extracttables.ts
   - src/sdk/files.ts
+  - src/sdk/runs.ts
   - src/sdk/jobs.ts
+  - src/sdk/items.ts
+  - src/sdk/repeatitems.ts
   - src/sdk/queues.ts
   - src/sdk/run.ts
-  - src/sdk/project.ts
+  - src/sdk/create.ts
   - src/sdk/authsessions.ts
+  - src/sdk/project.ts
   - src/sdk/sdk.ts
   - .eslintrc.js
   - .npmignore
@@ -57,15 +65,15 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/extractstructureddata.ts
-  - src/models/operations/extractmarkdown.ts
-  - src/models/operations/extracttables.ts
-  - src/models/operations/extractstructureddatastart.ts
-  - src/models/operations/extractstructureddataresult.ts
-  - src/models/operations/extractmarkdownstart.ts
-  - src/models/operations/extractmarkdownresult.ts
-  - src/models/operations/extracttablesstart.ts
-  - src/models/operations/extracttablesresult.ts
+  - src/models/operations/fileextractstructureddatasync.ts
+  - src/models/operations/fileextractstructureddatastart.ts
+  - src/models/operations/fileextractstructureddataresult.ts
+  - src/models/operations/fileextractmarkdownsync.ts
+  - src/models/operations/fileextractmarkdownstart.ts
+  - src/models/operations/fileextractmarkdownresult.ts
+  - src/models/operations/fileextracttablessync.ts
+  - src/models/operations/fileextracttablesstart.ts
+  - src/models/operations/fileextracttablesresult.ts
   - src/models/operations/getjobs.ts
   - src/models/operations/createjob.ts
   - src/models/operations/getjob.ts
@@ -79,24 +87,23 @@ generatedFiles:
   - src/models/operations/createqueue.ts
   - src/models/operations/getqueue.ts
   - src/models/operations/deletequeue.ts
-  - src/models/operations/additem.ts
+  - src/models/operations/appendqueueitem.ts
   - src/models/operations/getqueueitemresult.ts
   - src/models/operations/deletequeueitem.ts
   - src/models/operations/getrepeatitems.ts
-  - src/models/operations/addrepeatitem.ts
+  - src/models/operations/appendrepeatitem.ts
   - src/models/operations/getrepeatqueueitem.ts
   - src/models/operations/updaterepeatqueueitem.ts
   - src/models/operations/deleterepeatqueueitem.ts
-  - src/models/operations/runsync.ts
-  - src/models/operations/runstart.ts
-  - src/models/operations/runresult.ts
+  - src/models/operations/runapisync.ts
+  - src/models/operations/runapistart.ts
+  - src/models/operations/runapiresult.ts
   - src/models/operations/getauthsessions.ts
   - src/models/operations/getauthsession.ts
   - src/models/operations/deleteauthsession.ts
-  - src/models/operations/createauthsession.ts
-  - src/models/operations/getcreateauthsessionresult.ts
-  - src/models/operations/resumecreateauthsession.ts
-  - src/models/operations/refreshauthsession.ts
+  - src/models/operations/createauthsessionstart.ts
+  - src/models/operations/createauthsessionresult.ts
+  - src/models/operations/createauthsessionresume.ts
   - src/models/components/structureddataextractionresponse.ts
   - src/models/components/httpmetadata.ts
   - src/models/components/extractstructureddatarequest.ts
@@ -106,13 +113,13 @@ generatedFiles:
   - src/models/components/fileurlsource.ts
   - src/models/components/filebase64source.ts
   - src/models/components/pdffile.ts
-  - src/models/components/markdownextractionresponse.ts
-  - src/models/components/generalextractrequest.ts
-  - src/models/components/tableextractionresponse.ts
   - src/models/components/asyncfilependingresponse.ts
   - src/models/components/structureddataextractionasyncresponse.ts
   - src/models/components/asyncfailedresponse.ts
+  - src/models/components/markdownextractionresponse.ts
+  - src/models/components/generalextractrequest.ts
   - src/models/components/markdownextractionasyncresponse.ts
+  - src/models/components/tableextractionresponse.ts
   - src/models/components/tableextractionasyncresponse.ts
   - src/models/components/job.ts
   - src/models/components/proxy.ts
@@ -163,34 +170,33 @@ generatedFiles:
   - src/models/components/authsessioncreatefailedresult.ts
   - src/models/components/createauthsessionresume.ts
   - src/models/components/authsessioncreateresume.ts
-  - src/models/components/refreshauthsession.ts
   - src/models/components/security.ts
   - src/models/errors/apierrorinvalidinput.ts
   - src/models/errors/apierrorunauthorized.ts
   - src/models/errors/index.ts
   - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/extractstructureddataglobals.md
-  - docs/models/operations/extractstructureddataresponse.md
-  - docs/models/operations/extractmarkdownglobals.md
-  - docs/models/operations/extractmarkdownresponse.md
-  - docs/models/operations/extracttablesglobals.md
-  - docs/models/operations/extracttablesresponse.md
-  - docs/models/operations/extractstructureddatastartglobals.md
-  - docs/models/operations/extractstructureddatastartresponse.md
-  - docs/models/operations/extractstructureddataresultglobals.md
-  - docs/models/operations/extractstructureddataresultrequest.md
-  - docs/models/operations/extractstructureddataresultresponse.md
-  - docs/models/operations/extractmarkdownstartglobals.md
-  - docs/models/operations/extractmarkdownstartresponse.md
-  - docs/models/operations/extractmarkdownresultglobals.md
-  - docs/models/operations/extractmarkdownresultrequest.md
-  - docs/models/operations/extractmarkdownresultresponse.md
-  - docs/models/operations/extracttablesstartglobals.md
-  - docs/models/operations/extracttablesstartresponse.md
-  - docs/models/operations/extracttablesresultglobals.md
-  - docs/models/operations/extracttablesresultrequest.md
-  - docs/models/operations/extracttablesresultresponse.md
+  - docs/models/operations/fileextractstructureddatasyncglobals.md
+  - docs/models/operations/fileextractstructureddatasyncresponse.md
+  - docs/models/operations/fileextractstructureddatastartglobals.md
+  - docs/models/operations/fileextractstructureddatastartresponse.md
+  - docs/models/operations/fileextractstructureddataresultglobals.md
+  - docs/models/operations/fileextractstructureddataresultrequest.md
+  - docs/models/operations/fileextractstructureddataresultresponse.md
+  - docs/models/operations/fileextractmarkdownsyncglobals.md
+  - docs/models/operations/fileextractmarkdownsyncresponse.md
+  - docs/models/operations/fileextractmarkdownstartglobals.md
+  - docs/models/operations/fileextractmarkdownstartresponse.md
+  - docs/models/operations/fileextractmarkdownresultglobals.md
+  - docs/models/operations/fileextractmarkdownresultrequest.md
+  - docs/models/operations/fileextractmarkdownresultresponse.md
+  - docs/models/operations/fileextracttablessyncglobals.md
+  - docs/models/operations/fileextracttablessyncresponse.md
+  - docs/models/operations/fileextracttablesstartglobals.md
+  - docs/models/operations/fileextracttablesstartresponse.md
+  - docs/models/operations/fileextracttablesresultglobals.md
+  - docs/models/operations/fileextracttablesresultrequest.md
+  - docs/models/operations/fileextracttablesresultresponse.md
   - docs/models/operations/getjobsglobals.md
   - docs/models/operations/getjobsrequest.md
   - docs/models/operations/getjobsresponse.md
@@ -230,9 +236,9 @@ generatedFiles:
   - docs/models/operations/deletequeueglobals.md
   - docs/models/operations/deletequeuerequest.md
   - docs/models/operations/deletequeueresponse.md
-  - docs/models/operations/additemglobals.md
-  - docs/models/operations/additemrequest.md
-  - docs/models/operations/additemresponse.md
+  - docs/models/operations/appendqueueitemglobals.md
+  - docs/models/operations/appendqueueitemrequest.md
+  - docs/models/operations/appendqueueitemresponse.md
   - docs/models/operations/getqueueitemresultglobals.md
   - docs/models/operations/getqueueitemresultrequest.md
   - docs/models/operations/getqueueitemresultresponse.md
@@ -242,9 +248,9 @@ generatedFiles:
   - docs/models/operations/getrepeatitemsglobals.md
   - docs/models/operations/getrepeatitemsrequest.md
   - docs/models/operations/getrepeatitemsresponse.md
-  - docs/models/operations/addrepeatitemglobals.md
-  - docs/models/operations/addrepeatitemrequest.md
-  - docs/models/operations/addrepeatitemresponse.md
+  - docs/models/operations/appendrepeatitemglobals.md
+  - docs/models/operations/appendrepeatitemrequest.md
+  - docs/models/operations/appendrepeatitemresponse.md
   - docs/models/operations/getrepeatqueueitemglobals.md
   - docs/models/operations/getrepeatqueueitemrequest.md
   - docs/models/operations/getrepeatqueueitemresponse.md
@@ -254,15 +260,15 @@ generatedFiles:
   - docs/models/operations/deleterepeatqueueitemglobals.md
   - docs/models/operations/deleterepeatqueueitemrequest.md
   - docs/models/operations/deleterepeatqueueitemresponse.md
-  - docs/models/operations/runsyncglobals.md
-  - docs/models/operations/runsyncrequest.md
-  - docs/models/operations/runsyncresponse.md
-  - docs/models/operations/runstartglobals.md
-  - docs/models/operations/runstartrequest.md
-  - docs/models/operations/runstartresponse.md
-  - docs/models/operations/runresultglobals.md
-  - docs/models/operations/runresultrequest.md
-  - docs/models/operations/runresultresponse.md
+  - docs/models/operations/runapisyncglobals.md
+  - docs/models/operations/runapisyncrequest.md
+  - docs/models/operations/runapisyncresponse.md
+  - docs/models/operations/runapistartglobals.md
+  - docs/models/operations/runapistartrequest.md
+  - docs/models/operations/runapistartresponse.md
+  - docs/models/operations/runapiresultglobals.md
+  - docs/models/operations/runapiresultrequest.md
+  - docs/models/operations/runapiresultresponse.md
   - docs/models/operations/getauthsessionsglobals.md
   - docs/models/operations/getauthsessionsrequest.md
   - docs/models/operations/getauthsessionsresponse.md
@@ -272,18 +278,15 @@ generatedFiles:
   - docs/models/operations/deleteauthsessionglobals.md
   - docs/models/operations/deleteauthsessionrequest.md
   - docs/models/operations/deleteauthsessionresponse.md
-  - docs/models/operations/createauthsessionglobals.md
-  - docs/models/operations/createauthsessionrequest.md
-  - docs/models/operations/createauthsessionresponse.md
-  - docs/models/operations/getcreateauthsessionresultglobals.md
-  - docs/models/operations/getcreateauthsessionresultrequest.md
-  - docs/models/operations/getcreateauthsessionresultresponse.md
-  - docs/models/operations/resumecreateauthsessionglobals.md
-  - docs/models/operations/resumecreateauthsessionrequest.md
-  - docs/models/operations/resumecreateauthsessionresponse.md
-  - docs/models/operations/refreshauthsessionglobals.md
-  - docs/models/operations/refreshauthsessionrequest.md
-  - docs/models/operations/refreshauthsessionresponse.md
+  - docs/models/operations/createauthsessionstartglobals.md
+  - docs/models/operations/createauthsessionstartrequest.md
+  - docs/models/operations/createauthsessionstartresponse.md
+  - docs/models/operations/createauthsessionresultglobals.md
+  - docs/models/operations/createauthsessionresultrequest.md
+  - docs/models/operations/createauthsessionresultresponse.md
+  - docs/models/operations/createauthsessionresumeglobals.md
+  - docs/models/operations/createauthsessionresumerequest.md
+  - docs/models/operations/createauthsessionresumeresponse.md
   - docs/models/components/structureddataextractionresponse.md
   - docs/models/components/httpmetadata.md
   - docs/models/components/extractstructureddatarequest.md
@@ -297,10 +300,6 @@ generatedFiles:
   - docs/models/components/filebase64source.md
   - docs/models/components/pdffiletype.md
   - docs/models/components/pdffile.md
-  - docs/models/components/markdownextractionresponse.md
-  - docs/models/components/generalextractrequest.md
-  - docs/models/components/result.md
-  - docs/models/components/tableextractionresponse.md
   - docs/models/components/status.md
   - docs/models/components/asyncfilependingresponse.md
   - docs/models/components/structureddataextractionasyncresponsestatus.md
@@ -308,9 +307,13 @@ generatedFiles:
   - docs/models/components/structureddataextractionasyncresponse.md
   - docs/models/components/asyncfailedresponsestatus.md
   - docs/models/components/asyncfailedresponse.md
+  - docs/models/components/markdownextractionresponse.md
+  - docs/models/components/generalextractrequest.md
   - docs/models/components/markdownextractionasyncresponsestatus.md
   - docs/models/components/markdownextractionasyncresponse1.md
   - docs/models/components/markdownextractionasyncresponse.md
+  - docs/models/components/result.md
+  - docs/models/components/tableextractionresponse.md
   - docs/models/components/tableextractionasyncresponseresult.md
   - docs/models/components/tableextractionasyncresponsestatus.md
   - docs/models/components/tableextractionasyncresponse1.md
@@ -421,18 +424,23 @@ generatedFiles:
   - docs/models/components/createauthsessionresumeresult.md
   - docs/models/components/createauthsessionresume.md
   - docs/models/components/authsessioncreateresume.md
-  - docs/models/components/refreshauthsessionstatus.md
-  - docs/models/components/refreshauthsession.md
   - docs/models/components/security.md
   - docs/models/errors/apierrorinvalidinput.md
   - docs/models/errors/apierrorunauthorized.md
-  - docs/sdks/intunedapisdk/README.md
+  - docs/sdks/intunedclient/README.md
   - docs/sdks/files/README.md
+  - docs/sdks/extractstructureddata/README.md
+  - docs/sdks/extractmarkdown/README.md
+  - docs/sdks/extracttables/README.md
   - docs/sdks/project/README.md
   - docs/sdks/jobs/README.md
+  - docs/sdks/runs/README.md
   - docs/sdks/queues/README.md
+  - docs/sdks/items/README.md
+  - docs/sdks/repeatitems/README.md
   - docs/sdks/run/README.md
   - docs/sdks/authsessions/README.md
+  - docs/sdks/create/README.md
   - USAGE.md
   - .gitattributes
   - .devcontainer/README.md
