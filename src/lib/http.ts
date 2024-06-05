@@ -387,9 +387,7 @@ export class ResponseMatcher<Result> {
 
     async match(
         response: Response,
-        // envelope-http
-        request: Request,
-
+        // flat
         options?: {
             resultKey?: string;
             extraFields?: Record<string, unknown>;
@@ -407,11 +405,12 @@ export class ResponseMatcher<Result> {
             }
         }
         if (pred == null) {
-            await discardResponseBody(response);
-            throw new errors.SDKError("Unexpected API response status or content-type", {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
                 response,
-                request,
-            });
+                responseBody
+            );
         }
 
         const { method, schema } = pred;
@@ -437,7 +436,7 @@ export class ResponseMatcher<Result> {
                 raw = await discardResponseBody(response);
                 break;
             case "fail":
-                raw = await discardResponseBody(response);
+                raw = await response.text();
                 break;
             default:
                 method satisfies never;
@@ -447,7 +446,11 @@ export class ResponseMatcher<Result> {
         const resultKey = pred.key || options?.resultKey;
         let data: unknown;
         if (pred.fail) {
-            throw new errors.SDKError("API error occurred", { response, request });
+            throw new errors.SDKError(
+                "API error occurred",
+                response,
+                typeof raw === "string" ? raw : ""
+            );
         } else if (pred.err) {
             data = {
                 ...options?.extraFields,
@@ -460,11 +463,14 @@ export class ResponseMatcher<Result> {
                 ...(pred.hdrs ? { Headers: unpackHeaders(response.headers) } : null),
                 [resultKey]: raw,
             };
-        } else {
+        } else if (pred.hdrs) {
             data = {
                 ...options?.extraFields,
                 ...(pred.hdrs ? { Headers: unpackHeaders(response.headers) } : null),
+                ...(isPlainObject(raw) ? raw : null),
             };
+        } else {
+            data = raw;
         }
 
         const parser = "inboundSchema" in schema ? schema.inboundSchema : schema;

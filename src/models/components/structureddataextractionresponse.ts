@@ -4,41 +4,32 @@
 
 import * as z from "zod";
 
+/**
+ * Structured data extraction result
+ */
 export type StructuredDataExtractionResponse = {
     /**
-     * result json object with extracted data.
+     * The extracted data formatted according to the input `dataSchema`
      */
-    result?: { [k: string]: any } | undefined;
+    result: { [k: string]: any };
 };
 
 /** @internal */
 export namespace StructuredDataExtractionResponse$ {
     export const inboundSchema: z.ZodType<StructuredDataExtractionResponse, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                result: z.record(z.any()).optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.result === undefined ? null : { result: v.result }),
-                };
-            });
+        z.object({
+            result: z.record(z.any()),
+        });
 
     export type Outbound = {
-        result?: { [k: string]: any } | undefined;
+        result: { [k: string]: any };
     };
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         StructuredDataExtractionResponse
-    > = z
-        .object({
-            result: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
-        });
+    > = z.object({
+        result: z.record(z.any()),
+    });
 }

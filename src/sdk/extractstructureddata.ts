@@ -50,7 +50,7 @@ export class ExtractStructuredData extends ClientSDK {
         file: components.FileT,
         dataSchema: { [k: string]: any },
         options?: RequestOptions
-    ): Promise<operations.FileExtractStructuredDataSyncResponse> {
+    ): Promise<components.StructuredDataExtractionResponse> {
         const input$: components.ExtractStructuredDataRequest = {
             file: file,
             dataSchema: dataSchema,
@@ -114,14 +114,12 @@ export class ExtractStructuredData extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractStructuredDataSyncResponse>()
-            .json(200, operations.FileExtractStructuredDataSyncResponse$, {
-                key: "StructuredDataExtractionResponse",
-            })
+        const [result$] = await this.matcher<components.StructuredDataExtractionResponse>()
+            .json(200, components.StructuredDataExtractionResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -130,7 +128,7 @@ export class ExtractStructuredData extends ClientSDK {
      * Extract Structured Data - Async Start
      *
      * @remarks
-     * Starts an asynchronous operation to extract structred data from a file. Supported file types are image, pdf (more coming soon!).
+     * Starts an asynchronous operation to extract structured data from a file. Supported file types are image, pdf (more coming soon!).
      * It accepts the file and requested schema for the data to be extracted.
      * It responds with an ID to track the operation status and retrieve the result.
      */
@@ -138,7 +136,7 @@ export class ExtractStructuredData extends ClientSDK {
         file: components.FileT,
         dataSchema: { [k: string]: any },
         options?: RequestOptions
-    ): Promise<operations.FileExtractStructuredDataStartResponse> {
+    ): Promise<components.AsyncFilePendingResponse> {
         const input$: components.ExtractStructuredDataRequest = {
             file: file,
             dataSchema: dataSchema,
@@ -202,14 +200,12 @@ export class ExtractStructuredData extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractStructuredDataStartResponse>()
-            .json(200, operations.FileExtractStructuredDataStartResponse$, {
-                key: "AsyncFilePendingResponse",
-            })
+        const [result$] = await this.matcher<components.AsyncFilePendingResponse>()
+            .json(201, components.AsyncFilePendingResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -223,7 +219,7 @@ export class ExtractStructuredData extends ClientSDK {
     async result(
         operationId: string,
         options?: RequestOptions
-    ): Promise<operations.FileExtractStructuredDataResultResponse> {
+    ): Promise<components.StructuredDataExtractionAsyncResponse> {
         const input$: operations.FileExtractStructuredDataResultRequest = {
             operationId: operationId,
         };
@@ -290,14 +286,12 @@ export class ExtractStructuredData extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractStructuredDataResultResponse>()
-            .json(200, operations.FileExtractStructuredDataResultResponse$, {
-                key: "StructuredDataExtractionAsyncResponse",
-            })
+        const [result$] = await this.matcher<components.StructuredDataExtractionAsyncResponse>()
+            .json(200, components.StructuredDataExtractionAsyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

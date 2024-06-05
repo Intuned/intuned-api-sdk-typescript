@@ -32,7 +32,7 @@ async function run() {
       type: PdfFileType.Pdf,
     source:     {
           type: FileUrlSourceType.Url,
-          data: "<value>",
+          data: "http://unconscious-margin.name",
         },
     });
 
@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractTablesSyncResponse](../../models/operations/fileextracttablessyncresponse.md)\>**
+**Promise\<[components.TableExtractionResponse](../../models/components/tableextractionresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -107,7 +107,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractTablesStartResponse](../../models/operations/fileextracttablesstartresponse.md)\>**
+**Promise\<[components.AsyncFilePendingResponse](../../models/components/asyncfilependingresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -144,14 +144,14 @@ run();
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Operation Id.                                                                                                                                                                  | [object Object]                                                                                                                                                                |
+| `operationId`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | The ID for the requested file operation. This is obtained from the start request.                                                                                              | [object Object]                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 
 
 ### Response
 
-**Promise\<[operations.FileExtractTablesResultResponse](../../models/operations/fileextracttablesresultresponse.md)\>**
+**Promise\<[components.TableExtractionAsyncResponse](../../models/components/tableextractionasyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

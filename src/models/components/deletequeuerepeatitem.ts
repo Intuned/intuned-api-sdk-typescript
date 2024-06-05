@@ -10,27 +10,16 @@ export type DeleteQueueRepeatItem = {
 
 /** @internal */
 export namespace DeleteQueueRepeatItem$ {
-    export const inboundSchema: z.ZodType<DeleteQueueRepeatItem, z.ZodTypeDef, unknown> = z
-        .object({
-            itemId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.itemId === undefined ? null : { itemId: v.itemId }),
-            };
-        });
+    export const inboundSchema: z.ZodType<DeleteQueueRepeatItem, z.ZodTypeDef, unknown> = z.object({
+        itemId: z.string().optional(),
+    });
 
     export type Outbound = {
         itemId?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueRepeatItem> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueRepeatItem> =
+        z.object({
             itemId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.itemId === undefined ? null : { itemId: v.itemId }),
-            };
         });
 }

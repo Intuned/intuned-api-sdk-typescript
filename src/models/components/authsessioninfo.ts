@@ -4,39 +4,34 @@
 
 import * as z from "zod";
 
+/**
+ * Auth session information
+ */
 export type AuthSessionInfo = {
+    /**
+     * Auth session ID
+     */
     id: string;
+    /**
+     * Auth session name
+     */
     name?: string | undefined;
 };
 
 /** @internal */
 export namespace AuthSessionInfo$ {
-    export const inboundSchema: z.ZodType<AuthSessionInfo, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-            name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    export const inboundSchema: z.ZodType<AuthSessionInfo, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+        name: z.string().optional(),
+    });
 
     export type Outbound = {
         id: string;
         name?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionInfo> = z
-        .object({
-            id: z.string(),
-            name: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                ...(v.name === undefined ? null : { name: v.name }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionInfo> = z.object({
+        id: z.string(),
+        name: z.string().optional(),
+    });
 }

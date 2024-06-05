@@ -1,5 +1,7 @@
 # FileBase64SourceType
 
+Type of file source
+
 
 ## Values
 

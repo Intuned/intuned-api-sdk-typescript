@@ -3,7 +3,6 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `min`              | *number*           | :heavy_check_mark: | N/A                |
-| `max`              | *number*           | :heavy_check_mark: | N/A                |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `status`                                                         | [components.StateStatus](../../models/components/statestatus.md) | :heavy_minus_sign:                                               | N/A                                                              |

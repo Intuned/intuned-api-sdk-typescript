@@ -13,6 +13,7 @@ import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 import { Items } from "./items";
 import { RepeatItems } from "./repeatitems";
+import * as z from "zod";
 
 export class Queues extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -60,7 +61,7 @@ export class Queues extends ClientSDK {
     async all(
         projectName: string,
         options?: RequestOptions
-    ): Promise<operations.GetQueuesResponse> {
+    ): Promise<Array<components.QueueInput>> {
         const input$: operations.GetQueuesRequest = {
             projectName: projectName,
         };
@@ -126,12 +127,12 @@ export class Queues extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetQueuesResponse>()
-            .json(200, operations.GetQueuesResponse$, { key: "GetQueues" })
+        const [result$] = await this.matcher<Array<components.QueueInput>>()
+            .json(200, z.array(components.QueueInput$.inboundSchema))
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -146,7 +147,7 @@ export class Queues extends ClientSDK {
         projectName: string,
         queueInput?: components.QueueInput | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateQueueResponse> {
+    ): Promise<components.CreateQueue> {
         const input$: operations.CreateQueueRequest = {
             projectName: projectName,
             queueInput: queueInput,
@@ -214,12 +215,12 @@ export class Queues extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.CreateQueueResponse>()
-            .json(201, operations.CreateQueueResponse$, { key: "CreateQueue" })
+        const [result$] = await this.matcher<components.CreateQueue>()
+            .json(201, components.CreateQueue$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -234,7 +235,7 @@ export class Queues extends ClientSDK {
         projectName: string,
         queueId: string,
         options?: RequestOptions
-    ): Promise<operations.GetQueueResponse> {
+    ): Promise<components.QueueInput> {
         const input$: operations.GetQueueRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -305,12 +306,12 @@ export class Queues extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetQueueResponse>()
-            .json(200, operations.GetQueueResponse$, { key: "QueueInput" })
+        const [result$] = await this.matcher<components.QueueInput>()
+            .json(200, components.QueueInput$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -325,7 +326,7 @@ export class Queues extends ClientSDK {
         projectName: string,
         queueId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteQueueResponse> {
+    ): Promise<components.DeleteQueue> {
         const input$: operations.DeleteQueueRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -396,11 +397,11 @@ export class Queues extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.DeleteQueueResponse>()
-            .json(204, operations.DeleteQueueResponse$, { key: "DeleteQueue" })
+        const [result$] = await this.matcher<components.DeleteQueue>()
+            .json(204, components.DeleteQueue$)
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

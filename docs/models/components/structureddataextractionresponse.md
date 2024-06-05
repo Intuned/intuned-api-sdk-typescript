@@ -1,8 +1,10 @@
 # StructuredDataExtractionResponse
 
+Structured data extraction result
+
 
 ## Fields
 
-| Field                                   | Type                                    | Required                                | Description                             |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| `result`                                | Record<string, *any*>                   | :heavy_minus_sign:                      | result json object with extracted data. |
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `result`                                                         | Record<string, *any*>                                            | :heavy_check_mark:                                               | The extracted data formatted according to the input `dataSchema` |

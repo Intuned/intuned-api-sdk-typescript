@@ -1,5 +1,7 @@
 # AuthSessionCreateFailedResultStatus
 
+Status of auth session creation operation.
+
 
 ## Values
 

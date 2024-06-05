@@ -6,18 +6,28 @@ import { ImageFile, ImageFile$ } from "./imagefile";
 import { PdfFile, PdfFile$ } from "./pdffile";
 import * as z from "zod";
 
-export type FileT = ImageFile | PdfFile;
+export type FileT = (ImageFile & { type: "image" }) | (PdfFile & { type: "pdf" });
 
 /** @internal */
 export namespace FileT$ {
     export const inboundSchema: z.ZodType<FileT, z.ZodTypeDef, unknown> = z.union([
-        ImageFile$.inboundSchema,
-        PdfFile$.inboundSchema,
+        ImageFile$.inboundSchema.and(
+            z.object({ type: z.literal("image") }).transform((v) => ({ type: v.type }))
+        ),
+        PdfFile$.inboundSchema.and(
+            z.object({ type: z.literal("pdf") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
 
-    export type Outbound = ImageFile$.Outbound | PdfFile$.Outbound;
+    export type Outbound =
+        | (ImageFile$.Outbound & { type: "image" })
+        | (PdfFile$.Outbound & { type: "pdf" });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileT> = z.union([
-        ImageFile$.outboundSchema,
-        PdfFile$.outboundSchema,
+        ImageFile$.outboundSchema.and(
+            z.object({ type: z.literal("image") }).transform((v) => ({ type: v.type }))
+        ),
+        PdfFile$.outboundSchema.and(
+            z.object({ type: z.literal("pdf") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
 }

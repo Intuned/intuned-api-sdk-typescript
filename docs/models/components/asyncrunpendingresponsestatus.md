@@ -1,6 +1,6 @@
 # AsyncRunPendingResponseStatus
 
-The status of the asynchronous operation
+The status of the run
 
 
 ## Values

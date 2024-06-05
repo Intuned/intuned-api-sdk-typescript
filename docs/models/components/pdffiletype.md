@@ -1,5 +1,7 @@
 # PdfFileType
 
+The file type
+
 
 ## Values
 

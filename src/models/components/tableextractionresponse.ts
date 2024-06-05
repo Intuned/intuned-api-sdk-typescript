@@ -5,90 +5,67 @@
 import * as z from "zod";
 
 /**
- * extracted table
+ * An extracted table.
  */
 export type Result = {
     /**
-     * page number of the table
+     * The page number where the table was found.
      */
-    pageNumber?: number | undefined;
+    pageNumber: number;
     /**
-     * title of the table
+     * Title of the table if any.
      */
-    title?: string | null | undefined;
+    title: string | null;
     /**
-     * table content
+     * Table content. An array of rows.
      */
-    content?: Array<Array<string>> | undefined;
+    content: Array<Array<string>>;
 };
 
+/**
+ * Table extraction result
+ */
 export type TableExtractionResponse = {
     /**
-     * extracted tables
+     * An array of the extracted tables.
      */
-    result?: Array<Result> | undefined;
+    result: Array<Result>;
 };
 
 /** @internal */
 export namespace Result$ {
-    export const inboundSchema: z.ZodType<Result, z.ZodTypeDef, unknown> = z
-        .object({
-            pageNumber: z.number().int().optional(),
-            title: z.nullable(z.string()).optional(),
-            content: z.array(z.array(z.string())).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.pageNumber === undefined ? null : { pageNumber: v.pageNumber }),
-                ...(v.title === undefined ? null : { title: v.title }),
-                ...(v.content === undefined ? null : { content: v.content }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Result, z.ZodTypeDef, unknown> = z.object({
+        pageNumber: z.number().int(),
+        title: z.nullable(z.string()),
+        content: z.array(z.array(z.string())),
+    });
 
     export type Outbound = {
-        pageNumber?: number | undefined;
-        title?: string | null | undefined;
-        content?: Array<Array<string>> | undefined;
+        pageNumber: number;
+        title: string | null;
+        content: Array<Array<string>>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Result> = z
-        .object({
-            pageNumber: z.number().int().optional(),
-            title: z.nullable(z.string()).optional(),
-            content: z.array(z.array(z.string())).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.pageNumber === undefined ? null : { pageNumber: v.pageNumber }),
-                ...(v.title === undefined ? null : { title: v.title }),
-                ...(v.content === undefined ? null : { content: v.content }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Result> = z.object({
+        pageNumber: z.number().int(),
+        title: z.nullable(z.string()),
+        content: z.array(z.array(z.string())),
+    });
 }
 
 /** @internal */
 export namespace TableExtractionResponse$ {
-    export const inboundSchema: z.ZodType<TableExtractionResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            result: z.array(z.lazy(() => Result$.inboundSchema)).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
+    export const inboundSchema: z.ZodType<TableExtractionResponse, z.ZodTypeDef, unknown> =
+        z.object({
+            result: z.array(z.lazy(() => Result$.inboundSchema)),
         });
 
     export type Outbound = {
-        result?: Array<Result$.Outbound> | undefined;
+        result: Array<Result$.Outbound>;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TableExtractionResponse> = z
-        .object({
-            result: z.array(z.lazy(() => Result$.outboundSchema)).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TableExtractionResponse> =
+        z.object({
+            result: z.array(z.lazy(() => Result$.outboundSchema)),
         });
 }

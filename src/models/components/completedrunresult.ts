@@ -4,36 +4,27 @@
 
 import * as z from "zod";
 
+/**
+ * Completed API run result
+ */
 export type CompletedRunResult = {
     /**
      * The result of the API run
      */
-    result: { [k: string]: any };
+    result?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
 export namespace CompletedRunResult$ {
-    export const inboundSchema: z.ZodType<CompletedRunResult, z.ZodTypeDef, unknown> = z
-        .object({
-            result: z.record(z.any()),
-        })
-        .transform((v) => {
-            return {
-                result: v.result,
-            };
-        });
+    export const inboundSchema: z.ZodType<CompletedRunResult, z.ZodTypeDef, unknown> = z.object({
+        result: z.nullable(z.record(z.any())).optional(),
+    });
 
     export type Outbound = {
-        result: { [k: string]: any };
+        result?: { [k: string]: any } | null | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CompletedRunResult> = z
-        .object({
-            result: z.record(z.any()),
-        })
-        .transform((v) => {
-            return {
-                result: v.result,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CompletedRunResult> = z.object({
+        result: z.nullable(z.record(z.any())).optional(),
+    });
 }

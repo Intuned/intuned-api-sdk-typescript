@@ -7,42 +7,48 @@ import { JobConfiguration, JobConfiguration$ } from "./jobconfiguration";
 import { JobPayload, JobPayload$ } from "./jobpayload";
 import { JobSchedule, JobSchedule$ } from "./jobschedule";
 import { JobSink, JobSink$ } from "./jobsink";
-import { Proxy, Proxy$ } from "./proxy";
 import * as z from "zod";
 
+/**
+ * Create job input
+ */
 export type JobInput = {
+    /**
+     * The ID of the job. Has to be a valid URL slug.
+     */
     id: string;
+    /**
+     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
+     */
     configuration: JobConfiguration;
+    /**
+     * A sink to send the results to. Can be a webhook or Amazon S3 bucket.
+     */
     sink?: JobSink | undefined;
+    /**
+     * A list of the initial payloads of the job.
+     */
     payload: Array<JobPayload>;
+    /**
+     * Schedule configurations for the job. If set, the job will periodically run according to this configuration. The configurations are used to calculate the closest next run time.
+     */
     schedule?: JobSchedule | undefined;
+    /**
+     * Auth session configurations
+     */
     authSession?: AuthSession | undefined;
-    proxy?: Proxy | undefined;
 };
 
 /** @internal */
 export namespace JobInput$ {
-    export const inboundSchema: z.ZodType<JobInput, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-            configuration: JobConfiguration$.inboundSchema,
-            sink: JobSink$.inboundSchema.optional(),
-            payload: z.array(JobPayload$.inboundSchema),
-            schedule: JobSchedule$.inboundSchema.optional(),
-            authSession: AuthSession$.inboundSchema.optional(),
-            proxy: Proxy$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                configuration: v.configuration,
-                ...(v.sink === undefined ? null : { sink: v.sink }),
-                payload: v.payload,
-                ...(v.schedule === undefined ? null : { schedule: v.schedule }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-            };
-        });
+    export const inboundSchema: z.ZodType<JobInput, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+        configuration: JobConfiguration$.inboundSchema,
+        sink: JobSink$.inboundSchema.optional(),
+        payload: z.array(JobPayload$.inboundSchema),
+        schedule: JobSchedule$.inboundSchema.optional(),
+        authSession: AuthSession$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         id: string;
@@ -51,28 +57,14 @@ export namespace JobInput$ {
         payload: Array<JobPayload$.Outbound>;
         schedule?: JobSchedule$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
-        proxy?: Proxy$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobInput> = z
-        .object({
-            id: z.string(),
-            configuration: JobConfiguration$.outboundSchema,
-            sink: JobSink$.outboundSchema.optional(),
-            payload: z.array(JobPayload$.outboundSchema),
-            schedule: JobSchedule$.outboundSchema.optional(),
-            authSession: AuthSession$.outboundSchema.optional(),
-            proxy: Proxy$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                configuration: v.configuration,
-                ...(v.sink === undefined ? null : { sink: v.sink }),
-                payload: v.payload,
-                ...(v.schedule === undefined ? null : { schedule: v.schedule }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobInput> = z.object({
+        id: z.string(),
+        configuration: JobConfiguration$.outboundSchema,
+        sink: JobSink$.outboundSchema.optional(),
+        payload: z.array(JobPayload$.outboundSchema),
+        schedule: JobSchedule$.outboundSchema.optional(),
+        authSession: AuthSession$.outboundSchema.optional(),
+    });
 }

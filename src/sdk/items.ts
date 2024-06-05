@@ -50,7 +50,7 @@ export class Items extends ClientSDK {
         queueId: string,
         queueItem?: components.QueueItem | undefined,
         options?: RequestOptions
-    ): Promise<operations.AppendQueueItemResponse> {
+    ): Promise<components.AddQueueItem> {
         const input$: operations.AppendQueueItemRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -123,12 +123,12 @@ export class Items extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.AppendQueueItemResponse>()
-            .json(200, operations.AppendQueueItemResponse$, { key: "AddQueueItem" })
+        const [result$] = await this.matcher<components.AddQueueItem>()
+            .json(200, components.AddQueueItem$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -144,7 +144,7 @@ export class Items extends ClientSDK {
         queueId: string,
         itemRunId: string,
         options?: RequestOptions
-    ): Promise<operations.GetQueueItemResultResponse> {
+    ): Promise<components.QueueItemResult> {
         const input$: operations.GetQueueItemResultRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -220,12 +220,12 @@ export class Items extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetQueueItemResultResponse>()
-            .json(200, operations.GetQueueItemResultResponse$, { key: "QueueItemResult" })
+        const [result$] = await this.matcher<components.QueueItemResult>()
+            .json(200, components.QueueItemResult$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -241,7 +241,7 @@ export class Items extends ClientSDK {
         queueId: string,
         itemRunId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteQueueItemResponse> {
+    ): Promise<components.DeleteQueueItem> {
         const input$: operations.DeleteQueueItemRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -317,12 +317,12 @@ export class Items extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.DeleteQueueItemResponse>()
-            .json(204, operations.DeleteQueueItemResponse$, { key: "DeleteQueueItem" })
+        const [result$] = await this.matcher<components.DeleteQueueItem>()
+            .json(204, components.DeleteQueueItem$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

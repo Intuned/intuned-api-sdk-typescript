@@ -10,27 +10,15 @@ export type DeleteQueueItem = {
 
 /** @internal */
 export namespace DeleteQueueItem$ {
-    export const inboundSchema: z.ZodType<DeleteQueueItem, z.ZodTypeDef, unknown> = z
-        .object({
-            runId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.runId === undefined ? null : { runId: v.runId }),
-            };
-        });
+    export const inboundSchema: z.ZodType<DeleteQueueItem, z.ZodTypeDef, unknown> = z.object({
+        runId: z.string().optional(),
+    });
 
     export type Outbound = {
         runId?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueItem> = z
-        .object({
-            runId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.runId === undefined ? null : { runId: v.runId }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueItem> = z.object({
+        runId: z.string().optional(),
+    });
 }

@@ -4,33 +4,27 @@
 
 import * as z from "zod";
 
+/**
+ * Auth session configurations
+ */
 export type AuthSession = {
-    id?: string | undefined;
+    /**
+     * The ID of the auth session to be used
+     */
+    id: string;
 };
 
 /** @internal */
 export namespace AuthSession$ {
-    export const inboundSchema: z.ZodType<AuthSession, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
+    export const inboundSchema: z.ZodType<AuthSession, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+    });
 
     export type Outbound = {
-        id?: string | undefined;
+        id: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSession> = z
-        .object({
-            id: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSession> = z.object({
+        id: z.string(),
+    });
 }

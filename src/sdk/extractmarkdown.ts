@@ -49,7 +49,7 @@ export class ExtractMarkdown extends ClientSDK {
     async sync(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<operations.FileExtractMarkdownSyncResponse> {
+    ): Promise<components.MarkdownExtractionResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
@@ -112,14 +112,12 @@ export class ExtractMarkdown extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractMarkdownSyncResponse>()
-            .json(200, operations.FileExtractMarkdownSyncResponse$, {
-                key: "MarkdownExtractionResponse",
-            })
+        const [result$] = await this.matcher<components.MarkdownExtractionResponse>()
+            .json(200, components.MarkdownExtractionResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -135,7 +133,7 @@ export class ExtractMarkdown extends ClientSDK {
     async start(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<operations.FileExtractMarkdownStartResponse> {
+    ): Promise<components.AsyncFilePendingResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
@@ -198,14 +196,12 @@ export class ExtractMarkdown extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractMarkdownStartResponse>()
-            .json(200, operations.FileExtractMarkdownStartResponse$, {
-                key: "AsyncFilePendingResponse",
-            })
+        const [result$] = await this.matcher<components.AsyncFilePendingResponse>()
+            .json(201, components.AsyncFilePendingResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -219,7 +215,7 @@ export class ExtractMarkdown extends ClientSDK {
     async result(
         operationId: string,
         options?: RequestOptions
-    ): Promise<operations.FileExtractMarkdownResultResponse> {
+    ): Promise<components.MarkdownExtractionAsyncResponse> {
         const input$: operations.FileExtractMarkdownResultRequest = {
             operationId: operationId,
         };
@@ -285,14 +281,12 @@ export class ExtractMarkdown extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractMarkdownResultResponse>()
-            .json(200, operations.FileExtractMarkdownResultResponse$, {
-                key: "MarkdownExtractionAsyncResponse",
-            })
+        const [result$] = await this.matcher<components.MarkdownExtractionAsyncResponse>()
+            .json(200, components.MarkdownExtractionAsyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

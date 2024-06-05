@@ -1,18 +1,18 @@
-speakeasyVersion: 1.299.6
+speakeasyVersion: 1.299.10
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:d92c8d44f01582dc6e13ce49243269887f4bf96bc9aed0d94b69f88b07ff8805
-        sourceBlobDigest: sha256:c00359fd0d1e6b77969d616b2b382f596ad835d60053907234507ed36a043b81
+        sourceRevisionDigest: sha256:29b39a363b1b45d1f7d1c57e6d3515b928e3fa304d95ae17a42e78573fbdf392
+        sourceBlobDigest: sha256:43ac02dd72040e54cf479fe281057aaa7bcf006db39049e70c2fcb696c39e07a
         tags:
             - latest
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:d92c8d44f01582dc6e13ce49243269887f4bf96bc9aed0d94b69f88b07ff8805
-        sourceBlobDigest: sha256:c00359fd0d1e6b77969d616b2b382f596ad835d60053907234507ed36a043b81
-        outLocation: /Users/faisal/src/intuned-api-sdk-typescript
+        sourceRevisionDigest: sha256:29b39a363b1b45d1f7d1c57e6d3515b928e3fa304d95ae17a42e78573fbdf392
+        sourceBlobDigest: sha256:43ac02dd72040e54cf479fe281057aaa7bcf006db39049e70c2fcb696c39e07a
+        outLocation: /Users/omarhurani/Documents/GitHub/intuned-api-sdk-typescript
     typescript-client-sdk:
         source: intunedClientApi
         sourceNamespace: intuned-client-api

@@ -49,7 +49,7 @@ export class ExtractTables extends ClientSDK {
     async sync(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<operations.FileExtractTablesSyncResponse> {
+    ): Promise<components.TableExtractionResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
@@ -110,14 +110,12 @@ export class ExtractTables extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractTablesSyncResponse>()
-            .json(200, operations.FileExtractTablesSyncResponse$, {
-                key: "TableExtractionResponse",
-            })
+        const [result$] = await this.matcher<components.TableExtractionResponse>()
+            .json(200, components.TableExtractionResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -133,7 +131,7 @@ export class ExtractTables extends ClientSDK {
     async start(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<operations.FileExtractTablesStartResponse> {
+    ): Promise<components.AsyncFilePendingResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
@@ -196,14 +194,12 @@ export class ExtractTables extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractTablesStartResponse>()
-            .json(200, operations.FileExtractTablesStartResponse$, {
-                key: "AsyncFilePendingResponse",
-            })
+        const [result$] = await this.matcher<components.AsyncFilePendingResponse>()
+            .json(201, components.AsyncFilePendingResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -217,7 +213,7 @@ export class ExtractTables extends ClientSDK {
     async result(
         operationId: string,
         options?: RequestOptions
-    ): Promise<operations.FileExtractTablesResultResponse> {
+    ): Promise<components.TableExtractionAsyncResponse> {
         const input$: operations.FileExtractTablesResultRequest = {
             operationId: operationId,
         };
@@ -283,14 +279,12 @@ export class ExtractTables extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.FileExtractTablesResultResponse>()
-            .json(200, operations.FileExtractTablesResultResponse$, {
-                key: "TableExtractionAsyncResponse",
-            })
+        const [result$] = await this.matcher<components.TableExtractionAsyncResponse>()
+            .json(200, components.TableExtractionAsyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

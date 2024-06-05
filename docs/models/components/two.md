@@ -3,7 +3,7 @@
 
 ## Fields
 
-| Field              | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `min`              | *string*           | :heavy_check_mark: | N/A                |
-| `max`              | *string*           | :heavy_check_mark: | N/A                |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `status`                                                               | [components.JobStateStatus](../../models/components/jobstatestatus.md) | :heavy_minus_sign:                                                     | N/A                                                                    |
+| `reason`                                                               | *string*                                                               | :heavy_minus_sign:                                                     | The reason the job is paused                                           |

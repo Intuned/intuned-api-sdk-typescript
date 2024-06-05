@@ -3,82 +3,72 @@
  */
 
 import { AuthSession, AuthSession$ } from "./authsession";
-import { Proxy, Proxy$ } from "./proxy";
-import { QueueRetry, QueueRetry$ } from "./queueretry";
+import { Retry, Retry$ } from "./retry";
 import * as z from "zod";
 
+/**
+ * Details of a repeatable item.
+ */
 export type QueueRepeatItem = {
-    apiName?: string | undefined;
-    parameters?: { [k: string]: any } | undefined;
-    retry?: QueueRetry | undefined;
-    authSession?: AuthSession | undefined;
-    proxy?: Proxy | undefined;
     /**
-     * repeat duration, minimum of 10 minutes
+     * The name of the API to be executed. This is the file path relative to the `api` folder inside your project.
+     */
+    apiName: string;
+    /**
+     * The parameters to the API to be executed.
+     */
+    parameters?: { [k: string]: any } | undefined;
+    /**
+     * Retry policy configurations
+     */
+    retry?: Retry | undefined;
+    /**
+     * Auth session configurations
+     */
+    authSession?: AuthSession | undefined;
+    /**
+     * Repeat period, minimum of 10 minutes. On every period, this item will be appended to the queue.
      */
     repeat: string;
-    id?: string | undefined;
+    /**
+     * The ID of the repeatable item.
+     */
+    id: string;
+    /**
+     * The run ID of the last time this repeatable item executed.
+     */
     lastRunId?: string | undefined;
 };
 
 /** @internal */
 export namespace QueueRepeatItem$ {
-    export const inboundSchema: z.ZodType<QueueRepeatItem, z.ZodTypeDef, unknown> = z
-        .object({
-            apiName: z.string().optional(),
-            parameters: z.record(z.any()).optional(),
-            retry: QueueRetry$.inboundSchema.optional(),
-            authSession: AuthSession$.inboundSchema.optional(),
-            proxy: Proxy$.inboundSchema.optional(),
-            repeat: z.string(),
-            id: z.string().optional(),
-            lastRunId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.apiName === undefined ? null : { apiName: v.apiName }),
-                ...(v.parameters === undefined ? null : { parameters: v.parameters }),
-                ...(v.retry === undefined ? null : { retry: v.retry }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-                repeat: v.repeat,
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.lastRunId === undefined ? null : { lastRunId: v.lastRunId }),
-            };
-        });
+    export const inboundSchema: z.ZodType<QueueRepeatItem, z.ZodTypeDef, unknown> = z.object({
+        apiName: z.string(),
+        parameters: z.record(z.any()).optional(),
+        retry: Retry$.inboundSchema.optional(),
+        authSession: AuthSession$.inboundSchema.optional(),
+        repeat: z.string(),
+        id: z.string(),
+        lastRunId: z.string().optional(),
+    });
 
     export type Outbound = {
-        apiName?: string | undefined;
+        apiName: string;
         parameters?: { [k: string]: any } | undefined;
-        retry?: QueueRetry$.Outbound | undefined;
+        retry?: Retry$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
-        proxy?: Proxy$.Outbound | undefined;
         repeat: string;
-        id?: string | undefined;
+        id: string;
         lastRunId?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueRepeatItem> = z
-        .object({
-            apiName: z.string().optional(),
-            parameters: z.record(z.any()).optional(),
-            retry: QueueRetry$.outboundSchema.optional(),
-            authSession: AuthSession$.outboundSchema.optional(),
-            proxy: Proxy$.outboundSchema.optional(),
-            repeat: z.string(),
-            id: z.string().optional(),
-            lastRunId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.apiName === undefined ? null : { apiName: v.apiName }),
-                ...(v.parameters === undefined ? null : { parameters: v.parameters }),
-                ...(v.retry === undefined ? null : { retry: v.retry }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-                repeat: v.repeat,
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.lastRunId === undefined ? null : { lastRunId: v.lastRunId }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueRepeatItem> = z.object({
+        apiName: z.string(),
+        parameters: z.record(z.any()).optional(),
+        retry: Retry$.outboundSchema.optional(),
+        authSession: AuthSession$.outboundSchema.optional(),
+        repeat: z.string(),
+        id: z.string(),
+        lastRunId: z.string().optional(),
+    });
 }

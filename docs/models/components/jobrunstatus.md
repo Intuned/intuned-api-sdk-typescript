@@ -1,5 +1,7 @@
 # JobRunStatus
 
+The status of the job run.
+
 
 ## Values
 

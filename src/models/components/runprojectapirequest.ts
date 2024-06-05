@@ -4,99 +4,60 @@
 
 import { AuthSession, AuthSession$ } from "./authsession";
 import { Proxy, Proxy$ } from "./proxy";
+import { Retry, Retry$ } from "./retry";
 import * as z from "zod";
 
-export type RunProjectApiRequestRetry = {
-    /**
-     * The maximum number of attempts to retry the API execution if it fails.
-     */
-    maximumAttempts: number;
-};
-
+/**
+ * Run API request
+ */
 export type RunProjectApiRequest = {
     /**
-     * The API you want to run from the project
+     * The name of the API to be executed. This is the file path relative to the `api` folder inside your project.
      */
     api: string;
     /**
-     * The parameters passed to the running API
+     * The parameters to the API to be executed.
      */
     parameters: { [k: string]: any };
-    retry?: RunProjectApiRequestRetry | undefined;
+    /**
+     * Retry policy configurations
+     */
+    retry?: Retry | undefined;
+    /**
+     * Auth session configurations
+     */
     authSession?: AuthSession | undefined;
+    /**
+     * Proxy configuration. If configured, the project API will run using this proxy for all requests.
+     */
     proxy?: Proxy | undefined;
 };
 
 /** @internal */
-export namespace RunProjectApiRequestRetry$ {
-    export const inboundSchema: z.ZodType<RunProjectApiRequestRetry, z.ZodTypeDef, unknown> = z
-        .object({
-            maximumAttempts: z.number(),
-        })
-        .transform((v) => {
-            return {
-                maximumAttempts: v.maximumAttempts,
-            };
-        });
-
-    export type Outbound = {
-        maximumAttempts: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunProjectApiRequestRetry> = z
-        .object({
-            maximumAttempts: z.number(),
-        })
-        .transform((v) => {
-            return {
-                maximumAttempts: v.maximumAttempts,
-            };
-        });
-}
-
-/** @internal */
 export namespace RunProjectApiRequest$ {
-    export const inboundSchema: z.ZodType<RunProjectApiRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            api: z.string(),
-            parameters: z.record(z.any()),
-            retry: z.lazy(() => RunProjectApiRequestRetry$.inboundSchema).optional(),
-            authSession: AuthSession$.inboundSchema.optional(),
-            proxy: Proxy$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                api: v.api,
-                parameters: v.parameters,
-                ...(v.retry === undefined ? null : { retry: v.retry }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-            };
-        });
+    export const inboundSchema: z.ZodType<RunProjectApiRequest, z.ZodTypeDef, unknown> = z.object({
+        api: z.string(),
+        parameters: z.record(z.any()),
+        retry: Retry$.inboundSchema.optional(),
+        authSession: AuthSession$.inboundSchema.optional(),
+        proxy: Proxy$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         api: string;
         parameters: { [k: string]: any };
-        retry?: RunProjectApiRequestRetry$.Outbound | undefined;
+        retry?: Retry$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
         proxy?: Proxy$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunProjectApiRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunProjectApiRequest> = z.object(
+        {
             api: z.string(),
             parameters: z.record(z.any()),
-            retry: z.lazy(() => RunProjectApiRequestRetry$.outboundSchema).optional(),
+            retry: Retry$.outboundSchema.optional(),
             authSession: AuthSession$.outboundSchema.optional(),
             proxy: Proxy$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                api: v.api,
-                parameters: v.parameters,
-                ...(v.retry === undefined ? null : { retry: v.retry }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-            };
-        });
+        }
+    );
 }

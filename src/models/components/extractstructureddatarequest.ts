@@ -5,26 +5,23 @@
 import { FileT, FileT$ } from "./file";
 import * as z from "zod";
 
+/**
+ * The request to extract structured data from file
+ */
 export type ExtractStructuredDataRequest = {
     file: FileT;
     /**
-     * JsonSchema described as a JSON Schema object.
+     * The schema (in JSONSchema) to which the extracted data should conform to. [More about JSONSchema](https://json-schema.org/learn/getting-started-step-by-step)
      */
     dataSchema: { [k: string]: any };
 };
 
 /** @internal */
 export namespace ExtractStructuredDataRequest$ {
-    export const inboundSchema: z.ZodType<ExtractStructuredDataRequest, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<ExtractStructuredDataRequest, z.ZodTypeDef, unknown> =
+        z.object({
             file: FileT$.inboundSchema,
             dataSchema: z.record(z.any()),
-        })
-        .transform((v) => {
-            return {
-                file: v.file,
-                dataSchema: v.dataSchema,
-            };
         });
 
     export type Outbound = {
@@ -32,15 +29,9 @@ export namespace ExtractStructuredDataRequest$ {
         dataSchema: { [k: string]: any };
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExtractStructuredDataRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ExtractStructuredDataRequest> =
+        z.object({
             file: FileT$.outboundSchema,
             dataSchema: z.record(z.any()),
-        })
-        .transform((v) => {
-            return {
-                file: v.file,
-                dataSchema: v.dataSchema,
-            };
         });
 }

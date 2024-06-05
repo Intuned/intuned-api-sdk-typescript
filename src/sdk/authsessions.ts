@@ -8,9 +8,11 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 import { Create } from "./create";
+import * as z from "zod";
 
 export class AuthSessions extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -53,7 +55,7 @@ export class AuthSessions extends ClientSDK {
     async all(
         projectName: string,
         options?: RequestOptions
-    ): Promise<operations.GetAuthSessionsResponse> {
+    ): Promise<Array<components.AuthSessionInfo>> {
         const input$: operations.GetAuthSessionsRequest = {
             projectName: projectName,
         };
@@ -119,12 +121,12 @@ export class AuthSessions extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetAuthSessionsResponse>()
-            .json(200, operations.GetAuthSessionsResponse$, { key: "GetAuthSessions" })
+        const [result$] = await this.matcher<Array<components.AuthSessionInfo>>()
+            .json(200, z.array(components.AuthSessionInfo$.inboundSchema))
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -139,7 +141,7 @@ export class AuthSessions extends ClientSDK {
         projectName: string,
         authSessionId: string,
         options?: RequestOptions
-    ): Promise<operations.GetAuthSessionResponse> {
+    ): Promise<components.AuthSessionInfo> {
         const input$: operations.GetAuthSessionRequest = {
             projectName: projectName,
             authSessionId: authSessionId,
@@ -210,12 +212,12 @@ export class AuthSessions extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetAuthSessionResponse>()
-            .json(200, operations.GetAuthSessionResponse$, { key: "AuthSessionInfo" })
+        const [result$] = await this.matcher<components.AuthSessionInfo>()
+            .json(200, components.AuthSessionInfo$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -230,7 +232,7 @@ export class AuthSessions extends ClientSDK {
         projectName: string,
         authSessionId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteAuthSessionResponse> {
+    ): Promise<components.DeleteAuthSession> {
         const input$: operations.DeleteAuthSessionRequest = {
             projectName: projectName,
             authSessionId: authSessionId,
@@ -301,12 +303,12 @@ export class AuthSessions extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.DeleteAuthSessionResponse>()
-            .json(204, operations.DeleteAuthSessionResponse$, { key: "DeleteAuthSession" })
+        const [result$] = await this.matcher<components.DeleteAuthSession>()
+            .json(204, components.DeleteAuthSession$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

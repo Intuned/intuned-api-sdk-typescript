@@ -1,10 +1,10 @@
 # Retry
 
+Retry policy configurations
+
 
 ## Fields
 
-| Field                | Type                 | Required             | Description          |
-| -------------------- | -------------------- | -------------------- | -------------------- |
-| `backoffCoefficient` | *number*             | :heavy_minus_sign:   | N/A                  |
-| `initialInterval`    | *string*             | :heavy_minus_sign:   | N/A                  |
-| `maximumInterval`    | *string*             | :heavy_minus_sign:   | N/A                  |
+| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `maximumAttempts`                                                      | *number*                                                               | :heavy_check_mark:                                                     | The maximum number of attempts to retry the API execution if it fails. |

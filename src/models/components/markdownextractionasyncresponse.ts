@@ -4,112 +4,51 @@
 
 import { AsyncFailedResponse, AsyncFailedResponse$ } from "./asyncfailedresponse";
 import { AsyncFilePendingResponse, AsyncFilePendingResponse$ } from "./asyncfilependingresponse";
+import {
+    MarkdownExtractionAsyncSuccessfulResponse,
+    MarkdownExtractionAsyncSuccessfulResponse$,
+} from "./markdownextractionasyncsuccessfulresponse";
 import * as z from "zod";
 
-/**
- * Operation status.
- */
-export enum MarkdownExtractionAsyncResponseStatus {
-    Completed = "completed",
-}
-
-export type MarkdownExtractionAsyncResponse1 = {
-    /**
-     * extracted markdown
-     */
-    result?: string | undefined;
-    /**
-     * Operation ID
-     */
-    operationId?: string | undefined;
-    /**
-     * Operation status.
-     */
-    status?: MarkdownExtractionAsyncResponseStatus | undefined;
-    /**
-     * HTTP status code of the operation.
-     */
-    statusCode?: number | undefined;
-};
-
 export type MarkdownExtractionAsyncResponse =
-    | AsyncFilePendingResponse
-    | MarkdownExtractionAsyncResponse1
-    | AsyncFailedResponse;
-
-/** @internal */
-export namespace MarkdownExtractionAsyncResponseStatus$ {
-    export const inboundSchema = z.nativeEnum(MarkdownExtractionAsyncResponseStatus);
-    export const outboundSchema = inboundSchema;
-}
-
-/** @internal */
-export namespace MarkdownExtractionAsyncResponse1$ {
-    export const inboundSchema: z.ZodType<MarkdownExtractionAsyncResponse1, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                result: z.string().optional(),
-                operationId: z.string().optional(),
-                status: MarkdownExtractionAsyncResponseStatus$.inboundSchema.optional(),
-                statusCode: z.number().int().optional(),
-            })
-            .transform((v) => {
-                return {
-                    ...(v.result === undefined ? null : { result: v.result }),
-                    ...(v.operationId === undefined ? null : { operationId: v.operationId }),
-                    ...(v.status === undefined ? null : { status: v.status }),
-                    ...(v.statusCode === undefined ? null : { statusCode: v.statusCode }),
-                };
-            });
-
-    export type Outbound = {
-        result?: string | undefined;
-        operationId?: string | undefined;
-        status?: string | undefined;
-        statusCode?: number | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        MarkdownExtractionAsyncResponse1
-    > = z
-        .object({
-            result: z.string().optional(),
-            operationId: z.string().optional(),
-            status: MarkdownExtractionAsyncResponseStatus$.outboundSchema.optional(),
-            statusCode: z.number().int().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.statusCode === undefined ? null : { statusCode: v.statusCode }),
-            };
-        });
-}
+    | (AsyncFilePendingResponse & { status: "pending" })
+    | (MarkdownExtractionAsyncSuccessfulResponse & { status: "completed" })
+    | (AsyncFailedResponse & { status: "failed" });
 
 /** @internal */
 export namespace MarkdownExtractionAsyncResponse$ {
     export const inboundSchema: z.ZodType<MarkdownExtractionAsyncResponse, z.ZodTypeDef, unknown> =
         z.union([
-            AsyncFilePendingResponse$.inboundSchema,
-            z.lazy(() => MarkdownExtractionAsyncResponse1$.inboundSchema),
-            AsyncFailedResponse$.inboundSchema,
+            AsyncFilePendingResponse$.inboundSchema.and(
+                z.object({ status: z.literal("pending") }).transform((v) => ({ status: v.status }))
+            ),
+            MarkdownExtractionAsyncSuccessfulResponse$.inboundSchema.and(
+                z
+                    .object({ status: z.literal("completed") })
+                    .transform((v) => ({ status: v.status }))
+            ),
+            AsyncFailedResponse$.inboundSchema.and(
+                z.object({ status: z.literal("failed") }).transform((v) => ({ status: v.status }))
+            ),
         ]);
 
     export type Outbound =
-        | AsyncFilePendingResponse$.Outbound
-        | MarkdownExtractionAsyncResponse1$.Outbound
-        | AsyncFailedResponse$.Outbound;
+        | (AsyncFilePendingResponse$.Outbound & { status: "pending" })
+        | (MarkdownExtractionAsyncSuccessfulResponse$.Outbound & { status: "completed" })
+        | (AsyncFailedResponse$.Outbound & { status: "failed" });
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         MarkdownExtractionAsyncResponse
     > = z.union([
-        AsyncFilePendingResponse$.outboundSchema,
-        z.lazy(() => MarkdownExtractionAsyncResponse1$.outboundSchema),
-        AsyncFailedResponse$.outboundSchema,
+        AsyncFilePendingResponse$.outboundSchema.and(
+            z.object({ status: z.literal("pending") }).transform((v) => ({ status: v.status }))
+        ),
+        MarkdownExtractionAsyncSuccessfulResponse$.outboundSchema.and(
+            z.object({ status: z.literal("completed") }).transform((v) => ({ status: v.status }))
+        ),
+        AsyncFailedResponse$.outboundSchema.and(
+            z.object({ status: z.literal("failed") }).transform((v) => ({ status: v.status }))
+        ),
     ]);
 }

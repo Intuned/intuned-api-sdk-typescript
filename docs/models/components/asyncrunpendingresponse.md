@@ -1,9 +1,11 @@
 # AsyncRunPendingResponse
 
+Pending API run
+
 
 ## Fields
 
 | Field                                                                                                | Type                                                                                                 | Required                                                                                             | Description                                                                                          |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| `status`                                                                                             | [components.AsyncRunPendingResponseStatus](../../models/components/asyncrunpendingresponsestatus.md) | :heavy_minus_sign:                                                                                   | The status of the asynchronous operation                                                             |
-| `operationId`                                                                                        | *string*                                                                                             | :heavy_minus_sign:                                                                                   | The operation ID                                                                                     |
+| `status`                                                                                             | [components.AsyncRunPendingResponseStatus](../../models/components/asyncrunpendingresponsestatus.md) | :heavy_check_mark:                                                                                   | The status of the run                                                                                |
+| `runId`                                                                                              | *string*                                                                                             | :heavy_check_mark:                                                                                   | The operation ID                                                                                     |

@@ -1,5 +1,7 @@
 # RunMode
 
+The run mode of the job. Currently, only `Order-Irrelevant` is supported.
+
 
 ## Values
 

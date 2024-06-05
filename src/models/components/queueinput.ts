@@ -3,44 +3,47 @@
  */
 
 import { AuthSession, AuthSession$ } from "./authsession";
-import { Proxy, Proxy$ } from "./proxy";
 import { QueueConfiguration, QueueConfiguration$ } from "./queueconfiguration";
 import { QueueSink, QueueSink$ } from "./queuesink";
 import * as z from "zod";
 
 export type QueueInput = {
+    /**
+     * The queue ID. Has to be a valid URL slug.
+     */
     id?: string | undefined;
+    /**
+     * The queue name.
+     */
     name?: string | undefined;
+    /**
+     * The configuration of the queue. Confiugre retries, rate limits, execution schedules and waits between items.
+     */
     configuration: QueueConfiguration;
+    /**
+     * Webhook sink configuration
+     */
     sink?: QueueSink | undefined;
+    /**
+     * Auth session configurations
+     */
     authSession?: AuthSession | undefined;
-    proxy?: Proxy | undefined;
+    /**
+     * Additional metadata to associate with the queue. It does not affect the behaviour of the queue.
+     */
     metadata?: { [k: string]: any } | undefined;
 };
 
 /** @internal */
 export namespace QueueInput$ {
-    export const inboundSchema: z.ZodType<QueueInput, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            name: z.string().optional(),
-            configuration: QueueConfiguration$.inboundSchema,
-            sink: QueueSink$.inboundSchema.optional(),
-            authSession: AuthSession$.inboundSchema.optional(),
-            proxy: Proxy$.inboundSchema.optional(),
-            metadata: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                configuration: v.configuration,
-                ...(v.sink === undefined ? null : { sink: v.sink }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-            };
-        });
+    export const inboundSchema: z.ZodType<QueueInput, z.ZodTypeDef, unknown> = z.object({
+        id: z.string().optional(),
+        name: z.string().optional(),
+        configuration: QueueConfiguration$.inboundSchema,
+        sink: QueueSink$.inboundSchema.optional(),
+        authSession: AuthSession$.inboundSchema.optional(),
+        metadata: z.record(z.any()).optional(),
+    });
 
     export type Outbound = {
         id?: string | undefined;
@@ -48,29 +51,15 @@ export namespace QueueInput$ {
         configuration: QueueConfiguration$.Outbound;
         sink?: QueueSink$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
-        proxy?: Proxy$.Outbound | undefined;
         metadata?: { [k: string]: any } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueInput> = z
-        .object({
-            id: z.string().optional(),
-            name: z.string().optional(),
-            configuration: QueueConfiguration$.outboundSchema,
-            sink: QueueSink$.outboundSchema.optional(),
-            authSession: AuthSession$.outboundSchema.optional(),
-            proxy: Proxy$.outboundSchema.optional(),
-            metadata: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                configuration: v.configuration,
-                ...(v.sink === undefined ? null : { sink: v.sink }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueInput> = z.object({
+        id: z.string().optional(),
+        name: z.string().optional(),
+        configuration: QueueConfiguration$.outboundSchema,
+        sink: QueueSink$.outboundSchema.optional(),
+        authSession: AuthSession$.outboundSchema.optional(),
+        metadata: z.record(z.any()).optional(),
+    });
 }

@@ -6,18 +6,30 @@ import { FileBase64Source, FileBase64Source$ } from "./filebase64source";
 import { FileUrlSource, FileUrlSource$ } from "./fileurlsource";
 import * as z from "zod";
 
-export type FileSource = FileUrlSource | FileBase64Source;
+export type FileSource =
+    | (FileUrlSource & { type: "url" })
+    | (FileBase64Source & { type: "base64" });
 
 /** @internal */
 export namespace FileSource$ {
     export const inboundSchema: z.ZodType<FileSource, z.ZodTypeDef, unknown> = z.union([
-        FileUrlSource$.inboundSchema,
-        FileBase64Source$.inboundSchema,
+        FileUrlSource$.inboundSchema.and(
+            z.object({ type: z.literal("url") }).transform((v) => ({ type: v.type }))
+        ),
+        FileBase64Source$.inboundSchema.and(
+            z.object({ type: z.literal("base64") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
 
-    export type Outbound = FileUrlSource$.Outbound | FileBase64Source$.Outbound;
+    export type Outbound =
+        | (FileUrlSource$.Outbound & { type: "url" })
+        | (FileBase64Source$.Outbound & { type: "base64" });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileSource> = z.union([
-        FileUrlSource$.outboundSchema,
-        FileBase64Source$.outboundSchema,
+        FileUrlSource$.outboundSchema.and(
+            z.object({ type: z.literal("url") }).transform((v) => ({ type: v.type }))
+        ),
+        FileBase64Source$.outboundSchema.and(
+            z.object({ type: z.literal("base64") }).transform((v) => ({ type: v.type }))
+        ),
     ]);
 }

@@ -15,7 +15,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.3.6
+  version: 0.3.17
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -23,7 +23,7 @@ typescript:
   additionalPackageJSON: {}
   author: Speakeasy
   clientServerStatusCodesAsErrors: true
-  enumFormat: enum
+  enumFormat: union
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -38,5 +38,5 @@ typescript:
   methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: '@intuned/client'
-  responseFormat: envelope-http
+  responseFormat: flat
   templateVersion: v2
