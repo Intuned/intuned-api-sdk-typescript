@@ -21,32 +21,18 @@ export namespace TriggerJobMessage$ {
 
 /** @internal */
 export namespace TriggerJob$ {
-    export const inboundSchema: z.ZodType<TriggerJob, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            message: TriggerJobMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const inboundSchema: z.ZodType<TriggerJob, z.ZodTypeDef, unknown> = z.object({
+        id: z.string().optional(),
+        message: TriggerJobMessage$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         id?: string | undefined;
         message?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerJob> = z
-        .object({
-            id: z.string().optional(),
-            message: TriggerJobMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerJob> = z.object({
+        id: z.string().optional(),
+        message: TriggerJobMessage$.outboundSchema.optional(),
+    });
 }

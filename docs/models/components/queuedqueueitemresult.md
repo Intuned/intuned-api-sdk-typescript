@@ -1,0 +1,9 @@
+# QueuedQueueItemResult
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `runId`                                                                                          | *string*                                                                                         | :heavy_check_mark:                                                                               | The run ID of the item                                                                           |
+| `status`                                                                                         | [components.QueuedQueueItemResultStatus](../../models/components/queuedqueueitemresultstatus.md) | :heavy_check_mark:                                                                               | Execution status of the item                                                                     |

@@ -4,36 +4,29 @@
 
 import * as z from "zod";
 
+/**
+ * Markdown extraction result
+ */
 export type MarkdownExtractionResponse = {
     /**
-     * extracted markdown
+     * The extracted markdown
      */
-    result?: string | undefined;
+    result: string;
 };
 
 /** @internal */
 export namespace MarkdownExtractionResponse$ {
-    export const inboundSchema: z.ZodType<MarkdownExtractionResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            result: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
+    export const inboundSchema: z.ZodType<MarkdownExtractionResponse, z.ZodTypeDef, unknown> =
+        z.object({
+            result: z.string(),
         });
 
     export type Outbound = {
-        result?: string | undefined;
+        result: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MarkdownExtractionResponse> = z
-        .object({
-            result: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MarkdownExtractionResponse> =
+        z.object({
+            result: z.string(),
         });
 }

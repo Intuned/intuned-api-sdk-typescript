@@ -388,7 +388,7 @@ export class Jobs extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteJobResponse>()
-            .json(204, operations.DeleteJobResponse$, { key: "DeleteJob" })
+            .void(204, operations.DeleteJobResponse$)
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });
@@ -584,7 +584,7 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Manually triggers a job run for a job. If the job is paused, the trigger fails.
      */
-    async triggerJob(
+    async trigger(
         projectName: string,
         jobId: string,
         options?: RequestOptions

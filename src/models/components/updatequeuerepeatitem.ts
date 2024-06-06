@@ -20,27 +20,16 @@ export namespace UpdateQueueRepeatItemMessage$ {
 
 /** @internal */
 export namespace UpdateQueueRepeatItem$ {
-    export const inboundSchema: z.ZodType<UpdateQueueRepeatItem, z.ZodTypeDef, unknown> = z
-        .object({
-            message: UpdateQueueRepeatItemMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const inboundSchema: z.ZodType<UpdateQueueRepeatItem, z.ZodTypeDef, unknown> = z.object({
+        message: UpdateQueueRepeatItemMessage$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         message?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateQueueRepeatItem> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateQueueRepeatItem> =
+        z.object({
             message: UpdateQueueRepeatItemMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
         });
 }

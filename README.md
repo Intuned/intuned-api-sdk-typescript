@@ -58,7 +58,7 @@ async function run() {
             type: PdfFileType.Pdf,
             source: {
                 type: FileUrlSourceType.Url,
-                data: "<value>",
+                data: "http://unconscious-margin.name",
             },
         },
         {
@@ -105,7 +105,7 @@ run();
 * [delete](docs/sdks/jobs/README.md#delete) - Delete Job
 * [pause](docs/sdks/jobs/README.md#pause) - Pause Job
 * [resume](docs/sdks/jobs/README.md#resume) - Resume Job
-* [triggerJob](docs/sdks/jobs/README.md#triggerjob) - Trigger Job
+* [trigger](docs/sdks/jobs/README.md#trigger) - Trigger Job
 
 ### [project.jobs.runs](docs/sdks/runs/README.md)
 
@@ -184,7 +184,7 @@ async function run() {
                 type: PdfFileType.Pdf,
                 source: {
                     type: FileUrlSourceType.Url,
-                    data: "<value>",
+                    data: "http://unconscious-margin.name",
                 },
             },
             {
@@ -250,7 +250,7 @@ async function run() {
             type: PdfFileType.Pdf,
             source: {
                 type: FileUrlSourceType.Url,
-                data: "<value>",
+                data: "http://unconscious-margin.name",
             },
         },
         {
@@ -287,7 +287,7 @@ async function run() {
             type: PdfFileType.Pdf,
             source: {
                 type: FileUrlSourceType.Url,
-                data: "<value>",
+                data: "http://unconscious-margin.name",
             },
         },
         {
@@ -380,7 +380,7 @@ async function run() {
             type: PdfFileType.Pdf,
             source: {
                 type: FileUrlSourceType.Url,
-                data: "<value>",
+                data: "http://unconscious-margin.name",
             },
         },
         {

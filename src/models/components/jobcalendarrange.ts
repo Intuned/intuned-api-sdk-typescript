@@ -13,15 +13,15 @@ export type End = number | string;
  */
 export type JobCalendarRange = {
     /**
-     * start of the range
+     * Start of the range
      */
     start: number | string;
     /**
-     * end of the range. defaults to `start`.
+     * End of the range. defaults to `start`.
      */
     end?: number | string | undefined;
     /**
-     * step of the range
+     * Step of the range
      */
     step?: number | undefined;
 };
@@ -56,19 +56,11 @@ export namespace End$ {
 
 /** @internal */
 export namespace JobCalendarRange$ {
-    export const inboundSchema: z.ZodType<JobCalendarRange, z.ZodTypeDef, unknown> = z
-        .object({
-            start: z.union([z.number(), z.string()]),
-            end: z.union([z.number(), z.string()]).optional(),
-            step: z.number().default(1),
-        })
-        .transform((v) => {
-            return {
-                start: v.start,
-                ...(v.end === undefined ? null : { end: v.end }),
-                step: v.step,
-            };
-        });
+    export const inboundSchema: z.ZodType<JobCalendarRange, z.ZodTypeDef, unknown> = z.object({
+        start: z.union([z.number(), z.string()]),
+        end: z.union([z.number(), z.string()]).optional(),
+        step: z.number().default(1),
+    });
 
     export type Outbound = {
         start: number | string;
@@ -76,17 +68,9 @@ export namespace JobCalendarRange$ {
         step: number;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobCalendarRange> = z
-        .object({
-            start: z.union([z.number(), z.string()]),
-            end: z.union([z.number(), z.string()]).optional(),
-            step: z.number().default(1),
-        })
-        .transform((v) => {
-            return {
-                start: v.start,
-                ...(v.end === undefined ? null : { end: v.end }),
-                step: v.step,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobCalendarRange> = z.object({
+        start: z.union([z.number(), z.string()]),
+        end: z.union([z.number(), z.string()]).optional(),
+        step: z.number().default(1),
+    });
 }

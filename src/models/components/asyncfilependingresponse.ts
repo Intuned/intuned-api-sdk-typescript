@@ -11,15 +11,18 @@ export enum Status {
     Pending = "pending",
 }
 
+/**
+ * Pending file extraction result
+ */
 export type AsyncFilePendingResponse = {
     /**
      * Operation ID
      */
-    operationId?: string | undefined;
+    operationId: string;
     /**
      * Operation status.
      */
-    status?: Status | undefined;
+    status: Status;
 };
 
 /** @internal */
@@ -30,32 +33,20 @@ export namespace Status$ {
 
 /** @internal */
 export namespace AsyncFilePendingResponse$ {
-    export const inboundSchema: z.ZodType<AsyncFilePendingResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            operationId: z.string().optional(),
-            status: Status$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
+    export const inboundSchema: z.ZodType<AsyncFilePendingResponse, z.ZodTypeDef, unknown> =
+        z.object({
+            operationId: z.string(),
+            status: Status$.inboundSchema,
         });
 
     export type Outbound = {
-        operationId?: string | undefined;
-        status?: string | undefined;
+        operationId: string;
+        status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncFilePendingResponse> = z
-        .object({
-            operationId: z.string().optional(),
-            status: Status$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncFilePendingResponse> =
+        z.object({
+            operationId: z.string(),
+            status: Status$.outboundSchema,
         });
 }

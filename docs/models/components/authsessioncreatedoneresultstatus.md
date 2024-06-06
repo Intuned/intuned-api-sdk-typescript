@@ -1,5 +1,7 @@
 # AuthSessionCreateDoneResultStatus
 
+Status of auth session creation operation
+
 
 ## Values
 

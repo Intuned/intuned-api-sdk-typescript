@@ -9,8 +9,11 @@ export enum CreateAuthSessionStartStatus {
 }
 
 export type CreateAuthSessionStart = {
-    status?: CreateAuthSessionStartStatus | undefined;
-    operationId?: string | undefined;
+    status: CreateAuthSessionStartStatus;
+    /**
+     * Operation ID for the auth session creation. This is used in the resume and result operations.
+     */
+    operationId: string;
 };
 
 /** @internal */
@@ -21,32 +24,21 @@ export namespace CreateAuthSessionStartStatus$ {
 
 /** @internal */
 export namespace CreateAuthSessionStart$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionStart, z.ZodTypeDef, unknown> = z
-        .object({
-            status: CreateAuthSessionStartStatus$.inboundSchema.optional(),
-            operationId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateAuthSessionStart, z.ZodTypeDef, unknown> = z.object(
+        {
+            status: CreateAuthSessionStartStatus$.inboundSchema,
+            operationId: z.string(),
+        }
+    );
 
     export type Outbound = {
-        status?: string | undefined;
-        operationId?: string | undefined;
+        status: string;
+        operationId: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionStart> = z
-        .object({
-            status: CreateAuthSessionStartStatus$.outboundSchema.optional(),
-            operationId: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.status === undefined ? null : { status: v.status }),
-                ...(v.operationId === undefined ? null : { operationId: v.operationId }),
-            };
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionStart> =
+        z.object({
+            status: CreateAuthSessionStartStatus$.outboundSchema,
+            operationId: z.string(),
         });
 }

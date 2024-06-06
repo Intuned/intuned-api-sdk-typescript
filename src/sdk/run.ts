@@ -47,7 +47,7 @@ export class Run extends ClientSDK {
      */
     async sync(
         projectName: string,
-        runProjectApiRequest?: components.RunProjectApiRequest | undefined,
+        runProjectApiRequest: components.RunProjectApiRequest,
         options?: RequestOptions
     ): Promise<operations.RunApiSyncResponse> {
         const input$: operations.RunApiSyncRequest = {
@@ -136,7 +136,7 @@ export class Run extends ClientSDK {
      */
     async start(
         projectName: string,
-        runProjectApiRequest?: components.RunProjectApiRequest | undefined,
+        runProjectApiRequest: components.RunProjectApiRequest,
         options?: RequestOptions
     ): Promise<operations.RunApiStartResponse> {
         const input$: operations.RunApiStartRequest = {
@@ -207,7 +207,7 @@ export class Run extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.RunApiStartResponse>()
-            .json(200, operations.RunApiStartResponse$, { key: "AsyncRunPendingResponse" })
+            .json(201, operations.RunApiStartResponse$, { key: "AsyncRunPendingResponse" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -224,12 +224,12 @@ export class Run extends ClientSDK {
      */
     async result(
         projectName: string,
-        operationId: string,
+        runId: string,
         options?: RequestOptions
     ): Promise<operations.RunApiResultResponse> {
         const input$: operations.RunApiResultRequest = {
             projectName: projectName,
-            operationId: operationId,
+            runId: runId,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -243,11 +243,11 @@ export class Run extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            operationId: enc$.encodeSimple("operationId", payload$.operationId, {
+            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            runId: enc$.encodeSimple("runId", payload$.runId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -257,7 +257,7 @@ export class Run extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/run/{operationId}/result"
+            "/{workspaceId}/projects/{projectName}/run/{runId}/result"
         )(pathParams$);
 
         const query$ = "";

@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 5f97cd5dbd27400141e546c8f4fa6a51
+  docChecksum: 5e058e827194a4c83b6c07f05c2ff45a
   docVersion: 0.0.1
-  speakeasyVersion: 1.299.6
-  generationVersion: 2.338.12
-  releaseVersion: 0.3.6
-  configChecksum: 3bcdf2e20837fe855cd935eeded01340
+  speakeasyVersion: 1.300.0
+  generationVersion: 2.338.14
+  releaseVersion: 0.3.7
+  configChecksum: a52ee6573b0c3b26a627ea5a49e66e34
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.5
-    core: 3.9.11
+    core: 3.9.12
     devContainers: 2.90.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -51,6 +51,7 @@ generatedFiles:
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
   - src/lib/sdks.ts
@@ -115,54 +116,60 @@ generatedFiles:
   - src/models/components/pdffile.ts
   - src/models/components/asyncfilependingresponse.ts
   - src/models/components/structureddataextractionasyncresponse.ts
+  - src/models/components/structureddataextractionasyncsuccessfulresponse.ts
   - src/models/components/asyncfailedresponse.ts
   - src/models/components/markdownextractionresponse.ts
   - src/models/components/generalextractrequest.ts
   - src/models/components/markdownextractionasyncresponse.ts
+  - src/models/components/markdownextractionasyncsuccessfulresponse.ts
   - src/models/components/tableextractionresponse.ts
   - src/models/components/tableextractionasyncresponse.ts
+  - src/models/components/tableextractionasyncsuccessfulresponse.ts
   - src/models/components/job.ts
-  - src/models/components/proxy.ts
   - src/models/components/authsession.ts
   - src/models/components/jobschedule.ts
   - src/models/components/jobcalendarvalue.ts
   - src/models/components/jobcalendarrange.ts
   - src/models/components/jobpayload.ts
+  - src/models/components/apiparameters.ts
   - src/models/components/jobsink.ts
+  - src/models/components/webhooksink.ts
+  - src/models/components/amazons3sink.ts
   - src/models/components/jobconfiguration.ts
   - src/models/components/createjob.ts
   - src/models/components/jobinput.ts
-  - src/models/components/deletejob.ts
   - src/models/components/pausejob.ts
   - src/models/components/resumejob.ts
   - src/models/components/triggerjob.ts
   - src/models/components/jobrun.ts
   - src/models/components/terminatejobrun.ts
   - src/models/components/queueinput.ts
-  - src/models/components/queuesink.ts
   - src/models/components/queueconfiguration.ts
-  - src/models/components/queueretry.ts
+  - src/models/components/retry.ts
   - src/models/components/createqueue.ts
-  - src/models/components/deletequeue.ts
   - src/models/components/addqueueitem.ts
   - src/models/components/queueitem.ts
   - src/models/components/queueitemresult.ts
-  - src/models/components/deletequeueitem.ts
+  - src/models/components/queuedqueueitemresult.ts
+  - src/models/components/pendingqueueitemresult.ts
+  - src/models/components/completedqueueitemresult.ts
+  - src/models/components/failedqueueitemresult.ts
   - src/models/components/queuerepeatitem.ts
   - src/models/components/addqueuerepeatitem.ts
   - src/models/components/queuerepeatiteminput.ts
   - src/models/components/updatequeuerepeatitem.ts
-  - src/models/components/deletequeuerepeatitem.ts
   - src/models/components/failedrunresult.ts
   - src/models/components/completedrunresult.ts
   - src/models/components/runprojectapirequest.ts
+  - src/models/components/proxy.ts
+  - src/models/components/parameters.ts
   - src/models/components/asyncrunpendingresponse.ts
   - src/models/components/asyncresultresponse.ts
-  - src/models/components/asyncfilecompletedresponse.ts
-  - src/models/components/asyncfilefailedresponse.ts
+  - src/models/components/asyncruncompletedresponse.ts
+  - src/models/components/asyncrunfailedresponse.ts
   - src/models/components/authsessioninfo.ts
-  - src/models/components/deleteauthsession.ts
   - src/models/components/createauthsessionstart.ts
+  - src/models/components/createauthsessionrequest.ts
   - src/models/components/authsessioncreateresult.ts
   - src/models/components/authsessioncreatedoneresult.ts
   - src/models/components/authsessioncreatependingresult.ts
@@ -302,51 +309,51 @@ generatedFiles:
   - docs/models/components/pdffile.md
   - docs/models/components/status.md
   - docs/models/components/asyncfilependingresponse.md
-  - docs/models/components/structureddataextractionasyncresponsestatus.md
-  - docs/models/components/structureddataextractionasyncresponse1.md
   - docs/models/components/structureddataextractionasyncresponse.md
+  - docs/models/components/structureddataextractionasyncsuccessfulresponsestatus.md
+  - docs/models/components/structureddataextractionasyncsuccessfulresponse.md
   - docs/models/components/asyncfailedresponsestatus.md
   - docs/models/components/asyncfailedresponse.md
   - docs/models/components/markdownextractionresponse.md
   - docs/models/components/generalextractrequest.md
-  - docs/models/components/markdownextractionasyncresponsestatus.md
-  - docs/models/components/markdownextractionasyncresponse1.md
   - docs/models/components/markdownextractionasyncresponse.md
+  - docs/models/components/markdownextractionasyncsuccessfulresponsestatus.md
+  - docs/models/components/markdownextractionasyncsuccessfulresponse.md
   - docs/models/components/result.md
   - docs/models/components/tableextractionresponse.md
-  - docs/models/components/tableextractionasyncresponseresult.md
-  - docs/models/components/tableextractionasyncresponsestatus.md
-  - docs/models/components/tableextractionasyncresponse1.md
   - docs/models/components/tableextractionasyncresponse.md
+  - docs/models/components/tableextractionasyncsuccessfulresponseresult.md
+  - docs/models/components/tableextractionasyncsuccessfulresponsestatus.md
+  - docs/models/components/tableextractionasyncsuccessfulresponse.md
+  - docs/models/components/jobstatestatus.md
+  - docs/models/components/paused.md
+  - docs/models/components/statestatus.md
+  - docs/models/components/active.md
   - docs/models/components/state.md
   - docs/models/components/job.md
-  - docs/models/components/location.md
-  - docs/models/components/proxy.md
   - docs/models/components/authsession.md
   - docs/models/components/every.md
   - docs/models/components/intervals.md
   - docs/models/components/calendars.md
   - docs/models/components/jobschedule.md
-  - docs/models/components/jobcalendarvalue2.md
-  - docs/models/components/jobcalendarvalue1.md
+  - docs/models/components/two.md
   - docs/models/components/jobcalendarvalue.md
   - docs/models/components/start.md
   - docs/models/components/end.md
   - docs/models/components/jobcalendarrange.md
   - docs/models/components/jobpayload.md
-  - docs/models/components/jobsink2type.md
-  - docs/models/components/jobsink2.md
-  - docs/models/components/jobsinktype.md
-  - docs/models/components/jobsink1.md
+  - docs/models/components/apiparameters.md
   - docs/models/components/jobsink.md
+  - docs/models/components/webhooksinktype.md
+  - docs/models/components/webhooksink.md
+  - docs/models/components/amazons3sinktype.md
+  - docs/models/components/amazons3sink.md
   - docs/models/components/runmode.md
-  - docs/models/components/retry.md
+  - docs/models/components/jobconfigurationretry.md
   - docs/models/components/jobconfiguration.md
   - docs/models/components/message.md
   - docs/models/components/createjob.md
   - docs/models/components/jobinput.md
-  - docs/models/components/deletejobmessage.md
-  - docs/models/components/deletejob.md
   - docs/models/components/pausejobmessage.md
   - docs/models/components/pausejob.md
   - docs/models/components/resumejobmessage.md
@@ -354,57 +361,56 @@ generatedFiles:
   - docs/models/components/triggerjobmessage.md
   - docs/models/components/triggerjob.md
   - docs/models/components/jobrunstatus.md
+  - docs/models/components/summary.md
   - docs/models/components/jobruntype.md
   - docs/models/components/jobrun.md
   - docs/models/components/terminatejobrunmessage.md
   - docs/models/components/terminatejobrun.md
   - docs/models/components/queueinput.md
-  - docs/models/components/queuesinktype.md
-  - docs/models/components/queuesink.md
   - docs/models/components/queueconfigurationrunmode.md
   - docs/models/components/ratelimits.md
   - docs/models/components/schedule.md
-  - docs/models/components/two.md
-  - docs/models/components/one.md
+  - docs/models/components/msformattedrange.md
+  - docs/models/components/millisecondsrange.md
   - docs/models/components/randomwait.md
   - docs/models/components/queueconfiguration.md
-  - docs/models/components/queueretry.md
+  - docs/models/components/retry.md
   - docs/models/components/createqueue.md
-  - docs/models/components/deletequeue.md
   - docs/models/components/addqueueitemstatus.md
   - docs/models/components/addqueueitem.md
   - docs/models/components/queueitem.md
-  - docs/models/components/queueitemresult3status.md
-  - docs/models/components/three.md
-  - docs/models/components/queueitemresult2status.md
-  - docs/models/components/queueitemresult2.md
-  - docs/models/components/queueitemresultstatus.md
-  - docs/models/components/queueitemresult1.md
   - docs/models/components/queueitemresult.md
-  - docs/models/components/deletequeueitem.md
+  - docs/models/components/queuedqueueitemresultstatus.md
+  - docs/models/components/queuedqueueitemresult.md
+  - docs/models/components/pendingqueueitemresultstatus.md
+  - docs/models/components/pendingqueueitemresult.md
+  - docs/models/components/completedqueueitemresultstatus.md
+  - docs/models/components/completedqueueitemresult.md
+  - docs/models/components/failedqueueitemresultstatus.md
+  - docs/models/components/failedqueueitemresult.md
   - docs/models/components/queuerepeatitem.md
   - docs/models/components/addqueuerepeatitemstatus.md
   - docs/models/components/addqueuerepeatitem.md
   - docs/models/components/queuerepeatiteminput.md
   - docs/models/components/updatequeuerepeatitemmessage.md
   - docs/models/components/updatequeuerepeatitem.md
-  - docs/models/components/deletequeuerepeatitem.md
   - docs/models/components/failedrunresult.md
   - docs/models/components/completedrunresult.md
-  - docs/models/components/runprojectapirequestretry.md
   - docs/models/components/runprojectapirequest.md
+  - docs/models/components/location.md
+  - docs/models/components/proxy.md
+  - docs/models/components/parameterst.md
   - docs/models/components/asyncrunpendingresponsestatus.md
   - docs/models/components/asyncrunpendingresponse.md
   - docs/models/components/asyncresultresponse.md
-  - docs/models/components/asyncfilecompletedresponsestatus.md
-  - docs/models/components/asyncfilecompletedresponse.md
-  - docs/models/components/asyncfilefailedresponsestatus.md
-  - docs/models/components/asyncfilefailedresponse.md
+  - docs/models/components/asyncruncompletedresponsestatus.md
+  - docs/models/components/asyncruncompletedresponse.md
+  - docs/models/components/asyncrunfailedresponsestatus.md
+  - docs/models/components/asyncrunfailedresponse.md
   - docs/models/components/authsessioninfo.md
-  - docs/models/components/deleteauthsessionmessage.md
-  - docs/models/components/deleteauthsession.md
   - docs/models/components/createauthsessionstartstatus.md
   - docs/models/components/createauthsessionstart.md
+  - docs/models/components/createauthsessionrequest.md
   - docs/models/components/authsessioncreateresult.md
   - docs/models/components/authsessioncreatedoneresultstatus.md
   - docs/models/components/authsessioncreatedoneresult.md
@@ -413,10 +419,10 @@ generatedFiles:
   - docs/models/components/authsessioncreaterequestedmoreinforesultstatus.md
   - docs/models/components/detailsrequesttype.md
   - docs/models/components/detailsaction.md
-  - docs/models/components/details2.md
+  - docs/models/components/otp.md
   - docs/models/components/requesttype.md
   - docs/models/components/action.md
-  - docs/models/components/details1.md
+  - docs/models/components/multiplechoice.md
   - docs/models/components/details.md
   - docs/models/components/authsessioncreaterequestedmoreinforesult.md
   - docs/models/components/authsessioncreatefailedresultstatus.md

@@ -9,8 +9,8 @@ export enum AddQueueItemStatus {
 }
 
 export type AddQueueItem = {
-    runId?: string | undefined;
-    status?: AddQueueItemStatus | undefined;
+    runId: string;
+    status: AddQueueItemStatus;
 };
 
 /** @internal */
@@ -21,32 +21,18 @@ export namespace AddQueueItemStatus$ {
 
 /** @internal */
 export namespace AddQueueItem$ {
-    export const inboundSchema: z.ZodType<AddQueueItem, z.ZodTypeDef, unknown> = z
-        .object({
-            runId: z.string().optional(),
-            status: AddQueueItemStatus$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.runId === undefined ? null : { runId: v.runId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
+    export const inboundSchema: z.ZodType<AddQueueItem, z.ZodTypeDef, unknown> = z.object({
+        runId: z.string(),
+        status: AddQueueItemStatus$.inboundSchema,
+    });
 
     export type Outbound = {
-        runId?: string | undefined;
-        status?: string | undefined;
+        runId: string;
+        status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddQueueItem> = z
-        .object({
-            runId: z.string().optional(),
-            status: AddQueueItemStatus$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.runId === undefined ? null : { runId: v.runId }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddQueueItem> = z.object({
+        runId: z.string(),
+        status: AddQueueItemStatus$.outboundSchema,
+    });
 }

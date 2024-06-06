@@ -38,9 +38,7 @@ export namespace ApiErrorUnauthorized$ {
             message: z.string().optional(),
         })
         .transform((v) => {
-            return new ApiErrorUnauthorized({
-                ...(v.message === undefined ? null : { message: v.message }),
-            });
+            return new ApiErrorUnauthorized(v);
         });
 
     export type Outbound = {
@@ -51,14 +49,8 @@ export namespace ApiErrorUnauthorized$ {
         .instanceof(ApiErrorUnauthorized)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    message: z.string().optional(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.message === undefined ? null : { message: v.message }),
-                    };
-                })
+            z.object({
+                message: z.string().optional(),
+            })
         );
 }

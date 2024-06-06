@@ -4,12 +4,24 @@
 
 import * as z from "zod";
 
+/**
+ * Status of auth session creation operation
+ */
 export enum AuthSessionCreateDoneResultStatus {
     Done = "done",
 }
 
+/**
+ * Auth session create done
+ */
 export type AuthSessionCreateDoneResult = {
+    /**
+     * Status of auth session creation operation
+     */
     status: AuthSessionCreateDoneResultStatus;
+    /**
+     * Auth session ID
+     */
     authSessionId: string;
 };
 
@@ -21,16 +33,10 @@ export namespace AuthSessionCreateDoneResultStatus$ {
 
 /** @internal */
 export namespace AuthSessionCreateDoneResult$ {
-    export const inboundSchema: z.ZodType<AuthSessionCreateDoneResult, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AuthSessionCreateDoneResult, z.ZodTypeDef, unknown> =
+        z.object({
             status: AuthSessionCreateDoneResultStatus$.inboundSchema,
             authSessionId: z.string(),
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-                authSessionId: v.authSessionId,
-            };
         });
 
     export type Outbound = {
@@ -38,15 +44,9 @@ export namespace AuthSessionCreateDoneResult$ {
         authSessionId: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreateDoneResult> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreateDoneResult> =
+        z.object({
             status: AuthSessionCreateDoneResultStatus$.outboundSchema,
             authSessionId: z.string(),
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-                authSessionId: v.authSessionId,
-            };
         });
 }

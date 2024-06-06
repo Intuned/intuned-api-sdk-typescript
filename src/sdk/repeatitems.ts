@@ -139,7 +139,7 @@ export class RepeatItems extends ClientSDK {
     async append(
         projectName: string,
         queueId: string,
-        queueRepeatItemInput?: components.QueueRepeatItemInput | undefined,
+        queueRepeatItemInput: components.QueueRepeatItemInput,
         options?: RequestOptions
     ): Promise<operations.AppendRepeatItemResponse> {
         const input$: operations.AppendRepeatItemRequest = {
@@ -215,7 +215,7 @@ export class RepeatItems extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.AppendRepeatItemResponse>()
-            .json(200, operations.AppendRepeatItemResponse$, { key: "AddQueueRepeatItem" })
+            .json(201, operations.AppendRepeatItemResponse$, { key: "AddQueueRepeatItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -331,7 +331,7 @@ export class RepeatItems extends ClientSDK {
         projectName: string,
         queueId: string,
         itemId: string,
-        queueRepeatItemInput?: components.QueueRepeatItemInput | undefined,
+        queueRepeatItemInput: components.QueueRepeatItemInput,
         options?: RequestOptions
     ): Promise<operations.UpdateRepeatQueueItemResponse> {
         const input$: operations.UpdateRepeatQueueItemRequest = {
@@ -412,7 +412,7 @@ export class RepeatItems extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.UpdateRepeatQueueItemResponse>()
-            .json(204, operations.UpdateRepeatQueueItemResponse$, { key: "UpdateQueueRepeatItem" })
+            .json(200, operations.UpdateRepeatQueueItemResponse$, { key: "UpdateQueueRepeatItem" })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -509,7 +509,7 @@ export class RepeatItems extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteRepeatQueueItemResponse>()
-            .json(204, operations.DeleteRepeatQueueItemResponse$, { key: "DeleteQueueRepeatItem" })
+            .void(204, operations.DeleteRepeatQueueItemResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

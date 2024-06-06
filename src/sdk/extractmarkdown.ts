@@ -199,7 +199,7 @@ export class ExtractMarkdown extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.FileExtractMarkdownStartResponse>()
-            .json(200, operations.FileExtractMarkdownStartResponse$, {
+            .json(201, operations.FileExtractMarkdownStartResponse$, {
                 key: "AsyncFilePendingResponse",
             })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })

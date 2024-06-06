@@ -1,0 +1,14 @@
+# AsyncRunFailedResponse
+
+Failed API run result
+
+
+## Fields
+
+| Field                                                                                              | Type                                                                                               | Required                                                                                           | Description                                                                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `error`                                                                                            | *string*                                                                                           | :heavy_check_mark:                                                                                 | Error code                                                                                         |
+| `message`                                                                                          | *string*                                                                                           | :heavy_check_mark:                                                                                 | Error message                                                                                      |
+| `status`                                                                                           | [components.AsyncRunFailedResponseStatus](../../models/components/asyncrunfailedresponsestatus.md) | :heavy_check_mark:                                                                                 | The status of the run                                                                              |
+| `runId`                                                                                            | *string*                                                                                           | :heavy_check_mark:                                                                                 | The run ID                                                                                         |
+| `statusCode`                                                                                       | *number*                                                                                           | :heavy_check_mark:                                                                                 | The HTTP status code of the API run                                                                |

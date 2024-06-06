@@ -3,74 +3,51 @@
  */
 
 import { AuthSession, AuthSession$ } from "./authsession";
-import { Proxy, Proxy$ } from "./proxy";
 import { QueueConfiguration, QueueConfiguration$ } from "./queueconfiguration";
-import { QueueSink, QueueSink$ } from "./queuesink";
+import { WebhookSink, WebhookSink$ } from "./webhooksink";
 import * as z from "zod";
 
 export type QueueInput = {
+    /**
+     * The queue ID. Has to be a valid URL slug.
+     */
     id?: string | undefined;
+    /**
+     * The queue name.
+     */
     name?: string | undefined;
-    configuration: QueueConfiguration;
-    sink?: QueueSink | undefined;
-    authSession?: AuthSession | undefined;
-    proxy?: Proxy | undefined;
-    metadata?: { [k: string]: any } | undefined;
+    configuration: QueueConfiguration | null;
+    sink?: WebhookSink | null | undefined;
+    authSession?: AuthSession | null | undefined;
+    metadata?: { [k: string]: any } | null | undefined;
 };
 
 /** @internal */
 export namespace QueueInput$ {
-    export const inboundSchema: z.ZodType<QueueInput, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            name: z.string().optional(),
-            configuration: QueueConfiguration$.inboundSchema,
-            sink: QueueSink$.inboundSchema.optional(),
-            authSession: AuthSession$.inboundSchema.optional(),
-            proxy: Proxy$.inboundSchema.optional(),
-            metadata: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                configuration: v.configuration,
-                ...(v.sink === undefined ? null : { sink: v.sink }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-            };
-        });
+    export const inboundSchema: z.ZodType<QueueInput, z.ZodTypeDef, unknown> = z.object({
+        id: z.string().optional(),
+        name: z.string().optional(),
+        configuration: z.nullable(QueueConfiguration$.inboundSchema),
+        sink: z.nullable(WebhookSink$.inboundSchema).optional(),
+        authSession: z.nullable(AuthSession$.inboundSchema).optional(),
+        metadata: z.nullable(z.record(z.any())).optional(),
+    });
 
     export type Outbound = {
         id?: string | undefined;
         name?: string | undefined;
-        configuration: QueueConfiguration$.Outbound;
-        sink?: QueueSink$.Outbound | undefined;
-        authSession?: AuthSession$.Outbound | undefined;
-        proxy?: Proxy$.Outbound | undefined;
-        metadata?: { [k: string]: any } | undefined;
+        configuration: QueueConfiguration$.Outbound | null;
+        sink?: WebhookSink$.Outbound | null | undefined;
+        authSession?: AuthSession$.Outbound | null | undefined;
+        metadata?: { [k: string]: any } | null | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueInput> = z
-        .object({
-            id: z.string().optional(),
-            name: z.string().optional(),
-            configuration: QueueConfiguration$.outboundSchema,
-            sink: QueueSink$.outboundSchema.optional(),
-            authSession: AuthSession$.outboundSchema.optional(),
-            proxy: Proxy$.outboundSchema.optional(),
-            metadata: z.record(z.any()).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.name === undefined ? null : { name: v.name }),
-                configuration: v.configuration,
-                ...(v.sink === undefined ? null : { sink: v.sink }),
-                ...(v.authSession === undefined ? null : { authSession: v.authSession }),
-                ...(v.proxy === undefined ? null : { proxy: v.proxy }),
-                ...(v.metadata === undefined ? null : { metadata: v.metadata }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueInput> = z.object({
+        id: z.string().optional(),
+        name: z.string().optional(),
+        configuration: z.nullable(QueueConfiguration$.outboundSchema),
+        sink: z.nullable(WebhookSink$.outboundSchema).optional(),
+        authSession: z.nullable(AuthSession$.outboundSchema).optional(),
+        metadata: z.nullable(z.record(z.any())).optional(),
+    });
 }

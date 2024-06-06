@@ -21,32 +21,18 @@ export namespace Message$ {
 
 /** @internal */
 export namespace CreateJob$ {
-    export const inboundSchema: z.ZodType<CreateJob, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            message: Message$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const inboundSchema: z.ZodType<CreateJob, z.ZodTypeDef, unknown> = z.object({
+        id: z.string().optional(),
+        message: Message$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         id?: string | undefined;
         message?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJob> = z
-        .object({
-            id: z.string().optional(),
-            message: Message$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJob> = z.object({
+        id: z.string().optional(),
+        message: Message$.outboundSchema.optional(),
+    });
 }

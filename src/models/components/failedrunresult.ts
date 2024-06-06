@@ -4,6 +4,9 @@
 
 import * as z from "zod";
 
+/**
+ * Failed API run result
+ */
 export type FailedRunResult = {
     /**
      * Error code
@@ -17,32 +20,18 @@ export type FailedRunResult = {
 
 /** @internal */
 export namespace FailedRunResult$ {
-    export const inboundSchema: z.ZodType<FailedRunResult, z.ZodTypeDef, unknown> = z
-        .object({
-            error: z.string(),
-            message: z.string(),
-        })
-        .transform((v) => {
-            return {
-                error: v.error,
-                message: v.message,
-            };
-        });
+    export const inboundSchema: z.ZodType<FailedRunResult, z.ZodTypeDef, unknown> = z.object({
+        error: z.string(),
+        message: z.string(),
+    });
 
     export type Outbound = {
         error: string;
         message: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FailedRunResult> = z
-        .object({
-            error: z.string(),
-            message: z.string(),
-        })
-        .transform((v) => {
-            return {
-                error: v.error,
-                message: v.message,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FailedRunResult> = z.object({
+        error: z.string(),
+        message: z.string(),
+    });
 }

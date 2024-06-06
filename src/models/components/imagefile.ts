@@ -5,11 +5,20 @@
 import { FileSource, FileSource$ } from "./filesource";
 import * as z from "zod";
 
+/**
+ * The file type
+ */
 export enum Type {
     Image = "image",
 }
 
+/**
+ * Image file data to extract from
+ */
 export type ImageFile = {
+    /**
+     * The file type
+     */
     type: Type;
     source: FileSource;
 };
@@ -22,32 +31,18 @@ export namespace Type$ {
 
 /** @internal */
 export namespace ImageFile$ {
-    export const inboundSchema: z.ZodType<ImageFile, z.ZodTypeDef, unknown> = z
-        .object({
-            type: Type$.inboundSchema,
-            source: FileSource$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                source: v.source,
-            };
-        });
+    export const inboundSchema: z.ZodType<ImageFile, z.ZodTypeDef, unknown> = z.object({
+        type: Type$.inboundSchema,
+        source: FileSource$.inboundSchema,
+    });
 
     export type Outbound = {
         type: string;
         source: FileSource$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ImageFile> = z
-        .object({
-            type: Type$.outboundSchema,
-            source: FileSource$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                source: v.source,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ImageFile> = z.object({
+        type: Type$.outboundSchema,
+        source: FileSource$.outboundSchema,
+    });
 }

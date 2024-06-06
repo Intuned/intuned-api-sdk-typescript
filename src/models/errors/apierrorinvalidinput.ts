@@ -48,10 +48,7 @@ export namespace ApiErrorInvalidInput$ {
             error: z.string(),
         })
         .transform((v) => {
-            return new ApiErrorInvalidInput({
-                ...(v.details === undefined ? null : { details: v.details }),
-                error: v.error,
-            });
+            return new ApiErrorInvalidInput(v);
         });
 
     export type Outbound = {
@@ -63,16 +60,9 @@ export namespace ApiErrorInvalidInput$ {
         .instanceof(ApiErrorInvalidInput)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    details: z.record(z.any()).optional(),
-                    error: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        ...(v.details === undefined ? null : { details: v.details }),
-                        error: v.error,
-                    };
-                })
+            z.object({
+                details: z.record(z.any()).optional(),
+                error: z.string(),
+            })
         );
 }
