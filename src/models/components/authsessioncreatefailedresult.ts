@@ -4,13 +4,28 @@
 
 import * as z from "zod";
 
+/**
+ * Status of auth session creation operation.
+ */
 export enum AuthSessionCreateFailedResultStatus {
     Failed = "failed",
 }
 
+/**
+ * Auth session create failed.
+ */
 export type AuthSessionCreateFailedResult = {
+    /**
+     * Status of auth session creation operation.
+     */
     status: AuthSessionCreateFailedResultStatus;
+    /**
+     * Error code.
+     */
     error: string;
+    /**
+     * Error message.
+     */
     message: string;
 };
 
@@ -22,18 +37,11 @@ export namespace AuthSessionCreateFailedResultStatus$ {
 
 /** @internal */
 export namespace AuthSessionCreateFailedResult$ {
-    export const inboundSchema: z.ZodType<AuthSessionCreateFailedResult, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AuthSessionCreateFailedResult, z.ZodTypeDef, unknown> =
+        z.object({
             status: AuthSessionCreateFailedResultStatus$.inboundSchema,
             error: z.string(),
             message: z.string(),
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-                error: v.error,
-                message: v.message,
-            };
         });
 
     export type Outbound = {
@@ -43,17 +51,9 @@ export namespace AuthSessionCreateFailedResult$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreateFailedResult> =
-        z
-            .object({
-                status: AuthSessionCreateFailedResultStatus$.outboundSchema,
-                error: z.string(),
-                message: z.string(),
-            })
-            .transform((v) => {
-                return {
-                    status: v.status,
-                    error: v.error,
-                    message: v.message,
-                };
-            });
+        z.object({
+            status: AuthSessionCreateFailedResultStatus$.outboundSchema,
+            error: z.string(),
+            message: z.string(),
+        });
 }

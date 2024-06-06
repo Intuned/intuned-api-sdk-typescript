@@ -144,7 +144,7 @@ export class Queues extends ClientSDK {
      */
     async create(
         projectName: string,
-        queueInput?: components.QueueInput | undefined,
+        queueInput: components.QueueInput,
         options?: RequestOptions
     ): Promise<operations.CreateQueueResponse> {
         const input$: operations.CreateQueueRequest = {
@@ -397,7 +397,7 @@ export class Queues extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteQueueResponse>()
-            .json(204, operations.DeleteQueueResponse$, { key: "DeleteQueue" })
+            .void(204, operations.DeleteQueueResponse$)
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, request$, { extraFields: responseFields$ });

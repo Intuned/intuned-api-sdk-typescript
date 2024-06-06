@@ -9,8 +9,8 @@ export enum AddQueueRepeatItemStatus {
 }
 
 export type AddQueueRepeatItem = {
-    id?: string | undefined;
-    status?: AddQueueRepeatItemStatus | undefined;
+    id: string;
+    status: AddQueueRepeatItemStatus;
 };
 
 /** @internal */
@@ -21,32 +21,18 @@ export namespace AddQueueRepeatItemStatus$ {
 
 /** @internal */
 export namespace AddQueueRepeatItem$ {
-    export const inboundSchema: z.ZodType<AddQueueRepeatItem, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            status: AddQueueRepeatItemStatus$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
+    export const inboundSchema: z.ZodType<AddQueueRepeatItem, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+        status: AddQueueRepeatItemStatus$.inboundSchema,
+    });
 
     export type Outbound = {
-        id?: string | undefined;
-        status?: string | undefined;
+        id: string;
+        status: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddQueueRepeatItem> = z
-        .object({
-            id: z.string().optional(),
-            status: AddQueueRepeatItemStatus$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.status === undefined ? null : { status: v.status }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddQueueRepeatItem> = z.object({
+        id: z.string(),
+        status: AddQueueRepeatItemStatus$.outboundSchema,
+    });
 }

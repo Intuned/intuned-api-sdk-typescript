@@ -1,9 +1,11 @@
 # FileBase64Source
 
+Base64-encoded file source.
+
 
 ## Fields
 
 | Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
 | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| `type`                                                                             | [components.FileBase64SourceType](../../models/components/filebase64sourcetype.md) | :heavy_check_mark:                                                                 | N/A                                                                                |
-| `data`                                                                             | *string*                                                                           | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `type`                                                                             | [components.FileBase64SourceType](../../models/components/filebase64sourcetype.md) | :heavy_check_mark:                                                                 | Type of file source                                                                |
+| `data`                                                                             | *string*                                                                           | :heavy_check_mark:                                                                 | Base64 encoded string of the contents of the file.                                 |

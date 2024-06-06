@@ -3,33 +3,68 @@
  */
 
 import {
-    AsyncFileCompletedResponse,
-    AsyncFileCompletedResponse$,
-} from "./asyncfilecompletedresponse";
-import { AsyncFileFailedResponse, AsyncFileFailedResponse$ } from "./asyncfilefailedresponse";
-import { AsyncRunPendingResponse, AsyncRunPendingResponse$ } from "./asyncrunpendingresponse";
+    AsyncRunCompletedResponse,
+    AsyncRunCompletedResponse$,
+    AsyncRunCompletedResponseStatus,
+} from "./asyncruncompletedresponse";
+import {
+    AsyncRunFailedResponse,
+    AsyncRunFailedResponse$,
+    AsyncRunFailedResponseStatus,
+} from "./asyncrunfailedresponse";
+import {
+    AsyncRunPendingResponse,
+    AsyncRunPendingResponse$,
+    AsyncRunPendingResponseStatus,
+} from "./asyncrunpendingresponse";
 import * as z from "zod";
 
 export type AsyncResultResponse =
-    | AsyncRunPendingResponse
-    | AsyncFileCompletedResponse
-    | AsyncFileFailedResponse;
+    | (AsyncRunPendingResponse & { status: AsyncRunPendingResponseStatus.Pending })
+    | (AsyncRunCompletedResponse & { status: AsyncRunCompletedResponseStatus.Completed })
+    | (AsyncRunFailedResponse & { status: AsyncRunFailedResponseStatus.Failed });
 
 /** @internal */
 export namespace AsyncResultResponse$ {
     export const inboundSchema: z.ZodType<AsyncResultResponse, z.ZodTypeDef, unknown> = z.union([
-        AsyncRunPendingResponse$.inboundSchema,
-        AsyncFileCompletedResponse$.inboundSchema,
-        AsyncFileFailedResponse$.inboundSchema,
+        AsyncRunPendingResponse$.inboundSchema.and(
+            z
+                .object({ status: z.literal(AsyncRunPendingResponseStatus.Pending) })
+                .transform((v) => ({ status: v.status }))
+        ),
+        AsyncRunCompletedResponse$.inboundSchema.and(
+            z
+                .object({ status: z.literal(AsyncRunCompletedResponseStatus.Completed) })
+                .transform((v) => ({ status: v.status }))
+        ),
+        AsyncRunFailedResponse$.inboundSchema.and(
+            z
+                .object({ status: z.literal(AsyncRunFailedResponseStatus.Failed) })
+                .transform((v) => ({ status: v.status }))
+        ),
     ]);
 
     export type Outbound =
-        | AsyncRunPendingResponse$.Outbound
-        | AsyncFileCompletedResponse$.Outbound
-        | AsyncFileFailedResponse$.Outbound;
+        | (AsyncRunPendingResponse$.Outbound & { status: AsyncRunPendingResponseStatus.Pending })
+        | (AsyncRunCompletedResponse$.Outbound & {
+              status: AsyncRunCompletedResponseStatus.Completed;
+          })
+        | (AsyncRunFailedResponse$.Outbound & { status: AsyncRunFailedResponseStatus.Failed });
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncResultResponse> = z.union([
-        AsyncRunPendingResponse$.outboundSchema,
-        AsyncFileCompletedResponse$.outboundSchema,
-        AsyncFileFailedResponse$.outboundSchema,
+        AsyncRunPendingResponse$.outboundSchema.and(
+            z
+                .object({ status: z.literal(AsyncRunPendingResponseStatus.Pending) })
+                .transform((v) => ({ status: v.status }))
+        ),
+        AsyncRunCompletedResponse$.outboundSchema.and(
+            z
+                .object({ status: z.literal(AsyncRunCompletedResponseStatus.Completed) })
+                .transform((v) => ({ status: v.status }))
+        ),
+        AsyncRunFailedResponse$.outboundSchema.and(
+            z
+                .object({ status: z.literal(AsyncRunFailedResponseStatus.Failed) })
+                .transform((v) => ({ status: v.status }))
+        ),
     ]);
 }

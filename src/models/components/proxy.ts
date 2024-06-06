@@ -5,7 +5,7 @@
 import * as z from "zod";
 
 /**
- * The proxy location. If not provided, a rotating proxy will be enabled.
+ * The proxy location. If proxy is enabled and this value is not provided, a rotating proxy will be used.
  */
 export enum Location {
     UsWa = "US-WA",
@@ -14,10 +14,16 @@ export enum Location {
     UsCa = "US-CA",
 }
 
+/**
+ * Proxy configuration. If configured, the project API will run using this proxy for all requests.
+ */
 export type Proxy = {
+    /**
+     * Whether the proxy is enabled or not.
+     */
     enabled: boolean;
     /**
-     * The proxy location. If not provided, a rotating proxy will be enabled.
+     * The proxy location. If proxy is enabled and this value is not provided, a rotating proxy will be used.
      */
     location?: Location | undefined;
 };
@@ -30,32 +36,18 @@ export namespace Location$ {
 
 /** @internal */
 export namespace Proxy$ {
-    export const inboundSchema: z.ZodType<Proxy, z.ZodTypeDef, unknown> = z
-        .object({
-            enabled: z.boolean(),
-            location: Location$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                enabled: v.enabled,
-                ...(v.location === undefined ? null : { location: v.location }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Proxy, z.ZodTypeDef, unknown> = z.object({
+        enabled: z.boolean(),
+        location: Location$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         enabled: boolean;
         location?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Proxy> = z
-        .object({
-            enabled: z.boolean(),
-            location: Location$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                enabled: v.enabled,
-                ...(v.location === undefined ? null : { location: v.location }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Proxy> = z.object({
+        enabled: z.boolean(),
+        location: Location$.outboundSchema.optional(),
+    });
 }

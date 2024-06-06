@@ -20,27 +20,17 @@ export namespace CreateAuthSessionResumeResult$ {
 
 /** @internal */
 export namespace CreateAuthSessionResume$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionResume, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<CreateAuthSessionResume, z.ZodTypeDef, unknown> =
+        z.object({
             result: CreateAuthSessionResumeResult$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
         });
 
     export type Outbound = {
         result?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionResume> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionResume> =
+        z.object({
             result: CreateAuthSessionResumeResult$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.result === undefined ? null : { result: v.result }),
-            };
         });
 }

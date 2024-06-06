@@ -1,5 +1,7 @@
 # AuthSessionCreateRequestedMoreInfoResultStatus
 
+Status of the auth session creation operation
+
 
 ## Values
 

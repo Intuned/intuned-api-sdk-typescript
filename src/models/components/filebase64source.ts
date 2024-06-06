@@ -4,12 +4,24 @@
 
 import * as z from "zod";
 
+/**
+ * Type of file source
+ */
 export enum FileBase64SourceType {
     Base64 = "base64",
 }
 
+/**
+ * Base64-encoded file source.
+ */
 export type FileBase64Source = {
+    /**
+     * Type of file source
+     */
     type: FileBase64SourceType;
+    /**
+     * Base64 encoded string of the contents of the file.
+     */
     data: string;
 };
 
@@ -21,32 +33,18 @@ export namespace FileBase64SourceType$ {
 
 /** @internal */
 export namespace FileBase64Source$ {
-    export const inboundSchema: z.ZodType<FileBase64Source, z.ZodTypeDef, unknown> = z
-        .object({
-            type: FileBase64SourceType$.inboundSchema,
-            data: z.string(),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<FileBase64Source, z.ZodTypeDef, unknown> = z.object({
+        type: FileBase64SourceType$.inboundSchema,
+        data: z.string(),
+    });
 
     export type Outbound = {
         type: string;
         data: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileBase64Source> = z
-        .object({
-            type: FileBase64SourceType$.outboundSchema,
-            data: z.string(),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileBase64Source> = z.object({
+        type: FileBase64SourceType$.outboundSchema,
+        data: z.string(),
+    });
 }

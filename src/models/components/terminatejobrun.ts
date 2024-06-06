@@ -20,27 +20,15 @@ export namespace TerminateJobRunMessage$ {
 
 /** @internal */
 export namespace TerminateJobRun$ {
-    export const inboundSchema: z.ZodType<TerminateJobRun, z.ZodTypeDef, unknown> = z
-        .object({
-            message: TerminateJobRunMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const inboundSchema: z.ZodType<TerminateJobRun, z.ZodTypeDef, unknown> = z.object({
+        message: TerminateJobRunMessage$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         message?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRun> = z
-        .object({
-            message: TerminateJobRunMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRun> = z.object({
+        message: TerminateJobRunMessage$.outboundSchema.optional(),
+    });
 }

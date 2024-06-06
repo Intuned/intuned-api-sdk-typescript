@@ -5,60 +5,42 @@
 import { JobCalendarRange, JobCalendarRange$ } from "./jobcalendarrange";
 import * as z from "zod";
 
-export type JobCalendarValue2 = number | string;
+export type Two = number | string;
 
-/**
- * Every valid value for the calendar property.
- */
-export enum JobCalendarValue1 {
-    Wildcard = "*",
-}
-
-export type JobCalendarValue =
-    | JobCalendarRange
-    | JobCalendarValue1
-    | number
-    | string
-    | Array<JobCalendarRange>;
+export type JobCalendarValue = JobCalendarRange | any | number | string | Array<JobCalendarRange>;
 
 /** @internal */
-export namespace JobCalendarValue2$ {
-    export const inboundSchema: z.ZodType<JobCalendarValue2, z.ZodTypeDef, unknown> = z.union([
+export namespace Two$ {
+    export const inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z.union([
         z.number(),
         z.string(),
     ]);
 
     export type Outbound = number | string;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobCalendarValue2> = z.union([
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Two> = z.union([
         z.number(),
         z.string(),
     ]);
-}
-
-/** @internal */
-export namespace JobCalendarValue1$ {
-    export const inboundSchema = z.nativeEnum(JobCalendarValue1);
-    export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
 export namespace JobCalendarValue$ {
     export const inboundSchema: z.ZodType<JobCalendarValue, z.ZodTypeDef, unknown> = z.union([
         JobCalendarRange$.inboundSchema,
-        JobCalendarValue1$.inboundSchema,
+        z.any(),
         z.union([z.number(), z.string()]),
         z.array(JobCalendarRange$.inboundSchema),
     ]);
 
     export type Outbound =
         | JobCalendarRange$.Outbound
-        | string
+        | any
         | number
         | string
         | Array<JobCalendarRange$.Outbound>;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobCalendarValue> = z.union([
         JobCalendarRange$.outboundSchema,
-        JobCalendarValue1$.outboundSchema,
+        z.any(),
         z.union([z.number(), z.string()]),
         z.array(JobCalendarRange$.outboundSchema),
     ]);

@@ -130,7 +130,7 @@ export class ExtractStructuredData extends ClientSDK {
      * Extract Structured Data - Async Start
      *
      * @remarks
-     * Starts an asynchronous operation to extract structred data from a file. Supported file types are image, pdf (more coming soon!).
+     * Starts an asynchronous operation to extract structured data from a file. Supported file types are image, pdf (more coming soon!).
      * It accepts the file and requested schema for the data to be extracted.
      * It responds with an ID to track the operation status and retrieve the result.
      */
@@ -203,7 +203,7 @@ export class ExtractStructuredData extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.FileExtractStructuredDataStartResponse>()
-            .json(200, operations.FileExtractStructuredDataStartResponse$, {
+            .json(201, operations.FileExtractStructuredDataStartResponse$, {
                 key: "AsyncFilePendingResponse",
             })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })

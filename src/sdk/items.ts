@@ -48,7 +48,7 @@ export class Items extends ClientSDK {
     async append(
         projectName: string,
         queueId: string,
-        queueItem?: components.QueueItem | undefined,
+        queueItem: components.QueueItem,
         options?: RequestOptions
     ): Promise<operations.AppendQueueItemResponse> {
         const input$: operations.AppendQueueItemRequest = {
@@ -318,7 +318,7 @@ export class Items extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteQueueItemResponse>()
-            .json(204, operations.DeleteQueueItemResponse$, { key: "DeleteQueueItem" })
+            .void(204, operations.DeleteQueueItemResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

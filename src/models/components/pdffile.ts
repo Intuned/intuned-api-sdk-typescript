@@ -5,12 +5,24 @@
 import { FileSource, FileSource$ } from "./filesource";
 import * as z from "zod";
 
+/**
+ * The file type
+ */
 export enum PdfFileType {
     Pdf = "pdf",
 }
 
+/**
+ * PDF file data to extract from
+ */
 export type PdfFile = {
+    /**
+     * The file type
+     */
     type: PdfFileType;
+    /**
+     * The pages to extract from. If not provided, all pages will be extracted (this will affect the cost).
+     */
     pages?: Array<number> | undefined;
     source: FileSource;
 };
@@ -23,19 +35,11 @@ export namespace PdfFileType$ {
 
 /** @internal */
 export namespace PdfFile$ {
-    export const inboundSchema: z.ZodType<PdfFile, z.ZodTypeDef, unknown> = z
-        .object({
-            type: PdfFileType$.inboundSchema,
-            pages: z.array(z.number().int()).optional(),
-            source: FileSource$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                ...(v.pages === undefined ? null : { pages: v.pages }),
-                source: v.source,
-            };
-        });
+    export const inboundSchema: z.ZodType<PdfFile, z.ZodTypeDef, unknown> = z.object({
+        type: PdfFileType$.inboundSchema,
+        pages: z.array(z.number().int()).optional(),
+        source: FileSource$.inboundSchema,
+    });
 
     export type Outbound = {
         type: string;
@@ -43,17 +47,9 @@ export namespace PdfFile$ {
         source: FileSource$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PdfFile> = z
-        .object({
-            type: PdfFileType$.outboundSchema,
-            pages: z.array(z.number().int()).optional(),
-            source: FileSource$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                ...(v.pages === undefined ? null : { pages: v.pages }),
-                source: v.source,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PdfFile> = z.object({
+        type: PdfFileType$.outboundSchema,
+        pages: z.array(z.number().int()).optional(),
+        source: FileSource$.outboundSchema,
+    });
 }

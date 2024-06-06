@@ -4,12 +4,24 @@
 
 import * as z from "zod";
 
+/**
+ * Type of file source
+ */
 export enum FileUrlSourceType {
     Url = "url",
 }
 
+/**
+ * URL file source.
+ */
 export type FileUrlSource = {
+    /**
+     * Type of file source
+     */
     type: FileUrlSourceType;
+    /**
+     * URL to the file
+     */
     data: string;
 };
 
@@ -21,32 +33,18 @@ export namespace FileUrlSourceType$ {
 
 /** @internal */
 export namespace FileUrlSource$ {
-    export const inboundSchema: z.ZodType<FileUrlSource, z.ZodTypeDef, unknown> = z
-        .object({
-            type: FileUrlSourceType$.inboundSchema,
-            data: z.string(),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                data: v.data,
-            };
-        });
+    export const inboundSchema: z.ZodType<FileUrlSource, z.ZodTypeDef, unknown> = z.object({
+        type: FileUrlSourceType$.inboundSchema,
+        data: z.string(),
+    });
 
     export type Outbound = {
         type: string;
         data: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileUrlSource> = z
-        .object({
-            type: FileUrlSourceType$.outboundSchema,
-            data: z.string(),
-        })
-        .transform((v) => {
-            return {
-                type: v.type,
-                data: v.data,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileUrlSource> = z.object({
+        type: FileUrlSourceType$.outboundSchema,
+        data: z.string(),
+    });
 }

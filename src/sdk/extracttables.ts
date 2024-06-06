@@ -197,7 +197,7 @@ export class ExtractTables extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.FileExtractTablesStartResponse>()
-            .json(200, operations.FileExtractTablesStartResponse$, {
+            .json(201, operations.FileExtractTablesStartResponse$, {
                 key: "AsyncFilePendingResponse",
             })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })

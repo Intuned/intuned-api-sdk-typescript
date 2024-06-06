@@ -4,45 +4,96 @@
 
 import * as z from "zod";
 
+/**
+ * Status of the auth session creation operation
+ */
 export enum AuthSessionCreateRequestedMoreInfoResultStatus {
     RequestedMoreInfo = "requested_more_info",
 }
 
+/**
+ * Type of the requested info.
+ */
 export enum DetailsRequestType {
     Otp = "otp",
 }
 
+/**
+ * The requested action.
+ */
 export enum DetailsAction {
     RequestMoreInfo = "request_more_info",
 }
 
-export type Details2 = {
+/**
+ * Requested more info - OTP
+ */
+export type Otp = {
+    /**
+     * Type of the requested info.
+     */
     requestType: DetailsRequestType;
+    /**
+     * The requested action.
+     */
     action: DetailsAction;
+    /**
+     * Message sent from the `create` file.
+     */
     messageToUser: string;
 };
 
+/**
+ * Type of the requested info.
+ */
 export enum RequestType {
     MultipleChoice = "multiple_choice",
 }
 
+/**
+ * The requested action.
+ */
 export enum Action {
     RequestMoreInfo = "request_more_info",
 }
 
-export type Details1 = {
+/**
+ * Requested more info - Multiple choice.
+ */
+export type MultipleChoice = {
+    /**
+     * Multiple choice choices. An array of strings.
+     */
     choices: Array<string>;
+    /**
+     * Type of the requested info.
+     */
     requestType: RequestType;
+    /**
+     * The requested action.
+     */
     action: Action;
+    /**
+     * Message sent from the `create` file.
+     */
     messageToUser: string;
 };
 
-export type Details = Details2 | Details1;
+export type Details = Otp | MultipleChoice;
 
+/**
+ * Auth session create requested more info
+ */
 export type AuthSessionCreateRequestedMoreInfoResult = {
+    /**
+     * Status of the auth session creation operation
+     */
     status: AuthSessionCreateRequestedMoreInfoResultStatus;
+    /**
+     * The ID of the info request action. Used in resuming the creation.
+     */
     id: string;
-    details: Details2 | Details1;
+    details: Otp | MultipleChoice;
 };
 
 /** @internal */
@@ -64,20 +115,12 @@ export namespace DetailsAction$ {
 }
 
 /** @internal */
-export namespace Details2$ {
-    export const inboundSchema: z.ZodType<Details2, z.ZodTypeDef, unknown> = z
-        .object({
-            requestType: DetailsRequestType$.inboundSchema,
-            action: DetailsAction$.inboundSchema,
-            messageToUser: z.string(),
-        })
-        .transform((v) => {
-            return {
-                requestType: v.requestType,
-                action: v.action,
-                messageToUser: v.messageToUser,
-            };
-        });
+export namespace Otp$ {
+    export const inboundSchema: z.ZodType<Otp, z.ZodTypeDef, unknown> = z.object({
+        requestType: DetailsRequestType$.inboundSchema,
+        action: DetailsAction$.inboundSchema,
+        messageToUser: z.string(),
+    });
 
     export type Outbound = {
         requestType: string;
@@ -85,19 +128,11 @@ export namespace Details2$ {
         messageToUser: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Details2> = z
-        .object({
-            requestType: DetailsRequestType$.outboundSchema,
-            action: DetailsAction$.outboundSchema,
-            messageToUser: z.string(),
-        })
-        .transform((v) => {
-            return {
-                requestType: v.requestType,
-                action: v.action,
-                messageToUser: v.messageToUser,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Otp> = z.object({
+        requestType: DetailsRequestType$.outboundSchema,
+        action: DetailsAction$.outboundSchema,
+        messageToUser: z.string(),
+    });
 }
 
 /** @internal */
@@ -113,22 +148,13 @@ export namespace Action$ {
 }
 
 /** @internal */
-export namespace Details1$ {
-    export const inboundSchema: z.ZodType<Details1, z.ZodTypeDef, unknown> = z
-        .object({
-            choices: z.array(z.string()),
-            requestType: RequestType$.inboundSchema,
-            action: Action$.inboundSchema,
-            messageToUser: z.string(),
-        })
-        .transform((v) => {
-            return {
-                choices: v.choices,
-                requestType: v.requestType,
-                action: v.action,
-                messageToUser: v.messageToUser,
-            };
-        });
+export namespace MultipleChoice$ {
+    export const inboundSchema: z.ZodType<MultipleChoice, z.ZodTypeDef, unknown> = z.object({
+        choices: z.array(z.string()),
+        requestType: RequestType$.inboundSchema,
+        action: Action$.inboundSchema,
+        messageToUser: z.string(),
+    });
 
     export type Outbound = {
         choices: Array<string>;
@@ -137,34 +163,25 @@ export namespace Details1$ {
         messageToUser: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Details1> = z
-        .object({
-            choices: z.array(z.string()),
-            requestType: RequestType$.outboundSchema,
-            action: Action$.outboundSchema,
-            messageToUser: z.string(),
-        })
-        .transform((v) => {
-            return {
-                choices: v.choices,
-                requestType: v.requestType,
-                action: v.action,
-                messageToUser: v.messageToUser,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MultipleChoice> = z.object({
+        choices: z.array(z.string()),
+        requestType: RequestType$.outboundSchema,
+        action: Action$.outboundSchema,
+        messageToUser: z.string(),
+    });
 }
 
 /** @internal */
 export namespace Details$ {
     export const inboundSchema: z.ZodType<Details, z.ZodTypeDef, unknown> = z.union([
-        z.lazy(() => Details2$.inboundSchema),
-        z.lazy(() => Details1$.inboundSchema),
+        z.lazy(() => Otp$.inboundSchema),
+        z.lazy(() => MultipleChoice$.inboundSchema),
     ]);
 
-    export type Outbound = Details2$.Outbound | Details1$.Outbound;
+    export type Outbound = Otp$.Outbound | MultipleChoice$.Outbound;
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Details> = z.union([
-        z.lazy(() => Details2$.outboundSchema),
-        z.lazy(() => Details1$.outboundSchema),
+        z.lazy(() => Otp$.outboundSchema),
+        z.lazy(() => MultipleChoice$.outboundSchema),
     ]);
 }
 
@@ -174,47 +191,31 @@ export namespace AuthSessionCreateRequestedMoreInfoResult$ {
         AuthSessionCreateRequestedMoreInfoResult,
         z.ZodTypeDef,
         unknown
-    > = z
-        .object({
-            status: AuthSessionCreateRequestedMoreInfoResultStatus$.inboundSchema,
-            id: z.string(),
-            details: z.union([
-                z.lazy(() => Details2$.inboundSchema),
-                z.lazy(() => Details1$.inboundSchema),
-            ]),
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-                id: v.id,
-                details: v.details,
-            };
-        });
+    > = z.object({
+        status: AuthSessionCreateRequestedMoreInfoResultStatus$.inboundSchema,
+        id: z.string(),
+        details: z.union([
+            z.lazy(() => Otp$.inboundSchema),
+            z.lazy(() => MultipleChoice$.inboundSchema),
+        ]),
+    });
 
     export type Outbound = {
         status: string;
         id: string;
-        details: Details2$.Outbound | Details1$.Outbound;
+        details: Otp$.Outbound | MultipleChoice$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
         AuthSessionCreateRequestedMoreInfoResult
-    > = z
-        .object({
-            status: AuthSessionCreateRequestedMoreInfoResultStatus$.outboundSchema,
-            id: z.string(),
-            details: z.union([
-                z.lazy(() => Details2$.outboundSchema),
-                z.lazy(() => Details1$.outboundSchema),
-            ]),
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-                id: v.id,
-                details: v.details,
-            };
-        });
+    > = z.object({
+        status: AuthSessionCreateRequestedMoreInfoResultStatus$.outboundSchema,
+        id: z.string(),
+        details: z.union([
+            z.lazy(() => Otp$.outboundSchema),
+            z.lazy(() => MultipleChoice$.outboundSchema),
+        ]),
+    });
 }

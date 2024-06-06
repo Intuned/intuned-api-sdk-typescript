@@ -1,6 +1,6 @@
 # Calendars
 
-The calendar value. This works similar to a cron string.
+A calendar object. It is similar to a cron string, but more verbose.
 
 
 ## Fields

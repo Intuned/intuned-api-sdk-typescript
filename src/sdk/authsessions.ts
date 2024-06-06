@@ -302,7 +302,7 @@ export class AuthSessions extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.DeleteAuthSessionResponse>()
-            .json(204, operations.DeleteAuthSessionResponse$, { key: "DeleteAuthSession" })
+            .void(204, operations.DeleteAuthSessionResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

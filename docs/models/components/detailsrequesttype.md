@@ -1,5 +1,7 @@
 # DetailsRequestType
 
+Type of the requested info.
+
 
 ## Values
 

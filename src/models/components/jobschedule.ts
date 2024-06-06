@@ -7,12 +7,15 @@ import * as z from "zod";
 
 export type Every = number | string;
 
+/**
+ * An interval object, which represents a period to trigger the job. The interval is relative to the [Unix epoch](https://en.wikipedia.org/wiki/Unix_time).
+ */
 export type Intervals = {
-    every?: number | string | undefined;
+    every: number | string;
 };
 
 /**
- * The calendar value. This works similar to a cron string.
+ * A calendar object. It is similar to a cron string, but more verbose.
  */
 export type Calendars = {
     second?: JobCalendarValue | undefined;
@@ -28,9 +31,17 @@ export type Calendars = {
     comment?: string | undefined;
 };
 
+/**
+ * Schedule configurations for the job. If set, the job will periodically run according to this configuration. The configurations are used to calculate the closest next run time.
+ */
 export type JobSchedule = {
-    version?: string | undefined;
+    /**
+     * An array of interval objects
+     */
     intervals?: Array<Intervals> | undefined;
+    /**
+     * An array of calendar objects
+     */
     calendars?: Array<Calendars> | undefined;
 };
 
@@ -50,56 +61,31 @@ export namespace Every$ {
 
 /** @internal */
 export namespace Intervals$ {
-    export const inboundSchema: z.ZodType<Intervals, z.ZodTypeDef, unknown> = z
-        .object({
-            every: z.union([z.number(), z.string()]).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.every === undefined ? null : { every: v.every }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Intervals, z.ZodTypeDef, unknown> = z.object({
+        every: z.union([z.number(), z.string()]),
+    });
 
     export type Outbound = {
-        every?: number | string | undefined;
+        every: number | string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Intervals> = z
-        .object({
-            every: z.union([z.number(), z.string()]).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.every === undefined ? null : { every: v.every }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Intervals> = z.object({
+        every: z.union([z.number(), z.string()]),
+    });
 }
 
 /** @internal */
 export namespace Calendars$ {
-    export const inboundSchema: z.ZodType<Calendars, z.ZodTypeDef, unknown> = z
-        .object({
-            second: JobCalendarValue$.inboundSchema.optional(),
-            minute: JobCalendarValue$.inboundSchema.optional(),
-            hour: JobCalendarValue$.inboundSchema.optional(),
-            dayOfMonth: JobCalendarValue$.inboundSchema.optional(),
-            dayOfWeek: JobCalendarValue$.inboundSchema.optional(),
-            month: JobCalendarValue$.inboundSchema.optional(),
-            year: JobCalendarValue$.inboundSchema.optional(),
-            comment: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.second === undefined ? null : { second: v.second }),
-                ...(v.minute === undefined ? null : { minute: v.minute }),
-                ...(v.hour === undefined ? null : { hour: v.hour }),
-                ...(v.dayOfMonth === undefined ? null : { dayOfMonth: v.dayOfMonth }),
-                ...(v.dayOfWeek === undefined ? null : { dayOfWeek: v.dayOfWeek }),
-                ...(v.month === undefined ? null : { month: v.month }),
-                ...(v.year === undefined ? null : { year: v.year }),
-                ...(v.comment === undefined ? null : { comment: v.comment }),
-            };
-        });
+    export const inboundSchema: z.ZodType<Calendars, z.ZodTypeDef, unknown> = z.object({
+        second: JobCalendarValue$.inboundSchema.optional(),
+        minute: JobCalendarValue$.inboundSchema.optional(),
+        hour: JobCalendarValue$.inboundSchema.optional(),
+        dayOfMonth: JobCalendarValue$.inboundSchema.optional(),
+        dayOfWeek: JobCalendarValue$.inboundSchema.optional(),
+        month: JobCalendarValue$.inboundSchema.optional(),
+        year: JobCalendarValue$.inboundSchema.optional(),
+        comment: z.string().optional(),
+    });
 
     export type Outbound = {
         second?: JobCalendarValue$.Outbound | undefined;
@@ -112,64 +98,32 @@ export namespace Calendars$ {
         comment?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Calendars> = z
-        .object({
-            second: JobCalendarValue$.outboundSchema.optional(),
-            minute: JobCalendarValue$.outboundSchema.optional(),
-            hour: JobCalendarValue$.outboundSchema.optional(),
-            dayOfMonth: JobCalendarValue$.outboundSchema.optional(),
-            dayOfWeek: JobCalendarValue$.outboundSchema.optional(),
-            month: JobCalendarValue$.outboundSchema.optional(),
-            year: JobCalendarValue$.outboundSchema.optional(),
-            comment: z.string().optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.second === undefined ? null : { second: v.second }),
-                ...(v.minute === undefined ? null : { minute: v.minute }),
-                ...(v.hour === undefined ? null : { hour: v.hour }),
-                ...(v.dayOfMonth === undefined ? null : { dayOfMonth: v.dayOfMonth }),
-                ...(v.dayOfWeek === undefined ? null : { dayOfWeek: v.dayOfWeek }),
-                ...(v.month === undefined ? null : { month: v.month }),
-                ...(v.year === undefined ? null : { year: v.year }),
-                ...(v.comment === undefined ? null : { comment: v.comment }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Calendars> = z.object({
+        second: JobCalendarValue$.outboundSchema.optional(),
+        minute: JobCalendarValue$.outboundSchema.optional(),
+        hour: JobCalendarValue$.outboundSchema.optional(),
+        dayOfMonth: JobCalendarValue$.outboundSchema.optional(),
+        dayOfWeek: JobCalendarValue$.outboundSchema.optional(),
+        month: JobCalendarValue$.outboundSchema.optional(),
+        year: JobCalendarValue$.outboundSchema.optional(),
+        comment: z.string().optional(),
+    });
 }
 
 /** @internal */
 export namespace JobSchedule$ {
-    export const inboundSchema: z.ZodType<JobSchedule, z.ZodTypeDef, unknown> = z
-        .object({
-            version: z.string().optional(),
-            intervals: z.array(z.lazy(() => Intervals$.inboundSchema)).optional(),
-            calendars: z.array(z.lazy(() => Calendars$.inboundSchema)).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.version === undefined ? null : { version: v.version }),
-                ...(v.intervals === undefined ? null : { intervals: v.intervals }),
-                ...(v.calendars === undefined ? null : { calendars: v.calendars }),
-            };
-        });
+    export const inboundSchema: z.ZodType<JobSchedule, z.ZodTypeDef, unknown> = z.object({
+        intervals: z.array(z.lazy(() => Intervals$.inboundSchema)).optional(),
+        calendars: z.array(z.lazy(() => Calendars$.inboundSchema)).optional(),
+    });
 
     export type Outbound = {
-        version?: string | undefined;
         intervals?: Array<Intervals$.Outbound> | undefined;
         calendars?: Array<Calendars$.Outbound> | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobSchedule> = z
-        .object({
-            version: z.string().optional(),
-            intervals: z.array(z.lazy(() => Intervals$.outboundSchema)).optional(),
-            calendars: z.array(z.lazy(() => Calendars$.outboundSchema)).optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.version === undefined ? null : { version: v.version }),
-                ...(v.intervals === undefined ? null : { intervals: v.intervals }),
-                ...(v.calendars === undefined ? null : { calendars: v.calendars }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobSchedule> = z.object({
+        intervals: z.array(z.lazy(() => Intervals$.outboundSchema)).optional(),
+        calendars: z.array(z.lazy(() => Calendars$.outboundSchema)).optional(),
+    });
 }

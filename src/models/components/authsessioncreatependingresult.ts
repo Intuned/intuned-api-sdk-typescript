@@ -4,11 +4,20 @@
 
 import * as z from "zod";
 
+/**
+ * Status of auth session creation operation
+ */
 export enum AuthSessionCreatePendingResultStatus {
     Pending = "pending",
 }
 
+/**
+ * Auth session create pending
+ */
 export type AuthSessionCreatePendingResult = {
+    /**
+     * Status of auth session creation operation
+     */
     status: AuthSessionCreatePendingResultStatus;
 };
 
@@ -20,14 +29,9 @@ export namespace AuthSessionCreatePendingResultStatus$ {
 
 /** @internal */
 export namespace AuthSessionCreatePendingResult$ {
-    export const inboundSchema: z.ZodType<AuthSessionCreatePendingResult, z.ZodTypeDef, unknown> = z
-        .object({
+    export const inboundSchema: z.ZodType<AuthSessionCreatePendingResult, z.ZodTypeDef, unknown> =
+        z.object({
             status: AuthSessionCreatePendingResultStatus$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                status: v.status,
-            };
         });
 
     export type Outbound = {
@@ -35,13 +39,7 @@ export namespace AuthSessionCreatePendingResult$ {
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreatePendingResult> =
-        z
-            .object({
-                status: AuthSessionCreatePendingResultStatus$.outboundSchema,
-            })
-            .transform((v) => {
-                return {
-                    status: v.status,
-                };
-            });
+        z.object({
+            status: AuthSessionCreatePendingResultStatus$.outboundSchema,
+        });
 }

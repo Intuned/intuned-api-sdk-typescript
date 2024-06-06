@@ -11,27 +11,16 @@ export type GeneralExtractRequest = {
 
 /** @internal */
 export namespace GeneralExtractRequest$ {
-    export const inboundSchema: z.ZodType<GeneralExtractRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            file: FileT$.inboundSchema,
-        })
-        .transform((v) => {
-            return {
-                file: v.file,
-            };
-        });
+    export const inboundSchema: z.ZodType<GeneralExtractRequest, z.ZodTypeDef, unknown> = z.object({
+        file: FileT$.inboundSchema,
+    });
 
     export type Outbound = {
         file: FileT$.Outbound;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GeneralExtractRequest> = z
-        .object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GeneralExtractRequest> =
+        z.object({
             file: FileT$.outboundSchema,
-        })
-        .transform((v) => {
-            return {
-                file: v.file,
-            };
         });
 }

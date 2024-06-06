@@ -21,32 +21,18 @@ export namespace PauseJobMessage$ {
 
 /** @internal */
 export namespace PauseJob$ {
-    export const inboundSchema: z.ZodType<PauseJob, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string().optional(),
-            message: PauseJobMessage$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const inboundSchema: z.ZodType<PauseJob, z.ZodTypeDef, unknown> = z.object({
+        id: z.string().optional(),
+        message: PauseJobMessage$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         id?: string | undefined;
         message?: string | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PauseJob> = z
-        .object({
-            id: z.string().optional(),
-            message: PauseJobMessage$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.id === undefined ? null : { id: v.id }),
-                ...(v.message === undefined ? null : { message: v.message }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PauseJob> = z.object({
+        id: z.string().optional(),
+        message: PauseJobMessage$.outboundSchema.optional(),
+    });
 }

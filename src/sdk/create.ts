@@ -47,13 +47,16 @@ export class Create extends ClientSDK {
      */
     async start(
         projectName: string,
+        createAuthSessionRequest: components.CreateAuthSessionRequest,
         options?: RequestOptions
     ): Promise<operations.CreateAuthSessionStartResponse> {
         const input$: operations.CreateAuthSessionStartRequest = {
             projectName: projectName,
+            createAuthSessionRequest: createAuthSessionRequest,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Content-Type", "application/json");
         headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
@@ -61,7 +64,7 @@ export class Create extends ClientSDK {
             (value$) => operations.CreateAuthSessionStartRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = null;
+        const body$ = enc$.encodeJSON("body", payload$.CreateAuthSessionRequest, { explode: true });
 
         const pathParams$ = {
             projectName: enc$.encodeSimple("projectName", payload$.projectName, {
@@ -115,7 +118,7 @@ export class Create extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.CreateAuthSessionStartResponse>()
-            .json(200, operations.CreateAuthSessionStartResponse$, {
+            .json(201, operations.CreateAuthSessionStartResponse$, {
                 key: "CreateAuthSessionStart",
             })
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
@@ -134,12 +137,12 @@ export class Create extends ClientSDK {
      */
     async result(
         projectName: string,
-        authSessionId: string,
+        operationId: string,
         options?: RequestOptions
     ): Promise<operations.CreateAuthSessionResultResponse> {
         const input$: operations.CreateAuthSessionResultRequest = {
             projectName: projectName,
-            authSessionId: authSessionId,
+            operationId: operationId,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -153,7 +156,7 @@ export class Create extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            authSessionId: enc$.encodeSimple("authSessionId", payload$.authSessionId, {
+            operationId: enc$.encodeSimple("operationId", payload$.operationId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -167,7 +170,7 @@ export class Create extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/auth-sessions/create/{authSessionId}/result"
+            "/{workspaceId}/projects/{projectName}/auth-sessions/create/{operationId}/result"
         )(pathParams$);
 
         const query$ = "";
@@ -227,13 +230,13 @@ export class Create extends ClientSDK {
      */
     async resume(
         projectName: string,
-        authSessionId: string,
-        authSessionCreateResume?: components.AuthSessionCreateResume | undefined,
+        operationId: string,
+        authSessionCreateResume: components.AuthSessionCreateResume,
         options?: RequestOptions
     ): Promise<operations.CreateAuthSessionResumeResponse> {
         const input$: operations.CreateAuthSessionResumeRequest = {
             projectName: projectName,
-            authSessionId: authSessionId,
+            operationId: operationId,
             authSessionCreateResume: authSessionCreateResume,
         };
         const headers$ = new Headers();
@@ -249,7 +252,7 @@ export class Create extends ClientSDK {
         const body$ = enc$.encodeJSON("body", payload$.AuthSessionCreateResume, { explode: true });
 
         const pathParams$ = {
-            authSessionId: enc$.encodeSimple("authSessionId", payload$.authSessionId, {
+            operationId: enc$.encodeSimple("operationId", payload$.operationId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -263,7 +266,7 @@ export class Create extends ClientSDK {
             }),
         };
         const path$ = this.templateURLComponent(
-            "/{workspaceId}/projects/{projectName}/auth-sessions/create/{authSessionId}/resume"
+            "/{workspaceId}/projects/{projectName}/auth-sessions/create/{operationId}/resume"
         )(pathParams$);
 
         const query$ = "";
