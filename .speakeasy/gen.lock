@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 5e058e827194a4c83b6c07f05c2ff45a
+  docChecksum: b0a9d64df9bb6ce1713dd8da7eb9f70a
   docVersion: 0.0.1
-  speakeasyVersion: 1.300.0
-  generationVersion: 2.338.14
-  releaseVersion: 0.3.7
-  configChecksum: a52ee6573b0c3b26a627ea5a49e66e34
+  speakeasyVersion: 1.300.1
+  generationVersion: 2.339.1
+  releaseVersion: 0.3.8
+  configChecksum: 7608eac0ed9e6d3f7d1c2c19368d9cf8
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -161,7 +161,6 @@ generatedFiles:
   - src/models/components/failedrunresult.ts
   - src/models/components/completedrunresult.ts
   - src/models/components/runprojectapirequest.ts
-  - src/models/components/proxy.ts
   - src/models/components/parameters.ts
   - src/models/components/asyncrunpendingresponse.ts
   - src/models/components/asyncresultresponse.ts
@@ -397,8 +396,6 @@ generatedFiles:
   - docs/models/components/failedrunresult.md
   - docs/models/components/completedrunresult.md
   - docs/models/components/runprojectapirequest.md
-  - docs/models/components/location.md
-  - docs/models/components/proxy.md
   - docs/models/components/parameterst.md
   - docs/models/components/asyncrunpendingresponsestatus.md
   - docs/models/components/asyncrunpendingresponse.md

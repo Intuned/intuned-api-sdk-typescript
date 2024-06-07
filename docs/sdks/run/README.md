@@ -35,6 +35,7 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
+    proxy: "http://host:port:username:password",
   });
 
   // Handle the result
@@ -89,6 +90,7 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
+    proxy: "http://host:port:username:password",
   });
 
   // Handle the result
