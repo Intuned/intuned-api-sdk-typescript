@@ -4,7 +4,6 @@
 
 import { AuthSession, AuthSession$ } from "./authsession";
 import { ParametersT, ParametersT$ } from "./parameters";
-import { Proxy, Proxy$ } from "./proxy";
 import { Retry, Retry$ } from "./retry";
 import * as z from "zod";
 
@@ -29,9 +28,13 @@ export type RunProjectApiRequest = {
      */
     authSession?: AuthSession | undefined;
     /**
-     * Proxy configuration. If configured, the project API will run using this proxy for all requests.
+     * Proxy URL following this format:
+     *
+     * @remarks
+     * `http://host:port:username:password`
+     *
      */
-    proxy?: Proxy | undefined;
+    proxy?: string | undefined;
 };
 
 /** @internal */
@@ -41,7 +44,7 @@ export namespace RunProjectApiRequest$ {
         parameters: ParametersT$.inboundSchema,
         retry: Retry$.inboundSchema.optional(),
         authSession: AuthSession$.inboundSchema.optional(),
-        proxy: Proxy$.inboundSchema.optional(),
+        proxy: z.string().optional(),
     });
 
     export type Outbound = {
@@ -49,7 +52,7 @@ export namespace RunProjectApiRequest$ {
         parameters: ParametersT$.Outbound;
         retry?: Retry$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
-        proxy?: Proxy$.Outbound | undefined;
+        proxy?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunProjectApiRequest> = z.object(
@@ -58,7 +61,7 @@ export namespace RunProjectApiRequest$ {
             parameters: ParametersT$.outboundSchema,
             retry: Retry$.outboundSchema.optional(),
             authSession: AuthSession$.outboundSchema.optional(),
-            proxy: Proxy$.outboundSchema.optional(),
+            proxy: z.string().optional(),
         }
     );
 }

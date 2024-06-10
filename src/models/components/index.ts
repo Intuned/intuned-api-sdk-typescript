@@ -52,7 +52,6 @@ export * from "./parameters";
 export * from "./pausejob";
 export * from "./pdffile";
 export * from "./pendingqueueitemresult";
-export * from "./proxy";
 export * from "./queueconfiguration";
 export * from "./queuedqueueitemresult";
 export * from "./queueinput";

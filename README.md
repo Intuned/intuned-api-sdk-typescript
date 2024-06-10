@@ -22,13 +22,13 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add @intuned/client
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET>
+yarn add @intuned/client
 ```
 <!-- End SDK Installation [installation] -->
 
