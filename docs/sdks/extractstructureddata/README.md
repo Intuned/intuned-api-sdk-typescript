@@ -57,7 +57,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractStructuredDataSyncResponse](../../models/operations/fileextractstructureddatasyncresponse.md)\>**
+**Promise\<[components.StructuredDataExtractionResponse](../../models/components/structureddataextractionresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -113,7 +113,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractStructuredDataStartResponse](../../models/operations/fileextractstructureddatastartresponse.md)\>**
+**Promise\<[components.AsyncFilePendingResponse](../../models/components/asyncfilependingresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -157,7 +157,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractStructuredDataResultResponse](../../models/operations/fileextractstructureddataresultresponse.md)\>**
+**Promise\<[components.StructuredDataExtractionAsyncResponse](../../models/components/structureddataextractionasyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

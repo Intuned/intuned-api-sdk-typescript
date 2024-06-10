@@ -53,7 +53,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateAuthSessionStartResponse](../../models/operations/createauthsessionstartresponse.md)\>**
+**Promise\<[components.CreateAuthSessionStart](../../models/components/createauthsessionstart.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -98,7 +98,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateAuthSessionResultResponse](../../models/operations/createauthsessionresultresponse.md)\>**
+**Promise\<[components.AuthSessionCreateResult](../../models/components/authsessioncreateresult.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -147,7 +147,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateAuthSessionResumeResponse](../../models/operations/createauthsessionresumeresponse.md)\>**
+**Promise\<[components.CreateAuthSessionResume](../../models/components/createauthsessionresume.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

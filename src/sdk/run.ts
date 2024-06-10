@@ -118,12 +118,12 @@ export class Run extends ClientSDK {
         };
 
         const [result$] = await this.matcher<operations.RunApiSyncResponse>()
-            .json(200, operations.RunApiSyncResponse$, { key: "CompletedRunResult" })
+            .json(200, operations.RunApiSyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .json("default", operations.RunApiSyncResponse$, { key: "FailedRunResult" })
-            .match(response, request$, { extraFields: responseFields$ });
+            .json("default", operations.RunApiSyncResponse$)
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -138,7 +138,7 @@ export class Run extends ClientSDK {
         projectName: string,
         runProjectApiRequest: components.RunProjectApiRequest,
         options?: RequestOptions
-    ): Promise<operations.RunApiStartResponse> {
+    ): Promise<components.AsyncRunPendingResponse> {
         const input$: operations.RunApiStartRequest = {
             projectName: projectName,
             runProjectApiRequest: runProjectApiRequest,
@@ -206,12 +206,12 @@ export class Run extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunApiStartResponse>()
-            .json(201, operations.RunApiStartResponse$, { key: "AsyncRunPendingResponse" })
+        const [result$] = await this.matcher<components.AsyncRunPendingResponse>()
+            .json(201, components.AsyncRunPendingResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -226,7 +226,7 @@ export class Run extends ClientSDK {
         projectName: string,
         runId: string,
         options?: RequestOptions
-    ): Promise<operations.RunApiResultResponse> {
+    ): Promise<components.AsyncResultResponse> {
         const input$: operations.RunApiResultRequest = {
             projectName: projectName,
             runId: runId,
@@ -297,12 +297,12 @@ export class Run extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunApiResultResponse>()
-            .json(200, operations.RunApiResultResponse$, { key: "AsyncResultResponse" })
+        const [result$] = await this.matcher<components.AsyncResultResponse>()
+            .json(200, components.AsyncResultResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

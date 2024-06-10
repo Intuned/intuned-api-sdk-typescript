@@ -3,6 +3,7 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import { AuthSession, AuthSession$ } from "./authsession";
 import { JobConfiguration, JobConfiguration$ } from "./jobconfiguration";
 import { JobPayload, JobPayload$ } from "./jobpayload";
@@ -10,9 +11,10 @@ import { JobSchedule, JobSchedule$ } from "./jobschedule";
 import { JobSink, JobSink$ } from "./jobsink";
 import * as z from "zod";
 
-export enum JobStateStatus {
-    Paused = "PAUSED",
-}
+export const JobStateStatus = {
+    Paused: "PAUSED",
+} as const;
+export type JobStateStatus = ClosedEnum<typeof JobStateStatus>;
 
 export type Paused = {
     status?: JobStateStatus | undefined;
@@ -22,9 +24,10 @@ export type Paused = {
     reason?: string | undefined;
 };
 
-export enum StateStatus {
-    Active = "ACTIVE",
-}
+export const StateStatus = {
+    Active: "ACTIVE",
+} as const;
+export type StateStatus = ClosedEnum<typeof StateStatus>;
 
 export type Active = {
     status?: StateStatus | undefined;

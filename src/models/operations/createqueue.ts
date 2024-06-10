@@ -24,14 +24,6 @@ export type CreateQueueRequest = {
     queueInput: components.QueueInput;
 };
 
-export type CreateQueueResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Successfully created
-     */
-    createQueue?: components.CreateQueue | undefined;
-};
-
 /** @internal */
 export namespace CreateQueueGlobals$ {
     export const inboundSchema: z.ZodType<CreateQueueGlobals, z.ZodTypeDef, unknown> = z.object({
@@ -73,38 +65,6 @@ export namespace CreateQueueRequest$ {
         .transform((v) => {
             return remap$(v, {
                 queueInput: "QueueInput",
-            });
-        });
-}
-
-/** @internal */
-export namespace CreateQueueResponse$ {
-    export const inboundSchema: z.ZodType<CreateQueueResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CreateQueue: components.CreateQueue$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                CreateQueue: "createQueue",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CreateQueue?: components.CreateQueue$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            createQueue: components.CreateQueue$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                createQueue: "CreateQueue",
             });
         });
 }

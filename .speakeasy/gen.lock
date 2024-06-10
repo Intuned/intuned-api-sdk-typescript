@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: b0a9d64df9bb6ce1713dd8da7eb9f70a
+  docChecksum: 5e058e827194a4c83b6c07f05c2ff45a
   docVersion: 0.0.1
   speakeasyVersion: 1.300.1
   generationVersion: 2.339.1
-  releaseVersion: 0.3.8
-  configChecksum: 7608eac0ed9e6d3f7d1c2c19368d9cf8
+  releaseVersion: 0.3.9
+  configChecksum: 923312db84605fbed4b485117a08b35e
 features:
   typescript:
     additionalDependencies: 0.1.0
@@ -66,47 +66,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/fileextractstructureddatasync.ts
-  - src/models/operations/fileextractstructureddatastart.ts
-  - src/models/operations/fileextractstructureddataresult.ts
-  - src/models/operations/fileextractmarkdownsync.ts
-  - src/models/operations/fileextractmarkdownstart.ts
-  - src/models/operations/fileextractmarkdownresult.ts
-  - src/models/operations/fileextracttablessync.ts
-  - src/models/operations/fileextracttablesstart.ts
-  - src/models/operations/fileextracttablesresult.ts
-  - src/models/operations/getjobs.ts
-  - src/models/operations/createjob.ts
-  - src/models/operations/getjob.ts
-  - src/models/operations/deletejob.ts
-  - src/models/operations/pausejob.ts
-  - src/models/operations/resumejob.ts
-  - src/models/operations/triggerjob.ts
-  - src/models/operations/getjobruns.ts
-  - src/models/operations/terminatejobrun.ts
-  - src/models/operations/getqueues.ts
-  - src/models/operations/createqueue.ts
-  - src/models/operations/getqueue.ts
-  - src/models/operations/deletequeue.ts
-  - src/models/operations/appendqueueitem.ts
-  - src/models/operations/getqueueitemresult.ts
-  - src/models/operations/deletequeueitem.ts
-  - src/models/operations/getrepeatitems.ts
-  - src/models/operations/appendrepeatitem.ts
-  - src/models/operations/getrepeatqueueitem.ts
-  - src/models/operations/updaterepeatqueueitem.ts
-  - src/models/operations/deleterepeatqueueitem.ts
-  - src/models/operations/runapisync.ts
-  - src/models/operations/runapistart.ts
-  - src/models/operations/runapiresult.ts
-  - src/models/operations/getauthsessions.ts
-  - src/models/operations/getauthsession.ts
-  - src/models/operations/deleteauthsession.ts
-  - src/models/operations/createauthsessionstart.ts
-  - src/models/operations/createauthsessionresult.ts
-  - src/models/operations/createauthsessionresume.ts
   - src/models/components/structureddataextractionresponse.ts
-  - src/models/components/httpmetadata.ts
   - src/models/components/extractstructureddatarequest.ts
   - src/models/components/file.ts
   - src/models/components/imagefile.ts
@@ -158,9 +118,10 @@ generatedFiles:
   - src/models/components/addqueuerepeatitem.ts
   - src/models/components/queuerepeatiteminput.ts
   - src/models/components/updatequeuerepeatitem.ts
-  - src/models/components/failedrunresult.ts
   - src/models/components/completedrunresult.ts
+  - src/models/components/failedrunresult.ts
   - src/models/components/runprojectapirequest.ts
+  - src/models/components/proxy.ts
   - src/models/components/parameters.ts
   - src/models/components/asyncrunpendingresponse.ts
   - src/models/components/asyncresultresponse.ts
@@ -179,122 +140,49 @@ generatedFiles:
   - src/models/components/security.ts
   - src/models/errors/apierrorinvalidinput.ts
   - src/models/errors/apierrorunauthorized.ts
+  - src/models/operations/fileextractstructureddataresult.ts
+  - src/models/operations/fileextractmarkdownresult.ts
+  - src/models/operations/fileextracttablesresult.ts
+  - src/models/operations/getjobs.ts
+  - src/models/operations/createjob.ts
+  - src/models/operations/getjob.ts
+  - src/models/operations/deletejob.ts
+  - src/models/operations/pausejob.ts
+  - src/models/operations/resumejob.ts
+  - src/models/operations/triggerjob.ts
+  - src/models/operations/getjobruns.ts
+  - src/models/operations/terminatejobrun.ts
+  - src/models/operations/getqueues.ts
+  - src/models/operations/createqueue.ts
+  - src/models/operations/getqueue.ts
+  - src/models/operations/deletequeue.ts
+  - src/models/operations/appendqueueitem.ts
+  - src/models/operations/getqueueitemresult.ts
+  - src/models/operations/deletequeueitem.ts
+  - src/models/operations/getrepeatitems.ts
+  - src/models/operations/appendrepeatitem.ts
+  - src/models/operations/getrepeatqueueitem.ts
+  - src/models/operations/updaterepeatqueueitem.ts
+  - src/models/operations/deleterepeatqueueitem.ts
+  - src/models/operations/runapisync.ts
+  - src/models/operations/runapistart.ts
+  - src/models/operations/runapiresult.ts
+  - src/models/operations/getauthsessions.ts
+  - src/models/operations/getauthsession.ts
+  - src/models/operations/deleteauthsession.ts
+  - src/models/operations/createauthsessionstart.ts
+  - src/models/operations/createauthsessionresult.ts
+  - src/models/operations/createauthsessionresume.ts
+  - src/models/operations/fileextractstructureddatasync.ts
+  - src/models/operations/fileextractstructureddatastart.ts
+  - src/models/operations/fileextractmarkdownsync.ts
+  - src/models/operations/fileextractmarkdownstart.ts
+  - src/models/operations/fileextracttablessync.ts
+  - src/models/operations/fileextracttablesstart.ts
   - src/models/errors/index.ts
-  - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/fileextractstructureddatasyncglobals.md
-  - docs/models/operations/fileextractstructureddatasyncresponse.md
-  - docs/models/operations/fileextractstructureddatastartglobals.md
-  - docs/models/operations/fileextractstructureddatastartresponse.md
-  - docs/models/operations/fileextractstructureddataresultglobals.md
-  - docs/models/operations/fileextractstructureddataresultrequest.md
-  - docs/models/operations/fileextractstructureddataresultresponse.md
-  - docs/models/operations/fileextractmarkdownsyncglobals.md
-  - docs/models/operations/fileextractmarkdownsyncresponse.md
-  - docs/models/operations/fileextractmarkdownstartglobals.md
-  - docs/models/operations/fileextractmarkdownstartresponse.md
-  - docs/models/operations/fileextractmarkdownresultglobals.md
-  - docs/models/operations/fileextractmarkdownresultrequest.md
-  - docs/models/operations/fileextractmarkdownresultresponse.md
-  - docs/models/operations/fileextracttablessyncglobals.md
-  - docs/models/operations/fileextracttablessyncresponse.md
-  - docs/models/operations/fileextracttablesstartglobals.md
-  - docs/models/operations/fileextracttablesstartresponse.md
-  - docs/models/operations/fileextracttablesresultglobals.md
-  - docs/models/operations/fileextracttablesresultrequest.md
-  - docs/models/operations/fileextracttablesresultresponse.md
-  - docs/models/operations/getjobsglobals.md
-  - docs/models/operations/getjobsrequest.md
-  - docs/models/operations/getjobsresponse.md
-  - docs/models/operations/createjobglobals.md
-  - docs/models/operations/createjobrequest.md
-  - docs/models/operations/createjobresponse.md
-  - docs/models/operations/getjobglobals.md
-  - docs/models/operations/getjobrequest.md
-  - docs/models/operations/getjobresponse.md
-  - docs/models/operations/deletejobglobals.md
-  - docs/models/operations/deletejobrequest.md
-  - docs/models/operations/deletejobresponse.md
-  - docs/models/operations/pausejobglobals.md
-  - docs/models/operations/pausejobrequest.md
-  - docs/models/operations/pausejobresponse.md
-  - docs/models/operations/resumejobglobals.md
-  - docs/models/operations/resumejobrequest.md
-  - docs/models/operations/resumejobresponse.md
-  - docs/models/operations/triggerjobglobals.md
-  - docs/models/operations/triggerjobrequest.md
-  - docs/models/operations/triggerjobresponse.md
-  - docs/models/operations/getjobrunsglobals.md
-  - docs/models/operations/getjobrunsrequest.md
-  - docs/models/operations/getjobrunsresponse.md
-  - docs/models/operations/terminatejobrunglobals.md
-  - docs/models/operations/terminatejobrunrequest.md
-  - docs/models/operations/terminatejobrunresponse.md
-  - docs/models/operations/getqueuesglobals.md
-  - docs/models/operations/getqueuesrequest.md
-  - docs/models/operations/getqueuesresponse.md
-  - docs/models/operations/createqueueglobals.md
-  - docs/models/operations/createqueuerequest.md
-  - docs/models/operations/createqueueresponse.md
-  - docs/models/operations/getqueueglobals.md
-  - docs/models/operations/getqueuerequest.md
-  - docs/models/operations/getqueueresponse.md
-  - docs/models/operations/deletequeueglobals.md
-  - docs/models/operations/deletequeuerequest.md
-  - docs/models/operations/deletequeueresponse.md
-  - docs/models/operations/appendqueueitemglobals.md
-  - docs/models/operations/appendqueueitemrequest.md
-  - docs/models/operations/appendqueueitemresponse.md
-  - docs/models/operations/getqueueitemresultglobals.md
-  - docs/models/operations/getqueueitemresultrequest.md
-  - docs/models/operations/getqueueitemresultresponse.md
-  - docs/models/operations/deletequeueitemglobals.md
-  - docs/models/operations/deletequeueitemrequest.md
-  - docs/models/operations/deletequeueitemresponse.md
-  - docs/models/operations/getrepeatitemsglobals.md
-  - docs/models/operations/getrepeatitemsrequest.md
-  - docs/models/operations/getrepeatitemsresponse.md
-  - docs/models/operations/appendrepeatitemglobals.md
-  - docs/models/operations/appendrepeatitemrequest.md
-  - docs/models/operations/appendrepeatitemresponse.md
-  - docs/models/operations/getrepeatqueueitemglobals.md
-  - docs/models/operations/getrepeatqueueitemrequest.md
-  - docs/models/operations/getrepeatqueueitemresponse.md
-  - docs/models/operations/updaterepeatqueueitemglobals.md
-  - docs/models/operations/updaterepeatqueueitemrequest.md
-  - docs/models/operations/updaterepeatqueueitemresponse.md
-  - docs/models/operations/deleterepeatqueueitemglobals.md
-  - docs/models/operations/deleterepeatqueueitemrequest.md
-  - docs/models/operations/deleterepeatqueueitemresponse.md
-  - docs/models/operations/runapisyncglobals.md
-  - docs/models/operations/runapisyncrequest.md
-  - docs/models/operations/runapisyncresponse.md
-  - docs/models/operations/runapistartglobals.md
-  - docs/models/operations/runapistartrequest.md
-  - docs/models/operations/runapistartresponse.md
-  - docs/models/operations/runapiresultglobals.md
-  - docs/models/operations/runapiresultrequest.md
-  - docs/models/operations/runapiresultresponse.md
-  - docs/models/operations/getauthsessionsglobals.md
-  - docs/models/operations/getauthsessionsrequest.md
-  - docs/models/operations/getauthsessionsresponse.md
-  - docs/models/operations/getauthsessionglobals.md
-  - docs/models/operations/getauthsessionrequest.md
-  - docs/models/operations/getauthsessionresponse.md
-  - docs/models/operations/deleteauthsessionglobals.md
-  - docs/models/operations/deleteauthsessionrequest.md
-  - docs/models/operations/deleteauthsessionresponse.md
-  - docs/models/operations/createauthsessionstartglobals.md
-  - docs/models/operations/createauthsessionstartrequest.md
-  - docs/models/operations/createauthsessionstartresponse.md
-  - docs/models/operations/createauthsessionresultglobals.md
-  - docs/models/operations/createauthsessionresultrequest.md
-  - docs/models/operations/createauthsessionresultresponse.md
-  - docs/models/operations/createauthsessionresumeglobals.md
-  - docs/models/operations/createauthsessionresumerequest.md
-  - docs/models/operations/createauthsessionresumeresponse.md
+  - src/models/operations/index.ts
   - docs/models/components/structureddataextractionresponse.md
-  - docs/models/components/httpmetadata.md
   - docs/models/components/extractstructureddatarequest.md
   - docs/models/components/filet.md
   - docs/models/components/type.md
@@ -393,9 +281,11 @@ generatedFiles:
   - docs/models/components/queuerepeatiteminput.md
   - docs/models/components/updatequeuerepeatitemmessage.md
   - docs/models/components/updatequeuerepeatitem.md
-  - docs/models/components/failedrunresult.md
   - docs/models/components/completedrunresult.md
+  - docs/models/components/failedrunresult.md
   - docs/models/components/runprojectapirequest.md
+  - docs/models/components/location.md
+  - docs/models/components/proxy.md
   - docs/models/components/parameterst.md
   - docs/models/components/asyncrunpendingresponsestatus.md
   - docs/models/components/asyncrunpendingresponse.md
@@ -430,6 +320,79 @@ generatedFiles:
   - docs/models/components/security.md
   - docs/models/errors/apierrorinvalidinput.md
   - docs/models/errors/apierrorunauthorized.md
+  - docs/models/operations/fileextractstructureddataresultglobals.md
+  - docs/models/operations/fileextractstructureddataresultrequest.md
+  - docs/models/operations/fileextractmarkdownresultglobals.md
+  - docs/models/operations/fileextractmarkdownresultrequest.md
+  - docs/models/operations/fileextracttablesresultglobals.md
+  - docs/models/operations/fileextracttablesresultrequest.md
+  - docs/models/operations/getjobsglobals.md
+  - docs/models/operations/getjobsrequest.md
+  - docs/models/operations/createjobglobals.md
+  - docs/models/operations/createjobrequest.md
+  - docs/models/operations/getjobglobals.md
+  - docs/models/operations/getjobrequest.md
+  - docs/models/operations/deletejobglobals.md
+  - docs/models/operations/deletejobrequest.md
+  - docs/models/operations/pausejobglobals.md
+  - docs/models/operations/pausejobrequest.md
+  - docs/models/operations/resumejobglobals.md
+  - docs/models/operations/resumejobrequest.md
+  - docs/models/operations/triggerjobglobals.md
+  - docs/models/operations/triggerjobrequest.md
+  - docs/models/operations/getjobrunsglobals.md
+  - docs/models/operations/getjobrunsrequest.md
+  - docs/models/operations/terminatejobrunglobals.md
+  - docs/models/operations/terminatejobrunrequest.md
+  - docs/models/operations/getqueuesglobals.md
+  - docs/models/operations/getqueuesrequest.md
+  - docs/models/operations/createqueueglobals.md
+  - docs/models/operations/createqueuerequest.md
+  - docs/models/operations/getqueueglobals.md
+  - docs/models/operations/getqueuerequest.md
+  - docs/models/operations/deletequeueglobals.md
+  - docs/models/operations/deletequeuerequest.md
+  - docs/models/operations/appendqueueitemglobals.md
+  - docs/models/operations/appendqueueitemrequest.md
+  - docs/models/operations/getqueueitemresultglobals.md
+  - docs/models/operations/getqueueitemresultrequest.md
+  - docs/models/operations/deletequeueitemglobals.md
+  - docs/models/operations/deletequeueitemrequest.md
+  - docs/models/operations/getrepeatitemsglobals.md
+  - docs/models/operations/getrepeatitemsrequest.md
+  - docs/models/operations/appendrepeatitemglobals.md
+  - docs/models/operations/appendrepeatitemrequest.md
+  - docs/models/operations/getrepeatqueueitemglobals.md
+  - docs/models/operations/getrepeatqueueitemrequest.md
+  - docs/models/operations/updaterepeatqueueitemglobals.md
+  - docs/models/operations/updaterepeatqueueitemrequest.md
+  - docs/models/operations/deleterepeatqueueitemglobals.md
+  - docs/models/operations/deleterepeatqueueitemrequest.md
+  - docs/models/operations/runapisyncglobals.md
+  - docs/models/operations/runapisyncrequest.md
+  - docs/models/operations/runapisyncresponse.md
+  - docs/models/operations/runapistartglobals.md
+  - docs/models/operations/runapistartrequest.md
+  - docs/models/operations/runapiresultglobals.md
+  - docs/models/operations/runapiresultrequest.md
+  - docs/models/operations/getauthsessionsglobals.md
+  - docs/models/operations/getauthsessionsrequest.md
+  - docs/models/operations/getauthsessionglobals.md
+  - docs/models/operations/getauthsessionrequest.md
+  - docs/models/operations/deleteauthsessionglobals.md
+  - docs/models/operations/deleteauthsessionrequest.md
+  - docs/models/operations/createauthsessionstartglobals.md
+  - docs/models/operations/createauthsessionstartrequest.md
+  - docs/models/operations/createauthsessionresultglobals.md
+  - docs/models/operations/createauthsessionresultrequest.md
+  - docs/models/operations/createauthsessionresumeglobals.md
+  - docs/models/operations/createauthsessionresumerequest.md
+  - docs/models/operations/fileextractstructureddatasyncglobals.md
+  - docs/models/operations/fileextractstructureddatastartglobals.md
+  - docs/models/operations/fileextractmarkdownsyncglobals.md
+  - docs/models/operations/fileextractmarkdownstartglobals.md
+  - docs/models/operations/fileextracttablessyncglobals.md
+  - docs/models/operations/fileextracttablesstartglobals.md
   - docs/sdks/intunedclient/README.md
   - docs/sdks/files/README.md
   - docs/sdks/extractstructureddata/README.md

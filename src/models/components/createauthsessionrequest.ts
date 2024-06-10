@@ -17,10 +17,6 @@ export type CreateAuthSessionRequest = {
      * The parameters to be passed to the API.
      */
     parameters?: APIParameters | undefined;
-    /**
-     * Proxy URL following this format `http://host:port:username:password`
-     */
-    proxy?: string | undefined;
 };
 
 /** @internal */
@@ -29,19 +25,16 @@ export namespace CreateAuthSessionRequest$ {
         z.object({
             authSessionDisplayName: z.string().optional(),
             parameters: APIParameters$.inboundSchema.optional(),
-            proxy: z.string().optional(),
         });
 
     export type Outbound = {
         authSessionDisplayName?: string | undefined;
         parameters?: APIParameters$.Outbound | undefined;
-        proxy?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionRequest> =
         z.object({
             authSessionDisplayName: z.string().optional(),
             parameters: APIParameters$.outboundSchema.optional(),
-            proxy: z.string().optional(),
         });
 }

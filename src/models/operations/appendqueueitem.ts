@@ -28,14 +28,6 @@ export type AppendQueueItemRequest = {
     queueItem: components.QueueItem;
 };
 
-export type AppendQueueItemResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Queue item appended
-     */
-    addQueueItem?: components.AddQueueItem | undefined;
-};
-
 /** @internal */
 export namespace AppendQueueItemGlobals$ {
     export const inboundSchema: z.ZodType<AppendQueueItemGlobals, z.ZodTypeDef, unknown> = z.object(
@@ -83,38 +75,6 @@ export namespace AppendQueueItemRequest$ {
         .transform((v) => {
             return remap$(v, {
                 queueItem: "QueueItem",
-            });
-        });
-}
-
-/** @internal */
-export namespace AppendQueueItemResponse$ {
-    export const inboundSchema: z.ZodType<AppendQueueItemResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            AddQueueItem: components.AddQueueItem$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                AddQueueItem: "addQueueItem",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        AddQueueItem?: components.AddQueueItem$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AppendQueueItemResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            addQueueItem: components.AddQueueItem$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                addQueueItem: "AddQueueItem",
             });
         });
 }

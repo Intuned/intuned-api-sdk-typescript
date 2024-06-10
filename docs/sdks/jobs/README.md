@@ -50,7 +50,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetJobsResponse](../../models/operations/getjobsresponse.md)\>**
+**Promise\<[components.Job[]](../../models/.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -146,7 +146,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateJobResponse](../../models/operations/createjobresponse.md)\>**
+**Promise\<[components.CreateJob](../../models/components/createjob.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -191,7 +191,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetJobResponse](../../models/operations/getjobresponse.md)\>**
+**Promise\<[components.Job](../../models/components/job.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -215,10 +215,9 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.jobs.delete("my-project", "my-sample-job");
+  await intunedClient.project.jobs.delete("my-project", "my-sample-job");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -236,7 +235,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteJobResponse](../../models/operations/deletejobresponse.md)\>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -280,7 +279,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.PauseJobResponse](../../models/operations/pausejobresponse.md)\>**
+**Promise\<[components.PauseJob](../../models/components/pausejob.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -325,7 +324,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.ResumeJobResponse](../../models/operations/resumejobresponse.md)\>**
+**Promise\<[components.ResumeJob](../../models/components/resumejob.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -370,7 +369,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.TriggerJobResponse](../../models/operations/triggerjobresponse.md)\>**
+**Promise\<[components.TriggerJob](../../models/components/triggerjob.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

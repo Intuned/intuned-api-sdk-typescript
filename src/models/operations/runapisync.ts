@@ -24,17 +24,7 @@ export type RunApiSyncRequest = {
     runProjectApiRequest: components.RunProjectApiRequest;
 };
 
-export type RunApiSyncResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Successful run result
-     */
-    completedRunResult?: components.CompletedRunResult | undefined;
-    /**
-     * Error running the API
-     */
-    failedRunResult?: components.FailedRunResult | undefined;
-};
+export type RunApiSyncResponse = components.CompletedRunResult | components.FailedRunResult;
 
 /** @internal */
 export namespace RunApiSyncGlobals$ {
@@ -83,37 +73,16 @@ export namespace RunApiSyncRequest$ {
 
 /** @internal */
 export namespace RunApiSyncResponse$ {
-    export const inboundSchema: z.ZodType<RunApiSyncResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CompletedRunResult: components.CompletedRunResult$.inboundSchema.optional(),
-            FailedRunResult: components.FailedRunResult$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                CompletedRunResult: "completedRunResult",
-                FailedRunResult: "failedRunResult",
-            });
-        });
+    export const inboundSchema: z.ZodType<RunApiSyncResponse, z.ZodTypeDef, unknown> = z.union([
+        components.CompletedRunResult$.inboundSchema,
+        components.FailedRunResult$.inboundSchema,
+    ]);
 
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CompletedRunResult?: components.CompletedRunResult$.Outbound | undefined;
-        FailedRunResult?: components.FailedRunResult$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiSyncResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            completedRunResult: components.CompletedRunResult$.outboundSchema.optional(),
-            failedRunResult: components.FailedRunResult$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                completedRunResult: "CompletedRunResult",
-                failedRunResult: "FailedRunResult",
-            });
-        });
+    export type Outbound =
+        | components.CompletedRunResult$.Outbound
+        | components.FailedRunResult$.Outbound;
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiSyncResponse> = z.union([
+        components.CompletedRunResult$.outboundSchema,
+        components.FailedRunResult$.outboundSchema,
+    ]);
 }

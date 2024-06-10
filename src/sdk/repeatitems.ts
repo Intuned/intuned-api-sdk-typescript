@@ -11,6 +11,7 @@ import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class RepeatItems extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -49,7 +50,7 @@ export class RepeatItems extends ClientSDK {
         projectName: string,
         queueId: string,
         options?: RequestOptions
-    ): Promise<operations.GetRepeatItemsResponse> {
+    ): Promise<Array<components.QueueRepeatItem>> {
         const input$: operations.GetRepeatItemsRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -120,12 +121,12 @@ export class RepeatItems extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetRepeatItemsResponse>()
-            .json(200, operations.GetRepeatItemsResponse$, { key: "GetQueueRepeatItems" })
+        const [result$] = await this.matcher<Array<components.QueueRepeatItem>>()
+            .json(200, z.array(components.QueueRepeatItem$.inboundSchema))
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -141,7 +142,7 @@ export class RepeatItems extends ClientSDK {
         queueId: string,
         queueRepeatItemInput: components.QueueRepeatItemInput,
         options?: RequestOptions
-    ): Promise<operations.AppendRepeatItemResponse> {
+    ): Promise<components.AddQueueRepeatItem> {
         const input$: operations.AppendRepeatItemRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -214,12 +215,12 @@ export class RepeatItems extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.AppendRepeatItemResponse>()
-            .json(201, operations.AppendRepeatItemResponse$, { key: "AddQueueRepeatItem" })
+        const [result$] = await this.matcher<components.AddQueueRepeatItem>()
+            .json(201, components.AddQueueRepeatItem$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -235,7 +236,7 @@ export class RepeatItems extends ClientSDK {
         queueId: string,
         itemId: string,
         options?: RequestOptions
-    ): Promise<operations.GetRepeatQueueItemResponse> {
+    ): Promise<components.QueueRepeatItem> {
         const input$: operations.GetRepeatQueueItemRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -311,12 +312,12 @@ export class RepeatItems extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetRepeatQueueItemResponse>()
-            .json(200, operations.GetRepeatQueueItemResponse$, { key: "QueueRepeatItem" })
+        const [result$] = await this.matcher<components.QueueRepeatItem>()
+            .json(200, components.QueueRepeatItem$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -333,7 +334,7 @@ export class RepeatItems extends ClientSDK {
         itemId: string,
         queueRepeatItemInput: components.QueueRepeatItemInput,
         options?: RequestOptions
-    ): Promise<operations.UpdateRepeatQueueItemResponse> {
+    ): Promise<components.UpdateQueueRepeatItem> {
         const input$: operations.UpdateRepeatQueueItemRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -411,12 +412,12 @@ export class RepeatItems extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.UpdateRepeatQueueItemResponse>()
-            .json(200, operations.UpdateRepeatQueueItemResponse$, { key: "UpdateQueueRepeatItem" })
+        const [result$] = await this.matcher<components.UpdateQueueRepeatItem>()
+            .json(200, components.UpdateQueueRepeatItem$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -432,7 +433,7 @@ export class RepeatItems extends ClientSDK {
         queueId: string,
         itemId: string,
         options?: RequestOptions
-    ): Promise<operations.DeleteRepeatQueueItemResponse> {
+    ): Promise<void> {
         const input$: operations.DeleteRepeatQueueItemRequest = {
             projectName: projectName,
             queueId: queueId,
@@ -508,12 +509,12 @@ export class RepeatItems extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.DeleteRepeatQueueItemResponse>()
-            .void(204, operations.DeleteRepeatQueueItemResponse$)
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

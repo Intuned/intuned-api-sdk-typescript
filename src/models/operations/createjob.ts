@@ -24,14 +24,6 @@ export type CreateJobRequest = {
     jobInput: components.JobInput;
 };
 
-export type CreateJobResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Successfully created job
-     */
-    createJob?: components.CreateJob | undefined;
-};
-
 /** @internal */
 export namespace CreateJobGlobals$ {
     export const inboundSchema: z.ZodType<CreateJobGlobals, z.ZodTypeDef, unknown> = z.object({
@@ -73,38 +65,6 @@ export namespace CreateJobRequest$ {
         .transform((v) => {
             return remap$(v, {
                 jobInput: "JobInput",
-            });
-        });
-}
-
-/** @internal */
-export namespace CreateJobResponse$ {
-    export const inboundSchema: z.ZodType<CreateJobResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CreateJob: components.CreateJob$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                CreateJob: "createJob",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CreateJob?: components.CreateJob$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJobResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            createJob: components.CreateJob$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                createJob: "CreateJob",
             });
         });
 }

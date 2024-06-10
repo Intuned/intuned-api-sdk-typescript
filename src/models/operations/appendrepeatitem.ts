@@ -28,14 +28,6 @@ export type AppendRepeatItemRequest = {
     queueRepeatItemInput: components.QueueRepeatItemInput;
 };
 
-export type AppendRepeatItemResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Successfully created repeatable item
-     */
-    addQueueRepeatItem?: components.AddQueueRepeatItem | undefined;
-};
-
 /** @internal */
 export namespace AppendRepeatItemGlobals$ {
     export const inboundSchema: z.ZodType<AppendRepeatItemGlobals, z.ZodTypeDef, unknown> =
@@ -82,38 +74,6 @@ export namespace AppendRepeatItemRequest$ {
         .transform((v) => {
             return remap$(v, {
                 queueRepeatItemInput: "QueueRepeatItemInput",
-            });
-        });
-}
-
-/** @internal */
-export namespace AppendRepeatItemResponse$ {
-    export const inboundSchema: z.ZodType<AppendRepeatItemResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            AddQueueRepeatItem: components.AddQueueRepeatItem$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                AddQueueRepeatItem: "addQueueRepeatItem",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        AddQueueRepeatItem?: components.AddQueueRepeatItem$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AppendRepeatItemResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            addQueueRepeatItem: components.AddQueueRepeatItem$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                addQueueRepeatItem: "AddQueueRepeatItem",
             });
         });
 }

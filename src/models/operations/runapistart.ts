@@ -24,14 +24,6 @@ export type RunApiStartRequest = {
     runProjectApiRequest: components.RunProjectApiRequest;
 };
 
-export type RunApiStartResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * API run operation started
-     */
-    asyncRunPendingResponse?: components.AsyncRunPendingResponse | undefined;
-};
-
 /** @internal */
 export namespace RunApiStartGlobals$ {
     export const inboundSchema: z.ZodType<RunApiStartGlobals, z.ZodTypeDef, unknown> = z.object({
@@ -73,38 +65,6 @@ export namespace RunApiStartRequest$ {
         .transform((v) => {
             return remap$(v, {
                 runProjectApiRequest: "RunProjectApiRequest",
-            });
-        });
-}
-
-/** @internal */
-export namespace RunApiStartResponse$ {
-    export const inboundSchema: z.ZodType<RunApiStartResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            AsyncRunPendingResponse: components.AsyncRunPendingResponse$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                AsyncRunPendingResponse: "asyncRunPendingResponse",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        AsyncRunPendingResponse?: components.AsyncRunPendingResponse$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiStartResponse> = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            asyncRunPendingResponse: components.AsyncRunPendingResponse$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                asyncRunPendingResponse: "AsyncRunPendingResponse",
             });
         });
 }

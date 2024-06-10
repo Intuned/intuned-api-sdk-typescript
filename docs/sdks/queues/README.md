@@ -47,7 +47,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetQueuesResponse](../../models/operations/getqueuesresponse.md)\>**
+**Promise\<[components.QueueInput[]](../../models/.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -119,7 +119,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.CreateQueueResponse](../../models/operations/createqueueresponse.md)\>**
+**Promise\<[components.CreateQueue](../../models/components/createqueue.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -164,7 +164,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetQueueResponse](../../models/operations/getqueueresponse.md)\>**
+**Promise\<[components.QueueInput](../../models/components/queueinput.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -188,10 +188,9 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.queues.delete("my-project", "my-sample-queue");
+  await intunedClient.project.queues.delete("my-project", "my-sample-queue");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -209,7 +208,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteQueueResponse](../../models/operations/deletequeueresponse.md)\>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

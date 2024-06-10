@@ -46,7 +46,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetJobRunsResponse](../../models/operations/getjobrunsresponse.md)\>**
+**Promise\<[components.JobRun[]](../../models/.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -92,7 +92,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.TerminateJobRunResponse](../../models/operations/terminatejobrunresponse.md)\>**
+**Promise\<[components.TerminateJobRun](../../models/components/terminatejobrun.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

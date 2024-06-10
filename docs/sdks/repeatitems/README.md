@@ -49,7 +49,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetRepeatItemsResponse](../../models/operations/getrepeatitemsresponse.md)\>**
+**Promise\<[components.QueueRepeatItem[]](../../models/.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -98,7 +98,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.AppendRepeatItemResponse](../../models/operations/appendrepeatitemresponse.md)\>**
+**Promise\<[components.AddQueueRepeatItem](../../models/components/addqueuerepeatitem.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -144,7 +144,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetRepeatQueueItemResponse](../../models/operations/getrepeatqueueitemresponse.md)\>**
+**Promise\<[components.QueueRepeatItem](../../models/components/queuerepeatitem.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -194,7 +194,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.UpdateRepeatQueueItemResponse](../../models/operations/updaterepeatqueueitemresponse.md)\>**
+**Promise\<[components.UpdateQueueRepeatItem](../../models/components/updatequeuerepeatitem.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -218,10 +218,9 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.queues.repeatItems.delete("my-project", "my-sample-queue", "22222222-2222-2222-2222-222222222222");
+  await intunedClient.project.queues.repeatItems.delete("my-project", "my-sample-queue", "22222222-2222-2222-2222-222222222222");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -240,7 +239,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteRepeatQueueItemResponse](../../models/operations/deleterepeatqueueitemresponse.md)\>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

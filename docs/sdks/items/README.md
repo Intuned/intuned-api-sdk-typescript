@@ -57,7 +57,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.AppendQueueItemResponse](../../models/operations/appendqueueitemresponse.md)\>**
+**Promise\<[components.AddQueueItem](../../models/components/addqueueitem.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -103,7 +103,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetQueueItemResultResponse](../../models/operations/getqueueitemresultresponse.md)\>**
+**Promise\<[components.QueueItemResult](../../models/components/queueitemresult.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -127,10 +127,9 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.queues.items.delete("my-project", "my-sample-queue", "11111111-1111-1111-1111-111111111111");
+  await intunedClient.project.queues.items.delete("my-project", "my-sample-queue", "11111111-1111-1111-1111-111111111111");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -149,7 +148,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteQueueItemResponse](../../models/operations/deletequeueitemresponse.md)\>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

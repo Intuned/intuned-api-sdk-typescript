@@ -12,6 +12,7 @@ import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
 import { Runs } from "./runs";
+import * as z from "zod";
 
 export class Jobs extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -51,7 +52,7 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Gets all jobs in a project.
      */
-    async all(projectName: string, options?: RequestOptions): Promise<operations.GetJobsResponse> {
+    async all(projectName: string, options?: RequestOptions): Promise<Array<components.Job>> {
         const input$: operations.GetJobsRequest = {
             projectName: projectName,
         };
@@ -117,12 +118,12 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetJobsResponse>()
-            .json(200, operations.GetJobsResponse$, { key: "GetJobs" })
+        const [result$] = await this.matcher<Array<components.Job>>()
+            .json(200, z.array(components.Job$.inboundSchema))
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -137,7 +138,7 @@ export class Jobs extends ClientSDK {
         projectName: string,
         jobInput: components.JobInput,
         options?: RequestOptions
-    ): Promise<operations.CreateJobResponse> {
+    ): Promise<components.CreateJob> {
         const input$: operations.CreateJobRequest = {
             projectName: projectName,
             jobInput: jobInput,
@@ -205,12 +206,12 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.CreateJobResponse>()
-            .json(201, operations.CreateJobResponse$, { key: "CreateJob" })
+        const [result$] = await this.matcher<components.CreateJob>()
+            .json(201, components.CreateJob$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -225,7 +226,7 @@ export class Jobs extends ClientSDK {
         projectName: string,
         jobId: string,
         options?: RequestOptions
-    ): Promise<operations.GetJobResponse> {
+    ): Promise<components.Job> {
         const input$: operations.GetJobRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -296,12 +297,12 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetJobResponse>()
-            .json(200, operations.GetJobResponse$, { key: "Job" })
+        const [result$] = await this.matcher<components.Job>()
+            .json(200, components.Job$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -312,11 +313,7 @@ export class Jobs extends ClientSDK {
      * @remarks
      * Deletes a job by ID.
      */
-    async delete(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<operations.DeleteJobResponse> {
+    async delete(projectName: string, jobId: string, options?: RequestOptions): Promise<void> {
         const input$: operations.DeleteJobRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -387,11 +384,11 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.DeleteJobResponse>()
-            .void(204, operations.DeleteJobResponse$)
+        const [result$] = await this.matcher<void>()
+            .void(204, z.void())
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -406,7 +403,7 @@ export class Jobs extends ClientSDK {
         projectName: string,
         jobId: string,
         options?: RequestOptions
-    ): Promise<operations.PauseJobResponse> {
+    ): Promise<components.PauseJob> {
         const input$: operations.PauseJobRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -477,12 +474,12 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.PauseJobResponse>()
-            .json(200, operations.PauseJobResponse$, { key: "PauseJob" })
+        const [result$] = await this.matcher<components.PauseJob>()
+            .json(200, components.PauseJob$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -497,7 +494,7 @@ export class Jobs extends ClientSDK {
         projectName: string,
         jobId: string,
         options?: RequestOptions
-    ): Promise<operations.ResumeJobResponse> {
+    ): Promise<components.ResumeJob> {
         const input$: operations.ResumeJobRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -568,12 +565,12 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.ResumeJobResponse>()
-            .json(200, operations.ResumeJobResponse$, { key: "ResumeJob" })
+        const [result$] = await this.matcher<components.ResumeJob>()
+            .json(200, components.ResumeJob$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -588,7 +585,7 @@ export class Jobs extends ClientSDK {
         projectName: string,
         jobId: string,
         options?: RequestOptions
-    ): Promise<operations.TriggerJobResponse> {
+    ): Promise<components.TriggerJob> {
         const input$: operations.TriggerJobRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -659,12 +656,12 @@ export class Jobs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.TriggerJobResponse>()
-            .json(200, operations.TriggerJobResponse$, { key: "TriggerJob" })
+        const [result$] = await this.matcher<components.TriggerJob>()
+            .json(200, components.TriggerJob$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

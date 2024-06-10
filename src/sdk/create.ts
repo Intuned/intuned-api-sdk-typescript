@@ -49,7 +49,7 @@ export class Create extends ClientSDK {
         projectName: string,
         createAuthSessionRequest: components.CreateAuthSessionRequest,
         options?: RequestOptions
-    ): Promise<operations.CreateAuthSessionStartResponse> {
+    ): Promise<components.CreateAuthSessionStart> {
         const input$: operations.CreateAuthSessionStartRequest = {
             projectName: projectName,
             createAuthSessionRequest: createAuthSessionRequest,
@@ -117,14 +117,12 @@ export class Create extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.CreateAuthSessionStartResponse>()
-            .json(201, operations.CreateAuthSessionStartResponse$, {
-                key: "CreateAuthSessionStart",
-            })
+        const [result$] = await this.matcher<components.CreateAuthSessionStart>()
+            .json(201, components.CreateAuthSessionStart$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -139,7 +137,7 @@ export class Create extends ClientSDK {
         projectName: string,
         operationId: string,
         options?: RequestOptions
-    ): Promise<operations.CreateAuthSessionResultResponse> {
+    ): Promise<components.AuthSessionCreateResult> {
         const input$: operations.CreateAuthSessionResultRequest = {
             projectName: projectName,
             operationId: operationId,
@@ -210,14 +208,12 @@ export class Create extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.CreateAuthSessionResultResponse>()
-            .json(200, operations.CreateAuthSessionResultResponse$, {
-                key: "AuthSessionCreateResult",
-            })
+        const [result$] = await this.matcher<components.AuthSessionCreateResult>()
+            .json(200, components.AuthSessionCreateResult$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -233,7 +229,7 @@ export class Create extends ClientSDK {
         operationId: string,
         authSessionCreateResume: components.AuthSessionCreateResume,
         options?: RequestOptions
-    ): Promise<operations.CreateAuthSessionResumeResponse> {
+    ): Promise<components.CreateAuthSessionResume> {
         const input$: operations.CreateAuthSessionResumeRequest = {
             projectName: projectName,
             operationId: operationId,
@@ -306,14 +302,12 @@ export class Create extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.CreateAuthSessionResumeResponse>()
-            .json(201, operations.CreateAuthSessionResumeResponse$, {
-                key: "CreateAuthSessionResume",
-            })
+        const [result$] = await this.matcher<components.CreateAuthSessionResume>()
+            .json(201, components.CreateAuthSessionResume$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

@@ -32,14 +32,6 @@ export type UpdateRepeatQueueItemRequest = {
     queueRepeatItemInput: components.QueueRepeatItemInput;
 };
 
-export type UpdateRepeatQueueItemResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Queue repeatable item updated
-     */
-    updateQueueRepeatItem?: components.UpdateQueueRepeatItem | undefined;
-};
-
 /** @internal */
 export namespace UpdateRepeatQueueItemGlobals$ {
     export const inboundSchema: z.ZodType<UpdateRepeatQueueItemGlobals, z.ZodTypeDef, unknown> =
@@ -91,37 +83,4 @@ export namespace UpdateRepeatQueueItemRequest$ {
                 queueRepeatItemInput: "QueueRepeatItemInput",
             });
         });
-}
-
-/** @internal */
-export namespace UpdateRepeatQueueItemResponse$ {
-    export const inboundSchema: z.ZodType<UpdateRepeatQueueItemResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            UpdateQueueRepeatItem: components.UpdateQueueRepeatItem$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                UpdateQueueRepeatItem: "updateQueueRepeatItem",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        UpdateQueueRepeatItem?: components.UpdateQueueRepeatItem$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateRepeatQueueItemResponse> =
-        z
-            .object({
-                httpMeta: components.HTTPMetadata$.outboundSchema,
-                updateQueueRepeatItem: components.UpdateQueueRepeatItem$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return remap$(v, {
-                    httpMeta: "HttpMeta",
-                    updateQueueRepeatItem: "UpdateQueueRepeatItem",
-                });
-            });
 }

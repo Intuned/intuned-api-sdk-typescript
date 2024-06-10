@@ -35,7 +35,6 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
-    proxy: "http://host:port:username:password",
   });
 
   // Handle the result
@@ -90,7 +89,6 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
-    proxy: "http://host:port:username:password",
   });
 
   // Handle the result
@@ -112,7 +110,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.RunApiStartResponse](../../models/operations/runapistartresponse.md)\>**
+**Promise\<[components.AsyncRunPendingResponse](../../models/components/asyncrunpendingresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -157,7 +155,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.RunApiResultResponse](../../models/operations/runapiresultresponse.md)\>**
+**Promise\<[components.AsyncResultResponse](../../models/components/asyncresultresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

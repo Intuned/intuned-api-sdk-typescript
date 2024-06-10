@@ -3,18 +3,23 @@
  */
 
 import { remap as remap$ } from "../../lib/primitives";
+import { ClosedEnum } from "../../types";
 import * as z from "zod";
 
 /**
  * The status of the job run.
  */
-export enum JobRunStatus {
-    Failed = "FAILED",
-    Completed = "COMPLETED",
-    Pending = "PENDING",
-    Terminated = "TERMINATED",
-    Paused = "PAUSED",
-}
+export const JobRunStatus = {
+    Failed: "FAILED",
+    Completed: "COMPLETED",
+    Pending: "PENDING",
+    Terminated: "TERMINATED",
+    Paused: "PAUSED",
+} as const;
+/**
+ * The status of the job run.
+ */
+export type JobRunStatus = ClosedEnum<typeof JobRunStatus>;
 
 /**
  * A summary of the job run. Contains how many payloads are pending, how many finished executing, succeeded and failed.
@@ -41,10 +46,14 @@ export type Summary = {
 /**
  * Whether the job run was triggered manually or by the job schedule.
  */
-export enum JobRunType {
-    Manual = "MANUAL",
-    Scheduled = "SCHEDULED",
-}
+export const JobRunType = {
+    Manual: "MANUAL",
+    Scheduled: "SCHEDULED",
+} as const;
+/**
+ * Whether the job run was triggered manually or by the job schedule.
+ */
+export type JobRunType = ClosedEnum<typeof JobRunType>;
 
 /**
  * The details of a job run.

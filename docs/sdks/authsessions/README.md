@@ -46,7 +46,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetAuthSessionsResponse](../../models/operations/getauthsessionsresponse.md)\>**
+**Promise\<[components.AuthSessionInfo[]](../../models/.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -91,7 +91,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetAuthSessionResponse](../../models/operations/getauthsessionresponse.md)\>**
+**Promise\<[components.AuthSessionInfo](../../models/components/authsessioninfo.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -115,10 +115,9 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.authSessions.delete("my-project", "8db863f6-ef9b-413a-8a70-cb816b33de6b");
+  await intunedClient.project.authSessions.delete("my-project", "8db863f6-ef9b-413a-8a70-cb816b33de6b");
 
-  // Handle the result
-  console.log(result)
+  
 }
 
 run();
@@ -136,7 +135,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.DeleteAuthSessionResponse](../../models/operations/deleteauthsessionresponse.md)\>**
+**Promise\<void\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

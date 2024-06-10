@@ -28,14 +28,6 @@ export type CreateAuthSessionResumeRequest = {
     authSessionCreateResume: components.AuthSessionCreateResume;
 };
 
-export type CreateAuthSessionResumeResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Successfully started creation
-     */
-    createAuthSessionResume?: components.CreateAuthSessionResume | undefined;
-};
-
 /** @internal */
 export namespace CreateAuthSessionResumeGlobals$ {
     export const inboundSchema: z.ZodType<CreateAuthSessionResumeGlobals, z.ZodTypeDef, unknown> =
@@ -85,42 +77,4 @@ export namespace CreateAuthSessionResumeRequest$ {
                     authSessionCreateResume: "AuthSessionCreateResume",
                 });
             });
-}
-
-/** @internal */
-export namespace CreateAuthSessionResumeResponse$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionResumeResponse, z.ZodTypeDef, unknown> =
-        z
-            .object({
-                HttpMeta: components.HTTPMetadata$.inboundSchema,
-                CreateAuthSessionResume:
-                    components.CreateAuthSessionResume$.inboundSchema.optional(),
-            })
-            .transform((v) => {
-                return remap$(v, {
-                    HttpMeta: "httpMeta",
-                    CreateAuthSessionResume: "createAuthSessionResume",
-                });
-            });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CreateAuthSessionResume?: components.CreateAuthSessionResume$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        CreateAuthSessionResumeResponse
-    > = z
-        .object({
-            httpMeta: components.HTTPMetadata$.outboundSchema,
-            createAuthSessionResume: components.CreateAuthSessionResume$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                httpMeta: "HttpMeta",
-                createAuthSessionResume: "CreateAuthSessionResume",
-            });
-        });
 }

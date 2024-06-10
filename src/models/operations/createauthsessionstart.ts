@@ -24,14 +24,6 @@ export type CreateAuthSessionStartRequest = {
     createAuthSessionRequest: components.CreateAuthSessionRequest;
 };
 
-export type CreateAuthSessionStartResponse = {
-    httpMeta: components.HTTPMetadata;
-    /**
-     * Successfully started creation
-     */
-    createAuthSessionStart?: components.CreateAuthSessionStart | undefined;
-};
-
 /** @internal */
 export namespace CreateAuthSessionStartGlobals$ {
     export const inboundSchema: z.ZodType<CreateAuthSessionStartGlobals, z.ZodTypeDef, unknown> =
@@ -76,40 +68,6 @@ export namespace CreateAuthSessionStartRequest$ {
             .transform((v) => {
                 return remap$(v, {
                     createAuthSessionRequest: "CreateAuthSessionRequest",
-                });
-            });
-}
-
-/** @internal */
-export namespace CreateAuthSessionStartResponse$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionStartResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            HttpMeta: components.HTTPMetadata$.inboundSchema,
-            CreateAuthSessionStart: components.CreateAuthSessionStart$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                HttpMeta: "httpMeta",
-                CreateAuthSessionStart: "createAuthSessionStart",
-            });
-        });
-
-    export type Outbound = {
-        HttpMeta: components.HTTPMetadata$.Outbound;
-        CreateAuthSessionStart?: components.CreateAuthSessionStart$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionStartResponse> =
-        z
-            .object({
-                httpMeta: components.HTTPMetadata$.outboundSchema,
-                createAuthSessionStart:
-                    components.CreateAuthSessionStart$.outboundSchema.optional(),
-            })
-            .transform((v) => {
-                return remap$(v, {
-                    httpMeta: "HttpMeta",
-                    createAuthSessionStart: "CreateAuthSessionStart",
                 });
             });
 }

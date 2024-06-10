@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractMarkdownSyncResponse](../../models/operations/fileextractmarkdownsyncresponse.md)\>**
+**Promise\<[components.MarkdownExtractionResponse](../../models/components/markdownextractionresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -107,7 +107,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractMarkdownStartResponse](../../models/operations/fileextractmarkdownstartresponse.md)\>**
+**Promise\<[components.AsyncFilePendingResponse](../../models/components/asyncfilependingresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -151,7 +151,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractMarkdownResultResponse](../../models/operations/fileextractmarkdownresultresponse.md)\>**
+**Promise\<[components.MarkdownExtractionAsyncResponse](../../models/components/markdownextractionasyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

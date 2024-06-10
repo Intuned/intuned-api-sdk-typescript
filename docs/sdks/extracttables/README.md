@@ -54,7 +54,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractTablesSyncResponse](../../models/operations/fileextracttablessyncresponse.md)\>**
+**Promise\<[components.TableExtractionResponse](../../models/components/tableextractionresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -107,7 +107,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractTablesStartResponse](../../models/operations/fileextracttablesstartresponse.md)\>**
+**Promise\<[components.AsyncFilePendingResponse](../../models/components/asyncfilependingresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -151,7 +151,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.FileExtractTablesResultResponse](../../models/operations/fileextracttablesresultresponse.md)\>**
+**Promise\<[components.TableExtractionAsyncResponse](../../models/components/tableextractionasyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

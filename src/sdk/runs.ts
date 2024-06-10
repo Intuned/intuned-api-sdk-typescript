@@ -8,8 +8,10 @@ import * as enc$ from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
+import * as components from "../models/components";
 import * as errors from "../models/errors";
 import * as operations from "../models/operations";
+import * as z from "zod";
 
 export class Runs extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -48,7 +50,7 @@ export class Runs extends ClientSDK {
         projectName: string,
         jobId: string,
         options?: RequestOptions
-    ): Promise<operations.GetJobRunsResponse> {
+    ): Promise<Array<components.JobRun>> {
         const input$: operations.GetJobRunsRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -119,12 +121,12 @@ export class Runs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.GetJobRunsResponse>()
-            .json(200, operations.GetJobRunsResponse$, { key: "GetJobRuns" })
+        const [result$] = await this.matcher<Array<components.JobRun>>()
+            .json(200, z.array(components.JobRun$.inboundSchema))
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
@@ -140,7 +142,7 @@ export class Runs extends ClientSDK {
         jobId: string,
         runId: string,
         options?: RequestOptions
-    ): Promise<operations.TerminateJobRunResponse> {
+    ): Promise<components.TerminateJobRun> {
         const input$: operations.TerminateJobRunRequest = {
             projectName: projectName,
             jobId: jobId,
@@ -216,11 +218,11 @@ export class Runs extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.TerminateJobRunResponse>()
-            .json(200, operations.TerminateJobRunResponse$, { key: "TerminateJobRun" })
+        const [result$] = await this.matcher<components.TerminateJobRun>()
+            .json(200, components.TerminateJobRun$)
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .match(response, request$, { extraFields: responseFields$ });
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }
