@@ -1,17 +1,17 @@
-speakeasyVersion: 1.300.1
+speakeasyVersion: 1.303.5
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:e523c55158a8995fa104084864bb03dd3e67e7362c687650eecdcc96f67fcdfb
-        sourceBlobDigest: sha256:4cd6a6694b6e349a0058ab201db2edc194d49702005ad5745b481f518c0fcefc
+        sourceRevisionDigest: sha256:2b1cbf8f7eab5bf065e6dda1444409da9bab59ab89dc94e3a7ce33d91a86fe49
+        sourceBlobDigest: sha256:e992d6ce42a7bf105055ca521502f951c85d6ceaa1b9f404bf24a599f25157f9
         tags:
             - latest
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:e523c55158a8995fa104084864bb03dd3e67e7362c687650eecdcc96f67fcdfb
-        sourceBlobDigest: sha256:4cd6a6694b6e349a0058ab201db2edc194d49702005ad5745b481f518c0fcefc
+        sourceRevisionDigest: sha256:2b1cbf8f7eab5bf065e6dda1444409da9bab59ab89dc94e3a7ce33d91a86fe49
+        sourceBlobDigest: sha256:e992d6ce42a7bf105055ca521502f951c85d6ceaa1b9f404bf24a599f25157f9
         outLocation: /Users/omarhurani/Documents/GitHub/intuned-api-sdk-typescript
     typescript-client-sdk:
         source: intunedClientApi
@@ -32,8 +32,5 @@ workflow:
         my-first-target:
             target: typescript
             source: intunedClientApi
-            publish:
-                npm:
-                    token: $npm_token
             codeSamples:
                 output: ../docs/_resources/openapi/generated/codeSamples.yaml

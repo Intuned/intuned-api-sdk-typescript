@@ -26,7 +26,7 @@ export type RateLimits = {
      */
     limit: number;
     /**
-     * The duration of the rate limit. ms-formatted string.
+     * The duration of the rate limit. [ms-formatted string](https://github.com/vercel/ms) string.
      */
     duration: string;
 };
@@ -47,11 +47,11 @@ export type Schedule = {
 
 export type MsFormattedRange = {
     /**
-     * The minimum duration to wait. An ms-formatted string.
+     * The minimum duration to wait. An [ms-formatted string](https://github.com/vercel/ms) string.
      */
     min: string;
     /**
-     * The maximum duration to wait. An ms-formatted string.
+     * The maximum duration to wait. An [ms-formatted string](https://github.com/vercel/ms) string.
      */
     max: string;
 };
@@ -68,7 +68,7 @@ export type MillisecondsRange = {
 };
 
 /**
- * A random wait duration range added between executed items. The range can be in milliseconds or ms-formatted strings.
+ * A random wait duration range added between executed items. The range can be in milliseconds or [ms-formatted string](https://github.com/vercel/ms) strings.
  */
 export type RandomWait = MillisecondsRange | MsFormattedRange;
 
@@ -93,7 +93,7 @@ export type QueueConfiguration = {
      */
     schedule?: Schedule | undefined;
     /**
-     * A random wait duration range added between executed items. The range can be in milliseconds or ms-formatted strings.
+     * A random wait duration range added between executed items. The range can be in milliseconds or [ms-formatted string](https://github.com/vercel/ms) strings.
      */
     randomWait?: MillisecondsRange | MsFormattedRange | undefined;
 };

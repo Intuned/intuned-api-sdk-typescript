@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -71,11 +71,11 @@ export class AuthSessions extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -158,15 +158,15 @@ export class AuthSessions extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            authSessionId: enc$.encodeSimple("authSessionId", payload$.authSessionId, {
+            authSessionId: encodeSimple$("authSessionId", payload$.authSessionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -249,15 +249,15 @@ export class AuthSessions extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            authSessionId: enc$.encodeSimple("authSessionId", payload$.authSessionId, {
+            authSessionId: encodeSimple$("authSessionId", payload$.authSessionId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),

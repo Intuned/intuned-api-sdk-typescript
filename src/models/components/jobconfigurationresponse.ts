@@ -3,28 +3,28 @@
  */
 
 import { ClosedEnum } from "../../types";
-import { JobRetry, JobRetry$ } from "./jobretry";
+import { JobRetryResponse, JobRetryResponse$ } from "./jobretryresponse";
 import * as z from "zod";
 
 /**
  * The run mode of the job. Currently, only `Order-Irrelevant` is supported.
  */
-export const JobConfigurationRunMode = {
+export const RunMode = {
     OrderIrrelevant: "Order-Irrelevant",
 } as const;
 /**
  * The run mode of the job. Currently, only `Order-Irrelevant` is supported.
  */
-export type JobConfigurationRunMode = ClosedEnum<typeof JobConfigurationRunMode>;
+export type RunMode = ClosedEnum<typeof RunMode>;
 
 /**
  * The configuration of the job. Configures the retry policy and maximum concurrent requests.
  */
-export type JobConfiguration = {
+export type JobConfigurationResponse = {
     /**
      * The run mode of the job. Currently, only `Order-Irrelevant` is supported.
      */
-    runMode: JobConfigurationRunMode;
+    runMode: RunMode;
     /**
      * The batch size of payloads to execute. This does not guarantee that the payloads will be executed at the same time.
      */
@@ -32,32 +32,34 @@ export type JobConfiguration = {
     /**
      * The retry policy of the job. Configure how many retries and the delay between them for each payload. The delay is calculated as `max(initialInterval * (backoffCoefficient ^ [i]), maximumInterval)`, where `i` is the current retry iteration.
      */
-    retry?: JobRetry | undefined;
+    retry?: JobRetryResponse | undefined;
 };
 
 /** @internal */
-export namespace JobConfigurationRunMode$ {
-    export const inboundSchema = z.nativeEnum(JobConfigurationRunMode);
+export namespace RunMode$ {
+    export const inboundSchema = z.nativeEnum(RunMode);
     export const outboundSchema = inboundSchema;
 }
 
 /** @internal */
-export namespace JobConfiguration$ {
-    export const inboundSchema: z.ZodType<JobConfiguration, z.ZodTypeDef, unknown> = z.object({
-        runMode: JobConfigurationRunMode$.inboundSchema,
-        maxConcurrentRequests: z.number().optional(),
-        retry: JobRetry$.inboundSchema.optional(),
-    });
+export namespace JobConfigurationResponse$ {
+    export const inboundSchema: z.ZodType<JobConfigurationResponse, z.ZodTypeDef, unknown> =
+        z.object({
+            runMode: RunMode$.inboundSchema,
+            maxConcurrentRequests: z.number().optional(),
+            retry: JobRetryResponse$.inboundSchema.optional(),
+        });
 
     export type Outbound = {
         runMode: string;
         maxConcurrentRequests?: number | undefined;
-        retry?: JobRetry$.Outbound | undefined;
+        retry?: JobRetryResponse$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobConfiguration> = z.object({
-        runMode: JobConfigurationRunMode$.outboundSchema,
-        maxConcurrentRequests: z.number().optional(),
-        retry: JobRetry$.outboundSchema.optional(),
-    });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobConfigurationResponse> =
+        z.object({
+            runMode: RunMode$.outboundSchema,
+            maxConcurrentRequests: z.number().optional(),
+            retry: JobRetryResponse$.outboundSchema.optional(),
+        });
 }

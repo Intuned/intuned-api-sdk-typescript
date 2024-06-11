@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -64,14 +64,14 @@ export class Run extends ClientSDK {
             (value$) => operations.RunApiSyncRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RunProjectApiRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RunProjectApiRequest, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -153,14 +153,14 @@ export class Run extends ClientSDK {
             (value$) => operations.RunApiStartRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.RunProjectApiRequest, { explode: true });
+        const body$ = encodeJSON$("body", payload$.RunProjectApiRequest, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -243,15 +243,15 @@ export class Run extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            runId: enc$.encodeSimple("runId", payload$.runId, {
+            runId: encodeSimple$("runId", payload$.runId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),

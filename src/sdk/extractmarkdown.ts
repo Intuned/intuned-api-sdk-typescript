@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -63,10 +63,10 @@ export class ExtractMarkdown extends ClientSDK {
             (value$) => components.GeneralExtractRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const pathParams$ = {
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -147,10 +147,10 @@ export class ExtractMarkdown extends ClientSDK {
             (value$) => components.GeneralExtractRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$, { explode: true });
+        const body$ = encodeJSON$("body", payload$, { explode: true });
 
         const pathParams$ = {
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -231,11 +231,11 @@ export class ExtractMarkdown extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            operationId: enc$.encodeSimple("operationId", payload$.operationId, {
+            operationId: encodeSimple$("operationId", payload$.operationId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
