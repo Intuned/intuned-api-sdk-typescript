@@ -67,7 +67,7 @@ Creates a new job for a project.
 
 ```typescript
 import { IntunedClient } from "@intuned/client";
-import { RunMode, WebhookSinkType } from "@intuned/client/models/components";
+import { JobConfigurationRunMode, WebhookSinkType } from "@intuned/client/models/components";
 
 const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -78,7 +78,7 @@ async function run() {
   const result = await intunedClient.project.jobs.create("my-project", {
     id: "my-sample-job",
     configuration: {
-      runMode: RunMode.OrderIrrelevant,
+      runMode: JobConfigurationRunMode.OrderIrrelevant,
       maxConcurrentRequests: 5,
     },
   sink:     {

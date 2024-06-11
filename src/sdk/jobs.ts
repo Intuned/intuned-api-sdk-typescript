@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -68,11 +68,11 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -153,14 +153,14 @@ export class Jobs extends ClientSDK {
             (value$) => operations.CreateJobRequest$.outboundSchema.parse(value$),
             "Input validation failed"
         );
-        const body$ = enc$.encodeJSON("body", payload$.JobInput, { explode: true });
+        const body$ = encodeJSON$("body", payload$.JobInput, { explode: true });
 
         const pathParams$ = {
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -243,15 +243,15 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -330,15 +330,15 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -420,15 +420,15 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -511,15 +511,15 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -602,15 +602,15 @@ export class Jobs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),

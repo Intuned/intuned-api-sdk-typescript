@@ -1,18 +1,19 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: b0a9d64df9bb6ce1713dd8da7eb9f70a
+  docChecksum: a23da1ffe8d94da59a6a43aee8ccac64
   docVersion: 0.0.1
-  speakeasyVersion: 1.300.1
-  generationVersion: 2.339.1
-  releaseVersion: 0.3.10
-  configChecksum: 74bb3cd6d83ceeeba81a4f75b100bffe
+  speakeasyVersion: 1.303.5
+  generationVersion: 2.340.3
+  releaseVersion: 0.4.1
+  configChecksum: b4314bf6cb525c2a108fc2b869919b53
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
+    additionalProperties: 0.1.1
     constsAndDefaults: 0.1.5
-    core: 3.9.12
+    core: 3.9.13
     devContainers: 2.90.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -96,9 +97,12 @@ generatedFiles:
   - src/models/components/jobsink.ts
   - src/models/components/webhooksink.ts
   - src/models/components/amazons3sink.ts
-  - src/models/components/jobconfiguration.ts
+  - src/models/components/jobconfigurationresponse.ts
+  - src/models/components/jobretryresponse.ts
   - src/models/components/createjob.ts
   - src/models/components/jobinput.ts
+  - src/models/components/jobconfiguration.ts
+  - src/models/components/jobretry.ts
   - src/models/components/pausejob.ts
   - src/models/components/resumejob.ts
   - src/models/components/triggerjob.ts
@@ -236,11 +240,14 @@ generatedFiles:
   - docs/models/components/amazons3sinktype.md
   - docs/models/components/amazons3sink.md
   - docs/models/components/runmode.md
-  - docs/models/components/jobconfigurationretry.md
-  - docs/models/components/jobconfiguration.md
+  - docs/models/components/jobconfigurationresponse.md
+  - docs/models/components/jobretryresponse.md
   - docs/models/components/message.md
   - docs/models/components/createjob.md
   - docs/models/components/jobinput.md
+  - docs/models/components/jobconfigurationrunmode.md
+  - docs/models/components/jobconfiguration.md
+  - docs/models/components/jobretry.md
   - docs/models/components/pausejobmessage.md
   - docs/models/components/pausejob.md
   - docs/models/components/resumejobmessage.md

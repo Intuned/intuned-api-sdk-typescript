@@ -5,7 +5,7 @@
 import { remap as remap$ } from "../../lib/primitives";
 import { ClosedEnum } from "../../types";
 import { AuthSession, AuthSession$ } from "./authsession";
-import { JobConfiguration, JobConfiguration$ } from "./jobconfiguration";
+import { JobConfigurationResponse, JobConfigurationResponse$ } from "./jobconfigurationresponse";
 import { JobPayload, JobPayload$ } from "./jobpayload";
 import { JobSchedule, JobSchedule$ } from "./jobschedule";
 import { JobSink, JobSink$ } from "./jobsink";
@@ -46,7 +46,7 @@ export type Job = {
     /**
      * The configuration of the job. Configures the retry policy and maximum concurrent requests.
      */
-    configuration: JobConfiguration;
+    configuration: JobConfigurationResponse;
     /**
      * A sink to send the results to. Can be a webhook or Amazon S3 bucket.
      */
@@ -146,7 +146,7 @@ export namespace Job$ {
     export const inboundSchema: z.ZodType<Job, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
-            configuration: JobConfiguration$.inboundSchema,
+            configuration: JobConfigurationResponse$.inboundSchema,
             sink: z.nullable(JobSink$.inboundSchema).optional(),
             payload: z.array(JobPayload$.inboundSchema),
             schedule: JobSchedule$.inboundSchema.optional(),
@@ -184,7 +184,7 @@ export namespace Job$ {
 
     export type Outbound = {
         id: string;
-        configuration: JobConfiguration$.Outbound;
+        configuration: JobConfigurationResponse$.Outbound;
         sink?: JobSink$.Outbound | null | undefined;
         payload: Array<JobPayload$.Outbound>;
         schedule?: JobSchedule$.Outbound | undefined;
@@ -199,7 +199,7 @@ export namespace Job$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Job> = z
         .object({
             id: z.string(),
-            configuration: JobConfiguration$.outboundSchema,
+            configuration: JobConfigurationResponse$.outboundSchema,
             sink: z.nullable(JobSink$.outboundSchema).optional(),
             payload: z.array(JobPayload$.outboundSchema),
             schedule: JobSchedule$.outboundSchema.optional(),

@@ -4,7 +4,7 @@
 
 import { SDKHooks } from "../hooks";
 import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config";
-import * as enc$ from "../lib/encodings";
+import { encodeSimple as encodeSimple$ } from "../lib/encodings";
 import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
@@ -67,15 +67,15 @@ export class Runs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
@@ -160,19 +160,19 @@ export class Runs extends ClientSDK {
         const body$ = null;
 
         const pathParams$ = {
-            jobId: enc$.encodeSimple("jobId", payload$.jobId, {
+            jobId: encodeSimple$("jobId", payload$.jobId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            projectName: enc$.encodeSimple("projectName", payload$.projectName, {
+            projectName: encodeSimple$("projectName", payload$.projectName, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            runId: enc$.encodeSimple("runId", payload$.runId, {
+            runId: encodeSimple$("runId", payload$.runId, {
                 explode: false,
                 charEncoding: "percent",
             }),
-            workspaceId: enc$.encodeSimple("workspaceId", this.options$.workspaceId, {
+            workspaceId: encodeSimple$("workspaceId", this.options$.workspaceId, {
                 explode: false,
                 charEncoding: "percent",
             }),
