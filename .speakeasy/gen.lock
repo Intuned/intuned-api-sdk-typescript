@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: a23da1ffe8d94da59a6a43aee8ccac64
+  docChecksum: 0ef4d8c335e74e4fd992603b9e45e87c
   docVersion: 0.0.1
-  speakeasyVersion: 1.303.5
-  generationVersion: 2.340.3
-  releaseVersion: 0.4.1
-  configChecksum: b4314bf6cb525c2a108fc2b869919b53
+  speakeasyVersion: 1.308.1
+  generationVersion: 2.342.6
+  releaseVersion: 0.5.0
+  configChecksum: c3de364a8a1f7ce0feeb07f529b1aa43
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.5
-    core: 3.9.13
+    core: 3.9.14
     devContainers: 2.90.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -27,6 +27,7 @@ features:
     responseFormat: 0.2.3
     sdkHooks: 0.1.0
     unions: 2.85.5
+    webhooks: 1.0.0
 generatedFiles:
   - src/sdk/extractstructureddata.ts
   - src/sdk/extractmarkdown.ts
@@ -142,6 +143,12 @@ generatedFiles:
   - src/models/components/createauthsessionresume.ts
   - src/models/components/authsessioncreateresume.ts
   - src/models/components/security.ts
+  - src/models/components/resultwebhook.ts
+  - src/models/components/jobresultwebhookpayload.ts
+  - src/models/components/webhookapiinfo.ts
+  - src/models/components/webhookapiinforesultcompleted.ts
+  - src/models/components/webhookapiinforesultfailed.ts
+  - src/models/components/queueresultwebhookpayload.ts
   - src/models/errors/apierrorinvalidinput.ts
   - src/models/errors/apierrorunauthorized.ts
   - src/models/operations/fileextractstructureddataresult.ts
@@ -323,6 +330,22 @@ generatedFiles:
   - docs/models/components/createauthsessionresume.md
   - docs/models/components/authsessioncreateresume.md
   - docs/models/components/security.md
+  - docs/models/components/resultwebhook.md
+  - docs/models/components/project.md
+  - docs/models/components/jobresultwebhookpayloadauthsession.md
+  - docs/models/components/projectjob.md
+  - docs/models/components/projectjobrun.md
+  - docs/models/components/jobresultwebhookpayload.md
+  - docs/models/components/webhookapiinforesult.md
+  - docs/models/components/webhookapiinfo.md
+  - docs/models/components/webhookapiinforesultcompletedstatus.md
+  - docs/models/components/webhookapiinforesultcompleted.md
+  - docs/models/components/webhookapiinforesultfailedstatus.md
+  - docs/models/components/webhookapiinforesultfailed.md
+  - docs/models/components/queueresultwebhookpayloadproject.md
+  - docs/models/components/queueresultwebhookpayloadauthsession.md
+  - docs/models/components/projectqueue.md
+  - docs/models/components/queueresultwebhookpayload.md
   - docs/models/errors/apierrorinvalidinput.md
   - docs/models/errors/apierrorunauthorized.md
   - docs/models/operations/fileextractstructureddataresultglobals.md

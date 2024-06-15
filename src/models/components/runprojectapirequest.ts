@@ -31,7 +31,7 @@ export type RunProjectApiRequest = {
      * Proxy URL following this format:
      *
      * @remarks
-     * `http://host:port:username:password`
+     * `http://username@password:domain:port`
      *
      */
     proxy?: string | undefined;

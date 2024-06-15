@@ -1,0 +1,13 @@
+# WebhookAPIInfoResultFailed
+
+API result of failed run
+
+
+## Fields
+
+| Field                                                                                                      | Type                                                                                                       | Required                                                                                                   | Description                                                                                                |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `error`                                                                                                    | *string*                                                                                                   | :heavy_check_mark:                                                                                         | Error code                                                                                                 |
+| `message`                                                                                                  | *string*                                                                                                   | :heavy_check_mark:                                                                                         | Error message                                                                                              |
+| `status`                                                                                                   | [components.WebhookAPIInfoResultFailedStatus](../../models/components/webhookapiinforesultfailedstatus.md) | :heavy_check_mark:                                                                                         | The status of the run                                                                                      |
+| `statusCode`                                                                                               | *number*                                                                                                   | :heavy_check_mark:                                                                                         | The HTTP status code of the API run                                                                        |

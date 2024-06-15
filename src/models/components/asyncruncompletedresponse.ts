@@ -29,13 +29,13 @@ export type AsyncRunCompletedResponse = {
      */
     status: AsyncRunCompletedResponseStatus;
     /**
-     * The run ID
-     */
-    runId: string;
-    /**
      * The HTTP status code of the API run
      */
     statusCode: number;
+    /**
+     * The run ID
+     */
+    runId: string;
 };
 
 /** @internal */
@@ -50,22 +50,22 @@ export namespace AsyncRunCompletedResponse$ {
         z.object({
             result: z.any().optional(),
             status: AsyncRunCompletedResponseStatus$.inboundSchema,
-            runId: z.string(),
             statusCode: z.number(),
+            runId: z.string(),
         });
 
     export type Outbound = {
         result?: any | undefined;
         status: string;
-        runId: string;
         statusCode: number;
+        runId: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncRunCompletedResponse> =
         z.object({
             result: z.any().optional(),
             status: AsyncRunCompletedResponseStatus$.outboundSchema,
-            runId: z.string(),
             statusCode: z.number(),
+            runId: z.string(),
         });
 }
