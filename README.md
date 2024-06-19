@@ -13,10 +13,25 @@ Consume your browser automation projects and perform file operations with the In
 npm add @intuned/client
 ```
 
+### PNPM
+
+```bash
+pnpm add @intuned/client
+```
+
+### Bun
+
+```bash
+bun add @intuned/client
+```
+
 ### Yarn
 
 ```bash
-yarn add @intuned/client
+yarn add @intuned/client zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -32,11 +47,11 @@ To get started, please refer to the [client API overview](https://docs.intunedhq
 
 ### Authentication
 
-To authenticate with the API, you will need an API key. [How to create an API key](https://docs.intunedhq.com/docs/getting-started/quick-start#create-an-api-key).
+To authenticate with the API, you will need an API key. [How to create an API key](https://docs.intunedhq.com/docs/guides/platform/how-to-create-api-keys).
 
 ### Workspace ID
 
-The SDK runs within the context of a workspace. You will need to provide the workspace ID when initializing the SDK client instance. [How to get your workspace ID](https://docs.intunedhq.com/docs/getting-started/quick-start#get-your-workspace-id).
+The SDK runs within the context of a workspace. You will need to provide the workspace ID when initializing the SDK client instance. [How to get your workspace ID](https://docs.intunedhq.com/docs/guides/platform/how-to-get-a-workspace-id).
 
 
 <!-- Start SDK Example Usage [usage] -->
