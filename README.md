@@ -1,20 +1,8 @@
-# @intuned/client
+<!-- TODO: add logo -->
 
-<div align="left">
-    <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
-    <a href="https://opensource.org/licenses/MIT">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
-    </a>
-</div>
+# Intuned Client SDK
 
-
-## 🏗 **Welcome to your new SDK!** 🏗
-
-It has been generated successfully based on your OpenAPI spec. However, it is not yet ready for production use. Here are some next steps:
-- [ ] 🛠 Make your SDK feel handcrafted by [customizing it](https://www.speakeasyapi.dev/docs/customize-sdks)
-- [ ] ♻️ Refine your SDK quickly by iterating locally with the [Speakeasy CLI](https://github.com/speakeasy-api/speakeasy)
-- [ ] 🎁 Publish your SDK to package managers by [configuring automatic publishing](https://www.speakeasyapi.dev/docs/advanced-setup/publish-sdks)
-- [ ] ✨ When ready to productionize, delete this section from the README
+Consume your browser automation projects and perform file operations with the Intuned API using this TypeScript SDK.
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
@@ -25,10 +13,25 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 npm add @intuned/client
 ```
 
+### PNPM
+
+```bash
+pnpm add @intuned/client
+```
+
+### Bun
+
+```bash
+bun add @intuned/client
+```
+
 ### Yarn
 
 ```bash
-yarn add @intuned/client
+yarn add @intuned/client zod
+
+# Note that Yarn does not install peer dependencies automatically. You will need
+# to install zod as shown above.
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -37,6 +40,19 @@ yarn add @intuned/client
 
 For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 <!-- End Requirements [requirements] -->
+
+## Getting Started
+
+To get started, please refer to the [client API overview](https://docs.intunedhq.com/client-apis/overview) section in our docs.
+
+### Authentication
+
+To authenticate with the API, you will need an API key. [How to create an API key](https://docs.intunedhq.com/docs/guides/platform/how-to-create-api-keys).
+
+### Workspace ID
+
+The SDK runs within the context of a workspace. You will need to provide the workspace ID when initializing the SDK client instance. [How to get your workspace ID](https://docs.intunedhq.com/docs/guides/platform/how-to-get-a-workspace-id).
+
 
 <!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
@@ -152,19 +168,9 @@ run();
 * [resume](docs/sdks/create/README.md#resume) - Create Auth Session -  Resume
 <!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Error Handling [errors] -->
 ## Error Handling
 
-All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
-
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
-
-Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
-
+Successful operations will return a response object. If an error occurs, the SDK will throw an error that can be caught and handled by the calling code. The error object will contain information about the error that occurred.
 
 ```typescript
 import { IntunedClient } from "@intuned/client";
@@ -193,13 +199,6 @@ async function run() {
         );
     } catch (err) {
         switch (true) {
-            case err instanceof errors.SDKValidationError: {
-                // Validation errors can be pretty-printed
-                console.error(err.pretty());
-                // Raw value may also be inspected
-                console.error(err.rawValue);
-                return;
-            }
             case err instanceof errors.ApiErrorInvalidInput: {
                 console.error(err); // handle exception
                 return;
@@ -221,10 +220,11 @@ async function run() {
 run();
 
 ```
-<!-- End Error Handling [errors] -->
 
-<!-- Start Server Selection [server] -->
-## Server Selection
+If you encounter a validation error, please [contact us](https://docs.intunedhq.com/docs/support/contact-us).
+<!-- No Error Handling [errors] -->
+
+<!-- ## Server Selection
 
 ### Select Server by Index
 
@@ -301,8 +301,8 @@ async function run() {
 
 run();
 
-```
-<!-- End Server Selection [server] -->
+``` -->
+<!-- No Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
@@ -353,49 +353,7 @@ const sdk = new IntunedClient({ httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
-<!-- Start Authentication [security] -->
-## Authentication
-
-### Per-Client Security Schemes
-
-This SDK supports the following security scheme globally:
-
-| Name     | Type     | Scheme   |
-| -------- | -------- | -------- |
-| `apiKey` | apiKey   | API key  |
-
-To authenticate with the API the `apiKey` parameter must be set when initializing the SDK client instance. For example:
-```typescript
-import { IntunedClient } from "@intuned/client";
-import { FileUrlSourceType, PdfFileType } from "@intuned/client/models/components";
-
-const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-});
-
-async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: PdfFileType.Pdf,
-            source: {
-                type: FileUrlSourceType.Url,
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
-
-    // Handle the result
-    console.log(result);
-}
-
-run();
-
-```
-<!-- End Authentication [security] -->
+<!-- No Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
