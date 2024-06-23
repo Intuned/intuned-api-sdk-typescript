@@ -6,9 +6,9 @@ import * as z from "zod";
 
 export type DeleteJobGlobals = {
     /**
-     * Your workspace ID. [How to find it](https://docs.intunedhq.com/docs/management/workspace#finding-your-workspace-id)?
+     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
      */
-    workspaceId: string;
+    workspaceId?: string | undefined;
 };
 
 export type DeleteJobRequest = {
@@ -25,15 +25,15 @@ export type DeleteJobRequest = {
 /** @internal */
 export namespace DeleteJobGlobals$ {
     export const inboundSchema: z.ZodType<DeleteJobGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string(),
+        workspaceId: z.string().optional(),
     });
 
     export type Outbound = {
-        workspaceId: string;
+        workspaceId?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteJobGlobals> = z.object({
-        workspaceId: z.string(),
+        workspaceId: z.string().optional(),
     });
 }
 

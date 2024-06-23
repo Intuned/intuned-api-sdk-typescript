@@ -5,19 +5,19 @@
 import {
     AuthSessionCreateDoneResult,
     AuthSessionCreateDoneResult$,
-} from "./authsessioncreatedoneresult";
+} from "./authsessioncreatedoneresult.js";
 import {
     AuthSessionCreateFailedResult,
     AuthSessionCreateFailedResult$,
-} from "./authsessioncreatefailedresult";
+} from "./authsessioncreatefailedresult.js";
 import {
     AuthSessionCreatePendingResult,
     AuthSessionCreatePendingResult$,
-} from "./authsessioncreatependingresult";
+} from "./authsessioncreatependingresult.js";
 import {
     AuthSessionCreateRequestedMoreInfoResult,
     AuthSessionCreateRequestedMoreInfoResult$,
-} from "./authsessioncreaterequestedmoreinforesult";
+} from "./authsessioncreaterequestedmoreinforesult.js";
 import * as z from "zod";
 
 export type AuthSessionCreateResult =

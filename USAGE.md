@@ -1,7 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```typescript
 import { IntunedClient } from "@intuned/client";
-import { FileUrlSourceType, PdfFileType } from "@intuned/client/models/components";
 
 const intunedClient = new IntunedClient({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -11,9 +10,9 @@ const intunedClient = new IntunedClient({
 async function run() {
     const result = await intunedClient.files.extractStructuredData.sync(
         {
-            type: PdfFileType.Pdf,
+            type: "pdf",
             source: {
-                type: FileUrlSourceType.Url,
+                type: "url",
                 data: "http://unconscious-margin.name",
             },
         },
