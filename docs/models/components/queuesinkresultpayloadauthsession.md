@@ -1,4 +1,4 @@
-# JobResultWebhookPayloadAuthSession
+# QueueSinkResultPayloadAuthSession
 
 The auth session used in the run
 

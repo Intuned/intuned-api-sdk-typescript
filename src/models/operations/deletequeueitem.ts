@@ -6,9 +6,9 @@ import * as z from "zod";
 
 export type DeleteQueueItemGlobals = {
     /**
-     * Your workspace ID. [How to find it](https://docs.intunedhq.com/docs/management/workspace#finding-your-workspace-id)?
+     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
      */
-    workspaceId: string;
+    workspaceId?: string | undefined;
 };
 
 export type DeleteQueueItemRequest = {
@@ -30,17 +30,17 @@ export type DeleteQueueItemRequest = {
 export namespace DeleteQueueItemGlobals$ {
     export const inboundSchema: z.ZodType<DeleteQueueItemGlobals, z.ZodTypeDef, unknown> = z.object(
         {
-            workspaceId: z.string(),
+            workspaceId: z.string().optional(),
         }
     );
 
     export type Outbound = {
-        workspaceId: string;
+        workspaceId?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueItemGlobals> =
         z.object({
-            workspaceId: z.string(),
+            workspaceId: z.string().optional(),
         });
 }
 

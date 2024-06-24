@@ -6,20 +6,20 @@ import * as z from "zod";
 
 export type FileExtractMarkdownStartGlobals = {
     /**
-     * Your workspace ID. [How to find it](https://docs.intunedhq.com/docs/management/workspace#finding-your-workspace-id)?
+     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
      */
-    workspaceId: string;
+    workspaceId?: string | undefined;
 };
 
 /** @internal */
 export namespace FileExtractMarkdownStartGlobals$ {
     export const inboundSchema: z.ZodType<FileExtractMarkdownStartGlobals, z.ZodTypeDef, unknown> =
         z.object({
-            workspaceId: z.string(),
+            workspaceId: z.string().optional(),
         });
 
     export type Outbound = {
-        workspaceId: string;
+        workspaceId?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<
@@ -27,6 +27,6 @@ export namespace FileExtractMarkdownStartGlobals$ {
         z.ZodTypeDef,
         FileExtractMarkdownStartGlobals
     > = z.object({
-        workspaceId: z.string(),
+        workspaceId: z.string().optional(),
     });
 }

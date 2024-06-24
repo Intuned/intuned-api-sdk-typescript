@@ -20,7 +20,6 @@ It accepts the file and requested schema for the data to be extracted.
 
 ```typescript
 import { IntunedClient } from "@intuned/client";
-import { FileUrlSourceType, PdfFileType } from "@intuned/client/models/components";
 
 const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -29,9 +28,9 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractStructuredData.sync({
-      type: PdfFileType.Pdf,
+      type: "pdf",
     source:     {
-          type: FileUrlSourceType.Url,
+          type: "url",
           data: "http://unconscious-margin.name",
         },
     }, {
@@ -76,7 +75,6 @@ It responds with an ID to track the operation status and retrieve the result.
 
 ```typescript
 import { IntunedClient } from "@intuned/client";
-import { FileBase64SourceType, Type } from "@intuned/client/models/components";
 
 const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -85,9 +83,9 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractStructuredData.start({
-      type: Type.Image,
+      type: "image",
     source:     {
-          type: FileBase64SourceType.Base64,
+          type: "base64",
           data: "<value>",
         },
     }, {

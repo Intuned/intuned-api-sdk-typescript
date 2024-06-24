@@ -1,4 +1,4 @@
-# QueueResultWebhookPayloadProject
+# QueueSinkResultPayloadProject
 
 The project details of the API
 

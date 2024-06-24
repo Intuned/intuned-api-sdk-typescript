@@ -64,7 +64,6 @@ Creates a new queue.
 
 ```typescript
 import { IntunedClient } from "@intuned/client";
-import { QueueConfigurationRunMode, WebhookSinkType } from "@intuned/client/models/components";
 
 const intunedClient = new IntunedClient({
   apiKey: "<YOUR_API_KEY_HERE>",
@@ -76,7 +75,7 @@ async function run() {
     id: "my-sample-queue",
     name: "sample-queue",
     configuration: {
-      runMode: QueueConfigurationRunMode.Default,
+      runMode: "Default",
       retry: {
         maximumAttempts: 3,
       },
@@ -88,7 +87,7 @@ async function run() {
       ],
     },
     sink: {
-      type: WebhookSinkType.Webhook,
+      type: "webhook",
       url: "https://webhook.site/1b1b1b1b-1b1b-1b1b-1b1b-1b1b1b1b1b1b",
     },
     authSession: {

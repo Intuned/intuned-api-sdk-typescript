@@ -6,9 +6,9 @@ import * as z from "zod";
 
 export type GetRepeatItemsGlobals = {
     /**
-     * Your workspace ID. [How to find it](https://docs.intunedhq.com/docs/management/workspace#finding-your-workspace-id)?
+     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
      */
-    workspaceId: string;
+    workspaceId?: string | undefined;
 };
 
 export type GetRepeatItemsRequest = {
@@ -25,16 +25,16 @@ export type GetRepeatItemsRequest = {
 /** @internal */
 export namespace GetRepeatItemsGlobals$ {
     export const inboundSchema: z.ZodType<GetRepeatItemsGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string(),
+        workspaceId: z.string().optional(),
     });
 
     export type Outbound = {
-        workspaceId: string;
+        workspaceId?: string | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetRepeatItemsGlobals> =
         z.object({
-            workspaceId: z.string(),
+            workspaceId: z.string().optional(),
         });
 }
 
