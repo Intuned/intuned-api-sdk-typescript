@@ -8,18 +8,18 @@ import * as z from "zod";
 /**
  * Operation status.
  */
-export const AsyncFailedResponseStatus = {
+export const FileFailedResponseStatus = {
     Failed: "failed",
 } as const;
 /**
  * Operation status.
  */
-export type AsyncFailedResponseStatus = ClosedEnum<typeof AsyncFailedResponseStatus>;
+export type FileFailedResponseStatus = ClosedEnum<typeof FileFailedResponseStatus>;
 
 /**
  * Failed file extraction result
  */
-export type AsyncFailedResponse = {
+export type FileFailedResponse = {
     /**
      * Operation ID
      */
@@ -27,7 +27,7 @@ export type AsyncFailedResponse = {
     /**
      * Operation status.
      */
-    status: AsyncFailedResponseStatus;
+    status: FileFailedResponseStatus;
     /**
      * Error code.
      */
@@ -39,17 +39,17 @@ export type AsyncFailedResponse = {
 };
 
 /** @internal */
-export namespace AsyncFailedResponseStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AsyncFailedResponseStatus> =
-        z.nativeEnum(AsyncFailedResponseStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AsyncFailedResponseStatus> = inboundSchema;
+export namespace FileFailedResponseStatus$ {
+    export const inboundSchema: z.ZodNativeEnum<typeof FileFailedResponseStatus> =
+        z.nativeEnum(FileFailedResponseStatus);
+    export const outboundSchema: z.ZodNativeEnum<typeof FileFailedResponseStatus> = inboundSchema;
 }
 
 /** @internal */
-export namespace AsyncFailedResponse$ {
-    export const inboundSchema: z.ZodType<AsyncFailedResponse, z.ZodTypeDef, unknown> = z.object({
+export namespace FileFailedResponse$ {
+    export const inboundSchema: z.ZodType<FileFailedResponse, z.ZodTypeDef, unknown> = z.object({
         operationId: z.string(),
-        status: AsyncFailedResponseStatus$.inboundSchema,
+        status: FileFailedResponseStatus$.inboundSchema,
         error: z.string(),
         message: z.string(),
     });
@@ -61,9 +61,9 @@ export namespace AsyncFailedResponse$ {
         message: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncFailedResponse> = z.object({
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileFailedResponse> = z.object({
         operationId: z.string(),
-        status: AsyncFailedResponseStatus$.outboundSchema,
+        status: FileFailedResponseStatus$.outboundSchema,
         error: z.string(),
         message: z.string(),
     });

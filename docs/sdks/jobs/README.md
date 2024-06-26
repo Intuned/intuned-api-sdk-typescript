@@ -76,10 +76,6 @@ const intunedClient = new IntunedClient({
 async function run() {
   const result = await intunedClient.project.jobs.create("my-project", {
     id: "my-sample-job",
-    configuration: {
-      runMode: "Order-Irrelevant",
-      maxConcurrentRequests: 5,
-    },
   sink:     {
         type: "webhook",
         url: "http://popular-street.info",
@@ -123,6 +119,10 @@ async function run() {
           comment: "Trigger every midnight hour on work days",
         },
       ],
+    },
+    configuration: {
+      runMode: "Order-Irrelevant",
+      maxConcurrentRequests: 5,
     },
   });
 

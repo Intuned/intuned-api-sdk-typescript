@@ -49,7 +49,7 @@ export class ExtractMarkdown extends ClientSDK {
     async sync(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<components.MarkdownExtractionResponse> {
+    ): Promise<components.MarkdownExtractionSyncResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
@@ -112,8 +112,8 @@ export class ExtractMarkdown extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.MarkdownExtractionResponse>()
-            .json(200, components.MarkdownExtractionResponse$)
+        const [result$] = await this.matcher<components.MarkdownExtractionSyncResponse>()
+            .json(200, components.MarkdownExtractionSyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

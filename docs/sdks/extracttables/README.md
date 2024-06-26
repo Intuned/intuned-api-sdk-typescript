@@ -53,7 +53,7 @@ run();
 
 ### Response
 
-**Promise\<[components.TableExtractionResponse](../../models/components/tableextractionresponse.md)\>**
+**Promise\<[components.TableExtractionSyncResponse](../../models/components/tableextractionsyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -129,7 +129,7 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.files.extractTables.result("EVmDumBbkyhx3DU");
+  const result = await intunedClient.files.extractTables.result("aaaabbbCCCCdddd");
 
   // Handle the result
   console.log(result)

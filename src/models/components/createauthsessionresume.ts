@@ -5,20 +5,20 @@
 import { ClosedEnum } from "../../types/enums.js";
 import * as z from "zod";
 
-export const CreateAuthSessionResumeResult = {
+export const CreateAuthSessionResumeStatus = {
     Resumed: "resumed",
 } as const;
-export type CreateAuthSessionResumeResult = ClosedEnum<typeof CreateAuthSessionResumeResult>;
+export type CreateAuthSessionResumeStatus = ClosedEnum<typeof CreateAuthSessionResumeStatus>;
 
 export type CreateAuthSessionResume = {
-    result?: CreateAuthSessionResumeResult | undefined;
+    status: CreateAuthSessionResumeStatus;
 };
 
 /** @internal */
-export namespace CreateAuthSessionResumeResult$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionResumeResult> =
-        z.nativeEnum(CreateAuthSessionResumeResult);
-    export const outboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionResumeResult> =
+export namespace CreateAuthSessionResumeStatus$ {
+    export const inboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionResumeStatus> =
+        z.nativeEnum(CreateAuthSessionResumeStatus);
+    export const outboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionResumeStatus> =
         inboundSchema;
 }
 
@@ -26,15 +26,15 @@ export namespace CreateAuthSessionResumeResult$ {
 export namespace CreateAuthSessionResume$ {
     export const inboundSchema: z.ZodType<CreateAuthSessionResume, z.ZodTypeDef, unknown> =
         z.object({
-            result: CreateAuthSessionResumeResult$.inboundSchema.optional(),
+            status: CreateAuthSessionResumeStatus$.inboundSchema,
         });
 
     export type Outbound = {
-        result?: string | undefined;
+        status: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionResume> =
         z.object({
-            result: CreateAuthSessionResumeResult$.outboundSchema.optional(),
+            status: CreateAuthSessionResumeStatus$.outboundSchema,
         });
 }

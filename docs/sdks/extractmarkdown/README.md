@@ -53,7 +53,7 @@ run();
 
 ### Response
 
-**Promise\<[components.MarkdownExtractionResponse](../../models/components/markdownextractionresponse.md)\>**
+**Promise\<[components.MarkdownExtractionSyncResponse](../../models/components/markdownextractionsyncresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -129,7 +129,7 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.files.extractMarkdown.result("EVmDumBbkyhx3DU");
+  const result = await intunedClient.files.extractMarkdown.result("aaaabbbCCCCdddd");
 
   // Handle the result
   console.log(result)

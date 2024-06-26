@@ -8,13 +8,13 @@ import * as z from "zod";
 /**
  * Operation status.
  */
-export const Status = {
+export const AsyncFilePendingResponseStatus = {
     Pending: "pending",
 } as const;
 /**
  * Operation status.
  */
-export type Status = ClosedEnum<typeof Status>;
+export type AsyncFilePendingResponseStatus = ClosedEnum<typeof AsyncFilePendingResponseStatus>;
 
 /**
  * Pending file extraction result
@@ -27,13 +27,15 @@ export type AsyncFilePendingResponse = {
     /**
      * Operation status.
      */
-    status: Status;
+    status: AsyncFilePendingResponseStatus;
 };
 
 /** @internal */
-export namespace Status$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
-    export const outboundSchema: z.ZodNativeEnum<typeof Status> = inboundSchema;
+export namespace AsyncFilePendingResponseStatus$ {
+    export const inboundSchema: z.ZodNativeEnum<typeof AsyncFilePendingResponseStatus> =
+        z.nativeEnum(AsyncFilePendingResponseStatus);
+    export const outboundSchema: z.ZodNativeEnum<typeof AsyncFilePendingResponseStatus> =
+        inboundSchema;
 }
 
 /** @internal */
@@ -41,7 +43,7 @@ export namespace AsyncFilePendingResponse$ {
     export const inboundSchema: z.ZodType<AsyncFilePendingResponse, z.ZodTypeDef, unknown> =
         z.object({
             operationId: z.string(),
-            status: Status$.inboundSchema,
+            status: AsyncFilePendingResponseStatus$.inboundSchema,
         });
 
     export type Outbound = {
@@ -52,6 +54,6 @@ export namespace AsyncFilePendingResponse$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncFilePendingResponse> =
         z.object({
             operationId: z.string(),
-            status: Status$.outboundSchema,
+            status: AsyncFilePendingResponseStatus$.outboundSchema,
         });
 }

@@ -1,4 +1,4 @@
-# CreateAuthSessionResumeResult
+# CreateAuthSessionResumeStatus
 
 
 ## Values

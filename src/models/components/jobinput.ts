@@ -18,10 +18,6 @@ export type JobInput = {
      */
     id: string;
     /**
-     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
-     */
-    configuration: JobConfiguration;
-    /**
      * A sink to send the results to. Can be a webhook or Amazon S3 bucket.
      */
     sink?: JobSink | null | undefined;
@@ -37,34 +33,38 @@ export type JobInput = {
      * Auth session configurations
      */
     authSession?: AuthSession | undefined;
+    /**
+     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
+     */
+    configuration: JobConfiguration;
 };
 
 /** @internal */
 export namespace JobInput$ {
     export const inboundSchema: z.ZodType<JobInput, z.ZodTypeDef, unknown> = z.object({
         id: z.string(),
-        configuration: JobConfiguration$.inboundSchema,
         sink: z.nullable(JobSink$.inboundSchema).optional(),
         payload: z.array(JobPayload$.inboundSchema),
         schedule: JobSchedule$.inboundSchema.optional(),
         authSession: AuthSession$.inboundSchema.optional(),
+        configuration: JobConfiguration$.inboundSchema,
     });
 
     export type Outbound = {
         id: string;
-        configuration: JobConfiguration$.Outbound;
         sink?: JobSink$.Outbound | null | undefined;
         payload: Array<JobPayload$.Outbound>;
         schedule?: JobSchedule$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
+        configuration: JobConfiguration$.Outbound;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobInput> = z.object({
         id: z.string(),
-        configuration: JobConfiguration$.outboundSchema,
         sink: z.nullable(JobSink$.outboundSchema).optional(),
         payload: z.array(JobPayload$.outboundSchema),
         schedule: JobSchedule$.outboundSchema.optional(),
         authSession: AuthSession$.outboundSchema.optional(),
+        configuration: JobConfiguration$.outboundSchema,
     });
 }

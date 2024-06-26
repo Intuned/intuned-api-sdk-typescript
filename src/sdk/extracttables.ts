@@ -49,7 +49,7 @@ export class ExtractTables extends ClientSDK {
     async sync(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<components.TableExtractionResponse> {
+    ): Promise<components.TableExtractionSyncResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
@@ -110,8 +110,8 @@ export class ExtractTables extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.TableExtractionResponse>()
-            .json(200, components.TableExtractionResponse$)
+        const [result$] = await this.matcher<components.TableExtractionSyncResponse>()
+            .json(200, components.TableExtractionSyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

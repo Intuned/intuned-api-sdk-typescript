@@ -125,7 +125,7 @@ export class Items extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.AddQueueItem>()
-            .json(200, components.AddQueueItem$)
+            .json(201, components.AddQueueItem$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

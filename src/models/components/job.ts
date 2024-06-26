@@ -44,10 +44,6 @@ export type Job = {
      */
     id: string;
     /**
-     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
-     */
-    configuration: JobConfigurationResponse;
-    /**
      * A sink to send the results to. Can be a webhook or Amazon S3 bucket.
      */
     sink?: JobSink | null | undefined;
@@ -63,6 +59,10 @@ export type Job = {
      * Auth session configurations
      */
     authSession?: AuthSession | undefined;
+    /**
+     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
+     */
+    configuration: JobConfigurationResponse;
     /**
      * The timestamp of when the job was created.
      */
@@ -147,11 +147,11 @@ export namespace Job$ {
     export const inboundSchema: z.ZodType<Job, z.ZodTypeDef, unknown> = z
         .object({
             id: z.string(),
-            configuration: JobConfigurationResponse$.inboundSchema,
             sink: z.nullable(JobSink$.inboundSchema).optional(),
             payload: z.array(JobPayload$.inboundSchema),
             schedule: JobSchedule$.inboundSchema.optional(),
             authSession: AuthSession$.inboundSchema.optional(),
+            configuration: JobConfigurationResponse$.inboundSchema,
             created_at: z
                 .string()
                 .datetime({ offset: true })
@@ -185,11 +185,11 @@ export namespace Job$ {
 
     export type Outbound = {
         id: string;
-        configuration: JobConfigurationResponse$.Outbound;
         sink?: JobSink$.Outbound | null | undefined;
         payload: Array<JobPayload$.Outbound>;
         schedule?: JobSchedule$.Outbound | undefined;
         authSession?: AuthSession$.Outbound | undefined;
+        configuration: JobConfigurationResponse$.Outbound;
         created_at?: string | undefined;
         next_run_time: string | null;
         last_run_time: string | null;
@@ -200,11 +200,11 @@ export namespace Job$ {
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Job> = z
         .object({
             id: z.string(),
-            configuration: JobConfigurationResponse$.outboundSchema,
             sink: z.nullable(JobSink$.outboundSchema).optional(),
             payload: z.array(JobPayload$.outboundSchema),
             schedule: JobSchedule$.outboundSchema.optional(),
             authSession: AuthSession$.outboundSchema.optional(),
+            configuration: JobConfigurationResponse$.outboundSchema,
             createdAt: z
                 .date()
                 .transform((v) => v.toISOString())
