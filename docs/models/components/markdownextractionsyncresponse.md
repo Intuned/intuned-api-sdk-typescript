@@ -1,4 +1,4 @@
-# MarkdownExtractionAsyncResponse
+# MarkdownExtractionSyncResponse
 
 
 ## Supported Types
@@ -13,11 +13,5 @@ const value: components.MarkdownExtractionSuccessfulResponse = /* values here */
 
 ```typescript
 const value: components.FileFailedResponse = /* values here */
-```
-
-### `components.AsyncFilePendingResponse`
-
-```typescript
-const value: components.AsyncFilePendingResponse = /* values here */
 ```
 

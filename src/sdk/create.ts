@@ -303,7 +303,7 @@ export class Create extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.CreateAuthSessionResume>()
-            .json(201, components.CreateAuthSessionResume$)
+            .json(202, components.CreateAuthSessionResume$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])

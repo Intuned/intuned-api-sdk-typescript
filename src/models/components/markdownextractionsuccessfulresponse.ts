@@ -8,20 +8,20 @@ import * as z from "zod";
 /**
  * Operation status.
  */
-export const MarkdownExtractionAsyncSuccessfulResponseStatus = {
+export const MarkdownExtractionSuccessfulResponseStatus = {
     Completed: "completed",
 } as const;
 /**
  * Operation status.
  */
-export type MarkdownExtractionAsyncSuccessfulResponseStatus = ClosedEnum<
-    typeof MarkdownExtractionAsyncSuccessfulResponseStatus
+export type MarkdownExtractionSuccessfulResponseStatus = ClosedEnum<
+    typeof MarkdownExtractionSuccessfulResponseStatus
 >;
 
 /**
  * Successful file extraction result
  */
-export type MarkdownExtractionAsyncSuccessfulResponse = {
+export type MarkdownExtractionSuccessfulResponse = {
     /**
      * The extracted markdown
      */
@@ -33,29 +33,28 @@ export type MarkdownExtractionAsyncSuccessfulResponse = {
     /**
      * Operation status.
      */
-    status: MarkdownExtractionAsyncSuccessfulResponseStatus;
+    status: MarkdownExtractionSuccessfulResponseStatus;
 };
 
 /** @internal */
-export namespace MarkdownExtractionAsyncSuccessfulResponseStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<
-        typeof MarkdownExtractionAsyncSuccessfulResponseStatus
-    > = z.nativeEnum(MarkdownExtractionAsyncSuccessfulResponseStatus);
+export namespace MarkdownExtractionSuccessfulResponseStatus$ {
+    export const inboundSchema: z.ZodNativeEnum<typeof MarkdownExtractionSuccessfulResponseStatus> =
+        z.nativeEnum(MarkdownExtractionSuccessfulResponseStatus);
     export const outboundSchema: z.ZodNativeEnum<
-        typeof MarkdownExtractionAsyncSuccessfulResponseStatus
+        typeof MarkdownExtractionSuccessfulResponseStatus
     > = inboundSchema;
 }
 
 /** @internal */
-export namespace MarkdownExtractionAsyncSuccessfulResponse$ {
+export namespace MarkdownExtractionSuccessfulResponse$ {
     export const inboundSchema: z.ZodType<
-        MarkdownExtractionAsyncSuccessfulResponse,
+        MarkdownExtractionSuccessfulResponse,
         z.ZodTypeDef,
         unknown
     > = z.object({
         result: z.string(),
         operationId: z.string(),
-        status: MarkdownExtractionAsyncSuccessfulResponseStatus$.inboundSchema,
+        status: MarkdownExtractionSuccessfulResponseStatus$.inboundSchema,
     });
 
     export type Outbound = {
@@ -67,10 +66,10 @@ export namespace MarkdownExtractionAsyncSuccessfulResponse$ {
     export const outboundSchema: z.ZodType<
         Outbound,
         z.ZodTypeDef,
-        MarkdownExtractionAsyncSuccessfulResponse
+        MarkdownExtractionSuccessfulResponse
     > = z.object({
         result: z.string(),
         operationId: z.string(),
-        status: MarkdownExtractionAsyncSuccessfulResponseStatus$.outboundSchema,
+        status: MarkdownExtractionSuccessfulResponseStatus$.outboundSchema,
     });
 }

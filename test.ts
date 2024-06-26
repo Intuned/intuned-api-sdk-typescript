@@ -6,6 +6,7 @@ import {
   FileSource,
   FileT,
 } from "./src/models/components";
+import { SDKError } from "./src/models/errors";
 
 async function testJobs(client: IntunedClient, projectName: string) {
   const jobId = "this-is-a-test";
@@ -17,13 +18,7 @@ async function testJobs(client: IntunedClient, projectName: string) {
     id: jobId,
     configuration: {
       runMode: "Order-Irrelevant",
-    },
-    sink: {
-      type: "webhook",
-      url: "https://webhook.site/7f1b3b7b-1b7b-4b7b-8b7b-9b7b7b7b7b7b",
-      headers: {
-        test: "test",
-      },
+      maxConcurrentRequests: 1,
     },
     payload: [
       {
@@ -31,6 +26,9 @@ async function testJobs(client: IntunedClient, projectName: string) {
         parameters: {},
       },
     ],
+    authSession: {
+      id: "244302ff-da49-459e-97f6-486bbd2e3ad5",
+    },
   });
   console.log("Create job", job);
   const getJob = await jobs.one(projectName, jobId);
@@ -70,8 +68,9 @@ async function testJobs(client: IntunedClient, projectName: string) {
 async function testQueues(client: IntunedClient, projectName: string) {
   const queueId = "this-is-a-test";
   const queues = client.project.queues;
-  const hmm = await queues.delete(projectName, queueId);
-  console.log("Delete queue", hmm);
+  try {
+    await queues.delete(projectName, queueId);
+  } catch (error) {}
   const allQueues = await queues.all(projectName);
   console.log("Get all queues", allQueues);
   const queue = await queues.create(projectName, {
@@ -80,6 +79,9 @@ async function testQueues(client: IntunedClient, projectName: string) {
       runMode: "Default",
     },
     name: "Test Queue",
+    authSession: {
+      id: "244302ff-da49-459e-97f6-486bbd2e3ad5",
+    },
   });
   console.log("Create queue", queue);
   const getQueue = await queues.one(projectName, queueId);
@@ -119,10 +121,10 @@ async function testQueues(client: IntunedClient, projectName: string) {
   ]);
   await queues.items
     .delete(projectName, queueId, appendSuccess)
-    .catch((error) => console.log("Delete success item", error));
+    .catch((error: SDKError) => console.log("Delete success item", error.statusCode, error.body));
   await queues.items
     .delete(projectName, queueId, appendFail)
-    .catch((error) => console.log("Delete fail item", error));
+    .catch((error: SDKError) => console.log("Delete fail item", error.statusCode, error.body));
 
   const repeatItemAppend = await queues.repeatItems.append(
     projectName,
@@ -162,15 +164,21 @@ async function testRun(client: IntunedClient, projectName: string) {
   const run = client.project.run;
   async function sync() {
     const syncRun = await run.sync(projectName, {
-      api: "api",
+      api: "sample",
       parameters: {},
+      authSession: {
+        id: "244302ff-da49-459e-97f6-486bbd2e3ad5",
+      },
     });
     console.log("Sync run", syncRun);
   }
   async function async() {
     const startRun = await run.start(projectName, {
-      api: "api",
+      api: "sample",
       parameters: {},
+      authSession: {
+        id: "244302ff-da49-459e-97f6-486bbd2e3ad5",
+      },
     });
     console.log("Start run", startRun);
     while (true) {
@@ -377,16 +385,16 @@ async function testFiles(client: IntunedClient) {
 async function main() {
   const client = new IntunedClient({
     serverURL: "http://localhost:3000/api/v1/workspace",
-    workspaceId: "02cf6e04-8cbd-4e57-b5bd-0236b00001c3",
-    apiKey: "in1_de24eb30ff4f4decd2913a1bf80b95d0",
+    workspaceId: "405170ee-049e-4b9d-b983-049dab38a6c7",
+    apiKey: "in1_288857d3a601547852dcf16ed84e29c7",
   });
 
   // const projectName = 'queue-test-integration';
-  await testJobs(client, "ok");
-  testQueues;
-  testRun;
-  testFiles;
+  // await testJobs(client, "another-test");
+  // await testQueues(client, "another-test");
+  // await testRun(client, "another-test");
   // await testAuthSessions(client, "another-test");
+  await testFiles(client);
 }
 
 main();

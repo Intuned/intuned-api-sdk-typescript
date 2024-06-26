@@ -10,8 +10,11 @@ import * as z from "zod";
  * Invalid input error
  */
 export type ApiErrorInvalidInputData = {
+    message?: string | undefined;
+    /**
+     * error details
+     */
     details?: any | undefined;
-    error?: string | undefined;
 
     additionalProperties: { [k: string]: any };
 };
@@ -20,8 +23,10 @@ export type ApiErrorInvalidInputData = {
  * Invalid input error
  */
 export class ApiErrorInvalidInput extends Error {
+    /**
+     * error details
+     */
     details?: any | undefined;
-    error?: string | undefined;
     additionalProperties: { [k: string]: any } = {};
 
     /** The original data that was passed to this error instance. */
@@ -33,9 +38,6 @@ export class ApiErrorInvalidInput extends Error {
 
         if (err.details != null) {
             this.details = err.details;
-        }
-        if (err.error != null) {
-            this.error = err.error;
         }
         if (err.additionalProperties != null) {
             this.additionalProperties = err.additionalProperties;
@@ -56,8 +58,8 @@ export namespace ApiErrorInvalidInput$ {
         collectExtraKeys$(
             z
                 .object({
+                    message: z.string().optional(),
                     details: z.any().optional(),
-                    error: z.string().optional(),
                 })
                 .catchall(z.any()),
             "additionalProperties"
@@ -66,8 +68,8 @@ export namespace ApiErrorInvalidInput$ {
         });
 
     export type Outbound = {
+        message?: string | undefined;
         details?: any | undefined;
-        error?: string | undefined;
         [additionalProperties: string]: unknown;
     };
 
@@ -77,8 +79,8 @@ export namespace ApiErrorInvalidInput$ {
         .pipe(
             z
                 .object({
+                    message: z.string().optional(),
                     details: z.any().optional(),
-                    error: z.string().optional(),
                     additionalProperties: z.record(z.any()),
                 })
                 .transform((v) => {

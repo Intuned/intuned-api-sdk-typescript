@@ -24,8 +24,6 @@ export type RunApiSyncRequest = {
     runProjectApiRequest: components.RunProjectApiRequest;
 };
 
-export type RunApiSyncResponse = components.CompletedRunResult | components.FailedRunResult;
-
 /** @internal */
 export namespace RunApiSyncGlobals$ {
     export const inboundSchema: z.ZodType<RunApiSyncGlobals, z.ZodTypeDef, unknown> = z.object({
@@ -69,20 +67,4 @@ export namespace RunApiSyncRequest$ {
                 runProjectApiRequest: "RunProjectApiRequest",
             });
         });
-}
-
-/** @internal */
-export namespace RunApiSyncResponse$ {
-    export const inboundSchema: z.ZodType<RunApiSyncResponse, z.ZodTypeDef, unknown> = z.union([
-        components.CompletedRunResult$.inboundSchema,
-        components.FailedRunResult$.inboundSchema,
-    ]);
-
-    export type Outbound =
-        | components.CompletedRunResult$.Outbound
-        | components.FailedRunResult$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiSyncResponse> = z.union([
-        components.CompletedRunResult$.outboundSchema,
-        components.FailedRunResult$.outboundSchema,
-    ]);
 }

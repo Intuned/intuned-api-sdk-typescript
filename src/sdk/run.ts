@@ -49,7 +49,7 @@ export class Run extends ClientSDK {
         projectName: string,
         runProjectApiRequest: components.RunProjectApiRequest,
         options?: RequestOptions
-    ): Promise<operations.RunApiSyncResponse> {
+    ): Promise<components.SyncResultResponse> {
         const input$: operations.RunApiSyncRequest = {
             projectName: projectName,
             runProjectApiRequest: runProjectApiRequest,
@@ -117,12 +117,11 @@ export class Run extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunApiSyncResponse>()
-            .json(200, operations.RunApiSyncResponse$)
+        const [result$] = await this.matcher<components.SyncResultResponse>()
+            .json(200, components.SyncResultResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
-            .json("default", operations.RunApiSyncResponse$)
             .match(response, { extraFields: responseFields$ });
 
         return result$;

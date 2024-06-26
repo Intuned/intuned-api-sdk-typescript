@@ -49,11 +49,15 @@ export class ExtractStructuredData extends ClientSDK {
     async sync(
         file: components.FileT,
         dataSchema: { [k: string]: any },
+        strategy?: components.ExtractStructuredDataStrategy | undefined,
+        prompt?: string | undefined,
         options?: RequestOptions
-    ): Promise<components.StructuredDataExtractionResponse> {
+    ): Promise<components.StructuredDataExtractionSyncResponse> {
         const input$: components.ExtractStructuredDataRequest = {
             file: file,
             dataSchema: dataSchema,
+            strategy: strategy,
+            prompt: prompt,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -114,8 +118,8 @@ export class ExtractStructuredData extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.StructuredDataExtractionResponse>()
-            .json(200, components.StructuredDataExtractionResponse$)
+        const [result$] = await this.matcher<components.StructuredDataExtractionSyncResponse>()
+            .json(200, components.StructuredDataExtractionSyncResponse$)
             .json(400, errors.ApiErrorInvalidInput$, { err: true })
             .json(401, errors.ApiErrorUnauthorized$, { err: true })
             .fail([404, "4XX", "5XX"])
@@ -135,11 +139,15 @@ export class ExtractStructuredData extends ClientSDK {
     async start(
         file: components.FileT,
         dataSchema: { [k: string]: any },
+        strategy?: components.ExtractStructuredDataStrategy | undefined,
+        prompt?: string | undefined,
         options?: RequestOptions
     ): Promise<components.AsyncFilePendingResponse> {
         const input$: components.ExtractStructuredDataRequest = {
             file: file,
             dataSchema: dataSchema,
+            strategy: strategy,
+            prompt: prompt,
         };
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);

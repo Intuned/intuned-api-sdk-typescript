@@ -57,7 +57,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.RunApiSyncResponse](../../models/operations/runapisyncresponse.md)\>**
+**Promise\<[components.SyncResultResponse](../../models/components/syncresultresponse.md)\>**
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

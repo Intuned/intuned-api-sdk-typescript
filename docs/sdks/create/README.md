@@ -77,7 +77,7 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.authSessions.create.result("my-project", "EVmDumBbkyhx3DU");
+  const result = await intunedClient.project.authSessions.create.result("my-project", "aaaabbbCCCCdddd");
 
   // Handle the result
   console.log(result)
@@ -122,7 +122,7 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.authSessions.create.resume("my-project", "EVmDumBbkyhx3DU", {
+  const result = await intunedClient.project.authSessions.create.resume("my-project", "aaaabbbCCCCdddd", {
     input: "123456",
     infoRequestId: "99999999-9999-9999-9999-999999999999",
   });
