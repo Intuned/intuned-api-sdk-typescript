@@ -16,26 +16,61 @@ export type AddQueueRepeatItem = {
 };
 
 /** @internal */
+export const AddQueueRepeatItemStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AddQueueRepeatItemStatus
+> = z.nativeEnum(AddQueueRepeatItemStatus);
+
+/** @internal */
+export const AddQueueRepeatItemStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AddQueueRepeatItemStatus
+> = AddQueueRepeatItemStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AddQueueRepeatItemStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AddQueueRepeatItemStatus> =
-        z.nativeEnum(AddQueueRepeatItemStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AddQueueRepeatItemStatus> = inboundSchema;
+    /** @deprecated use `AddQueueRepeatItemStatus$inboundSchema` instead. */
+    export const inboundSchema = AddQueueRepeatItemStatus$inboundSchema;
+    /** @deprecated use `AddQueueRepeatItemStatus$outboundSchema` instead. */
+    export const outboundSchema = AddQueueRepeatItemStatus$outboundSchema;
 }
 
 /** @internal */
+export const AddQueueRepeatItem$inboundSchema: z.ZodType<
+    AddQueueRepeatItem,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    id: z.string(),
+    status: AddQueueRepeatItemStatus$inboundSchema,
+});
+
+/** @internal */
+export type AddQueueRepeatItem$Outbound = {
+    id: string;
+    status: string;
+};
+
+/** @internal */
+export const AddQueueRepeatItem$outboundSchema: z.ZodType<
+    AddQueueRepeatItem$Outbound,
+    z.ZodTypeDef,
+    AddQueueRepeatItem
+> = z.object({
+    id: z.string(),
+    status: AddQueueRepeatItemStatus$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AddQueueRepeatItem$ {
-    export const inboundSchema: z.ZodType<AddQueueRepeatItem, z.ZodTypeDef, unknown> = z.object({
-        id: z.string(),
-        status: AddQueueRepeatItemStatus$.inboundSchema,
-    });
-
-    export type Outbound = {
-        id: string;
-        status: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddQueueRepeatItem> = z.object({
-        id: z.string(),
-        status: AddQueueRepeatItemStatus$.outboundSchema,
-    });
+    /** @deprecated use `AddQueueRepeatItem$inboundSchema` instead. */
+    export const inboundSchema = AddQueueRepeatItem$inboundSchema;
+    /** @deprecated use `AddQueueRepeatItem$outboundSchema` instead. */
+    export const outboundSchema = AddQueueRepeatItem$outboundSchema;
+    /** @deprecated use `AddQueueRepeatItem$Outbound` instead. */
+    export type Outbound = AddQueueRepeatItem$Outbound;
 }

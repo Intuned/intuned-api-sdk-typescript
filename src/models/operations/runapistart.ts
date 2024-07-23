@@ -25,46 +25,88 @@ export type RunApiStartRequest = {
 };
 
 /** @internal */
+export const RunApiStartGlobals$inboundSchema: z.ZodType<
+    RunApiStartGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type RunApiStartGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const RunApiStartGlobals$outboundSchema: z.ZodType<
+    RunApiStartGlobals$Outbound,
+    z.ZodTypeDef,
+    RunApiStartGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RunApiStartGlobals$ {
-    export const inboundSchema: z.ZodType<RunApiStartGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiStartGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `RunApiStartGlobals$inboundSchema` instead. */
+    export const inboundSchema = RunApiStartGlobals$inboundSchema;
+    /** @deprecated use `RunApiStartGlobals$outboundSchema` instead. */
+    export const outboundSchema = RunApiStartGlobals$outboundSchema;
+    /** @deprecated use `RunApiStartGlobals$Outbound` instead. */
+    export type Outbound = RunApiStartGlobals$Outbound;
 }
 
 /** @internal */
+export const RunApiStartRequest$inboundSchema: z.ZodType<
+    RunApiStartRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        projectName: z.string(),
+        RunProjectApiRequest: components.RunProjectApiRequest$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            RunProjectApiRequest: "runProjectApiRequest",
+        });
+    });
+
+/** @internal */
+export type RunApiStartRequest$Outbound = {
+    projectName: string;
+    RunProjectApiRequest: components.RunProjectApiRequest$Outbound;
+};
+
+/** @internal */
+export const RunApiStartRequest$outboundSchema: z.ZodType<
+    RunApiStartRequest$Outbound,
+    z.ZodTypeDef,
+    RunApiStartRequest
+> = z
+    .object({
+        projectName: z.string(),
+        runProjectApiRequest: components.RunProjectApiRequest$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            runProjectApiRequest: "RunProjectApiRequest",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RunApiStartRequest$ {
-    export const inboundSchema: z.ZodType<RunApiStartRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            projectName: z.string(),
-            RunProjectApiRequest: components.RunProjectApiRequest$.inboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                RunProjectApiRequest: "runProjectApiRequest",
-            });
-        });
-
-    export type Outbound = {
-        projectName: string;
-        RunProjectApiRequest: components.RunProjectApiRequest$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiStartRequest> = z
-        .object({
-            projectName: z.string(),
-            runProjectApiRequest: components.RunProjectApiRequest$.outboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                runProjectApiRequest: "RunProjectApiRequest",
-            });
-        });
+    /** @deprecated use `RunApiStartRequest$inboundSchema` instead. */
+    export const inboundSchema = RunApiStartRequest$inboundSchema;
+    /** @deprecated use `RunApiStartRequest$outboundSchema` instead. */
+    export const outboundSchema = RunApiStartRequest$outboundSchema;
+    /** @deprecated use `RunApiStartRequest$Outbound` instead. */
+    export type Outbound = RunApiStartRequest$Outbound;
 }

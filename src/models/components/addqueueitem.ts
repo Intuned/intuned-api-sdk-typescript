@@ -16,26 +16,55 @@ export type AddQueueItem = {
 };
 
 /** @internal */
+export const AddQueueItemStatus$inboundSchema: z.ZodNativeEnum<typeof AddQueueItemStatus> =
+    z.nativeEnum(AddQueueItemStatus);
+
+/** @internal */
+export const AddQueueItemStatus$outboundSchema: z.ZodNativeEnum<typeof AddQueueItemStatus> =
+    AddQueueItemStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AddQueueItemStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AddQueueItemStatus> =
-        z.nativeEnum(AddQueueItemStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AddQueueItemStatus> = inboundSchema;
+    /** @deprecated use `AddQueueItemStatus$inboundSchema` instead. */
+    export const inboundSchema = AddQueueItemStatus$inboundSchema;
+    /** @deprecated use `AddQueueItemStatus$outboundSchema` instead. */
+    export const outboundSchema = AddQueueItemStatus$outboundSchema;
 }
 
 /** @internal */
+export const AddQueueItem$inboundSchema: z.ZodType<AddQueueItem, z.ZodTypeDef, unknown> = z.object({
+    runId: z.string(),
+    status: AddQueueItemStatus$inboundSchema,
+});
+
+/** @internal */
+export type AddQueueItem$Outbound = {
+    runId: string;
+    status: string;
+};
+
+/** @internal */
+export const AddQueueItem$outboundSchema: z.ZodType<
+    AddQueueItem$Outbound,
+    z.ZodTypeDef,
+    AddQueueItem
+> = z.object({
+    runId: z.string(),
+    status: AddQueueItemStatus$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AddQueueItem$ {
-    export const inboundSchema: z.ZodType<AddQueueItem, z.ZodTypeDef, unknown> = z.object({
-        runId: z.string(),
-        status: AddQueueItemStatus$.inboundSchema,
-    });
-
-    export type Outbound = {
-        runId: string;
-        status: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AddQueueItem> = z.object({
-        runId: z.string(),
-        status: AddQueueItemStatus$.outboundSchema,
-    });
+    /** @deprecated use `AddQueueItem$inboundSchema` instead. */
+    export const inboundSchema = AddQueueItem$inboundSchema;
+    /** @deprecated use `AddQueueItem$outboundSchema` instead. */
+    export const outboundSchema = AddQueueItem$outboundSchema;
+    /** @deprecated use `AddQueueItem$Outbound` instead. */
+    export type Outbound = AddQueueItem$Outbound;
 }

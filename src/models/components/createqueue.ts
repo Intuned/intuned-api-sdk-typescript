@@ -9,16 +9,33 @@ export type CreateQueue = {
 };
 
 /** @internal */
+export const CreateQueue$inboundSchema: z.ZodType<CreateQueue, z.ZodTypeDef, unknown> = z.object({
+    id: z.string().optional(),
+});
+
+/** @internal */
+export type CreateQueue$Outbound = {
+    id?: string | undefined;
+};
+
+/** @internal */
+export const CreateQueue$outboundSchema: z.ZodType<
+    CreateQueue$Outbound,
+    z.ZodTypeDef,
+    CreateQueue
+> = z.object({
+    id: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateQueue$ {
-    export const inboundSchema: z.ZodType<CreateQueue, z.ZodTypeDef, unknown> = z.object({
-        id: z.string().optional(),
-    });
-
-    export type Outbound = {
-        id?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueue> = z.object({
-        id: z.string().optional(),
-    });
+    /** @deprecated use `CreateQueue$inboundSchema` instead. */
+    export const inboundSchema = CreateQueue$inboundSchema;
+    /** @deprecated use `CreateQueue$outboundSchema` instead. */
+    export const outboundSchema = CreateQueue$outboundSchema;
+    /** @deprecated use `CreateQueue$Outbound` instead. */
+    export type Outbound = CreateQueue$Outbound;
 }

@@ -31,26 +31,56 @@ export type FileBase64Source = {
 };
 
 /** @internal */
+export const FileBase64SourceType$inboundSchema: z.ZodNativeEnum<typeof FileBase64SourceType> =
+    z.nativeEnum(FileBase64SourceType);
+
+/** @internal */
+export const FileBase64SourceType$outboundSchema: z.ZodNativeEnum<typeof FileBase64SourceType> =
+    FileBase64SourceType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FileBase64SourceType$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof FileBase64SourceType> =
-        z.nativeEnum(FileBase64SourceType);
-    export const outboundSchema: z.ZodNativeEnum<typeof FileBase64SourceType> = inboundSchema;
+    /** @deprecated use `FileBase64SourceType$inboundSchema` instead. */
+    export const inboundSchema = FileBase64SourceType$inboundSchema;
+    /** @deprecated use `FileBase64SourceType$outboundSchema` instead. */
+    export const outboundSchema = FileBase64SourceType$outboundSchema;
 }
 
 /** @internal */
+export const FileBase64Source$inboundSchema: z.ZodType<FileBase64Source, z.ZodTypeDef, unknown> =
+    z.object({
+        type: FileBase64SourceType$inboundSchema,
+        data: z.string(),
+    });
+
+/** @internal */
+export type FileBase64Source$Outbound = {
+    type: string;
+    data: string;
+};
+
+/** @internal */
+export const FileBase64Source$outboundSchema: z.ZodType<
+    FileBase64Source$Outbound,
+    z.ZodTypeDef,
+    FileBase64Source
+> = z.object({
+    type: FileBase64SourceType$outboundSchema,
+    data: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FileBase64Source$ {
-    export const inboundSchema: z.ZodType<FileBase64Source, z.ZodTypeDef, unknown> = z.object({
-        type: FileBase64SourceType$.inboundSchema,
-        data: z.string(),
-    });
-
-    export type Outbound = {
-        type: string;
-        data: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileBase64Source> = z.object({
-        type: FileBase64SourceType$.outboundSchema,
-        data: z.string(),
-    });
+    /** @deprecated use `FileBase64Source$inboundSchema` instead. */
+    export const inboundSchema = FileBase64Source$inboundSchema;
+    /** @deprecated use `FileBase64Source$outboundSchema` instead. */
+    export const outboundSchema = FileBase64Source$outboundSchema;
+    /** @deprecated use `FileBase64Source$Outbound` instead. */
+    export type Outbound = FileBase64Source$Outbound;
 }

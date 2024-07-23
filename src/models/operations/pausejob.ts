@@ -23,34 +23,70 @@ export type PauseJobRequest = {
 };
 
 /** @internal */
+export const PauseJobGlobals$inboundSchema: z.ZodType<PauseJobGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+        workspaceId: z.string().optional(),
+    });
+
+/** @internal */
+export type PauseJobGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const PauseJobGlobals$outboundSchema: z.ZodType<
+    PauseJobGlobals$Outbound,
+    z.ZodTypeDef,
+    PauseJobGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PauseJobGlobals$ {
-    export const inboundSchema: z.ZodType<PauseJobGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PauseJobGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `PauseJobGlobals$inboundSchema` instead. */
+    export const inboundSchema = PauseJobGlobals$inboundSchema;
+    /** @deprecated use `PauseJobGlobals$outboundSchema` instead. */
+    export const outboundSchema = PauseJobGlobals$outboundSchema;
+    /** @deprecated use `PauseJobGlobals$Outbound` instead. */
+    export type Outbound = PauseJobGlobals$Outbound;
 }
 
 /** @internal */
+export const PauseJobRequest$inboundSchema: z.ZodType<PauseJobRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        projectName: z.string(),
+        jobId: z.string(),
+    });
+
+/** @internal */
+export type PauseJobRequest$Outbound = {
+    projectName: string;
+    jobId: string;
+};
+
+/** @internal */
+export const PauseJobRequest$outboundSchema: z.ZodType<
+    PauseJobRequest$Outbound,
+    z.ZodTypeDef,
+    PauseJobRequest
+> = z.object({
+    projectName: z.string(),
+    jobId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PauseJobRequest$ {
-    export const inboundSchema: z.ZodType<PauseJobRequest, z.ZodTypeDef, unknown> = z.object({
-        projectName: z.string(),
-        jobId: z.string(),
-    });
-
-    export type Outbound = {
-        projectName: string;
-        jobId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PauseJobRequest> = z.object({
-        projectName: z.string(),
-        jobId: z.string(),
-    });
+    /** @deprecated use `PauseJobRequest$inboundSchema` instead. */
+    export const inboundSchema = PauseJobRequest$inboundSchema;
+    /** @deprecated use `PauseJobRequest$outboundSchema` instead. */
+    export const outboundSchema = PauseJobRequest$outboundSchema;
+    /** @deprecated use `PauseJobRequest$Outbound` instead. */
+    export type Outbound = PauseJobRequest$Outbound;
 }

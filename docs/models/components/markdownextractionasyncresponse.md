@@ -3,16 +3,16 @@
 
 ## Supported Types
 
-### `components.MarkdownExtractionAsyncSuccessfulResponse`
+### `components.MarkdownExtractionSuccessfulResponse`
 
 ```typescript
-const value: components.MarkdownExtractionAsyncSuccessfulResponse = /* values here */
+const value: components.MarkdownExtractionSuccessfulResponse = /* values here */
 ```
 
-### `components.AsyncFailedResponse`
+### `components.FileFailedResponse`
 
 ```typescript
-const value: components.AsyncFailedResponse = /* values here */
+const value: components.FileFailedResponse = /* values here */
 ```
 
 ### `components.AsyncFilePendingResponse`

@@ -3,7 +3,12 @@
  */
 
 import { ClosedEnum } from "../../types/enums.js";
-import { JobRetry, JobRetry$ } from "./jobretry.js";
+import {
+    JobRetry,
+    JobRetry$inboundSchema,
+    JobRetry$Outbound,
+    JobRetry$outboundSchema,
+} from "./jobretry.js";
 import * as z from "zod";
 
 /**
@@ -36,29 +41,61 @@ export type JobConfiguration = {
 };
 
 /** @internal */
+export const JobConfigurationRunMode$inboundSchema: z.ZodNativeEnum<
+    typeof JobConfigurationRunMode
+> = z.nativeEnum(JobConfigurationRunMode);
+
+/** @internal */
+export const JobConfigurationRunMode$outboundSchema: z.ZodNativeEnum<
+    typeof JobConfigurationRunMode
+> = JobConfigurationRunMode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace JobConfigurationRunMode$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof JobConfigurationRunMode> =
-        z.nativeEnum(JobConfigurationRunMode);
-    export const outboundSchema: z.ZodNativeEnum<typeof JobConfigurationRunMode> = inboundSchema;
+    /** @deprecated use `JobConfigurationRunMode$inboundSchema` instead. */
+    export const inboundSchema = JobConfigurationRunMode$inboundSchema;
+    /** @deprecated use `JobConfigurationRunMode$outboundSchema` instead. */
+    export const outboundSchema = JobConfigurationRunMode$outboundSchema;
 }
 
 /** @internal */
+export const JobConfiguration$inboundSchema: z.ZodType<JobConfiguration, z.ZodTypeDef, unknown> =
+    z.object({
+        runMode: JobConfigurationRunMode$inboundSchema,
+        maxConcurrentRequests: z.number().optional(),
+        retry: JobRetry$inboundSchema.optional(),
+    });
+
+/** @internal */
+export type JobConfiguration$Outbound = {
+    runMode: string;
+    maxConcurrentRequests?: number | undefined;
+    retry?: JobRetry$Outbound | undefined;
+};
+
+/** @internal */
+export const JobConfiguration$outboundSchema: z.ZodType<
+    JobConfiguration$Outbound,
+    z.ZodTypeDef,
+    JobConfiguration
+> = z.object({
+    runMode: JobConfigurationRunMode$outboundSchema,
+    maxConcurrentRequests: z.number().optional(),
+    retry: JobRetry$outboundSchema.optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace JobConfiguration$ {
-    export const inboundSchema: z.ZodType<JobConfiguration, z.ZodTypeDef, unknown> = z.object({
-        runMode: JobConfigurationRunMode$.inboundSchema,
-        maxConcurrentRequests: z.number().optional(),
-        retry: JobRetry$.inboundSchema.optional(),
-    });
-
-    export type Outbound = {
-        runMode: string;
-        maxConcurrentRequests?: number | undefined;
-        retry?: JobRetry$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobConfiguration> = z.object({
-        runMode: JobConfigurationRunMode$.outboundSchema,
-        maxConcurrentRequests: z.number().optional(),
-        retry: JobRetry$.outboundSchema.optional(),
-    });
+    /** @deprecated use `JobConfiguration$inboundSchema` instead. */
+    export const inboundSchema = JobConfiguration$inboundSchema;
+    /** @deprecated use `JobConfiguration$outboundSchema` instead. */
+    export const outboundSchema = JobConfiguration$outboundSchema;
+    /** @deprecated use `JobConfiguration$Outbound` instead. */
+    export type Outbound = JobConfiguration$Outbound;
 }

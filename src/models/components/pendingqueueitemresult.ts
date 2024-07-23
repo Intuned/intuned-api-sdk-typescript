@@ -28,31 +28,61 @@ export type PendingQueueItemResult = {
 };
 
 /** @internal */
+export const PendingQueueItemResultStatus$inboundSchema: z.ZodNativeEnum<
+    typeof PendingQueueItemResultStatus
+> = z.nativeEnum(PendingQueueItemResultStatus);
+
+/** @internal */
+export const PendingQueueItemResultStatus$outboundSchema: z.ZodNativeEnum<
+    typeof PendingQueueItemResultStatus
+> = PendingQueueItemResultStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PendingQueueItemResultStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof PendingQueueItemResultStatus> = z.nativeEnum(
-        PendingQueueItemResultStatus
-    );
-    export const outboundSchema: z.ZodNativeEnum<typeof PendingQueueItemResultStatus> =
-        inboundSchema;
+    /** @deprecated use `PendingQueueItemResultStatus$inboundSchema` instead. */
+    export const inboundSchema = PendingQueueItemResultStatus$inboundSchema;
+    /** @deprecated use `PendingQueueItemResultStatus$outboundSchema` instead. */
+    export const outboundSchema = PendingQueueItemResultStatus$outboundSchema;
 }
 
 /** @internal */
+export const PendingQueueItemResult$inboundSchema: z.ZodType<
+    PendingQueueItemResult,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    runId: z.string(),
+    status: PendingQueueItemResultStatus$inboundSchema,
+});
+
+/** @internal */
+export type PendingQueueItemResult$Outbound = {
+    runId: string;
+    status: string;
+};
+
+/** @internal */
+export const PendingQueueItemResult$outboundSchema: z.ZodType<
+    PendingQueueItemResult$Outbound,
+    z.ZodTypeDef,
+    PendingQueueItemResult
+> = z.object({
+    runId: z.string(),
+    status: PendingQueueItemResultStatus$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PendingQueueItemResult$ {
-    export const inboundSchema: z.ZodType<PendingQueueItemResult, z.ZodTypeDef, unknown> = z.object(
-        {
-            runId: z.string(),
-            status: PendingQueueItemResultStatus$.inboundSchema,
-        }
-    );
-
-    export type Outbound = {
-        runId: string;
-        status: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PendingQueueItemResult> =
-        z.object({
-            runId: z.string(),
-            status: PendingQueueItemResultStatus$.outboundSchema,
-        });
+    /** @deprecated use `PendingQueueItemResult$inboundSchema` instead. */
+    export const inboundSchema = PendingQueueItemResult$inboundSchema;
+    /** @deprecated use `PendingQueueItemResult$outboundSchema` instead. */
+    export const outboundSchema = PendingQueueItemResult$outboundSchema;
+    /** @deprecated use `PendingQueueItemResult$Outbound` instead. */
+    export type Outbound = PendingQueueItemResult$Outbound;
 }

@@ -11,5 +11,4 @@ targets:
         target: typescript
         source: intunedClientApi
         codeSamples:
-          output:  ../docs/_resources/openapi/generated/codeSamples.yaml
-
+            output:  ../docs/_resources/openapi/generated/codeSamples.yaml

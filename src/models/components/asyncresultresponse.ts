@@ -4,10 +4,22 @@
 
 import {
     AsyncRunCompletedResponse,
-    AsyncRunCompletedResponse$,
+    AsyncRunCompletedResponse$inboundSchema,
+    AsyncRunCompletedResponse$Outbound,
+    AsyncRunCompletedResponse$outboundSchema,
 } from "./asyncruncompletedresponse.js";
-import { AsyncRunFailedResponse, AsyncRunFailedResponse$ } from "./asyncrunfailedresponse.js";
-import { AsyncRunPendingResponse, AsyncRunPendingResponse$ } from "./asyncrunpendingresponse.js";
+import {
+    AsyncRunFailedResponse,
+    AsyncRunFailedResponse$inboundSchema,
+    AsyncRunFailedResponse$Outbound,
+    AsyncRunFailedResponse$outboundSchema,
+} from "./asyncrunfailedresponse.js";
+import {
+    AsyncRunPendingResponse,
+    AsyncRunPendingResponse$inboundSchema,
+    AsyncRunPendingResponse$Outbound,
+    AsyncRunPendingResponse$outboundSchema,
+} from "./asyncrunpendingresponse.js";
 import * as z from "zod";
 
 export type AsyncResultResponse =
@@ -16,32 +28,54 @@ export type AsyncResultResponse =
     | (AsyncRunFailedResponse & { status: "failed" });
 
 /** @internal */
-export namespace AsyncResultResponse$ {
-    export const inboundSchema: z.ZodType<AsyncResultResponse, z.ZodTypeDef, unknown> = z.union([
-        AsyncRunPendingResponse$.inboundSchema.and(
-            z.object({ status: z.literal("pending") }).transform((v) => ({ status: v.status }))
-        ),
-        AsyncRunCompletedResponse$.inboundSchema.and(
-            z.object({ status: z.literal("completed") }).transform((v) => ({ status: v.status }))
-        ),
-        AsyncRunFailedResponse$.inboundSchema.and(
-            z.object({ status: z.literal("failed") }).transform((v) => ({ status: v.status }))
-        ),
-    ]);
+export const AsyncResultResponse$inboundSchema: z.ZodType<
+    AsyncResultResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.union([
+    AsyncRunPendingResponse$inboundSchema.and(
+        z.object({ status: z.literal("pending") }).transform((v) => ({ status: v.status }))
+    ),
+    AsyncRunCompletedResponse$inboundSchema.and(
+        z.object({ status: z.literal("completed") }).transform((v) => ({ status: v.status }))
+    ),
+    AsyncRunFailedResponse$inboundSchema.and(
+        z.object({ status: z.literal("failed") }).transform((v) => ({ status: v.status }))
+    ),
+]);
 
-    export type Outbound =
-        | (AsyncRunPendingResponse$.Outbound & { status: "pending" })
-        | (AsyncRunCompletedResponse$.Outbound & { status: "completed" })
-        | (AsyncRunFailedResponse$.Outbound & { status: "failed" });
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncResultResponse> = z.union([
-        AsyncRunPendingResponse$.outboundSchema.and(
-            z.object({ status: z.literal("pending") }).transform((v) => ({ status: v.status }))
-        ),
-        AsyncRunCompletedResponse$.outboundSchema.and(
-            z.object({ status: z.literal("completed") }).transform((v) => ({ status: v.status }))
-        ),
-        AsyncRunFailedResponse$.outboundSchema.and(
-            z.object({ status: z.literal("failed") }).transform((v) => ({ status: v.status }))
-        ),
-    ]);
+/** @internal */
+export type AsyncResultResponse$Outbound =
+    | (AsyncRunPendingResponse$Outbound & { status: "pending" })
+    | (AsyncRunCompletedResponse$Outbound & { status: "completed" })
+    | (AsyncRunFailedResponse$Outbound & { status: "failed" });
+
+/** @internal */
+export const AsyncResultResponse$outboundSchema: z.ZodType<
+    AsyncResultResponse$Outbound,
+    z.ZodTypeDef,
+    AsyncResultResponse
+> = z.union([
+    AsyncRunPendingResponse$outboundSchema.and(
+        z.object({ status: z.literal("pending") }).transform((v) => ({ status: v.status }))
+    ),
+    AsyncRunCompletedResponse$outboundSchema.and(
+        z.object({ status: z.literal("completed") }).transform((v) => ({ status: v.status }))
+    ),
+    AsyncRunFailedResponse$outboundSchema.and(
+        z.object({ status: z.literal("failed") }).transform((v) => ({ status: v.status }))
+    ),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AsyncResultResponse$ {
+    /** @deprecated use `AsyncResultResponse$inboundSchema` instead. */
+    export const inboundSchema = AsyncResultResponse$inboundSchema;
+    /** @deprecated use `AsyncResultResponse$outboundSchema` instead. */
+    export const outboundSchema = AsyncResultResponse$outboundSchema;
+    /** @deprecated use `AsyncResultResponse$Outbound` instead. */
+    export type Outbound = AsyncResultResponse$Outbound;
 }

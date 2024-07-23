@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -59,13 +59,10 @@ export class AuthSessions extends ClientSDK {
         const input$: operations.GetAuthSessionsRequest = {
             projectName: projectName,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetAuthSessionsRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetAuthSessionsRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -86,6 +83,10 @@ export class AuthSessions extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -101,7 +102,6 @@ export class AuthSessions extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -111,20 +111,26 @@ export class AuthSessions extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<Array<components.AuthSessionInfo>>()
-            .json(200, z.array(components.AuthSessionInfo$.inboundSchema))
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, z.array(components.AuthSessionInfo$inboundSchema))
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -146,13 +152,10 @@ export class AuthSessions extends ClientSDK {
             projectName: projectName,
             authSessionId: authSessionId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetAuthSessionRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetAuthSessionRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -177,6 +180,10 @@ export class AuthSessions extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -192,7 +199,6 @@ export class AuthSessions extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -202,20 +208,26 @@ export class AuthSessions extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.AuthSessionInfo>()
-            .json(200, components.AuthSessionInfo$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, components.AuthSessionInfo$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -237,13 +249,10 @@ export class AuthSessions extends ClientSDK {
             projectName: projectName,
             authSessionId: authSessionId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteAuthSessionRequest$.outboundSchema.parse(value$),
+            (value$) => operations.DeleteAuthSessionRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -268,6 +277,10 @@ export class AuthSessions extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -283,7 +296,6 @@ export class AuthSessions extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -293,11 +305,17 @@ export class AuthSessions extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
@@ -305,8 +323,8 @@ export class AuthSessions extends ClientSDK {
 
         const [result$] = await this.matcher<void>()
             .void(204, z.void())
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

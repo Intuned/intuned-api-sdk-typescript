@@ -19,31 +19,67 @@ export type GetJobsRequest = {
 };
 
 /** @internal */
+export const GetJobsGlobals$inboundSchema: z.ZodType<GetJobsGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+        workspaceId: z.string().optional(),
+    });
+
+/** @internal */
+export type GetJobsGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const GetJobsGlobals$outboundSchema: z.ZodType<
+    GetJobsGlobals$Outbound,
+    z.ZodTypeDef,
+    GetJobsGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetJobsGlobals$ {
-    export const inboundSchema: z.ZodType<GetJobsGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobsGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `GetJobsGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetJobsGlobals$inboundSchema;
+    /** @deprecated use `GetJobsGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetJobsGlobals$outboundSchema;
+    /** @deprecated use `GetJobsGlobals$Outbound` instead. */
+    export type Outbound = GetJobsGlobals$Outbound;
 }
 
 /** @internal */
+export const GetJobsRequest$inboundSchema: z.ZodType<GetJobsRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        projectName: z.string(),
+    });
+
+/** @internal */
+export type GetJobsRequest$Outbound = {
+    projectName: string;
+};
+
+/** @internal */
+export const GetJobsRequest$outboundSchema: z.ZodType<
+    GetJobsRequest$Outbound,
+    z.ZodTypeDef,
+    GetJobsRequest
+> = z.object({
+    projectName: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetJobsRequest$ {
-    export const inboundSchema: z.ZodType<GetJobsRequest, z.ZodTypeDef, unknown> = z.object({
-        projectName: z.string(),
-    });
-
-    export type Outbound = {
-        projectName: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetJobsRequest> = z.object({
-        projectName: z.string(),
-    });
+    /** @deprecated use `GetJobsRequest$inboundSchema` instead. */
+    export const inboundSchema = GetJobsRequest$inboundSchema;
+    /** @deprecated use `GetJobsRequest$outboundSchema` instead. */
+    export const outboundSchema = GetJobsRequest$outboundSchema;
+    /** @deprecated use `GetJobsRequest$Outbound` instead. */
+    export type Outbound = GetJobsRequest$Outbound;
 }

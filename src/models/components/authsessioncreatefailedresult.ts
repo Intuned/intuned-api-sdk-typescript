@@ -37,32 +37,64 @@ export type AuthSessionCreateFailedResult = {
 };
 
 /** @internal */
+export const AuthSessionCreateFailedResultStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AuthSessionCreateFailedResultStatus
+> = z.nativeEnum(AuthSessionCreateFailedResultStatus);
+
+/** @internal */
+export const AuthSessionCreateFailedResultStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AuthSessionCreateFailedResultStatus
+> = AuthSessionCreateFailedResultStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateFailedResultStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AuthSessionCreateFailedResultStatus> =
-        z.nativeEnum(AuthSessionCreateFailedResultStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AuthSessionCreateFailedResultStatus> =
-        inboundSchema;
+    /** @deprecated use `AuthSessionCreateFailedResultStatus$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateFailedResultStatus$inboundSchema;
+    /** @deprecated use `AuthSessionCreateFailedResultStatus$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateFailedResultStatus$outboundSchema;
 }
 
 /** @internal */
+export const AuthSessionCreateFailedResult$inboundSchema: z.ZodType<
+    AuthSessionCreateFailedResult,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    status: AuthSessionCreateFailedResultStatus$inboundSchema,
+    error: z.string(),
+    message: z.string(),
+});
+
+/** @internal */
+export type AuthSessionCreateFailedResult$Outbound = {
+    status: string;
+    error: string;
+    message: string;
+};
+
+/** @internal */
+export const AuthSessionCreateFailedResult$outboundSchema: z.ZodType<
+    AuthSessionCreateFailedResult$Outbound,
+    z.ZodTypeDef,
+    AuthSessionCreateFailedResult
+> = z.object({
+    status: AuthSessionCreateFailedResultStatus$outboundSchema,
+    error: z.string(),
+    message: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateFailedResult$ {
-    export const inboundSchema: z.ZodType<AuthSessionCreateFailedResult, z.ZodTypeDef, unknown> =
-        z.object({
-            status: AuthSessionCreateFailedResultStatus$.inboundSchema,
-            error: z.string(),
-            message: z.string(),
-        });
-
-    export type Outbound = {
-        status: string;
-        error: string;
-        message: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreateFailedResult> =
-        z.object({
-            status: AuthSessionCreateFailedResultStatus$.outboundSchema,
-            error: z.string(),
-            message: z.string(),
-        });
+    /** @deprecated use `AuthSessionCreateFailedResult$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateFailedResult$inboundSchema;
+    /** @deprecated use `AuthSessionCreateFailedResult$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateFailedResult$outboundSchema;
+    /** @deprecated use `AuthSessionCreateFailedResult$Outbound` instead. */
+    export type Outbound = AuthSessionCreateFailedResult$Outbound;
 }

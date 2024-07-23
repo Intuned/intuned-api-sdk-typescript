@@ -12,18 +12,37 @@ export type FileExtractTablesStartGlobals = {
 };
 
 /** @internal */
+export const FileExtractTablesStartGlobals$inboundSchema: z.ZodType<
+    FileExtractTablesStartGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type FileExtractTablesStartGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const FileExtractTablesStartGlobals$outboundSchema: z.ZodType<
+    FileExtractTablesStartGlobals$Outbound,
+    z.ZodTypeDef,
+    FileExtractTablesStartGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FileExtractTablesStartGlobals$ {
-    export const inboundSchema: z.ZodType<FileExtractTablesStartGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FileExtractTablesStartGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `FileExtractTablesStartGlobals$inboundSchema` instead. */
+    export const inboundSchema = FileExtractTablesStartGlobals$inboundSchema;
+    /** @deprecated use `FileExtractTablesStartGlobals$outboundSchema` instead. */
+    export const outboundSchema = FileExtractTablesStartGlobals$outboundSchema;
+    /** @deprecated use `FileExtractTablesStartGlobals$Outbound` instead. */
+    export type Outbound = FileExtractTablesStartGlobals$Outbound;
 }

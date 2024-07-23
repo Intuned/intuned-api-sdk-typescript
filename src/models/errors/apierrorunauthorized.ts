@@ -25,57 +25,76 @@ export class ApiErrorUnauthorized extends Error {
     data$: ApiErrorUnauthorizedData;
 
     constructor(err: ApiErrorUnauthorizedData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         if (err.additionalProperties != null) {
             this.additionalProperties = err.additionalProperties;
         }
 
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
-
         this.name = "ApiErrorUnauthorized";
     }
 }
 
 /** @internal */
+export const ApiErrorUnauthorized$inboundSchema: z.ZodType<
+    ApiErrorUnauthorized,
+    z.ZodTypeDef,
+    unknown
+> = collectExtraKeys$(
+    z
+        .object({
+            message: z.string().optional(),
+        })
+        .catchall(z.any()),
+    "additionalProperties"
+).transform((v) => {
+    return new ApiErrorUnauthorized(v);
+});
+
+/** @internal */
+export type ApiErrorUnauthorized$Outbound = {
+    message?: string | undefined;
+    [additionalProperties: string]: unknown;
+};
+
+/** @internal */
+export const ApiErrorUnauthorized$outboundSchema: z.ZodType<
+    ApiErrorUnauthorized$Outbound,
+    z.ZodTypeDef,
+    ApiErrorUnauthorized
+> = z
+    .instanceof(ApiErrorUnauthorized)
+    .transform((v) => v.data$)
+    .pipe(
+        z
+            .object({
+                message: z.string().optional(),
+                additionalProperties: z.record(z.any()),
+            })
+            .transform((v) => {
+                return {
+                    ...v.additionalProperties,
+                    ...remap$(v, {
+                        additionalProperties: null,
+                    }),
+                };
+            })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ApiErrorUnauthorized$ {
-    export const inboundSchema: z.ZodType<ApiErrorUnauthorized, z.ZodTypeDef, unknown> =
-        collectExtraKeys$(
-            z
-                .object({
-                    message: z.string().optional(),
-                })
-                .catchall(z.any()),
-            "additionalProperties"
-        ).transform((v) => {
-            return new ApiErrorUnauthorized(v);
-        });
-
-    export type Outbound = {
-        message?: string | undefined;
-        [additionalProperties: string]: unknown;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ApiErrorUnauthorized> = z
-        .instanceof(ApiErrorUnauthorized)
-        .transform((v) => v.data$)
-        .pipe(
-            z
-                .object({
-                    message: z.string().optional(),
-                    additionalProperties: z.record(z.any()),
-                })
-                .transform((v) => {
-                    return {
-                        ...v.additionalProperties,
-                        ...remap$(v, {
-                            additionalProperties: null,
-                        }),
-                    };
-                })
-        );
+    /** @deprecated use `ApiErrorUnauthorized$inboundSchema` instead. */
+    export const inboundSchema = ApiErrorUnauthorized$inboundSchema;
+    /** @deprecated use `ApiErrorUnauthorized$outboundSchema` instead. */
+    export const outboundSchema = ApiErrorUnauthorized$outboundSchema;
+    /** @deprecated use `ApiErrorUnauthorized$Outbound` instead. */
+    export type Outbound = ApiErrorUnauthorized$Outbound;
 }

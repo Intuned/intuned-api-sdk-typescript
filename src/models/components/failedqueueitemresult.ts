@@ -36,35 +36,67 @@ export type FailedQueueItemResult = {
 };
 
 /** @internal */
+export const FailedQueueItemResultStatus$inboundSchema: z.ZodNativeEnum<
+    typeof FailedQueueItemResultStatus
+> = z.nativeEnum(FailedQueueItemResultStatus);
+
+/** @internal */
+export const FailedQueueItemResultStatus$outboundSchema: z.ZodNativeEnum<
+    typeof FailedQueueItemResultStatus
+> = FailedQueueItemResultStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FailedQueueItemResultStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof FailedQueueItemResultStatus> = z.nativeEnum(
-        FailedQueueItemResultStatus
-    );
-    export const outboundSchema: z.ZodNativeEnum<typeof FailedQueueItemResultStatus> =
-        inboundSchema;
+    /** @deprecated use `FailedQueueItemResultStatus$inboundSchema` instead. */
+    export const inboundSchema = FailedQueueItemResultStatus$inboundSchema;
+    /** @deprecated use `FailedQueueItemResultStatus$outboundSchema` instead. */
+    export const outboundSchema = FailedQueueItemResultStatus$outboundSchema;
 }
 
 /** @internal */
+export const FailedQueueItemResult$inboundSchema: z.ZodType<
+    FailedQueueItemResult,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    runId: z.string(),
+    status: FailedQueueItemResultStatus$inboundSchema,
+    error: z.record(z.any()),
+    statusCode: z.number(),
+});
+
+/** @internal */
+export type FailedQueueItemResult$Outbound = {
+    runId: string;
+    status: string;
+    error: { [k: string]: any };
+    statusCode: number;
+};
+
+/** @internal */
+export const FailedQueueItemResult$outboundSchema: z.ZodType<
+    FailedQueueItemResult$Outbound,
+    z.ZodTypeDef,
+    FailedQueueItemResult
+> = z.object({
+    runId: z.string(),
+    status: FailedQueueItemResultStatus$outboundSchema,
+    error: z.record(z.any()),
+    statusCode: z.number(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FailedQueueItemResult$ {
-    export const inboundSchema: z.ZodType<FailedQueueItemResult, z.ZodTypeDef, unknown> = z.object({
-        runId: z.string(),
-        status: FailedQueueItemResultStatus$.inboundSchema,
-        error: z.record(z.any()),
-        statusCode: z.number(),
-    });
-
-    export type Outbound = {
-        runId: string;
-        status: string;
-        error: { [k: string]: any };
-        statusCode: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, FailedQueueItemResult> =
-        z.object({
-            runId: z.string(),
-            status: FailedQueueItemResultStatus$.outboundSchema,
-            error: z.record(z.any()),
-            statusCode: z.number(),
-        });
+    /** @deprecated use `FailedQueueItemResult$inboundSchema` instead. */
+    export const inboundSchema = FailedQueueItemResult$inboundSchema;
+    /** @deprecated use `FailedQueueItemResult$outboundSchema` instead. */
+    export const outboundSchema = FailedQueueItemResult$outboundSchema;
+    /** @deprecated use `FailedQueueItemResult$Outbound` instead. */
+    export type Outbound = FailedQueueItemResult$Outbound;
 }

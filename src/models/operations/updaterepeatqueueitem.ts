@@ -33,54 +33,94 @@ export type UpdateRepeatQueueItemRequest = {
 };
 
 /** @internal */
+export const UpdateRepeatQueueItemGlobals$inboundSchema: z.ZodType<
+    UpdateRepeatQueueItemGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type UpdateRepeatQueueItemGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const UpdateRepeatQueueItemGlobals$outboundSchema: z.ZodType<
+    UpdateRepeatQueueItemGlobals$Outbound,
+    z.ZodTypeDef,
+    UpdateRepeatQueueItemGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace UpdateRepeatQueueItemGlobals$ {
-    export const inboundSchema: z.ZodType<UpdateRepeatQueueItemGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateRepeatQueueItemGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `UpdateRepeatQueueItemGlobals$inboundSchema` instead. */
+    export const inboundSchema = UpdateRepeatQueueItemGlobals$inboundSchema;
+    /** @deprecated use `UpdateRepeatQueueItemGlobals$outboundSchema` instead. */
+    export const outboundSchema = UpdateRepeatQueueItemGlobals$outboundSchema;
+    /** @deprecated use `UpdateRepeatQueueItemGlobals$Outbound` instead. */
+    export type Outbound = UpdateRepeatQueueItemGlobals$Outbound;
 }
 
 /** @internal */
+export const UpdateRepeatQueueItemRequest$inboundSchema: z.ZodType<
+    UpdateRepeatQueueItemRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        projectName: z.string(),
+        queueId: z.string(),
+        itemId: z.string(),
+        QueueRepeatItemInput: components.QueueRepeatItemInput$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            QueueRepeatItemInput: "queueRepeatItemInput",
+        });
+    });
+
+/** @internal */
+export type UpdateRepeatQueueItemRequest$Outbound = {
+    projectName: string;
+    queueId: string;
+    itemId: string;
+    QueueRepeatItemInput: components.QueueRepeatItemInput$Outbound;
+};
+
+/** @internal */
+export const UpdateRepeatQueueItemRequest$outboundSchema: z.ZodType<
+    UpdateRepeatQueueItemRequest$Outbound,
+    z.ZodTypeDef,
+    UpdateRepeatQueueItemRequest
+> = z
+    .object({
+        projectName: z.string(),
+        queueId: z.string(),
+        itemId: z.string(),
+        queueRepeatItemInput: components.QueueRepeatItemInput$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            queueRepeatItemInput: "QueueRepeatItemInput",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace UpdateRepeatQueueItemRequest$ {
-    export const inboundSchema: z.ZodType<UpdateRepeatQueueItemRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            projectName: z.string(),
-            queueId: z.string(),
-            itemId: z.string(),
-            QueueRepeatItemInput: components.QueueRepeatItemInput$.inboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                QueueRepeatItemInput: "queueRepeatItemInput",
-            });
-        });
-
-    export type Outbound = {
-        projectName: string;
-        queueId: string;
-        itemId: string;
-        QueueRepeatItemInput: components.QueueRepeatItemInput$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UpdateRepeatQueueItemRequest> = z
-        .object({
-            projectName: z.string(),
-            queueId: z.string(),
-            itemId: z.string(),
-            queueRepeatItemInput: components.QueueRepeatItemInput$.outboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                queueRepeatItemInput: "QueueRepeatItemInput",
-            });
-        });
+    /** @deprecated use `UpdateRepeatQueueItemRequest$inboundSchema` instead. */
+    export const inboundSchema = UpdateRepeatQueueItemRequest$inboundSchema;
+    /** @deprecated use `UpdateRepeatQueueItemRequest$outboundSchema` instead. */
+    export const outboundSchema = UpdateRepeatQueueItemRequest$outboundSchema;
+    /** @deprecated use `UpdateRepeatQueueItemRequest$Outbound` instead. */
+    export type Outbound = UpdateRepeatQueueItemRequest$Outbound;
 }

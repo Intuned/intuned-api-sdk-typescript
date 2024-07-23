@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -49,20 +49,20 @@ export class ExtractStructuredData extends ClientSDK {
     async sync(
         file: components.FileT,
         dataSchema: { [k: string]: any },
+        strategy?: components.ExtractStructuredDataStrategy | undefined,
+        prompt?: string | undefined,
         options?: RequestOptions
-    ): Promise<components.StructuredDataExtractionResponse> {
+    ): Promise<components.StructuredDataExtractionSyncResponse> {
         const input$: components.ExtractStructuredDataRequest = {
             file: file,
             dataSchema: dataSchema,
+            strategy: strategy,
+            prompt: prompt,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.ExtractStructuredDataRequest$.outboundSchema.parse(value$),
+            (value$) => components.ExtractStructuredDataRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
@@ -79,6 +79,11 @@ export class ExtractStructuredData extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -94,7 +99,6 @@ export class ExtractStructuredData extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -104,20 +108,26 @@ export class ExtractStructuredData extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.StructuredDataExtractionResponse>()
-            .json(200, components.StructuredDataExtractionResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+        const [result$] = await this.matcher<components.StructuredDataExtractionSyncResponse>()
+            .json(200, components.StructuredDataExtractionSyncResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -135,20 +145,20 @@ export class ExtractStructuredData extends ClientSDK {
     async start(
         file: components.FileT,
         dataSchema: { [k: string]: any },
+        strategy?: components.ExtractStructuredDataStrategy | undefined,
+        prompt?: string | undefined,
         options?: RequestOptions
     ): Promise<components.AsyncFilePendingResponse> {
         const input$: components.ExtractStructuredDataRequest = {
             file: file,
             dataSchema: dataSchema,
+            strategy: strategy,
+            prompt: prompt,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.ExtractStructuredDataRequest$.outboundSchema.parse(value$),
+            (value$) => components.ExtractStructuredDataRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
@@ -165,6 +175,11 @@ export class ExtractStructuredData extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -180,7 +195,6 @@ export class ExtractStructuredData extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -190,20 +204,26 @@ export class ExtractStructuredData extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.AsyncFilePendingResponse>()
-            .json(201, components.AsyncFilePendingResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(201, components.AsyncFilePendingResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -223,14 +243,11 @@ export class ExtractStructuredData extends ClientSDK {
         const input$: operations.FileExtractStructuredDataResultRequest = {
             operationId: operationId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
             (value$) =>
-                operations.FileExtractStructuredDataResultRequest$.outboundSchema.parse(value$),
+                operations.FileExtractStructuredDataResultRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -251,6 +268,10 @@ export class ExtractStructuredData extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -266,7 +287,6 @@ export class ExtractStructuredData extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -276,20 +296,26 @@ export class ExtractStructuredData extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.StructuredDataExtractionAsyncResponse>()
-            .json(200, components.StructuredDataExtractionAsyncResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, components.StructuredDataExtractionAsyncResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

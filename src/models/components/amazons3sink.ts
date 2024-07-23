@@ -42,41 +42,70 @@ export type AmazonS3Sink = {
 };
 
 /** @internal */
+export const AmazonS3SinkType$inboundSchema: z.ZodNativeEnum<typeof AmazonS3SinkType> =
+    z.nativeEnum(AmazonS3SinkType);
+
+/** @internal */
+export const AmazonS3SinkType$outboundSchema: z.ZodNativeEnum<typeof AmazonS3SinkType> =
+    AmazonS3SinkType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AmazonS3SinkType$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AmazonS3SinkType> =
-        z.nativeEnum(AmazonS3SinkType);
-    export const outboundSchema: z.ZodNativeEnum<typeof AmazonS3SinkType> = inboundSchema;
+    /** @deprecated use `AmazonS3SinkType$inboundSchema` instead. */
+    export const inboundSchema = AmazonS3SinkType$inboundSchema;
+    /** @deprecated use `AmazonS3SinkType$outboundSchema` instead. */
+    export const outboundSchema = AmazonS3SinkType$outboundSchema;
 }
 
 /** @internal */
+export const AmazonS3Sink$inboundSchema: z.ZodType<AmazonS3Sink, z.ZodTypeDef, unknown> = z.object({
+    type: AmazonS3SinkType$inboundSchema,
+    region: z.string(),
+    bucket: z.string(),
+    accessKeyId: z.string(),
+    secretAccessKey: z.string(),
+    prefix: z.string().optional(),
+    skipOnFail: z.boolean().default(false),
+});
+
+/** @internal */
+export type AmazonS3Sink$Outbound = {
+    type: string;
+    region: string;
+    bucket: string;
+    accessKeyId: string;
+    secretAccessKey: string;
+    prefix?: string | undefined;
+    skipOnFail: boolean;
+};
+
+/** @internal */
+export const AmazonS3Sink$outboundSchema: z.ZodType<
+    AmazonS3Sink$Outbound,
+    z.ZodTypeDef,
+    AmazonS3Sink
+> = z.object({
+    type: AmazonS3SinkType$outboundSchema,
+    region: z.string(),
+    bucket: z.string(),
+    accessKeyId: z.string(),
+    secretAccessKey: z.string(),
+    prefix: z.string().optional(),
+    skipOnFail: z.boolean().default(false),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AmazonS3Sink$ {
-    export const inboundSchema: z.ZodType<AmazonS3Sink, z.ZodTypeDef, unknown> = z.object({
-        type: AmazonS3SinkType$.inboundSchema,
-        region: z.string(),
-        bucket: z.string(),
-        accessKeyId: z.string(),
-        secretAccessKey: z.string(),
-        prefix: z.string().optional(),
-        skipOnFail: z.boolean().default(false),
-    });
-
-    export type Outbound = {
-        type: string;
-        region: string;
-        bucket: string;
-        accessKeyId: string;
-        secretAccessKey: string;
-        prefix?: string | undefined;
-        skipOnFail: boolean;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AmazonS3Sink> = z.object({
-        type: AmazonS3SinkType$.outboundSchema,
-        region: z.string(),
-        bucket: z.string(),
-        accessKeyId: z.string(),
-        secretAccessKey: z.string(),
-        prefix: z.string().optional(),
-        skipOnFail: z.boolean().default(false),
-    });
+    /** @deprecated use `AmazonS3Sink$inboundSchema` instead. */
+    export const inboundSchema = AmazonS3Sink$inboundSchema;
+    /** @deprecated use `AmazonS3Sink$outboundSchema` instead. */
+    export const outboundSchema = AmazonS3Sink$outboundSchema;
+    /** @deprecated use `AmazonS3Sink$Outbound` instead. */
+    export type Outbound = AmazonS3Sink$Outbound;
 }

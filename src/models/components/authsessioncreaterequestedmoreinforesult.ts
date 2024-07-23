@@ -120,130 +120,245 @@ export type AuthSessionCreateRequestedMoreInfoResult = {
 };
 
 /** @internal */
+export const AuthSessionCreateRequestedMoreInfoResultStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AuthSessionCreateRequestedMoreInfoResultStatus
+> = z.nativeEnum(AuthSessionCreateRequestedMoreInfoResultStatus);
+
+/** @internal */
+export const AuthSessionCreateRequestedMoreInfoResultStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AuthSessionCreateRequestedMoreInfoResultStatus
+> = AuthSessionCreateRequestedMoreInfoResultStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateRequestedMoreInfoResultStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<
-        typeof AuthSessionCreateRequestedMoreInfoResultStatus
-    > = z.nativeEnum(AuthSessionCreateRequestedMoreInfoResultStatus);
-    export const outboundSchema: z.ZodNativeEnum<
-        typeof AuthSessionCreateRequestedMoreInfoResultStatus
-    > = inboundSchema;
+    /** @deprecated use `AuthSessionCreateRequestedMoreInfoResultStatus$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateRequestedMoreInfoResultStatus$inboundSchema;
+    /** @deprecated use `AuthSessionCreateRequestedMoreInfoResultStatus$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateRequestedMoreInfoResultStatus$outboundSchema;
 }
 
 /** @internal */
+export const DetailsRequestType$inboundSchema: z.ZodNativeEnum<typeof DetailsRequestType> =
+    z.nativeEnum(DetailsRequestType);
+
+/** @internal */
+export const DetailsRequestType$outboundSchema: z.ZodNativeEnum<typeof DetailsRequestType> =
+    DetailsRequestType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DetailsRequestType$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof DetailsRequestType> =
-        z.nativeEnum(DetailsRequestType);
-    export const outboundSchema: z.ZodNativeEnum<typeof DetailsRequestType> = inboundSchema;
+    /** @deprecated use `DetailsRequestType$inboundSchema` instead. */
+    export const inboundSchema = DetailsRequestType$inboundSchema;
+    /** @deprecated use `DetailsRequestType$outboundSchema` instead. */
+    export const outboundSchema = DetailsRequestType$outboundSchema;
 }
 
 /** @internal */
+export const DetailsAction$inboundSchema: z.ZodNativeEnum<typeof DetailsAction> =
+    z.nativeEnum(DetailsAction);
+
+/** @internal */
+export const DetailsAction$outboundSchema: z.ZodNativeEnum<typeof DetailsAction> =
+    DetailsAction$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DetailsAction$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof DetailsAction> = z.nativeEnum(DetailsAction);
-    export const outboundSchema: z.ZodNativeEnum<typeof DetailsAction> = inboundSchema;
+    /** @deprecated use `DetailsAction$inboundSchema` instead. */
+    export const inboundSchema = DetailsAction$inboundSchema;
+    /** @deprecated use `DetailsAction$outboundSchema` instead. */
+    export const outboundSchema = DetailsAction$outboundSchema;
 }
 
 /** @internal */
+export const Otp$inboundSchema: z.ZodType<Otp, z.ZodTypeDef, unknown> = z.object({
+    requestType: DetailsRequestType$inboundSchema,
+    action: DetailsAction$inboundSchema,
+    messageToUser: z.string(),
+});
+
+/** @internal */
+export type Otp$Outbound = {
+    requestType: string;
+    action: string;
+    messageToUser: string;
+};
+
+/** @internal */
+export const Otp$outboundSchema: z.ZodType<Otp$Outbound, z.ZodTypeDef, Otp> = z.object({
+    requestType: DetailsRequestType$outboundSchema,
+    action: DetailsAction$outboundSchema,
+    messageToUser: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Otp$ {
-    export const inboundSchema: z.ZodType<Otp, z.ZodTypeDef, unknown> = z.object({
-        requestType: DetailsRequestType$.inboundSchema,
-        action: DetailsAction$.inboundSchema,
-        messageToUser: z.string(),
-    });
-
-    export type Outbound = {
-        requestType: string;
-        action: string;
-        messageToUser: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Otp> = z.object({
-        requestType: DetailsRequestType$.outboundSchema,
-        action: DetailsAction$.outboundSchema,
-        messageToUser: z.string(),
-    });
+    /** @deprecated use `Otp$inboundSchema` instead. */
+    export const inboundSchema = Otp$inboundSchema;
+    /** @deprecated use `Otp$outboundSchema` instead. */
+    export const outboundSchema = Otp$outboundSchema;
+    /** @deprecated use `Otp$Outbound` instead. */
+    export type Outbound = Otp$Outbound;
 }
 
 /** @internal */
+export const RequestType$inboundSchema: z.ZodNativeEnum<typeof RequestType> =
+    z.nativeEnum(RequestType);
+
+/** @internal */
+export const RequestType$outboundSchema: z.ZodNativeEnum<typeof RequestType> =
+    RequestType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RequestType$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof RequestType> = z.nativeEnum(RequestType);
-    export const outboundSchema: z.ZodNativeEnum<typeof RequestType> = inboundSchema;
+    /** @deprecated use `RequestType$inboundSchema` instead. */
+    export const inboundSchema = RequestType$inboundSchema;
+    /** @deprecated use `RequestType$outboundSchema` instead. */
+    export const outboundSchema = RequestType$outboundSchema;
 }
 
 /** @internal */
+export const Action$inboundSchema: z.ZodNativeEnum<typeof Action> = z.nativeEnum(Action);
+
+/** @internal */
+export const Action$outboundSchema: z.ZodNativeEnum<typeof Action> = Action$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Action$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Action> = z.nativeEnum(Action);
-    export const outboundSchema: z.ZodNativeEnum<typeof Action> = inboundSchema;
+    /** @deprecated use `Action$inboundSchema` instead. */
+    export const inboundSchema = Action$inboundSchema;
+    /** @deprecated use `Action$outboundSchema` instead. */
+    export const outboundSchema = Action$outboundSchema;
 }
 
 /** @internal */
+export const MultipleChoice$inboundSchema: z.ZodType<MultipleChoice, z.ZodTypeDef, unknown> =
+    z.object({
+        choices: z.array(z.string()),
+        requestType: RequestType$inboundSchema,
+        action: Action$inboundSchema,
+        messageToUser: z.string(),
+    });
+
+/** @internal */
+export type MultipleChoice$Outbound = {
+    choices: Array<string>;
+    requestType: string;
+    action: string;
+    messageToUser: string;
+};
+
+/** @internal */
+export const MultipleChoice$outboundSchema: z.ZodType<
+    MultipleChoice$Outbound,
+    z.ZodTypeDef,
+    MultipleChoice
+> = z.object({
+    choices: z.array(z.string()),
+    requestType: RequestType$outboundSchema,
+    action: Action$outboundSchema,
+    messageToUser: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace MultipleChoice$ {
-    export const inboundSchema: z.ZodType<MultipleChoice, z.ZodTypeDef, unknown> = z.object({
-        choices: z.array(z.string()),
-        requestType: RequestType$.inboundSchema,
-        action: Action$.inboundSchema,
-        messageToUser: z.string(),
-    });
-
-    export type Outbound = {
-        choices: Array<string>;
-        requestType: string;
-        action: string;
-        messageToUser: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MultipleChoice> = z.object({
-        choices: z.array(z.string()),
-        requestType: RequestType$.outboundSchema,
-        action: Action$.outboundSchema,
-        messageToUser: z.string(),
-    });
+    /** @deprecated use `MultipleChoice$inboundSchema` instead. */
+    export const inboundSchema = MultipleChoice$inboundSchema;
+    /** @deprecated use `MultipleChoice$outboundSchema` instead. */
+    export const outboundSchema = MultipleChoice$outboundSchema;
+    /** @deprecated use `MultipleChoice$Outbound` instead. */
+    export type Outbound = MultipleChoice$Outbound;
 }
 
 /** @internal */
+export const Details$inboundSchema: z.ZodType<Details, z.ZodTypeDef, unknown> = z.union([
+    z.lazy(() => Otp$inboundSchema),
+    z.lazy(() => MultipleChoice$inboundSchema),
+]);
+
+/** @internal */
+export type Details$Outbound = Otp$Outbound | MultipleChoice$Outbound;
+
+/** @internal */
+export const Details$outboundSchema: z.ZodType<Details$Outbound, z.ZodTypeDef, Details> = z.union([
+    z.lazy(() => Otp$outboundSchema),
+    z.lazy(() => MultipleChoice$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Details$ {
-    export const inboundSchema: z.ZodType<Details, z.ZodTypeDef, unknown> = z.union([
-        z.lazy(() => Otp$.inboundSchema),
-        z.lazy(() => MultipleChoice$.inboundSchema),
-    ]);
-
-    export type Outbound = Otp$.Outbound | MultipleChoice$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Details> = z.union([
-        z.lazy(() => Otp$.outboundSchema),
-        z.lazy(() => MultipleChoice$.outboundSchema),
-    ]);
+    /** @deprecated use `Details$inboundSchema` instead. */
+    export const inboundSchema = Details$inboundSchema;
+    /** @deprecated use `Details$outboundSchema` instead. */
+    export const outboundSchema = Details$outboundSchema;
+    /** @deprecated use `Details$Outbound` instead. */
+    export type Outbound = Details$Outbound;
 }
 
 /** @internal */
+export const AuthSessionCreateRequestedMoreInfoResult$inboundSchema: z.ZodType<
+    AuthSessionCreateRequestedMoreInfoResult,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    status: AuthSessionCreateRequestedMoreInfoResultStatus$inboundSchema,
+    id: z.string(),
+    details: z.union([z.lazy(() => Otp$inboundSchema), z.lazy(() => MultipleChoice$inboundSchema)]),
+});
+
+/** @internal */
+export type AuthSessionCreateRequestedMoreInfoResult$Outbound = {
+    status: string;
+    id: string;
+    details: Otp$Outbound | MultipleChoice$Outbound;
+};
+
+/** @internal */
+export const AuthSessionCreateRequestedMoreInfoResult$outboundSchema: z.ZodType<
+    AuthSessionCreateRequestedMoreInfoResult$Outbound,
+    z.ZodTypeDef,
+    AuthSessionCreateRequestedMoreInfoResult
+> = z.object({
+    status: AuthSessionCreateRequestedMoreInfoResultStatus$outboundSchema,
+    id: z.string(),
+    details: z.union([
+        z.lazy(() => Otp$outboundSchema),
+        z.lazy(() => MultipleChoice$outboundSchema),
+    ]),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateRequestedMoreInfoResult$ {
-    export const inboundSchema: z.ZodType<
-        AuthSessionCreateRequestedMoreInfoResult,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        status: AuthSessionCreateRequestedMoreInfoResultStatus$.inboundSchema,
-        id: z.string(),
-        details: z.union([
-            z.lazy(() => Otp$.inboundSchema),
-            z.lazy(() => MultipleChoice$.inboundSchema),
-        ]),
-    });
-
-    export type Outbound = {
-        status: string;
-        id: string;
-        details: Otp$.Outbound | MultipleChoice$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        AuthSessionCreateRequestedMoreInfoResult
-    > = z.object({
-        status: AuthSessionCreateRequestedMoreInfoResultStatus$.outboundSchema,
-        id: z.string(),
-        details: z.union([
-            z.lazy(() => Otp$.outboundSchema),
-            z.lazy(() => MultipleChoice$.outboundSchema),
-        ]),
-    });
+    /** @deprecated use `AuthSessionCreateRequestedMoreInfoResult$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateRequestedMoreInfoResult$inboundSchema;
+    /** @deprecated use `AuthSessionCreateRequestedMoreInfoResult$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateRequestedMoreInfoResult$outboundSchema;
+    /** @deprecated use `AuthSessionCreateRequestedMoreInfoResult$Outbound` instead. */
+    export type Outbound = AuthSessionCreateRequestedMoreInfoResult$Outbound;
 }

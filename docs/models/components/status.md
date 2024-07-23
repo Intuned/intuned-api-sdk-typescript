@@ -5,6 +5,6 @@ Operation status.
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Pending` | pending   |
+| Name        | Value       |
+| ----------- | ----------- |
+| `Completed` | completed   |

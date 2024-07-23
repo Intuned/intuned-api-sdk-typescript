@@ -33,29 +33,61 @@ export type AuthSessionCreateDoneResult = {
 };
 
 /** @internal */
+export const AuthSessionCreateDoneResultStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AuthSessionCreateDoneResultStatus
+> = z.nativeEnum(AuthSessionCreateDoneResultStatus);
+
+/** @internal */
+export const AuthSessionCreateDoneResultStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AuthSessionCreateDoneResultStatus
+> = AuthSessionCreateDoneResultStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateDoneResultStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AuthSessionCreateDoneResultStatus> =
-        z.nativeEnum(AuthSessionCreateDoneResultStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AuthSessionCreateDoneResultStatus> =
-        inboundSchema;
+    /** @deprecated use `AuthSessionCreateDoneResultStatus$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateDoneResultStatus$inboundSchema;
+    /** @deprecated use `AuthSessionCreateDoneResultStatus$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateDoneResultStatus$outboundSchema;
 }
 
 /** @internal */
+export const AuthSessionCreateDoneResult$inboundSchema: z.ZodType<
+    AuthSessionCreateDoneResult,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    status: AuthSessionCreateDoneResultStatus$inboundSchema,
+    authSessionId: z.string(),
+});
+
+/** @internal */
+export type AuthSessionCreateDoneResult$Outbound = {
+    status: string;
+    authSessionId: string;
+};
+
+/** @internal */
+export const AuthSessionCreateDoneResult$outboundSchema: z.ZodType<
+    AuthSessionCreateDoneResult$Outbound,
+    z.ZodTypeDef,
+    AuthSessionCreateDoneResult
+> = z.object({
+    status: AuthSessionCreateDoneResultStatus$outboundSchema,
+    authSessionId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateDoneResult$ {
-    export const inboundSchema: z.ZodType<AuthSessionCreateDoneResult, z.ZodTypeDef, unknown> =
-        z.object({
-            status: AuthSessionCreateDoneResultStatus$.inboundSchema,
-            authSessionId: z.string(),
-        });
-
-    export type Outbound = {
-        status: string;
-        authSessionId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreateDoneResult> =
-        z.object({
-            status: AuthSessionCreateDoneResultStatus$.outboundSchema,
-            authSessionId: z.string(),
-        });
+    /** @deprecated use `AuthSessionCreateDoneResult$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateDoneResult$inboundSchema;
+    /** @deprecated use `AuthSessionCreateDoneResult$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateDoneResult$outboundSchema;
+    /** @deprecated use `AuthSessionCreateDoneResult$Outbound` instead. */
+    export type Outbound = AuthSessionCreateDoneResult$Outbound;
 }

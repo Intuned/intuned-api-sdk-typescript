@@ -23,34 +23,76 @@ export type DeleteQueueRequest = {
 };
 
 /** @internal */
+export const DeleteQueueGlobals$inboundSchema: z.ZodType<
+    DeleteQueueGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type DeleteQueueGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const DeleteQueueGlobals$outboundSchema: z.ZodType<
+    DeleteQueueGlobals$Outbound,
+    z.ZodTypeDef,
+    DeleteQueueGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteQueueGlobals$ {
-    export const inboundSchema: z.ZodType<DeleteQueueGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `DeleteQueueGlobals$inboundSchema` instead. */
+    export const inboundSchema = DeleteQueueGlobals$inboundSchema;
+    /** @deprecated use `DeleteQueueGlobals$outboundSchema` instead. */
+    export const outboundSchema = DeleteQueueGlobals$outboundSchema;
+    /** @deprecated use `DeleteQueueGlobals$Outbound` instead. */
+    export type Outbound = DeleteQueueGlobals$Outbound;
 }
 
 /** @internal */
+export const DeleteQueueRequest$inboundSchema: z.ZodType<
+    DeleteQueueRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    projectName: z.string(),
+    queueId: z.string(),
+});
+
+/** @internal */
+export type DeleteQueueRequest$Outbound = {
+    projectName: string;
+    queueId: string;
+};
+
+/** @internal */
+export const DeleteQueueRequest$outboundSchema: z.ZodType<
+    DeleteQueueRequest$Outbound,
+    z.ZodTypeDef,
+    DeleteQueueRequest
+> = z.object({
+    projectName: z.string(),
+    queueId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteQueueRequest$ {
-    export const inboundSchema: z.ZodType<DeleteQueueRequest, z.ZodTypeDef, unknown> = z.object({
-        projectName: z.string(),
-        queueId: z.string(),
-    });
-
-    export type Outbound = {
-        projectName: string;
-        queueId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteQueueRequest> = z.object({
-        projectName: z.string(),
-        queueId: z.string(),
-    });
+    /** @deprecated use `DeleteQueueRequest$inboundSchema` instead. */
+    export const inboundSchema = DeleteQueueRequest$inboundSchema;
+    /** @deprecated use `DeleteQueueRequest$outboundSchema` instead. */
+    export const outboundSchema = DeleteQueueRequest$outboundSchema;
+    /** @deprecated use `DeleteQueueRequest$Outbound` instead. */
+    export type Outbound = DeleteQueueRequest$Outbound;
 }

@@ -16,26 +16,52 @@ export type TriggerJob = {
 };
 
 /** @internal */
+export const TriggerJobMessage$inboundSchema: z.ZodNativeEnum<typeof TriggerJobMessage> =
+    z.nativeEnum(TriggerJobMessage);
+
+/** @internal */
+export const TriggerJobMessage$outboundSchema: z.ZodNativeEnum<typeof TriggerJobMessage> =
+    TriggerJobMessage$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TriggerJobMessage$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof TriggerJobMessage> =
-        z.nativeEnum(TriggerJobMessage);
-    export const outboundSchema: z.ZodNativeEnum<typeof TriggerJobMessage> = inboundSchema;
+    /** @deprecated use `TriggerJobMessage$inboundSchema` instead. */
+    export const inboundSchema = TriggerJobMessage$inboundSchema;
+    /** @deprecated use `TriggerJobMessage$outboundSchema` instead. */
+    export const outboundSchema = TriggerJobMessage$outboundSchema;
 }
 
 /** @internal */
+export const TriggerJob$inboundSchema: z.ZodType<TriggerJob, z.ZodTypeDef, unknown> = z.object({
+    id: z.string().optional(),
+    message: TriggerJobMessage$inboundSchema.optional(),
+});
+
+/** @internal */
+export type TriggerJob$Outbound = {
+    id?: string | undefined;
+    message?: string | undefined;
+};
+
+/** @internal */
+export const TriggerJob$outboundSchema: z.ZodType<TriggerJob$Outbound, z.ZodTypeDef, TriggerJob> =
+    z.object({
+        id: z.string().optional(),
+        message: TriggerJobMessage$outboundSchema.optional(),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TriggerJob$ {
-    export const inboundSchema: z.ZodType<TriggerJob, z.ZodTypeDef, unknown> = z.object({
-        id: z.string().optional(),
-        message: TriggerJobMessage$.inboundSchema.optional(),
-    });
-
-    export type Outbound = {
-        id?: string | undefined;
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TriggerJob> = z.object({
-        id: z.string().optional(),
-        message: TriggerJobMessage$.outboundSchema.optional(),
-    });
+    /** @deprecated use `TriggerJob$inboundSchema` instead. */
+    export const inboundSchema = TriggerJob$inboundSchema;
+    /** @deprecated use `TriggerJob$outboundSchema` instead. */
+    export const outboundSchema = TriggerJob$outboundSchema;
+    /** @deprecated use `TriggerJob$Outbound` instead. */
+    export type Outbound = TriggerJob$Outbound;
 }

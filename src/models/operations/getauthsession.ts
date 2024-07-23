@@ -23,36 +23,76 @@ export type GetAuthSessionRequest = {
 };
 
 /** @internal */
+export const GetAuthSessionGlobals$inboundSchema: z.ZodType<
+    GetAuthSessionGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type GetAuthSessionGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const GetAuthSessionGlobals$outboundSchema: z.ZodType<
+    GetAuthSessionGlobals$Outbound,
+    z.ZodTypeDef,
+    GetAuthSessionGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetAuthSessionGlobals$ {
-    export const inboundSchema: z.ZodType<GetAuthSessionGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetAuthSessionGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `GetAuthSessionGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetAuthSessionGlobals$inboundSchema;
+    /** @deprecated use `GetAuthSessionGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetAuthSessionGlobals$outboundSchema;
+    /** @deprecated use `GetAuthSessionGlobals$Outbound` instead. */
+    export type Outbound = GetAuthSessionGlobals$Outbound;
 }
 
 /** @internal */
+export const GetAuthSessionRequest$inboundSchema: z.ZodType<
+    GetAuthSessionRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    projectName: z.string(),
+    authSessionId: z.string(),
+});
+
+/** @internal */
+export type GetAuthSessionRequest$Outbound = {
+    projectName: string;
+    authSessionId: string;
+};
+
+/** @internal */
+export const GetAuthSessionRequest$outboundSchema: z.ZodType<
+    GetAuthSessionRequest$Outbound,
+    z.ZodTypeDef,
+    GetAuthSessionRequest
+> = z.object({
+    projectName: z.string(),
+    authSessionId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetAuthSessionRequest$ {
-    export const inboundSchema: z.ZodType<GetAuthSessionRequest, z.ZodTypeDef, unknown> = z.object({
-        projectName: z.string(),
-        authSessionId: z.string(),
-    });
-
-    export type Outbound = {
-        projectName: string;
-        authSessionId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetAuthSessionRequest> =
-        z.object({
-            projectName: z.string(),
-            authSessionId: z.string(),
-        });
+    /** @deprecated use `GetAuthSessionRequest$inboundSchema` instead. */
+    export const inboundSchema = GetAuthSessionRequest$inboundSchema;
+    /** @deprecated use `GetAuthSessionRequest$outboundSchema` instead. */
+    export const outboundSchema = GetAuthSessionRequest$outboundSchema;
+    /** @deprecated use `GetAuthSessionRequest$Outbound` instead. */
+    export type Outbound = GetAuthSessionRequest$Outbound;
 }
