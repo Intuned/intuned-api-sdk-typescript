@@ -12,21 +12,37 @@ export type FileExtractMarkdownStartGlobals = {
 };
 
 /** @internal */
+export const FileExtractMarkdownStartGlobals$inboundSchema: z.ZodType<
+    FileExtractMarkdownStartGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type FileExtractMarkdownStartGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const FileExtractMarkdownStartGlobals$outboundSchema: z.ZodType<
+    FileExtractMarkdownStartGlobals$Outbound,
+    z.ZodTypeDef,
+    FileExtractMarkdownStartGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FileExtractMarkdownStartGlobals$ {
-    export const inboundSchema: z.ZodType<FileExtractMarkdownStartGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        FileExtractMarkdownStartGlobals
-    > = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `FileExtractMarkdownStartGlobals$inboundSchema` instead. */
+    export const inboundSchema = FileExtractMarkdownStartGlobals$inboundSchema;
+    /** @deprecated use `FileExtractMarkdownStartGlobals$outboundSchema` instead. */
+    export const outboundSchema = FileExtractMarkdownStartGlobals$outboundSchema;
+    /** @deprecated use `FileExtractMarkdownStartGlobals$Outbound` instead. */
+    export type Outbound = FileExtractMarkdownStartGlobals$Outbound;
 }

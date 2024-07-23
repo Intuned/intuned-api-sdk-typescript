@@ -19,19 +19,37 @@ export type AuthSessionInfo = {
 };
 
 /** @internal */
+export const AuthSessionInfo$inboundSchema: z.ZodType<AuthSessionInfo, z.ZodTypeDef, unknown> =
+    z.object({
+        id: z.string(),
+        name: z.nullable(z.string()).optional(),
+    });
+
+/** @internal */
+export type AuthSessionInfo$Outbound = {
+    id: string;
+    name?: string | null | undefined;
+};
+
+/** @internal */
+export const AuthSessionInfo$outboundSchema: z.ZodType<
+    AuthSessionInfo$Outbound,
+    z.ZodTypeDef,
+    AuthSessionInfo
+> = z.object({
+    id: z.string(),
+    name: z.nullable(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionInfo$ {
-    export const inboundSchema: z.ZodType<AuthSessionInfo, z.ZodTypeDef, unknown> = z.object({
-        id: z.string(),
-        name: z.nullable(z.string()).optional(),
-    });
-
-    export type Outbound = {
-        id: string;
-        name?: string | null | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionInfo> = z.object({
-        id: z.string(),
-        name: z.nullable(z.string()).optional(),
-    });
+    /** @deprecated use `AuthSessionInfo$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionInfo$inboundSchema;
+    /** @deprecated use `AuthSessionInfo$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionInfo$outboundSchema;
+    /** @deprecated use `AuthSessionInfo$Outbound` instead. */
+    export type Outbound = AuthSessionInfo$Outbound;
 }

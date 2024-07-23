@@ -23,38 +23,76 @@ export type DeleteAuthSessionRequest = {
 };
 
 /** @internal */
+export const DeleteAuthSessionGlobals$inboundSchema: z.ZodType<
+    DeleteAuthSessionGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type DeleteAuthSessionGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const DeleteAuthSessionGlobals$outboundSchema: z.ZodType<
+    DeleteAuthSessionGlobals$Outbound,
+    z.ZodTypeDef,
+    DeleteAuthSessionGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteAuthSessionGlobals$ {
-    export const inboundSchema: z.ZodType<DeleteAuthSessionGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteAuthSessionGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `DeleteAuthSessionGlobals$inboundSchema` instead. */
+    export const inboundSchema = DeleteAuthSessionGlobals$inboundSchema;
+    /** @deprecated use `DeleteAuthSessionGlobals$outboundSchema` instead. */
+    export const outboundSchema = DeleteAuthSessionGlobals$outboundSchema;
+    /** @deprecated use `DeleteAuthSessionGlobals$Outbound` instead. */
+    export type Outbound = DeleteAuthSessionGlobals$Outbound;
 }
 
 /** @internal */
+export const DeleteAuthSessionRequest$inboundSchema: z.ZodType<
+    DeleteAuthSessionRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    projectName: z.string(),
+    authSessionId: z.string(),
+});
+
+/** @internal */
+export type DeleteAuthSessionRequest$Outbound = {
+    projectName: string;
+    authSessionId: string;
+};
+
+/** @internal */
+export const DeleteAuthSessionRequest$outboundSchema: z.ZodType<
+    DeleteAuthSessionRequest$Outbound,
+    z.ZodTypeDef,
+    DeleteAuthSessionRequest
+> = z.object({
+    projectName: z.string(),
+    authSessionId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace DeleteAuthSessionRequest$ {
-    export const inboundSchema: z.ZodType<DeleteAuthSessionRequest, z.ZodTypeDef, unknown> =
-        z.object({
-            projectName: z.string(),
-            authSessionId: z.string(),
-        });
-
-    export type Outbound = {
-        projectName: string;
-        authSessionId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, DeleteAuthSessionRequest> =
-        z.object({
-            projectName: z.string(),
-            authSessionId: z.string(),
-        });
+    /** @deprecated use `DeleteAuthSessionRequest$inboundSchema` instead. */
+    export const inboundSchema = DeleteAuthSessionRequest$inboundSchema;
+    /** @deprecated use `DeleteAuthSessionRequest$outboundSchema` instead. */
+    export const outboundSchema = DeleteAuthSessionRequest$outboundSchema;
+    /** @deprecated use `DeleteAuthSessionRequest$Outbound` instead. */
+    export type Outbound = DeleteAuthSessionRequest$Outbound;
 }

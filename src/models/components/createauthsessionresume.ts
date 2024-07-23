@@ -5,36 +5,68 @@
 import { ClosedEnum } from "../../types/enums.js";
 import * as z from "zod";
 
-export const CreateAuthSessionResumeResult = {
+export const CreateAuthSessionResumeStatus = {
     Resumed: "resumed",
 } as const;
-export type CreateAuthSessionResumeResult = ClosedEnum<typeof CreateAuthSessionResumeResult>;
+export type CreateAuthSessionResumeStatus = ClosedEnum<typeof CreateAuthSessionResumeStatus>;
 
 export type CreateAuthSessionResume = {
-    result?: CreateAuthSessionResumeResult | undefined;
+    status: CreateAuthSessionResumeStatus;
 };
 
 /** @internal */
-export namespace CreateAuthSessionResumeResult$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionResumeResult> =
-        z.nativeEnum(CreateAuthSessionResumeResult);
-    export const outboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionResumeResult> =
-        inboundSchema;
+export const CreateAuthSessionResumeStatus$inboundSchema: z.ZodNativeEnum<
+    typeof CreateAuthSessionResumeStatus
+> = z.nativeEnum(CreateAuthSessionResumeStatus);
+
+/** @internal */
+export const CreateAuthSessionResumeStatus$outboundSchema: z.ZodNativeEnum<
+    typeof CreateAuthSessionResumeStatus
+> = CreateAuthSessionResumeStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateAuthSessionResumeStatus$ {
+    /** @deprecated use `CreateAuthSessionResumeStatus$inboundSchema` instead. */
+    export const inboundSchema = CreateAuthSessionResumeStatus$inboundSchema;
+    /** @deprecated use `CreateAuthSessionResumeStatus$outboundSchema` instead. */
+    export const outboundSchema = CreateAuthSessionResumeStatus$outboundSchema;
 }
 
 /** @internal */
+export const CreateAuthSessionResume$inboundSchema: z.ZodType<
+    CreateAuthSessionResume,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    status: CreateAuthSessionResumeStatus$inboundSchema,
+});
+
+/** @internal */
+export type CreateAuthSessionResume$Outbound = {
+    status: string;
+};
+
+/** @internal */
+export const CreateAuthSessionResume$outboundSchema: z.ZodType<
+    CreateAuthSessionResume$Outbound,
+    z.ZodTypeDef,
+    CreateAuthSessionResume
+> = z.object({
+    status: CreateAuthSessionResumeStatus$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateAuthSessionResume$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionResume, z.ZodTypeDef, unknown> =
-        z.object({
-            result: CreateAuthSessionResumeResult$.inboundSchema.optional(),
-        });
-
-    export type Outbound = {
-        result?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionResume> =
-        z.object({
-            result: CreateAuthSessionResumeResult$.outboundSchema.optional(),
-        });
+    /** @deprecated use `CreateAuthSessionResume$inboundSchema` instead. */
+    export const inboundSchema = CreateAuthSessionResume$inboundSchema;
+    /** @deprecated use `CreateAuthSessionResume$outboundSchema` instead. */
+    export const outboundSchema = CreateAuthSessionResume$outboundSchema;
+    /** @deprecated use `CreateAuthSessionResume$Outbound` instead. */
+    export type Outbound = CreateAuthSessionResume$Outbound;
 }

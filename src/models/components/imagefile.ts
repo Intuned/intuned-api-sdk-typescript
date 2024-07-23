@@ -3,7 +3,12 @@
  */
 
 import { ClosedEnum } from "../../types/enums.js";
-import { FileSource, FileSource$ } from "./filesource.js";
+import {
+    FileSource,
+    FileSource$inboundSchema,
+    FileSource$Outbound,
+    FileSource$outboundSchema,
+} from "./filesource.js";
 import * as z from "zod";
 
 /**
@@ -29,25 +34,50 @@ export type ImageFile = {
 };
 
 /** @internal */
+export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
+
+/** @internal */
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = Type$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Type$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(Type);
-    export const outboundSchema: z.ZodNativeEnum<typeof Type> = inboundSchema;
+    /** @deprecated use `Type$inboundSchema` instead. */
+    export const inboundSchema = Type$inboundSchema;
+    /** @deprecated use `Type$outboundSchema` instead. */
+    export const outboundSchema = Type$outboundSchema;
 }
 
 /** @internal */
+export const ImageFile$inboundSchema: z.ZodType<ImageFile, z.ZodTypeDef, unknown> = z.object({
+    type: Type$inboundSchema,
+    source: FileSource$inboundSchema,
+});
+
+/** @internal */
+export type ImageFile$Outbound = {
+    type: string;
+    source: FileSource$Outbound;
+};
+
+/** @internal */
+export const ImageFile$outboundSchema: z.ZodType<ImageFile$Outbound, z.ZodTypeDef, ImageFile> =
+    z.object({
+        type: Type$outboundSchema,
+        source: FileSource$outboundSchema,
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ImageFile$ {
-    export const inboundSchema: z.ZodType<ImageFile, z.ZodTypeDef, unknown> = z.object({
-        type: Type$.inboundSchema,
-        source: FileSource$.inboundSchema,
-    });
-
-    export type Outbound = {
-        type: string;
-        source: FileSource$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ImageFile> = z.object({
-        type: Type$.outboundSchema,
-        source: FileSource$.outboundSchema,
-    });
+    /** @deprecated use `ImageFile$inboundSchema` instead. */
+    export const inboundSchema = ImageFile$inboundSchema;
+    /** @deprecated use `ImageFile$outboundSchema` instead. */
+    export const outboundSchema = ImageFile$outboundSchema;
+    /** @deprecated use `ImageFile$Outbound` instead. */
+    export type Outbound = ImageFile$Outbound;
 }

@@ -23,32 +23,68 @@ export type WebhookSink = {
      * Additional headers to be sent with the webhook request.
      */
     headers?: { [k: string]: any } | undefined;
+    /**
+     * If enabled, failed payload runs will ***not*** be sent to the webhook.
+     */
+    skipOnFail?: boolean | undefined;
 };
 
 /** @internal */
+export const WebhookSinkType$inboundSchema: z.ZodNativeEnum<typeof WebhookSinkType> =
+    z.nativeEnum(WebhookSinkType);
+
+/** @internal */
+export const WebhookSinkType$outboundSchema: z.ZodNativeEnum<typeof WebhookSinkType> =
+    WebhookSinkType$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WebhookSinkType$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof WebhookSinkType> =
-        z.nativeEnum(WebhookSinkType);
-    export const outboundSchema: z.ZodNativeEnum<typeof WebhookSinkType> = inboundSchema;
+    /** @deprecated use `WebhookSinkType$inboundSchema` instead. */
+    export const inboundSchema = WebhookSinkType$inboundSchema;
+    /** @deprecated use `WebhookSinkType$outboundSchema` instead. */
+    export const outboundSchema = WebhookSinkType$outboundSchema;
 }
 
 /** @internal */
+export const WebhookSink$inboundSchema: z.ZodType<WebhookSink, z.ZodTypeDef, unknown> = z.object({
+    type: WebhookSinkType$inboundSchema,
+    url: z.string(),
+    headers: z.record(z.any()).optional(),
+    skipOnFail: z.boolean().default(false),
+});
+
+/** @internal */
+export type WebhookSink$Outbound = {
+    type: string;
+    url: string;
+    headers?: { [k: string]: any } | undefined;
+    skipOnFail: boolean;
+};
+
+/** @internal */
+export const WebhookSink$outboundSchema: z.ZodType<
+    WebhookSink$Outbound,
+    z.ZodTypeDef,
+    WebhookSink
+> = z.object({
+    type: WebhookSinkType$outboundSchema,
+    url: z.string(),
+    headers: z.record(z.any()).optional(),
+    skipOnFail: z.boolean().default(false),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WebhookSink$ {
-    export const inboundSchema: z.ZodType<WebhookSink, z.ZodTypeDef, unknown> = z.object({
-        type: WebhookSinkType$.inboundSchema,
-        url: z.string(),
-        headers: z.record(z.any()).optional(),
-    });
-
-    export type Outbound = {
-        type: string;
-        url: string;
-        headers?: { [k: string]: any } | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WebhookSink> = z.object({
-        type: WebhookSinkType$.outboundSchema,
-        url: z.string(),
-        headers: z.record(z.any()).optional(),
-    });
+    /** @deprecated use `WebhookSink$inboundSchema` instead. */
+    export const inboundSchema = WebhookSink$inboundSchema;
+    /** @deprecated use `WebhookSink$outboundSchema` instead. */
+    export const outboundSchema = WebhookSink$outboundSchema;
+    /** @deprecated use `WebhookSink$Outbound` instead. */
+    export type Outbound = WebhookSink$Outbound;
 }

@@ -27,25 +27,43 @@ export type JobRetryResponse = {
 };
 
 /** @internal */
+export const JobRetryResponse$inboundSchema: z.ZodType<JobRetryResponse, z.ZodTypeDef, unknown> =
+    z.object({
+        maximumAttempts: z.number(),
+        backoffCoefficient: z.number().default(1),
+        initialInterval: z.number().default(1000),
+        maximumInterval: z.number().optional(),
+    });
+
+/** @internal */
+export type JobRetryResponse$Outbound = {
+    maximumAttempts: number;
+    backoffCoefficient: number;
+    initialInterval: number;
+    maximumInterval?: number | undefined;
+};
+
+/** @internal */
+export const JobRetryResponse$outboundSchema: z.ZodType<
+    JobRetryResponse$Outbound,
+    z.ZodTypeDef,
+    JobRetryResponse
+> = z.object({
+    maximumAttempts: z.number(),
+    backoffCoefficient: z.number().default(1),
+    initialInterval: z.number().default(1000),
+    maximumInterval: z.number().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace JobRetryResponse$ {
-    export const inboundSchema: z.ZodType<JobRetryResponse, z.ZodTypeDef, unknown> = z.object({
-        maximumAttempts: z.number(),
-        backoffCoefficient: z.number().default(1),
-        initialInterval: z.number().default(1000),
-        maximumInterval: z.number().optional(),
-    });
-
-    export type Outbound = {
-        maximumAttempts: number;
-        backoffCoefficient: number;
-        initialInterval: number;
-        maximumInterval?: number | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, JobRetryResponse> = z.object({
-        maximumAttempts: z.number(),
-        backoffCoefficient: z.number().default(1),
-        initialInterval: z.number().default(1000),
-        maximumInterval: z.number().optional(),
-    });
+    /** @deprecated use `JobRetryResponse$inboundSchema` instead. */
+    export const inboundSchema = JobRetryResponse$inboundSchema;
+    /** @deprecated use `JobRetryResponse$outboundSchema` instead. */
+    export const outboundSchema = JobRetryResponse$outboundSchema;
+    /** @deprecated use `JobRetryResponse$Outbound` instead. */
+    export type Outbound = JobRetryResponse$Outbound;
 }

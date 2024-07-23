@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -49,19 +49,15 @@ export class Run extends ClientSDK {
         projectName: string,
         runProjectApiRequest: components.RunProjectApiRequest,
         options?: RequestOptions
-    ): Promise<operations.RunApiSyncResponse> {
+    ): Promise<components.SyncResultResponse> {
         const input$: operations.RunApiSyncRequest = {
             projectName: projectName,
             runProjectApiRequest: runProjectApiRequest,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RunApiSyncRequest$.outboundSchema.parse(value$),
+            (value$) => operations.RunApiSyncRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.RunProjectApiRequest, { explode: true });
@@ -82,6 +78,11 @@ export class Run extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -97,7 +98,6 @@ export class Run extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -107,22 +107,27 @@ export class Run extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<operations.RunApiSyncResponse>()
-            .json(200, operations.RunApiSyncResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+        const [result$] = await this.matcher<components.SyncResultResponse>()
+            .json(200, components.SyncResultResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
-            .json("default", operations.RunApiSyncResponse$)
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -143,14 +148,10 @@ export class Run extends ClientSDK {
             projectName: projectName,
             runProjectApiRequest: runProjectApiRequest,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RunApiStartRequest$.outboundSchema.parse(value$),
+            (value$) => operations.RunApiStartRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.RunProjectApiRequest, { explode: true });
@@ -171,6 +172,11 @@ export class Run extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -186,7 +192,6 @@ export class Run extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -196,20 +201,26 @@ export class Run extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.AsyncRunPendingResponse>()
-            .json(201, components.AsyncRunPendingResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(201, components.AsyncRunPendingResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -231,13 +242,10 @@ export class Run extends ClientSDK {
             projectName: projectName,
             runId: runId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.RunApiResultRequest$.outboundSchema.parse(value$),
+            (value$) => operations.RunApiResultRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -262,6 +270,10 @@ export class Run extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -277,7 +289,6 @@ export class Run extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -287,20 +298,26 @@ export class Run extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.AsyncResultResponse>()
-            .json(200, components.AsyncResultResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, components.AsyncResultResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

@@ -16,25 +16,50 @@ export type CreateJob = {
 };
 
 /** @internal */
+export const Message$inboundSchema: z.ZodNativeEnum<typeof Message> = z.nativeEnum(Message);
+
+/** @internal */
+export const Message$outboundSchema: z.ZodNativeEnum<typeof Message> = Message$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Message$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Message> = z.nativeEnum(Message);
-    export const outboundSchema: z.ZodNativeEnum<typeof Message> = inboundSchema;
+    /** @deprecated use `Message$inboundSchema` instead. */
+    export const inboundSchema = Message$inboundSchema;
+    /** @deprecated use `Message$outboundSchema` instead. */
+    export const outboundSchema = Message$outboundSchema;
 }
 
 /** @internal */
+export const CreateJob$inboundSchema: z.ZodType<CreateJob, z.ZodTypeDef, unknown> = z.object({
+    id: z.string().optional(),
+    message: Message$inboundSchema.optional(),
+});
+
+/** @internal */
+export type CreateJob$Outbound = {
+    id?: string | undefined;
+    message?: string | undefined;
+};
+
+/** @internal */
+export const CreateJob$outboundSchema: z.ZodType<CreateJob$Outbound, z.ZodTypeDef, CreateJob> =
+    z.object({
+        id: z.string().optional(),
+        message: Message$outboundSchema.optional(),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateJob$ {
-    export const inboundSchema: z.ZodType<CreateJob, z.ZodTypeDef, unknown> = z.object({
-        id: z.string().optional(),
-        message: Message$.inboundSchema.optional(),
-    });
-
-    export type Outbound = {
-        id?: string | undefined;
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateJob> = z.object({
-        id: z.string().optional(),
-        message: Message$.outboundSchema.optional(),
-    });
+    /** @deprecated use `CreateJob$inboundSchema` instead. */
+    export const inboundSchema = CreateJob$inboundSchema;
+    /** @deprecated use `CreateJob$outboundSchema` instead. */
+    export const outboundSchema = CreateJob$outboundSchema;
+    /** @deprecated use `CreateJob$Outbound` instead. */
+    export type Outbound = CreateJob$Outbound;
 }

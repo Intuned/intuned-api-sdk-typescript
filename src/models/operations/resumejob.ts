@@ -23,34 +23,70 @@ export type ResumeJobRequest = {
 };
 
 /** @internal */
+export const ResumeJobGlobals$inboundSchema: z.ZodType<ResumeJobGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+        workspaceId: z.string().optional(),
+    });
+
+/** @internal */
+export type ResumeJobGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const ResumeJobGlobals$outboundSchema: z.ZodType<
+    ResumeJobGlobals$Outbound,
+    z.ZodTypeDef,
+    ResumeJobGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ResumeJobGlobals$ {
-    export const inboundSchema: z.ZodType<ResumeJobGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResumeJobGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `ResumeJobGlobals$inboundSchema` instead. */
+    export const inboundSchema = ResumeJobGlobals$inboundSchema;
+    /** @deprecated use `ResumeJobGlobals$outboundSchema` instead. */
+    export const outboundSchema = ResumeJobGlobals$outboundSchema;
+    /** @deprecated use `ResumeJobGlobals$Outbound` instead. */
+    export type Outbound = ResumeJobGlobals$Outbound;
 }
 
 /** @internal */
+export const ResumeJobRequest$inboundSchema: z.ZodType<ResumeJobRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        projectName: z.string(),
+        jobId: z.string(),
+    });
+
+/** @internal */
+export type ResumeJobRequest$Outbound = {
+    projectName: string;
+    jobId: string;
+};
+
+/** @internal */
+export const ResumeJobRequest$outboundSchema: z.ZodType<
+    ResumeJobRequest$Outbound,
+    z.ZodTypeDef,
+    ResumeJobRequest
+> = z.object({
+    projectName: z.string(),
+    jobId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace ResumeJobRequest$ {
-    export const inboundSchema: z.ZodType<ResumeJobRequest, z.ZodTypeDef, unknown> = z.object({
-        projectName: z.string(),
-        jobId: z.string(),
-    });
-
-    export type Outbound = {
-        projectName: string;
-        jobId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, ResumeJobRequest> = z.object({
-        projectName: z.string(),
-        jobId: z.string(),
-    });
+    /** @deprecated use `ResumeJobRequest$inboundSchema` instead. */
+    export const inboundSchema = ResumeJobRequest$inboundSchema;
+    /** @deprecated use `ResumeJobRequest$outboundSchema` instead. */
+    export const outboundSchema = ResumeJobRequest$outboundSchema;
+    /** @deprecated use `ResumeJobRequest$Outbound` instead. */
+    export type Outbound = ResumeJobRequest$Outbound;
 }

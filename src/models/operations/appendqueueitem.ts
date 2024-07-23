@@ -29,52 +29,91 @@ export type AppendQueueItemRequest = {
 };
 
 /** @internal */
+export const AppendQueueItemGlobals$inboundSchema: z.ZodType<
+    AppendQueueItemGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type AppendQueueItemGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const AppendQueueItemGlobals$outboundSchema: z.ZodType<
+    AppendQueueItemGlobals$Outbound,
+    z.ZodTypeDef,
+    AppendQueueItemGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AppendQueueItemGlobals$ {
-    export const inboundSchema: z.ZodType<AppendQueueItemGlobals, z.ZodTypeDef, unknown> = z.object(
-        {
-            workspaceId: z.string().optional(),
-        }
-    );
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AppendQueueItemGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `AppendQueueItemGlobals$inboundSchema` instead. */
+    export const inboundSchema = AppendQueueItemGlobals$inboundSchema;
+    /** @deprecated use `AppendQueueItemGlobals$outboundSchema` instead. */
+    export const outboundSchema = AppendQueueItemGlobals$outboundSchema;
+    /** @deprecated use `AppendQueueItemGlobals$Outbound` instead. */
+    export type Outbound = AppendQueueItemGlobals$Outbound;
 }
 
 /** @internal */
+export const AppendQueueItemRequest$inboundSchema: z.ZodType<
+    AppendQueueItemRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        projectName: z.string(),
+        queueId: z.string(),
+        QueueItem: components.QueueItem$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            QueueItem: "queueItem",
+        });
+    });
+
+/** @internal */
+export type AppendQueueItemRequest$Outbound = {
+    projectName: string;
+    queueId: string;
+    QueueItem: components.QueueItem$Outbound;
+};
+
+/** @internal */
+export const AppendQueueItemRequest$outboundSchema: z.ZodType<
+    AppendQueueItemRequest$Outbound,
+    z.ZodTypeDef,
+    AppendQueueItemRequest
+> = z
+    .object({
+        projectName: z.string(),
+        queueId: z.string(),
+        queueItem: components.QueueItem$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            queueItem: "QueueItem",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AppendQueueItemRequest$ {
-    export const inboundSchema: z.ZodType<AppendQueueItemRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            projectName: z.string(),
-            queueId: z.string(),
-            QueueItem: components.QueueItem$.inboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                QueueItem: "queueItem",
-            });
-        });
-
-    export type Outbound = {
-        projectName: string;
-        queueId: string;
-        QueueItem: components.QueueItem$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AppendQueueItemRequest> = z
-        .object({
-            projectName: z.string(),
-            queueId: z.string(),
-            queueItem: components.QueueItem$.outboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                queueItem: "QueueItem",
-            });
-        });
+    /** @deprecated use `AppendQueueItemRequest$inboundSchema` instead. */
+    export const inboundSchema = AppendQueueItemRequest$inboundSchema;
+    /** @deprecated use `AppendQueueItemRequest$outboundSchema` instead. */
+    export const outboundSchema = AppendQueueItemRequest$outboundSchema;
+    /** @deprecated use `AppendQueueItemRequest$Outbound` instead. */
+    export type Outbound = AppendQueueItemRequest$Outbound;
 }

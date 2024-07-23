@@ -3,7 +3,7 @@
  */
 
 import { ClosedEnum } from "../../types/enums.js";
-import { Retry, Retry$ } from "./retry.js";
+import { Retry, Retry$inboundSchema, Retry$Outbound, Retry$outboundSchema } from "./retry.js";
 import * as z from "zod";
 
 /**
@@ -99,131 +99,245 @@ export type QueueConfiguration = {
 };
 
 /** @internal */
+export const QueueConfigurationRunMode$inboundSchema: z.ZodNativeEnum<
+    typeof QueueConfigurationRunMode
+> = z.nativeEnum(QueueConfigurationRunMode);
+
+/** @internal */
+export const QueueConfigurationRunMode$outboundSchema: z.ZodNativeEnum<
+    typeof QueueConfigurationRunMode
+> = QueueConfigurationRunMode$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace QueueConfigurationRunMode$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof QueueConfigurationRunMode> =
-        z.nativeEnum(QueueConfigurationRunMode);
-    export const outboundSchema: z.ZodNativeEnum<typeof QueueConfigurationRunMode> = inboundSchema;
+    /** @deprecated use `QueueConfigurationRunMode$inboundSchema` instead. */
+    export const inboundSchema = QueueConfigurationRunMode$inboundSchema;
+    /** @deprecated use `QueueConfigurationRunMode$outboundSchema` instead. */
+    export const outboundSchema = QueueConfigurationRunMode$outboundSchema;
 }
 
 /** @internal */
+export const RateLimits$inboundSchema: z.ZodType<RateLimits, z.ZodTypeDef, unknown> = z.object({
+    limit: z.number(),
+    duration: z.string(),
+});
+
+/** @internal */
+export type RateLimits$Outbound = {
+    limit: number;
+    duration: string;
+};
+
+/** @internal */
+export const RateLimits$outboundSchema: z.ZodType<RateLimits$Outbound, z.ZodTypeDef, RateLimits> =
+    z.object({
+        limit: z.number(),
+        duration: z.string(),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RateLimits$ {
-    export const inboundSchema: z.ZodType<RateLimits, z.ZodTypeDef, unknown> = z.object({
-        limit: z.number(),
-        duration: z.string(),
-    });
-
-    export type Outbound = {
-        limit: number;
-        duration: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RateLimits> = z.object({
-        limit: z.number(),
-        duration: z.string(),
-    });
+    /** @deprecated use `RateLimits$inboundSchema` instead. */
+    export const inboundSchema = RateLimits$inboundSchema;
+    /** @deprecated use `RateLimits$outboundSchema` instead. */
+    export const outboundSchema = RateLimits$outboundSchema;
+    /** @deprecated use `RateLimits$Outbound` instead. */
+    export type Outbound = RateLimits$Outbound;
 }
 
 /** @internal */
+export const Schedule$inboundSchema: z.ZodType<Schedule, z.ZodTypeDef, unknown> = z.object({
+    pause: z.string(),
+    resume: z.string(),
+});
+
+/** @internal */
+export type Schedule$Outbound = {
+    pause: string;
+    resume: string;
+};
+
+/** @internal */
+export const Schedule$outboundSchema: z.ZodType<Schedule$Outbound, z.ZodTypeDef, Schedule> =
+    z.object({
+        pause: z.string(),
+        resume: z.string(),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Schedule$ {
-    export const inboundSchema: z.ZodType<Schedule, z.ZodTypeDef, unknown> = z.object({
-        pause: z.string(),
-        resume: z.string(),
-    });
-
-    export type Outbound = {
-        pause: string;
-        resume: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Schedule> = z.object({
-        pause: z.string(),
-        resume: z.string(),
-    });
+    /** @deprecated use `Schedule$inboundSchema` instead. */
+    export const inboundSchema = Schedule$inboundSchema;
+    /** @deprecated use `Schedule$outboundSchema` instead. */
+    export const outboundSchema = Schedule$outboundSchema;
+    /** @deprecated use `Schedule$Outbound` instead. */
+    export type Outbound = Schedule$Outbound;
 }
 
 /** @internal */
+export const MsFormattedRange$inboundSchema: z.ZodType<MsFormattedRange, z.ZodTypeDef, unknown> =
+    z.object({
+        min: z.string(),
+        max: z.string(),
+    });
+
+/** @internal */
+export type MsFormattedRange$Outbound = {
+    min: string;
+    max: string;
+};
+
+/** @internal */
+export const MsFormattedRange$outboundSchema: z.ZodType<
+    MsFormattedRange$Outbound,
+    z.ZodTypeDef,
+    MsFormattedRange
+> = z.object({
+    min: z.string(),
+    max: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace MsFormattedRange$ {
-    export const inboundSchema: z.ZodType<MsFormattedRange, z.ZodTypeDef, unknown> = z.object({
-        min: z.string(),
-        max: z.string(),
-    });
-
-    export type Outbound = {
-        min: string;
-        max: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MsFormattedRange> = z.object({
-        min: z.string(),
-        max: z.string(),
-    });
+    /** @deprecated use `MsFormattedRange$inboundSchema` instead. */
+    export const inboundSchema = MsFormattedRange$inboundSchema;
+    /** @deprecated use `MsFormattedRange$outboundSchema` instead. */
+    export const outboundSchema = MsFormattedRange$outboundSchema;
+    /** @deprecated use `MsFormattedRange$Outbound` instead. */
+    export type Outbound = MsFormattedRange$Outbound;
 }
 
 /** @internal */
+export const MillisecondsRange$inboundSchema: z.ZodType<MillisecondsRange, z.ZodTypeDef, unknown> =
+    z.object({
+        min: z.number(),
+        max: z.number(),
+    });
+
+/** @internal */
+export type MillisecondsRange$Outbound = {
+    min: number;
+    max: number;
+};
+
+/** @internal */
+export const MillisecondsRange$outboundSchema: z.ZodType<
+    MillisecondsRange$Outbound,
+    z.ZodTypeDef,
+    MillisecondsRange
+> = z.object({
+    min: z.number(),
+    max: z.number(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace MillisecondsRange$ {
-    export const inboundSchema: z.ZodType<MillisecondsRange, z.ZodTypeDef, unknown> = z.object({
-        min: z.number(),
-        max: z.number(),
-    });
-
-    export type Outbound = {
-        min: number;
-        max: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, MillisecondsRange> = z.object({
-        min: z.number(),
-        max: z.number(),
-    });
+    /** @deprecated use `MillisecondsRange$inboundSchema` instead. */
+    export const inboundSchema = MillisecondsRange$inboundSchema;
+    /** @deprecated use `MillisecondsRange$outboundSchema` instead. */
+    export const outboundSchema = MillisecondsRange$outboundSchema;
+    /** @deprecated use `MillisecondsRange$Outbound` instead. */
+    export type Outbound = MillisecondsRange$Outbound;
 }
 
 /** @internal */
+export const RandomWait$inboundSchema: z.ZodType<RandomWait, z.ZodTypeDef, unknown> = z.union([
+    z.lazy(() => MillisecondsRange$inboundSchema),
+    z.lazy(() => MsFormattedRange$inboundSchema),
+]);
+
+/** @internal */
+export type RandomWait$Outbound = MillisecondsRange$Outbound | MsFormattedRange$Outbound;
+
+/** @internal */
+export const RandomWait$outboundSchema: z.ZodType<RandomWait$Outbound, z.ZodTypeDef, RandomWait> =
+    z.union([
+        z.lazy(() => MillisecondsRange$outboundSchema),
+        z.lazy(() => MsFormattedRange$outboundSchema),
+    ]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RandomWait$ {
-    export const inboundSchema: z.ZodType<RandomWait, z.ZodTypeDef, unknown> = z.union([
-        z.lazy(() => MillisecondsRange$.inboundSchema),
-        z.lazy(() => MsFormattedRange$.inboundSchema),
-    ]);
-
-    export type Outbound = MillisecondsRange$.Outbound | MsFormattedRange$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RandomWait> = z.union([
-        z.lazy(() => MillisecondsRange$.outboundSchema),
-        z.lazy(() => MsFormattedRange$.outboundSchema),
-    ]);
+    /** @deprecated use `RandomWait$inboundSchema` instead. */
+    export const inboundSchema = RandomWait$inboundSchema;
+    /** @deprecated use `RandomWait$outboundSchema` instead. */
+    export const outboundSchema = RandomWait$outboundSchema;
+    /** @deprecated use `RandomWait$Outbound` instead. */
+    export type Outbound = RandomWait$Outbound;
 }
 
 /** @internal */
+export const QueueConfiguration$inboundSchema: z.ZodType<
+    QueueConfiguration,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    runMode: QueueConfigurationRunMode$inboundSchema,
+    retry: Retry$inboundSchema.optional(),
+    rateLimits: z.array(z.lazy(() => RateLimits$inboundSchema)).optional(),
+    schedule: z.lazy(() => Schedule$inboundSchema).optional(),
+    randomWait: z
+        .union([
+            z.lazy(() => MillisecondsRange$inboundSchema),
+            z.lazy(() => MsFormattedRange$inboundSchema),
+        ])
+        .optional(),
+});
+
+/** @internal */
+export type QueueConfiguration$Outbound = {
+    runMode: string;
+    retry?: Retry$Outbound | undefined;
+    rateLimits?: Array<RateLimits$Outbound> | undefined;
+    schedule?: Schedule$Outbound | undefined;
+    randomWait?: MillisecondsRange$Outbound | MsFormattedRange$Outbound | undefined;
+};
+
+/** @internal */
+export const QueueConfiguration$outboundSchema: z.ZodType<
+    QueueConfiguration$Outbound,
+    z.ZodTypeDef,
+    QueueConfiguration
+> = z.object({
+    runMode: QueueConfigurationRunMode$outboundSchema,
+    retry: Retry$outboundSchema.optional(),
+    rateLimits: z.array(z.lazy(() => RateLimits$outboundSchema)).optional(),
+    schedule: z.lazy(() => Schedule$outboundSchema).optional(),
+    randomWait: z
+        .union([
+            z.lazy(() => MillisecondsRange$outboundSchema),
+            z.lazy(() => MsFormattedRange$outboundSchema),
+        ])
+        .optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace QueueConfiguration$ {
-    export const inboundSchema: z.ZodType<QueueConfiguration, z.ZodTypeDef, unknown> = z.object({
-        runMode: QueueConfigurationRunMode$.inboundSchema,
-        retry: Retry$.inboundSchema.optional(),
-        rateLimits: z.array(z.lazy(() => RateLimits$.inboundSchema)).optional(),
-        schedule: z.lazy(() => Schedule$.inboundSchema).optional(),
-        randomWait: z
-            .union([
-                z.lazy(() => MillisecondsRange$.inboundSchema),
-                z.lazy(() => MsFormattedRange$.inboundSchema),
-            ])
-            .optional(),
-    });
-
-    export type Outbound = {
-        runMode: string;
-        retry?: Retry$.Outbound | undefined;
-        rateLimits?: Array<RateLimits$.Outbound> | undefined;
-        schedule?: Schedule$.Outbound | undefined;
-        randomWait?: MillisecondsRange$.Outbound | MsFormattedRange$.Outbound | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, QueueConfiguration> = z.object({
-        runMode: QueueConfigurationRunMode$.outboundSchema,
-        retry: Retry$.outboundSchema.optional(),
-        rateLimits: z.array(z.lazy(() => RateLimits$.outboundSchema)).optional(),
-        schedule: z.lazy(() => Schedule$.outboundSchema).optional(),
-        randomWait: z
-            .union([
-                z.lazy(() => MillisecondsRange$.outboundSchema),
-                z.lazy(() => MsFormattedRange$.outboundSchema),
-            ])
-            .optional(),
-    });
+    /** @deprecated use `QueueConfiguration$inboundSchema` instead. */
+    export const inboundSchema = QueueConfiguration$inboundSchema;
+    /** @deprecated use `QueueConfiguration$outboundSchema` instead. */
+    export const outboundSchema = QueueConfiguration$outboundSchema;
+    /** @deprecated use `QueueConfiguration$Outbound` instead. */
+    export type Outbound = QueueConfiguration$Outbound;
 }

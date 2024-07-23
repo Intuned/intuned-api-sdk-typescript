@@ -20,31 +20,52 @@ export type AuthSessionCreateResume = {
 };
 
 /** @internal */
+export const AuthSessionCreateResume$inboundSchema: z.ZodType<
+    AuthSessionCreateResume,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        input: z.string(),
+        info_request_id: z.string(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            info_request_id: "infoRequestId",
+        });
+    });
+
+/** @internal */
+export type AuthSessionCreateResume$Outbound = {
+    input: string;
+    info_request_id: string;
+};
+
+/** @internal */
+export const AuthSessionCreateResume$outboundSchema: z.ZodType<
+    AuthSessionCreateResume$Outbound,
+    z.ZodTypeDef,
+    AuthSessionCreateResume
+> = z
+    .object({
+        input: z.string(),
+        infoRequestId: z.string(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            infoRequestId: "info_request_id",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AuthSessionCreateResume$ {
-    export const inboundSchema: z.ZodType<AuthSessionCreateResume, z.ZodTypeDef, unknown> = z
-        .object({
-            input: z.string(),
-            info_request_id: z.string(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                info_request_id: "infoRequestId",
-            });
-        });
-
-    export type Outbound = {
-        input: string;
-        info_request_id: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AuthSessionCreateResume> = z
-        .object({
-            input: z.string(),
-            infoRequestId: z.string(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                infoRequestId: "info_request_id",
-            });
-        });
+    /** @deprecated use `AuthSessionCreateResume$inboundSchema` instead. */
+    export const inboundSchema = AuthSessionCreateResume$inboundSchema;
+    /** @deprecated use `AuthSessionCreateResume$outboundSchema` instead. */
+    export const outboundSchema = AuthSessionCreateResume$outboundSchema;
+    /** @deprecated use `AuthSessionCreateResume$Outbound` instead. */
+    export type Outbound = AuthSessionCreateResume$Outbound;
 }

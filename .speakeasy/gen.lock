@@ -1,19 +1,20 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: bd51e2ea3c65d7a5f0249b8f1526ce86
+  docChecksum: 2e328f236753ed1942b54b623c6773c4
   docVersion: 0.0.1
-  speakeasyVersion: 1.314.2
-  generationVersion: 2.349.6
-  releaseVersion: 0.6.1
-  configChecksum: ad66507179754882bdd5c1d89a0b5412
+  speakeasyVersion: 1.344.2
+  generationVersion: 2.377.1
+  releaseVersion: 0.7.0
+  configChecksum: 0f6c64cfa843085f833e87105b4ced6b
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.5
-    core: 3.10.2
+    core: 3.11.8
+    defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     flattening: 2.81.1
     globalSecurity: 2.82.9
@@ -25,8 +26,9 @@ features:
     nameOverrides: 2.81.2
     nullables: 0.1.0
     responseFormat: 0.2.3
+    retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.5
+    unions: 2.85.6
     webhooks: 1.0.0
 generatedFiles:
   - src/sdk/extractstructureddata.ts
@@ -69,8 +71,12 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/components/structureddataextractionresponse.ts
+  - src/models/components/structureddataextractionsyncresponse.ts
+  - src/models/components/structureddataextractionfilesuccessfulresponse.ts
+  - src/models/components/filefailedresponse.ts
   - src/models/components/extractstructureddatarequest.ts
+  - src/models/components/extractstructureddatastrategy.ts
+  - src/models/components/aiextractionmodel.ts
   - src/models/components/file.ts
   - src/models/components/imagefile.ts
   - src/models/components/filesource.ts
@@ -79,16 +85,16 @@ generatedFiles:
   - src/models/components/pdffile.ts
   - src/models/components/asyncfilependingresponse.ts
   - src/models/components/structureddataextractionasyncresponse.ts
-  - src/models/components/structureddataextractionasyncsuccessfulresponse.ts
-  - src/models/components/asyncfailedresponse.ts
-  - src/models/components/markdownextractionresponse.ts
+  - src/models/components/markdownextractionsyncresponse.ts
+  - src/models/components/markdownextractionsuccessfulresponse.ts
   - src/models/components/generalextractrequest.ts
   - src/models/components/markdownextractionasyncresponse.ts
-  - src/models/components/markdownextractionasyncsuccessfulresponse.ts
-  - src/models/components/tableextractionresponse.ts
+  - src/models/components/tableextractionsyncresponse.ts
+  - src/models/components/tableextractionsuccessfulresponse.ts
   - src/models/components/tableextractionasyncresponse.ts
-  - src/models/components/tableextractionasyncsuccessfulresponse.ts
   - src/models/components/job.ts
+  - src/models/components/jobconfigurationresponse.ts
+  - src/models/components/jobretryresponse.ts
   - src/models/components/authsession.ts
   - src/models/components/jobschedule.ts
   - src/models/components/jobcalendarvalue.ts
@@ -98,8 +104,6 @@ generatedFiles:
   - src/models/components/jobsink.ts
   - src/models/components/webhooksink.ts
   - src/models/components/amazons3sink.ts
-  - src/models/components/jobconfigurationresponse.ts
-  - src/models/components/jobretryresponse.ts
   - src/models/components/createjob.ts
   - src/models/components/jobinput.ts
   - src/models/components/jobconfiguration.ts
@@ -124,14 +128,13 @@ generatedFiles:
   - src/models/components/addqueuerepeatitem.ts
   - src/models/components/queuerepeatiteminput.ts
   - src/models/components/updatequeuerepeatitem.ts
-  - src/models/components/completedrunresult.ts
-  - src/models/components/failedrunresult.ts
+  - src/models/components/syncresultresponse.ts
+  - src/models/components/asyncruncompletedresponse.ts
+  - src/models/components/asyncrunfailedresponse.ts
   - src/models/components/runprojectapirequest.ts
   - src/models/components/parameters.ts
   - src/models/components/asyncrunpendingresponse.ts
   - src/models/components/asyncresultresponse.ts
-  - src/models/components/asyncruncompletedresponse.ts
-  - src/models/components/asyncrunfailedresponse.ts
   - src/models/components/authsessioninfo.ts
   - src/models/components/createauthsessionstart.ts
   - src/models/components/createauthsessionrequest.ts
@@ -193,8 +196,15 @@ generatedFiles:
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - src/models/operations/index.ts
-  - docs/models/components/structureddataextractionresponse.md
+  - docs/models/components/structureddataextractionsyncresponse.md
+  - docs/models/components/status.md
+  - docs/models/components/structureddataextractionfilesuccessfulresponse.md
+  - docs/models/components/filefailedresponsestatus.md
+  - docs/models/components/filefailedresponse.md
   - docs/models/components/extractstructureddatarequest.md
+  - docs/models/components/extractstructureddatastrategytype.md
+  - docs/models/components/extractstructureddatastrategy.md
+  - docs/models/components/aiextractionmodel.md
   - docs/models/components/filet.md
   - docs/models/components/type.md
   - docs/models/components/imagefile.md
@@ -205,30 +215,28 @@ generatedFiles:
   - docs/models/components/filebase64source.md
   - docs/models/components/pdffiletype.md
   - docs/models/components/pdffile.md
-  - docs/models/components/status.md
+  - docs/models/components/asyncfilependingresponsestatus.md
   - docs/models/components/asyncfilependingresponse.md
   - docs/models/components/structureddataextractionasyncresponse.md
-  - docs/models/components/structureddataextractionasyncsuccessfulresponsestatus.md
-  - docs/models/components/structureddataextractionasyncsuccessfulresponse.md
-  - docs/models/components/asyncfailedresponsestatus.md
-  - docs/models/components/asyncfailedresponse.md
-  - docs/models/components/markdownextractionresponse.md
+  - docs/models/components/markdownextractionsyncresponse.md
+  - docs/models/components/markdownextractionsuccessfulresponsestatus.md
+  - docs/models/components/markdownextractionsuccessfulresponse.md
   - docs/models/components/generalextractrequest.md
   - docs/models/components/markdownextractionasyncresponse.md
-  - docs/models/components/markdownextractionasyncsuccessfulresponsestatus.md
-  - docs/models/components/markdownextractionasyncsuccessfulresponse.md
+  - docs/models/components/tableextractionsyncresponse.md
   - docs/models/components/result.md
-  - docs/models/components/tableextractionresponse.md
+  - docs/models/components/tableextractionsuccessfulresponsestatus.md
+  - docs/models/components/tableextractionsuccessfulresponse.md
   - docs/models/components/tableextractionasyncresponse.md
-  - docs/models/components/tableextractionasyncsuccessfulresponseresult.md
-  - docs/models/components/tableextractionasyncsuccessfulresponsestatus.md
-  - docs/models/components/tableextractionasyncsuccessfulresponse.md
   - docs/models/components/jobstatestatus.md
   - docs/models/components/paused.md
   - docs/models/components/statestatus.md
   - docs/models/components/active.md
   - docs/models/components/state.md
   - docs/models/components/job.md
+  - docs/models/components/runmode.md
+  - docs/models/components/jobconfigurationresponse.md
+  - docs/models/components/jobretryresponse.md
   - docs/models/components/authsession.md
   - docs/models/components/every.md
   - docs/models/components/intervals.md
@@ -246,9 +254,6 @@ generatedFiles:
   - docs/models/components/webhooksink.md
   - docs/models/components/amazons3sinktype.md
   - docs/models/components/amazons3sink.md
-  - docs/models/components/runmode.md
-  - docs/models/components/jobconfigurationresponse.md
-  - docs/models/components/jobretryresponse.md
   - docs/models/components/message.md
   - docs/models/components/createjob.md
   - docs/models/components/jobinput.md
@@ -295,17 +300,16 @@ generatedFiles:
   - docs/models/components/queuerepeatiteminput.md
   - docs/models/components/updatequeuerepeatitemmessage.md
   - docs/models/components/updatequeuerepeatitem.md
-  - docs/models/components/completedrunresult.md
-  - docs/models/components/failedrunresult.md
+  - docs/models/components/syncresultresponse.md
+  - docs/models/components/asyncruncompletedresponsestatus.md
+  - docs/models/components/asyncruncompletedresponse.md
+  - docs/models/components/asyncrunfailedresponsestatus.md
+  - docs/models/components/asyncrunfailedresponse.md
   - docs/models/components/runprojectapirequest.md
   - docs/models/components/parameterst.md
   - docs/models/components/asyncrunpendingresponsestatus.md
   - docs/models/components/asyncrunpendingresponse.md
   - docs/models/components/asyncresultresponse.md
-  - docs/models/components/asyncruncompletedresponsestatus.md
-  - docs/models/components/asyncruncompletedresponse.md
-  - docs/models/components/asyncrunfailedresponsestatus.md
-  - docs/models/components/asyncrunfailedresponse.md
   - docs/models/components/authsessioninfo.md
   - docs/models/components/createauthsessionstartstatus.md
   - docs/models/components/createauthsessionstart.md
@@ -326,7 +330,7 @@ generatedFiles:
   - docs/models/components/authsessioncreaterequestedmoreinforesult.md
   - docs/models/components/authsessioncreatefailedresultstatus.md
   - docs/models/components/authsessioncreatefailedresult.md
-  - docs/models/components/createauthsessionresumeresult.md
+  - docs/models/components/createauthsessionresumestatus.md
   - docs/models/components/createauthsessionresume.md
   - docs/models/components/authsessioncreateresume.md
   - docs/models/components/security.md
@@ -398,7 +402,6 @@ generatedFiles:
   - docs/models/operations/deleterepeatqueueitemrequest.md
   - docs/models/operations/runapisyncglobals.md
   - docs/models/operations/runapisyncrequest.md
-  - docs/models/operations/runapisyncresponse.md
   - docs/models/operations/runapistartglobals.md
   - docs/models/operations/runapistartrequest.md
   - docs/models/operations/runapiresultglobals.md
@@ -423,6 +426,7 @@ generatedFiles:
   - docs/models/operations/fileextracttablesstartglobals.md
   - docs/sdks/intunedclient/README.md
   - docs/sdks/files/README.md
+  - docs/lib/utils/retryconfig.md
   - docs/sdks/extractstructureddata/README.md
   - docs/sdks/extractmarkdown/README.md
   - docs/sdks/extracttables/README.md
@@ -443,3 +447,4 @@ generatedFiles:
   - src/hooks/hooks.ts
   - src/hooks/types.ts
   - src/hooks/index.ts
+  - CONTRIBUTING.md

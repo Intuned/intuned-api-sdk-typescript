@@ -25,46 +25,88 @@ export type CreateQueueRequest = {
 };
 
 /** @internal */
+export const CreateQueueGlobals$inboundSchema: z.ZodType<
+    CreateQueueGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateQueueGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const CreateQueueGlobals$outboundSchema: z.ZodType<
+    CreateQueueGlobals$Outbound,
+    z.ZodTypeDef,
+    CreateQueueGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateQueueGlobals$ {
-    export const inboundSchema: z.ZodType<CreateQueueGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `CreateQueueGlobals$inboundSchema` instead. */
+    export const inboundSchema = CreateQueueGlobals$inboundSchema;
+    /** @deprecated use `CreateQueueGlobals$outboundSchema` instead. */
+    export const outboundSchema = CreateQueueGlobals$outboundSchema;
+    /** @deprecated use `CreateQueueGlobals$Outbound` instead. */
+    export type Outbound = CreateQueueGlobals$Outbound;
 }
 
 /** @internal */
+export const CreateQueueRequest$inboundSchema: z.ZodType<
+    CreateQueueRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        projectName: z.string(),
+        QueueInput: components.QueueInput$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            QueueInput: "queueInput",
+        });
+    });
+
+/** @internal */
+export type CreateQueueRequest$Outbound = {
+    projectName: string;
+    QueueInput: components.QueueInput$Outbound;
+};
+
+/** @internal */
+export const CreateQueueRequest$outboundSchema: z.ZodType<
+    CreateQueueRequest$Outbound,
+    z.ZodTypeDef,
+    CreateQueueRequest
+> = z
+    .object({
+        projectName: z.string(),
+        queueInput: components.QueueInput$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            queueInput: "QueueInput",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateQueueRequest$ {
-    export const inboundSchema: z.ZodType<CreateQueueRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            projectName: z.string(),
-            QueueInput: components.QueueInput$.inboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                QueueInput: "queueInput",
-            });
-        });
-
-    export type Outbound = {
-        projectName: string;
-        QueueInput: components.QueueInput$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateQueueRequest> = z
-        .object({
-            projectName: z.string(),
-            queueInput: components.QueueInput$.outboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                queueInput: "QueueInput",
-            });
-        });
+    /** @deprecated use `CreateQueueRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateQueueRequest$inboundSchema;
+    /** @deprecated use `CreateQueueRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateQueueRequest$outboundSchema;
+    /** @deprecated use `CreateQueueRequest$Outbound` instead. */
+    export type Outbound = CreateQueueRequest$Outbound;
 }

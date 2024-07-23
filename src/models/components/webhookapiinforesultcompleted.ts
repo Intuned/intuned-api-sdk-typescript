@@ -37,32 +37,64 @@ export type WebhookAPIInfoResultCompleted = {
 };
 
 /** @internal */
+export const WebhookAPIInfoResultCompletedStatus$inboundSchema: z.ZodNativeEnum<
+    typeof WebhookAPIInfoResultCompletedStatus
+> = z.nativeEnum(WebhookAPIInfoResultCompletedStatus);
+
+/** @internal */
+export const WebhookAPIInfoResultCompletedStatus$outboundSchema: z.ZodNativeEnum<
+    typeof WebhookAPIInfoResultCompletedStatus
+> = WebhookAPIInfoResultCompletedStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WebhookAPIInfoResultCompletedStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof WebhookAPIInfoResultCompletedStatus> =
-        z.nativeEnum(WebhookAPIInfoResultCompletedStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof WebhookAPIInfoResultCompletedStatus> =
-        inboundSchema;
+    /** @deprecated use `WebhookAPIInfoResultCompletedStatus$inboundSchema` instead. */
+    export const inboundSchema = WebhookAPIInfoResultCompletedStatus$inboundSchema;
+    /** @deprecated use `WebhookAPIInfoResultCompletedStatus$outboundSchema` instead. */
+    export const outboundSchema = WebhookAPIInfoResultCompletedStatus$outboundSchema;
 }
 
 /** @internal */
+export const WebhookAPIInfoResultCompleted$inboundSchema: z.ZodType<
+    WebhookAPIInfoResultCompleted,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    result: z.any().optional(),
+    status: WebhookAPIInfoResultCompletedStatus$inboundSchema,
+    statusCode: z.number(),
+});
+
+/** @internal */
+export type WebhookAPIInfoResultCompleted$Outbound = {
+    result?: any | undefined;
+    status: string;
+    statusCode: number;
+};
+
+/** @internal */
+export const WebhookAPIInfoResultCompleted$outboundSchema: z.ZodType<
+    WebhookAPIInfoResultCompleted$Outbound,
+    z.ZodTypeDef,
+    WebhookAPIInfoResultCompleted
+> = z.object({
+    result: z.any().optional(),
+    status: WebhookAPIInfoResultCompletedStatus$outboundSchema,
+    statusCode: z.number(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace WebhookAPIInfoResultCompleted$ {
-    export const inboundSchema: z.ZodType<WebhookAPIInfoResultCompleted, z.ZodTypeDef, unknown> =
-        z.object({
-            result: z.any().optional(),
-            status: WebhookAPIInfoResultCompletedStatus$.inboundSchema,
-            statusCode: z.number(),
-        });
-
-    export type Outbound = {
-        result?: any | undefined;
-        status: string;
-        statusCode: number;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, WebhookAPIInfoResultCompleted> =
-        z.object({
-            result: z.any().optional(),
-            status: WebhookAPIInfoResultCompletedStatus$.outboundSchema,
-            statusCode: z.number(),
-        });
+    /** @deprecated use `WebhookAPIInfoResultCompleted$inboundSchema` instead. */
+    export const inboundSchema = WebhookAPIInfoResultCompleted$inboundSchema;
+    /** @deprecated use `WebhookAPIInfoResultCompleted$outboundSchema` instead. */
+    export const outboundSchema = WebhookAPIInfoResultCompleted$outboundSchema;
+    /** @deprecated use `WebhookAPIInfoResultCompleted$Outbound` instead. */
+    export type Outbound = WebhookAPIInfoResultCompleted$Outbound;
 }

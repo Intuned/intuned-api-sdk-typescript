@@ -43,40 +43,70 @@ export type AsyncRunFailedResponse = {
 };
 
 /** @internal */
+export const AsyncRunFailedResponseStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AsyncRunFailedResponseStatus
+> = z.nativeEnum(AsyncRunFailedResponseStatus);
+
+/** @internal */
+export const AsyncRunFailedResponseStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AsyncRunFailedResponseStatus
+> = AsyncRunFailedResponseStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncRunFailedResponseStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AsyncRunFailedResponseStatus> = z.nativeEnum(
-        AsyncRunFailedResponseStatus
-    );
-    export const outboundSchema: z.ZodNativeEnum<typeof AsyncRunFailedResponseStatus> =
-        inboundSchema;
+    /** @deprecated use `AsyncRunFailedResponseStatus$inboundSchema` instead. */
+    export const inboundSchema = AsyncRunFailedResponseStatus$inboundSchema;
+    /** @deprecated use `AsyncRunFailedResponseStatus$outboundSchema` instead. */
+    export const outboundSchema = AsyncRunFailedResponseStatus$outboundSchema;
 }
 
 /** @internal */
+export const AsyncRunFailedResponse$inboundSchema: z.ZodType<
+    AsyncRunFailedResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    error: z.string(),
+    message: z.string(),
+    status: AsyncRunFailedResponseStatus$inboundSchema,
+    statusCode: z.number(),
+    runId: z.string(),
+});
+
+/** @internal */
+export type AsyncRunFailedResponse$Outbound = {
+    error: string;
+    message: string;
+    status: string;
+    statusCode: number;
+    runId: string;
+};
+
+/** @internal */
+export const AsyncRunFailedResponse$outboundSchema: z.ZodType<
+    AsyncRunFailedResponse$Outbound,
+    z.ZodTypeDef,
+    AsyncRunFailedResponse
+> = z.object({
+    error: z.string(),
+    message: z.string(),
+    status: AsyncRunFailedResponseStatus$outboundSchema,
+    statusCode: z.number(),
+    runId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncRunFailedResponse$ {
-    export const inboundSchema: z.ZodType<AsyncRunFailedResponse, z.ZodTypeDef, unknown> = z.object(
-        {
-            error: z.string(),
-            message: z.string(),
-            status: AsyncRunFailedResponseStatus$.inboundSchema,
-            statusCode: z.number(),
-            runId: z.string(),
-        }
-    );
-
-    export type Outbound = {
-        error: string;
-        message: string;
-        status: string;
-        statusCode: number;
-        runId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncRunFailedResponse> =
-        z.object({
-            error: z.string(),
-            message: z.string(),
-            status: AsyncRunFailedResponseStatus$.outboundSchema,
-            statusCode: z.number(),
-            runId: z.string(),
-        });
+    /** @deprecated use `AsyncRunFailedResponse$inboundSchema` instead. */
+    export const inboundSchema = AsyncRunFailedResponse$inboundSchema;
+    /** @deprecated use `AsyncRunFailedResponse$outboundSchema` instead. */
+    export const outboundSchema = AsyncRunFailedResponse$outboundSchema;
+    /** @deprecated use `AsyncRunFailedResponse$Outbound` instead. */
+    export type Outbound = AsyncRunFailedResponse$Outbound;
 }

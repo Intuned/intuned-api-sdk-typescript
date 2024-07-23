@@ -23,34 +23,70 @@ export type GetQueueRequest = {
 };
 
 /** @internal */
+export const GetQueueGlobals$inboundSchema: z.ZodType<GetQueueGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+        workspaceId: z.string().optional(),
+    });
+
+/** @internal */
+export type GetQueueGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const GetQueueGlobals$outboundSchema: z.ZodType<
+    GetQueueGlobals$Outbound,
+    z.ZodTypeDef,
+    GetQueueGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetQueueGlobals$ {
-    export const inboundSchema: z.ZodType<GetQueueGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetQueueGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `GetQueueGlobals$inboundSchema` instead. */
+    export const inboundSchema = GetQueueGlobals$inboundSchema;
+    /** @deprecated use `GetQueueGlobals$outboundSchema` instead. */
+    export const outboundSchema = GetQueueGlobals$outboundSchema;
+    /** @deprecated use `GetQueueGlobals$Outbound` instead. */
+    export type Outbound = GetQueueGlobals$Outbound;
 }
 
 /** @internal */
+export const GetQueueRequest$inboundSchema: z.ZodType<GetQueueRequest, z.ZodTypeDef, unknown> =
+    z.object({
+        projectName: z.string(),
+        queueId: z.string(),
+    });
+
+/** @internal */
+export type GetQueueRequest$Outbound = {
+    projectName: string;
+    queueId: string;
+};
+
+/** @internal */
+export const GetQueueRequest$outboundSchema: z.ZodType<
+    GetQueueRequest$Outbound,
+    z.ZodTypeDef,
+    GetQueueRequest
+> = z.object({
+    projectName: z.string(),
+    queueId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace GetQueueRequest$ {
-    export const inboundSchema: z.ZodType<GetQueueRequest, z.ZodTypeDef, unknown> = z.object({
-        projectName: z.string(),
-        queueId: z.string(),
-    });
-
-    export type Outbound = {
-        projectName: string;
-        queueId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, GetQueueRequest> = z.object({
-        projectName: z.string(),
-        queueId: z.string(),
-    });
+    /** @deprecated use `GetQueueRequest$inboundSchema` instead. */
+    export const inboundSchema = GetQueueRequest$inboundSchema;
+    /** @deprecated use `GetQueueRequest$outboundSchema` instead. */
+    export const outboundSchema = GetQueueRequest$outboundSchema;
+    /** @deprecated use `GetQueueRequest$Outbound` instead. */
+    export type Outbound = GetQueueRequest$Outbound;
 }

@@ -8,13 +8,13 @@ import * as z from "zod";
 /**
  * Operation status.
  */
-export const Status = {
+export const AsyncFilePendingResponseStatus = {
     Pending: "pending",
 } as const;
 /**
  * Operation status.
  */
-export type Status = ClosedEnum<typeof Status>;
+export type AsyncFilePendingResponseStatus = ClosedEnum<typeof AsyncFilePendingResponseStatus>;
 
 /**
  * Pending file extraction result
@@ -27,31 +27,65 @@ export type AsyncFilePendingResponse = {
     /**
      * Operation status.
      */
-    status: Status;
+    status: AsyncFilePendingResponseStatus;
 };
 
 /** @internal */
-export namespace Status$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof Status> = z.nativeEnum(Status);
-    export const outboundSchema: z.ZodNativeEnum<typeof Status> = inboundSchema;
+export const AsyncFilePendingResponseStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AsyncFilePendingResponseStatus
+> = z.nativeEnum(AsyncFilePendingResponseStatus);
+
+/** @internal */
+export const AsyncFilePendingResponseStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AsyncFilePendingResponseStatus
+> = AsyncFilePendingResponseStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace AsyncFilePendingResponseStatus$ {
+    /** @deprecated use `AsyncFilePendingResponseStatus$inboundSchema` instead. */
+    export const inboundSchema = AsyncFilePendingResponseStatus$inboundSchema;
+    /** @deprecated use `AsyncFilePendingResponseStatus$outboundSchema` instead. */
+    export const outboundSchema = AsyncFilePendingResponseStatus$outboundSchema;
 }
 
 /** @internal */
+export const AsyncFilePendingResponse$inboundSchema: z.ZodType<
+    AsyncFilePendingResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    operationId: z.string(),
+    status: AsyncFilePendingResponseStatus$inboundSchema,
+});
+
+/** @internal */
+export type AsyncFilePendingResponse$Outbound = {
+    operationId: string;
+    status: string;
+};
+
+/** @internal */
+export const AsyncFilePendingResponse$outboundSchema: z.ZodType<
+    AsyncFilePendingResponse$Outbound,
+    z.ZodTypeDef,
+    AsyncFilePendingResponse
+> = z.object({
+    operationId: z.string(),
+    status: AsyncFilePendingResponseStatus$outboundSchema,
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncFilePendingResponse$ {
-    export const inboundSchema: z.ZodType<AsyncFilePendingResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            operationId: z.string(),
-            status: Status$.inboundSchema,
-        });
-
-    export type Outbound = {
-        operationId: string;
-        status: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncFilePendingResponse> =
-        z.object({
-            operationId: z.string(),
-            status: Status$.outboundSchema,
-        });
+    /** @deprecated use `AsyncFilePendingResponse$inboundSchema` instead. */
+    export const inboundSchema = AsyncFilePendingResponse$inboundSchema;
+    /** @deprecated use `AsyncFilePendingResponse$outboundSchema` instead. */
+    export const outboundSchema = AsyncFilePendingResponse$outboundSchema;
+    /** @deprecated use `AsyncFilePendingResponse$Outbound` instead. */
+    export type Outbound = AsyncFilePendingResponse$Outbound;
 }

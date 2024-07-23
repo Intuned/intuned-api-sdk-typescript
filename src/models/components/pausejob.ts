@@ -16,26 +16,52 @@ export type PauseJob = {
 };
 
 /** @internal */
+export const PauseJobMessage$inboundSchema: z.ZodNativeEnum<typeof PauseJobMessage> =
+    z.nativeEnum(PauseJobMessage);
+
+/** @internal */
+export const PauseJobMessage$outboundSchema: z.ZodNativeEnum<typeof PauseJobMessage> =
+    PauseJobMessage$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PauseJobMessage$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof PauseJobMessage> =
-        z.nativeEnum(PauseJobMessage);
-    export const outboundSchema: z.ZodNativeEnum<typeof PauseJobMessage> = inboundSchema;
+    /** @deprecated use `PauseJobMessage$inboundSchema` instead. */
+    export const inboundSchema = PauseJobMessage$inboundSchema;
+    /** @deprecated use `PauseJobMessage$outboundSchema` instead. */
+    export const outboundSchema = PauseJobMessage$outboundSchema;
 }
 
 /** @internal */
+export const PauseJob$inboundSchema: z.ZodType<PauseJob, z.ZodTypeDef, unknown> = z.object({
+    id: z.string().optional(),
+    message: PauseJobMessage$inboundSchema.optional(),
+});
+
+/** @internal */
+export type PauseJob$Outbound = {
+    id?: string | undefined;
+    message?: string | undefined;
+};
+
+/** @internal */
+export const PauseJob$outboundSchema: z.ZodType<PauseJob$Outbound, z.ZodTypeDef, PauseJob> =
+    z.object({
+        id: z.string().optional(),
+        message: PauseJobMessage$outboundSchema.optional(),
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace PauseJob$ {
-    export const inboundSchema: z.ZodType<PauseJob, z.ZodTypeDef, unknown> = z.object({
-        id: z.string().optional(),
-        message: PauseJobMessage$.inboundSchema.optional(),
-    });
-
-    export type Outbound = {
-        id?: string | undefined;
-        message?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, PauseJob> = z.object({
-        id: z.string().optional(),
-        message: PauseJobMessage$.outboundSchema.optional(),
-    });
+    /** @deprecated use `PauseJob$inboundSchema` instead. */
+    export const inboundSchema = PauseJob$inboundSchema;
+    /** @deprecated use `PauseJob$outboundSchema` instead. */
+    export const outboundSchema = PauseJob$outboundSchema;
+    /** @deprecated use `PauseJob$Outbound` instead. */
+    export type Outbound = PauseJob$Outbound;
 }

@@ -3,16 +3,16 @@
 
 ## Supported Types
 
-### `components.TableExtractionAsyncSuccessfulResponse`
+### `components.TableExtractionSuccessfulResponse`
 
 ```typescript
-const value: components.TableExtractionAsyncSuccessfulResponse = /* values here */
+const value: components.TableExtractionSuccessfulResponse = /* values here */
 ```
 
-### `components.AsyncFailedResponse`
+### `components.FileFailedResponse`
 
 ```typescript
-const value: components.AsyncFailedResponse = /* values here */
+const value: components.FileFailedResponse = /* values here */
 ```
 
 ### `components.AsyncFilePendingResponse`

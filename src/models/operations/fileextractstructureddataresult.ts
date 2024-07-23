@@ -19,47 +19,73 @@ export type FileExtractStructuredDataResultRequest = {
 };
 
 /** @internal */
+export const FileExtractStructuredDataResultGlobals$inboundSchema: z.ZodType<
+    FileExtractStructuredDataResultGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type FileExtractStructuredDataResultGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const FileExtractStructuredDataResultGlobals$outboundSchema: z.ZodType<
+    FileExtractStructuredDataResultGlobals$Outbound,
+    z.ZodTypeDef,
+    FileExtractStructuredDataResultGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FileExtractStructuredDataResultGlobals$ {
-    export const inboundSchema: z.ZodType<
-        FileExtractStructuredDataResultGlobals,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        FileExtractStructuredDataResultGlobals
-    > = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `FileExtractStructuredDataResultGlobals$inboundSchema` instead. */
+    export const inboundSchema = FileExtractStructuredDataResultGlobals$inboundSchema;
+    /** @deprecated use `FileExtractStructuredDataResultGlobals$outboundSchema` instead. */
+    export const outboundSchema = FileExtractStructuredDataResultGlobals$outboundSchema;
+    /** @deprecated use `FileExtractStructuredDataResultGlobals$Outbound` instead. */
+    export type Outbound = FileExtractStructuredDataResultGlobals$Outbound;
 }
 
 /** @internal */
+export const FileExtractStructuredDataResultRequest$inboundSchema: z.ZodType<
+    FileExtractStructuredDataResultRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    operationId: z.string(),
+});
+
+/** @internal */
+export type FileExtractStructuredDataResultRequest$Outbound = {
+    operationId: string;
+};
+
+/** @internal */
+export const FileExtractStructuredDataResultRequest$outboundSchema: z.ZodType<
+    FileExtractStructuredDataResultRequest$Outbound,
+    z.ZodTypeDef,
+    FileExtractStructuredDataResultRequest
+> = z.object({
+    operationId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace FileExtractStructuredDataResultRequest$ {
-    export const inboundSchema: z.ZodType<
-        FileExtractStructuredDataResultRequest,
-        z.ZodTypeDef,
-        unknown
-    > = z.object({
-        operationId: z.string(),
-    });
-
-    export type Outbound = {
-        operationId: string;
-    };
-
-    export const outboundSchema: z.ZodType<
-        Outbound,
-        z.ZodTypeDef,
-        FileExtractStructuredDataResultRequest
-    > = z.object({
-        operationId: z.string(),
-    });
+    /** @deprecated use `FileExtractStructuredDataResultRequest$inboundSchema` instead. */
+    export const inboundSchema = FileExtractStructuredDataResultRequest$inboundSchema;
+    /** @deprecated use `FileExtractStructuredDataResultRequest$outboundSchema` instead. */
+    export const outboundSchema = FileExtractStructuredDataResultRequest$outboundSchema;
+    /** @deprecated use `FileExtractStructuredDataResultRequest$Outbound` instead. */
+    export type Outbound = FileExtractStructuredDataResultRequest$Outbound;
 }

@@ -10,15 +10,29 @@ import * as z from "zod";
 export type APIParameters = { [k: string]: any } | Array<any>;
 
 /** @internal */
-export namespace APIParameters$ {
-    export const inboundSchema: z.ZodType<APIParameters, z.ZodTypeDef, unknown> = z.union([
-        z.record(z.any()),
-        z.array(z.any()),
-    ]);
+export const APIParameters$inboundSchema: z.ZodType<APIParameters, z.ZodTypeDef, unknown> = z.union(
+    [z.record(z.any()), z.array(z.any())]
+);
 
-    export type Outbound = { [k: string]: any } | Array<any>;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, APIParameters> = z.union([
-        z.record(z.any()),
-        z.array(z.any()),
-    ]);
+/** @internal */
+export type APIParameters$Outbound = { [k: string]: any } | Array<any>;
+
+/** @internal */
+export const APIParameters$outboundSchema: z.ZodType<
+    APIParameters$Outbound,
+    z.ZodTypeDef,
+    APIParameters
+> = z.union([z.record(z.any()), z.array(z.any())]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace APIParameters$ {
+    /** @deprecated use `APIParameters$inboundSchema` instead. */
+    export const inboundSchema = APIParameters$inboundSchema;
+    /** @deprecated use `APIParameters$outboundSchema` instead. */
+    export const outboundSchema = APIParameters$outboundSchema;
+    /** @deprecated use `APIParameters$Outbound` instead. */
+    export type Outbound = APIParameters$Outbound;
 }

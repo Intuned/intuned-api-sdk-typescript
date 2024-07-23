@@ -31,29 +31,61 @@ export type AsyncRunPendingResponse = {
 };
 
 /** @internal */
+export const AsyncRunPendingResponseStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AsyncRunPendingResponseStatus
+> = z.nativeEnum(AsyncRunPendingResponseStatus);
+
+/** @internal */
+export const AsyncRunPendingResponseStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AsyncRunPendingResponseStatus
+> = AsyncRunPendingResponseStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncRunPendingResponseStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AsyncRunPendingResponseStatus> =
-        z.nativeEnum(AsyncRunPendingResponseStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AsyncRunPendingResponseStatus> =
-        inboundSchema;
+    /** @deprecated use `AsyncRunPendingResponseStatus$inboundSchema` instead. */
+    export const inboundSchema = AsyncRunPendingResponseStatus$inboundSchema;
+    /** @deprecated use `AsyncRunPendingResponseStatus$outboundSchema` instead. */
+    export const outboundSchema = AsyncRunPendingResponseStatus$outboundSchema;
 }
 
 /** @internal */
+export const AsyncRunPendingResponse$inboundSchema: z.ZodType<
+    AsyncRunPendingResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    status: AsyncRunPendingResponseStatus$inboundSchema,
+    runId: z.string(),
+});
+
+/** @internal */
+export type AsyncRunPendingResponse$Outbound = {
+    status: string;
+    runId: string;
+};
+
+/** @internal */
+export const AsyncRunPendingResponse$outboundSchema: z.ZodType<
+    AsyncRunPendingResponse$Outbound,
+    z.ZodTypeDef,
+    AsyncRunPendingResponse
+> = z.object({
+    status: AsyncRunPendingResponseStatus$outboundSchema,
+    runId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncRunPendingResponse$ {
-    export const inboundSchema: z.ZodType<AsyncRunPendingResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            status: AsyncRunPendingResponseStatus$.inboundSchema,
-            runId: z.string(),
-        });
-
-    export type Outbound = {
-        status: string;
-        runId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncRunPendingResponse> =
-        z.object({
-            status: AsyncRunPendingResponseStatus$.outboundSchema,
-            runId: z.string(),
-        });
+    /** @deprecated use `AsyncRunPendingResponse$inboundSchema` instead. */
+    export const inboundSchema = AsyncRunPendingResponse$inboundSchema;
+    /** @deprecated use `AsyncRunPendingResponse$outboundSchema` instead. */
+    export const outboundSchema = AsyncRunPendingResponse$outboundSchema;
+    /** @deprecated use `AsyncRunPendingResponse$Outbound` instead. */
+    export type Outbound = AsyncRunPendingResponse$Outbound;
 }

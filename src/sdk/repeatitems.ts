@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -55,13 +55,10 @@ export class RepeatItems extends ClientSDK {
             projectName: projectName,
             queueId: queueId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetRepeatItemsRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetRepeatItemsRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -86,6 +83,10 @@ export class RepeatItems extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -101,7 +102,6 @@ export class RepeatItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -111,20 +111,26 @@ export class RepeatItems extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<Array<components.QueueRepeatItem>>()
-            .json(200, z.array(components.QueueRepeatItem$.inboundSchema))
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, z.array(components.QueueRepeatItem$inboundSchema))
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -148,14 +154,10 @@ export class RepeatItems extends ClientSDK {
             queueId: queueId,
             queueRepeatItemInput: queueRepeatItemInput,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.AppendRepeatItemRequest$.outboundSchema.parse(value$),
+            (value$) => operations.AppendRepeatItemRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.QueueRepeatItemInput, { explode: true });
@@ -180,6 +182,11 @@ export class RepeatItems extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -195,7 +202,6 @@ export class RepeatItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -205,20 +211,26 @@ export class RepeatItems extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.AddQueueRepeatItem>()
-            .json(201, components.AddQueueRepeatItem$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(201, components.AddQueueRepeatItem$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -242,13 +254,10 @@ export class RepeatItems extends ClientSDK {
             queueId: queueId,
             itemId: itemId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.GetRepeatQueueItemRequest$.outboundSchema.parse(value$),
+            (value$) => operations.GetRepeatQueueItemRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -277,6 +286,10 @@ export class RepeatItems extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -292,7 +305,6 @@ export class RepeatItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -302,20 +314,26 @@ export class RepeatItems extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.QueueRepeatItem>()
-            .json(200, components.QueueRepeatItem$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, components.QueueRepeatItem$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -341,14 +359,10 @@ export class RepeatItems extends ClientSDK {
             itemId: itemId,
             queueRepeatItemInput: queueRepeatItemInput,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.UpdateRepeatQueueItemRequest$.outboundSchema.parse(value$),
+            (value$) => operations.UpdateRepeatQueueItemRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$.QueueRepeatItemInput, { explode: true });
@@ -377,6 +391,11 @@ export class RepeatItems extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -392,7 +411,6 @@ export class RepeatItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -402,20 +420,26 @@ export class RepeatItems extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.UpdateQueueRepeatItem>()
-            .json(200, components.UpdateQueueRepeatItem$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, components.UpdateQueueRepeatItem$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -439,13 +463,10 @@ export class RepeatItems extends ClientSDK {
             queueId: queueId,
             itemId: itemId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.DeleteRepeatQueueItemRequest$.outboundSchema.parse(value$),
+            (value$) => operations.DeleteRepeatQueueItemRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -474,6 +495,10 @@ export class RepeatItems extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -489,7 +514,6 @@ export class RepeatItems extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -499,11 +523,17 @@ export class RepeatItems extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
@@ -511,8 +541,8 @@ export class RepeatItems extends ClientSDK {
 
         const [result$] = await this.matcher<void>()
             .void(204, z.void())
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

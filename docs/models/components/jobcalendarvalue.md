@@ -3,10 +3,10 @@
 
 ## Supported Types
 
-### `any`
+### `string`
 
 ```typescript
-const value: any = /* values here */
+const value: string = /* values here */
 ```
 
 ### `components.Two`

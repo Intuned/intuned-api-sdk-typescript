@@ -29,51 +29,91 @@ export type AppendRepeatItemRequest = {
 };
 
 /** @internal */
+export const AppendRepeatItemGlobals$inboundSchema: z.ZodType<
+    AppendRepeatItemGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type AppendRepeatItemGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const AppendRepeatItemGlobals$outboundSchema: z.ZodType<
+    AppendRepeatItemGlobals$Outbound,
+    z.ZodTypeDef,
+    AppendRepeatItemGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AppendRepeatItemGlobals$ {
-    export const inboundSchema: z.ZodType<AppendRepeatItemGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AppendRepeatItemGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `AppendRepeatItemGlobals$inboundSchema` instead. */
+    export const inboundSchema = AppendRepeatItemGlobals$inboundSchema;
+    /** @deprecated use `AppendRepeatItemGlobals$outboundSchema` instead. */
+    export const outboundSchema = AppendRepeatItemGlobals$outboundSchema;
+    /** @deprecated use `AppendRepeatItemGlobals$Outbound` instead. */
+    export type Outbound = AppendRepeatItemGlobals$Outbound;
 }
 
 /** @internal */
+export const AppendRepeatItemRequest$inboundSchema: z.ZodType<
+    AppendRepeatItemRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        projectName: z.string(),
+        queueId: z.string(),
+        QueueRepeatItemInput: components.QueueRepeatItemInput$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            QueueRepeatItemInput: "queueRepeatItemInput",
+        });
+    });
+
+/** @internal */
+export type AppendRepeatItemRequest$Outbound = {
+    projectName: string;
+    queueId: string;
+    QueueRepeatItemInput: components.QueueRepeatItemInput$Outbound;
+};
+
+/** @internal */
+export const AppendRepeatItemRequest$outboundSchema: z.ZodType<
+    AppendRepeatItemRequest$Outbound,
+    z.ZodTypeDef,
+    AppendRepeatItemRequest
+> = z
+    .object({
+        projectName: z.string(),
+        queueId: z.string(),
+        queueRepeatItemInput: components.QueueRepeatItemInput$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            queueRepeatItemInput: "QueueRepeatItemInput",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AppendRepeatItemRequest$ {
-    export const inboundSchema: z.ZodType<AppendRepeatItemRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            projectName: z.string(),
-            queueId: z.string(),
-            QueueRepeatItemInput: components.QueueRepeatItemInput$.inboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                QueueRepeatItemInput: "queueRepeatItemInput",
-            });
-        });
-
-    export type Outbound = {
-        projectName: string;
-        queueId: string;
-        QueueRepeatItemInput: components.QueueRepeatItemInput$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AppendRepeatItemRequest> = z
-        .object({
-            projectName: z.string(),
-            queueId: z.string(),
-            queueRepeatItemInput: components.QueueRepeatItemInput$.outboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                queueRepeatItemInput: "QueueRepeatItemInput",
-            });
-        });
+    /** @deprecated use `AppendRepeatItemRequest$inboundSchema` instead. */
+    export const inboundSchema = AppendRepeatItemRequest$inboundSchema;
+    /** @deprecated use `AppendRepeatItemRequest$outboundSchema` instead. */
+    export const outboundSchema = AppendRepeatItemRequest$outboundSchema;
+    /** @deprecated use `AppendRepeatItemRequest$Outbound` instead. */
+    export type Outbound = AppendRepeatItemRequest$Outbound;
 }

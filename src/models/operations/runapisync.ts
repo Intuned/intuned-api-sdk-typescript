@@ -24,29 +24,45 @@ export type RunApiSyncRequest = {
     runProjectApiRequest: components.RunProjectApiRequest;
 };
 
-export type RunApiSyncResponse = components.CompletedRunResult | components.FailedRunResult;
+/** @internal */
+export const RunApiSyncGlobals$inboundSchema: z.ZodType<RunApiSyncGlobals, z.ZodTypeDef, unknown> =
+    z.object({
+        workspaceId: z.string().optional(),
+    });
 
 /** @internal */
+export type RunApiSyncGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const RunApiSyncGlobals$outboundSchema: z.ZodType<
+    RunApiSyncGlobals$Outbound,
+    z.ZodTypeDef,
+    RunApiSyncGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace RunApiSyncGlobals$ {
-    export const inboundSchema: z.ZodType<RunApiSyncGlobals, z.ZodTypeDef, unknown> = z.object({
-        workspaceId: z.string().optional(),
-    });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiSyncGlobals> = z.object({
-        workspaceId: z.string().optional(),
-    });
+    /** @deprecated use `RunApiSyncGlobals$inboundSchema` instead. */
+    export const inboundSchema = RunApiSyncGlobals$inboundSchema;
+    /** @deprecated use `RunApiSyncGlobals$outboundSchema` instead. */
+    export const outboundSchema = RunApiSyncGlobals$outboundSchema;
+    /** @deprecated use `RunApiSyncGlobals$Outbound` instead. */
+    export type Outbound = RunApiSyncGlobals$Outbound;
 }
 
 /** @internal */
-export namespace RunApiSyncRequest$ {
-    export const inboundSchema: z.ZodType<RunApiSyncRequest, z.ZodTypeDef, unknown> = z
+export const RunApiSyncRequest$inboundSchema: z.ZodType<RunApiSyncRequest, z.ZodTypeDef, unknown> =
+    z
         .object({
             projectName: z.string(),
-            RunProjectApiRequest: components.RunProjectApiRequest$.inboundSchema,
+            RunProjectApiRequest: components.RunProjectApiRequest$inboundSchema,
         })
         .transform((v) => {
             return remap$(v, {
@@ -54,35 +70,37 @@ export namespace RunApiSyncRequest$ {
             });
         });
 
-    export type Outbound = {
-        projectName: string;
-        RunProjectApiRequest: components.RunProjectApiRequest$.Outbound;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiSyncRequest> = z
-        .object({
-            projectName: z.string(),
-            runProjectApiRequest: components.RunProjectApiRequest$.outboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                runProjectApiRequest: "RunProjectApiRequest",
-            });
-        });
-}
+/** @internal */
+export type RunApiSyncRequest$Outbound = {
+    projectName: string;
+    RunProjectApiRequest: components.RunProjectApiRequest$Outbound;
+};
 
 /** @internal */
-export namespace RunApiSyncResponse$ {
-    export const inboundSchema: z.ZodType<RunApiSyncResponse, z.ZodTypeDef, unknown> = z.union([
-        components.CompletedRunResult$.inboundSchema,
-        components.FailedRunResult$.inboundSchema,
-    ]);
+export const RunApiSyncRequest$outboundSchema: z.ZodType<
+    RunApiSyncRequest$Outbound,
+    z.ZodTypeDef,
+    RunApiSyncRequest
+> = z
+    .object({
+        projectName: z.string(),
+        runProjectApiRequest: components.RunProjectApiRequest$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            runProjectApiRequest: "RunProjectApiRequest",
+        });
+    });
 
-    export type Outbound =
-        | components.CompletedRunResult$.Outbound
-        | components.FailedRunResult$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, RunApiSyncResponse> = z.union([
-        components.CompletedRunResult$.outboundSchema,
-        components.FailedRunResult$.outboundSchema,
-    ]);
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace RunApiSyncRequest$ {
+    /** @deprecated use `RunApiSyncRequest$inboundSchema` instead. */
+    export const inboundSchema = RunApiSyncRequest$inboundSchema;
+    /** @deprecated use `RunApiSyncRequest$outboundSchema` instead. */
+    export const outboundSchema = RunApiSyncRequest$outboundSchema;
+    /** @deprecated use `RunApiSyncRequest$Outbound` instead. */
+    export type Outbound = RunApiSyncRequest$Outbound;
 }

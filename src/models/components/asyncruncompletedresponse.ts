@@ -39,35 +39,67 @@ export type AsyncRunCompletedResponse = {
 };
 
 /** @internal */
+export const AsyncRunCompletedResponseStatus$inboundSchema: z.ZodNativeEnum<
+    typeof AsyncRunCompletedResponseStatus
+> = z.nativeEnum(AsyncRunCompletedResponseStatus);
+
+/** @internal */
+export const AsyncRunCompletedResponseStatus$outboundSchema: z.ZodNativeEnum<
+    typeof AsyncRunCompletedResponseStatus
+> = AsyncRunCompletedResponseStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncRunCompletedResponseStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof AsyncRunCompletedResponseStatus> =
-        z.nativeEnum(AsyncRunCompletedResponseStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof AsyncRunCompletedResponseStatus> =
-        inboundSchema;
+    /** @deprecated use `AsyncRunCompletedResponseStatus$inboundSchema` instead. */
+    export const inboundSchema = AsyncRunCompletedResponseStatus$inboundSchema;
+    /** @deprecated use `AsyncRunCompletedResponseStatus$outboundSchema` instead. */
+    export const outboundSchema = AsyncRunCompletedResponseStatus$outboundSchema;
 }
 
 /** @internal */
+export const AsyncRunCompletedResponse$inboundSchema: z.ZodType<
+    AsyncRunCompletedResponse,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    result: z.any().optional(),
+    status: AsyncRunCompletedResponseStatus$inboundSchema,
+    statusCode: z.number(),
+    runId: z.string(),
+});
+
+/** @internal */
+export type AsyncRunCompletedResponse$Outbound = {
+    result?: any | undefined;
+    status: string;
+    statusCode: number;
+    runId: string;
+};
+
+/** @internal */
+export const AsyncRunCompletedResponse$outboundSchema: z.ZodType<
+    AsyncRunCompletedResponse$Outbound,
+    z.ZodTypeDef,
+    AsyncRunCompletedResponse
+> = z.object({
+    result: z.any().optional(),
+    status: AsyncRunCompletedResponseStatus$outboundSchema,
+    statusCode: z.number(),
+    runId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace AsyncRunCompletedResponse$ {
-    export const inboundSchema: z.ZodType<AsyncRunCompletedResponse, z.ZodTypeDef, unknown> =
-        z.object({
-            result: z.any().optional(),
-            status: AsyncRunCompletedResponseStatus$.inboundSchema,
-            statusCode: z.number(),
-            runId: z.string(),
-        });
-
-    export type Outbound = {
-        result?: any | undefined;
-        status: string;
-        statusCode: number;
-        runId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, AsyncRunCompletedResponse> =
-        z.object({
-            result: z.any().optional(),
-            status: AsyncRunCompletedResponseStatus$.outboundSchema,
-            statusCode: z.number(),
-            runId: z.string(),
-        });
+    /** @deprecated use `AsyncRunCompletedResponse$inboundSchema` instead. */
+    export const inboundSchema = AsyncRunCompletedResponse$inboundSchema;
+    /** @deprecated use `AsyncRunCompletedResponse$outboundSchema` instead. */
+    export const outboundSchema = AsyncRunCompletedResponse$outboundSchema;
+    /** @deprecated use `AsyncRunCompletedResponse$Outbound` instead. */
+    export type Outbound = AsyncRunCompletedResponse$Outbound;
 }

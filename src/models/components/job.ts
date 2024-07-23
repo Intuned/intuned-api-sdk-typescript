@@ -4,11 +4,36 @@
 
 import { remap as remap$ } from "../../lib/primitives.js";
 import { ClosedEnum } from "../../types/enums.js";
-import { AuthSession, AuthSession$ } from "./authsession.js";
-import { JobConfigurationResponse, JobConfigurationResponse$ } from "./jobconfigurationresponse.js";
-import { JobPayload, JobPayload$ } from "./jobpayload.js";
-import { JobSchedule, JobSchedule$ } from "./jobschedule.js";
-import { JobSink, JobSink$ } from "./jobsink.js";
+import {
+    AuthSession,
+    AuthSession$inboundSchema,
+    AuthSession$Outbound,
+    AuthSession$outboundSchema,
+} from "./authsession.js";
+import {
+    JobConfigurationResponse,
+    JobConfigurationResponse$inboundSchema,
+    JobConfigurationResponse$Outbound,
+    JobConfigurationResponse$outboundSchema,
+} from "./jobconfigurationresponse.js";
+import {
+    JobPayload,
+    JobPayload$inboundSchema,
+    JobPayload$Outbound,
+    JobPayload$outboundSchema,
+} from "./jobpayload.js";
+import {
+    JobSchedule,
+    JobSchedule$inboundSchema,
+    JobSchedule$Outbound,
+    JobSchedule$outboundSchema,
+} from "./jobschedule.js";
+import {
+    JobSink,
+    JobSink$inboundSchema,
+    JobSink$Outbound,
+    JobSink$outboundSchema,
+} from "./jobsink.js";
 import * as z from "zod";
 
 export const JobStateStatus = {
@@ -44,10 +69,6 @@ export type Job = {
      */
     id: string;
     /**
-     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
-     */
-    configuration: JobConfigurationResponse;
-    /**
      * A sink to send the results to. Can be a webhook or Amazon S3 bucket.
      */
     sink?: JobSink | null | undefined;
@@ -63,6 +84,10 @@ export type Job = {
      * Auth session configurations
      */
     authSession?: AuthSession | undefined;
+    /**
+     * The configuration of the job. Configures the retry policy and maximum concurrent requests.
+     */
+    configuration: JobConfigurationResponse;
     /**
      * The timestamp of when the job was created.
      */
@@ -83,145 +108,217 @@ export type Job = {
 };
 
 /** @internal */
+export const JobStateStatus$inboundSchema: z.ZodNativeEnum<typeof JobStateStatus> =
+    z.nativeEnum(JobStateStatus);
+
+/** @internal */
+export const JobStateStatus$outboundSchema: z.ZodNativeEnum<typeof JobStateStatus> =
+    JobStateStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace JobStateStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof JobStateStatus> =
-        z.nativeEnum(JobStateStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof JobStateStatus> = inboundSchema;
+    /** @deprecated use `JobStateStatus$inboundSchema` instead. */
+    export const inboundSchema = JobStateStatus$inboundSchema;
+    /** @deprecated use `JobStateStatus$outboundSchema` instead. */
+    export const outboundSchema = JobStateStatus$outboundSchema;
 }
 
 /** @internal */
+export const Paused$inboundSchema: z.ZodType<Paused, z.ZodTypeDef, unknown> = z.object({
+    status: JobStateStatus$inboundSchema.optional(),
+    reason: z.string().optional(),
+});
+
+/** @internal */
+export type Paused$Outbound = {
+    status?: string | undefined;
+    reason?: string | undefined;
+};
+
+/** @internal */
+export const Paused$outboundSchema: z.ZodType<Paused$Outbound, z.ZodTypeDef, Paused> = z.object({
+    status: JobStateStatus$outboundSchema.optional(),
+    reason: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Paused$ {
-    export const inboundSchema: z.ZodType<Paused, z.ZodTypeDef, unknown> = z.object({
-        status: JobStateStatus$.inboundSchema.optional(),
-        reason: z.string().optional(),
-    });
-
-    export type Outbound = {
-        status?: string | undefined;
-        reason?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Paused> = z.object({
-        status: JobStateStatus$.outboundSchema.optional(),
-        reason: z.string().optional(),
-    });
+    /** @deprecated use `Paused$inboundSchema` instead. */
+    export const inboundSchema = Paused$inboundSchema;
+    /** @deprecated use `Paused$outboundSchema` instead. */
+    export const outboundSchema = Paused$outboundSchema;
+    /** @deprecated use `Paused$Outbound` instead. */
+    export type Outbound = Paused$Outbound;
 }
 
 /** @internal */
+export const StateStatus$inboundSchema: z.ZodNativeEnum<typeof StateStatus> =
+    z.nativeEnum(StateStatus);
+
+/** @internal */
+export const StateStatus$outboundSchema: z.ZodNativeEnum<typeof StateStatus> =
+    StateStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace StateStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof StateStatus> = z.nativeEnum(StateStatus);
-    export const outboundSchema: z.ZodNativeEnum<typeof StateStatus> = inboundSchema;
+    /** @deprecated use `StateStatus$inboundSchema` instead. */
+    export const inboundSchema = StateStatus$inboundSchema;
+    /** @deprecated use `StateStatus$outboundSchema` instead. */
+    export const outboundSchema = StateStatus$outboundSchema;
 }
 
 /** @internal */
+export const Active$inboundSchema: z.ZodType<Active, z.ZodTypeDef, unknown> = z.object({
+    status: StateStatus$inboundSchema.optional(),
+});
+
+/** @internal */
+export type Active$Outbound = {
+    status?: string | undefined;
+};
+
+/** @internal */
+export const Active$outboundSchema: z.ZodType<Active$Outbound, z.ZodTypeDef, Active> = z.object({
+    status: StateStatus$outboundSchema.optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace Active$ {
-    export const inboundSchema: z.ZodType<Active, z.ZodTypeDef, unknown> = z.object({
-        status: StateStatus$.inboundSchema.optional(),
-    });
-
-    export type Outbound = {
-        status?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Active> = z.object({
-        status: StateStatus$.outboundSchema.optional(),
-    });
+    /** @deprecated use `Active$inboundSchema` instead. */
+    export const inboundSchema = Active$inboundSchema;
+    /** @deprecated use `Active$outboundSchema` instead. */
+    export const outboundSchema = Active$outboundSchema;
+    /** @deprecated use `Active$Outbound` instead. */
+    export type Outbound = Active$Outbound;
 }
 
 /** @internal */
+export const State$inboundSchema: z.ZodType<State, z.ZodTypeDef, unknown> = z.union([
+    z.lazy(() => Active$inboundSchema),
+    z.lazy(() => Paused$inboundSchema),
+]);
+
+/** @internal */
+export type State$Outbound = Active$Outbound | Paused$Outbound;
+
+/** @internal */
+export const State$outboundSchema: z.ZodType<State$Outbound, z.ZodTypeDef, State> = z.union([
+    z.lazy(() => Active$outboundSchema),
+    z.lazy(() => Paused$outboundSchema),
+]);
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace State$ {
-    export const inboundSchema: z.ZodType<State, z.ZodTypeDef, unknown> = z.union([
-        z.lazy(() => Active$.inboundSchema),
-        z.lazy(() => Paused$.inboundSchema),
-    ]);
-
-    export type Outbound = Active$.Outbound | Paused$.Outbound;
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, State> = z.union([
-        z.lazy(() => Active$.outboundSchema),
-        z.lazy(() => Paused$.outboundSchema),
-    ]);
+    /** @deprecated use `State$inboundSchema` instead. */
+    export const inboundSchema = State$inboundSchema;
+    /** @deprecated use `State$outboundSchema` instead. */
+    export const outboundSchema = State$outboundSchema;
+    /** @deprecated use `State$Outbound` instead. */
+    export type Outbound = State$Outbound;
 }
 
 /** @internal */
-export namespace Job$ {
-    export const inboundSchema: z.ZodType<Job, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-            configuration: JobConfigurationResponse$.inboundSchema,
-            sink: z.nullable(JobSink$.inboundSchema).optional(),
-            payload: z.array(JobPayload$.inboundSchema),
-            schedule: JobSchedule$.inboundSchema.optional(),
-            authSession: AuthSession$.inboundSchema.optional(),
-            created_at: z
+export const Job$inboundSchema: z.ZodType<Job, z.ZodTypeDef, unknown> = z
+    .object({
+        id: z.string(),
+        sink: z.nullable(JobSink$inboundSchema).optional(),
+        payload: z.array(JobPayload$inboundSchema),
+        schedule: JobSchedule$inboundSchema.optional(),
+        authSession: AuthSession$inboundSchema.optional(),
+        configuration: JobConfigurationResponse$inboundSchema,
+        created_at: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v))
+            .optional(),
+        next_run_time: z.nullable(
+            z
                 .string()
                 .datetime({ offset: true })
                 .transform((v) => new Date(v))
-                .optional(),
-            next_run_time: z.nullable(
-                z
-                    .string()
-                    .datetime({ offset: true })
-                    .transform((v) => new Date(v))
-            ),
-            last_run_time: z.nullable(
-                z
-                    .string()
-                    .datetime({ offset: true })
-                    .transform((v) => new Date(v))
-            ),
-            state: z.union([
-                z.lazy(() => Active$.inboundSchema),
-                z.lazy(() => Paused$.inboundSchema),
-            ]),
-            projectId: z.string(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                created_at: "createdAt",
-                next_run_time: "nextRunTime",
-                last_run_time: "lastRunTime",
-            });
+        ),
+        last_run_time: z.nullable(
+            z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v))
+        ),
+        state: z.union([z.lazy(() => Active$inboundSchema), z.lazy(() => Paused$inboundSchema)]),
+        projectId: z.string(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            created_at: "createdAt",
+            next_run_time: "nextRunTime",
+            last_run_time: "lastRunTime",
         });
+    });
 
-    export type Outbound = {
-        id: string;
-        configuration: JobConfigurationResponse$.Outbound;
-        sink?: JobSink$.Outbound | null | undefined;
-        payload: Array<JobPayload$.Outbound>;
-        schedule?: JobSchedule$.Outbound | undefined;
-        authSession?: AuthSession$.Outbound | undefined;
-        created_at?: string | undefined;
-        next_run_time: string | null;
-        last_run_time: string | null;
-        state: Active$.Outbound | Paused$.Outbound;
-        projectId: string;
-    };
+/** @internal */
+export type Job$Outbound = {
+    id: string;
+    sink?: JobSink$Outbound | null | undefined;
+    payload: Array<JobPayload$Outbound>;
+    schedule?: JobSchedule$Outbound | undefined;
+    authSession?: AuthSession$Outbound | undefined;
+    configuration: JobConfigurationResponse$Outbound;
+    created_at?: string | undefined;
+    next_run_time: string | null;
+    last_run_time: string | null;
+    state: Active$Outbound | Paused$Outbound;
+    projectId: string;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Job> = z
-        .object({
-            id: z.string(),
-            configuration: JobConfigurationResponse$.outboundSchema,
-            sink: z.nullable(JobSink$.outboundSchema).optional(),
-            payload: z.array(JobPayload$.outboundSchema),
-            schedule: JobSchedule$.outboundSchema.optional(),
-            authSession: AuthSession$.outboundSchema.optional(),
-            createdAt: z
-                .date()
-                .transform((v) => v.toISOString())
-                .optional(),
-            nextRunTime: z.nullable(z.date().transform((v) => v.toISOString())),
-            lastRunTime: z.nullable(z.date().transform((v) => v.toISOString())),
-            state: z.union([
-                z.lazy(() => Active$.outboundSchema),
-                z.lazy(() => Paused$.outboundSchema),
-            ]),
-            projectId: z.string(),
-        })
-        .transform((v) => {
-            return remap$(v, {
-                createdAt: "created_at",
-                nextRunTime: "next_run_time",
-                lastRunTime: "last_run_time",
-            });
+/** @internal */
+export const Job$outboundSchema: z.ZodType<Job$Outbound, z.ZodTypeDef, Job> = z
+    .object({
+        id: z.string(),
+        sink: z.nullable(JobSink$outboundSchema).optional(),
+        payload: z.array(JobPayload$outboundSchema),
+        schedule: JobSchedule$outboundSchema.optional(),
+        authSession: AuthSession$outboundSchema.optional(),
+        configuration: JobConfigurationResponse$outboundSchema,
+        createdAt: z
+            .date()
+            .transform((v) => v.toISOString())
+            .optional(),
+        nextRunTime: z.nullable(z.date().transform((v) => v.toISOString())),
+        lastRunTime: z.nullable(z.date().transform((v) => v.toISOString())),
+        state: z.union([z.lazy(() => Active$outboundSchema), z.lazy(() => Paused$outboundSchema)]),
+        projectId: z.string(),
+    })
+    .transform((v) => {
+        return remap$(v, {
+            createdAt: "created_at",
+            nextRunTime: "next_run_time",
+            lastRunTime: "last_run_time",
         });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace Job$ {
+    /** @deprecated use `Job$inboundSchema` instead. */
+    export const inboundSchema = Job$inboundSchema;
+    /** @deprecated use `Job$outboundSchema` instead. */
+    export const outboundSchema = Job$outboundSchema;
+    /** @deprecated use `Job$Outbound` instead. */
+    export type Outbound = Job$Outbound;
 }

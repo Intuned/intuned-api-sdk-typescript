@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$, encodeSimple as encodeSimple$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -49,18 +49,14 @@ export class ExtractTables extends ClientSDK {
     async sync(
         file: components.FileT,
         options?: RequestOptions
-    ): Promise<components.TableExtractionResponse> {
+    ): Promise<components.TableExtractionSyncResponse> {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.GeneralExtractRequest$.outboundSchema.parse(value$),
+            (value$) => components.GeneralExtractRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
@@ -74,6 +70,11 @@ export class ExtractTables extends ClientSDK {
         const path$ = this.templateURLComponent("/{workspaceId}/files/extract/tables")(pathParams$);
 
         const query$ = "";
+
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
 
         let security$;
         if (typeof this.options$.apiKey === "function") {
@@ -90,7 +91,6 @@ export class ExtractTables extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -100,20 +100,26 @@ export class ExtractTables extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.TableExtractionResponse>()
-            .json(200, components.TableExtractionResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+        const [result$] = await this.matcher<components.TableExtractionSyncResponse>()
+            .json(200, components.TableExtractionSyncResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -135,14 +141,10 @@ export class ExtractTables extends ClientSDK {
         const input$: components.GeneralExtractRequest = {
             file: file,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.GeneralExtractRequest$.outboundSchema.parse(value$),
+            (value$) => components.GeneralExtractRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = encodeJSON$("body", payload$, { explode: true });
@@ -159,6 +161,11 @@ export class ExtractTables extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -174,7 +181,6 @@ export class ExtractTables extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -184,20 +190,26 @@ export class ExtractTables extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.AsyncFilePendingResponse>()
-            .json(201, components.AsyncFilePendingResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(201, components.AsyncFilePendingResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 
@@ -217,13 +229,10 @@ export class ExtractTables extends ClientSDK {
         const input$: operations.FileExtractTablesResultRequest = {
             operationId: operationId,
         };
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => operations.FileExtractTablesResultRequest$.outboundSchema.parse(value$),
+            (value$) => operations.FileExtractTablesResultRequest$outboundSchema.parse(value$),
             "Input validation failed"
         );
         const body$ = null;
@@ -244,6 +253,10 @@ export class ExtractTables extends ClientSDK {
 
         const query$ = "";
 
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
+
         let security$;
         if (typeof this.options$.apiKey === "function") {
             security$ = { apiKey: await this.options$.apiKey() };
@@ -259,7 +272,6 @@ export class ExtractTables extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -269,20 +281,26 @@ export class ExtractTables extends ClientSDK {
                 headers: headers$,
                 query: query$,
                 body: body$,
+                timeoutMs: options?.timeoutMs || this.options$.timeoutMs || -1,
             },
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+            retryConfig: options?.retries || this.options$.retryConfig,
+            retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
         };
 
         const [result$] = await this.matcher<components.TableExtractionAsyncResponse>()
-            .json(200, components.TableExtractionAsyncResponse$)
-            .json(400, errors.ApiErrorInvalidInput$, { err: true })
-            .json(401, errors.ApiErrorUnauthorized$, { err: true })
+            .json(200, components.TableExtractionAsyncResponse$inboundSchema)
+            .json(400, errors.ApiErrorInvalidInput$inboundSchema, { err: true })
+            .json(401, errors.ApiErrorUnauthorized$inboundSchema, { err: true })
             .fail([404, "4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

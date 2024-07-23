@@ -78,7 +78,12 @@ async function run() {
         },
         {
             key: "<value>",
-        }
+        },
+        {
+            type: "MARKDOWN",
+            model: "gpt4-turbo",
+        },
+        "<value>"
     );
 
     // Handle the result
@@ -353,6 +358,106 @@ const sdk = new IntunedClient({ httpClient });
 <!-- End Custom HTTP Client [http-client] -->
 
 <!-- No Authentication [security] -->
+
+<!-- Start Retries [retries] -->
+## Retries
+
+Some of the endpoints in this SDK support retries.  If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API.  However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const intunedClient = new IntunedClient({
+    apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+    const result = await intunedClient.files.extractStructuredData.sync(
+        {
+            type: "pdf",
+            source: {
+                type: "url",
+                data: "http://unconscious-margin.name",
+            },
+        },
+        {
+            key: "<value>",
+        },
+        {
+            type: "MARKDOWN",
+            model: "gpt4-turbo",
+        },
+        "<value>",
+        {
+            retries: {
+                strategy: "backoff",
+                backoff: {
+                    initialInterval: 1,
+                    maxInterval: 50,
+                    exponent: 1.1,
+                    maxElapsedTime: 100,
+                },
+                retryConnectionErrors: false,
+            },
+        }
+    );
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const intunedClient = new IntunedClient({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+    apiKey: "<YOUR_API_KEY_HERE>",
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+    const result = await intunedClient.files.extractStructuredData.sync(
+        {
+            type: "pdf",
+            source: {
+                type: "url",
+                data: "http://unconscious-margin.name",
+            },
+        },
+        {
+            key: "<value>",
+        },
+        {
+            type: "MARKDOWN",
+            model: "gpt4-turbo",
+        },
+        "<value>"
+    );
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Retries [retries] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

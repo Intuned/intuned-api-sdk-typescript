@@ -27,43 +27,79 @@ export type TerminateJobRunRequest = {
 };
 
 /** @internal */
+export const TerminateJobRunGlobals$inboundSchema: z.ZodType<
+    TerminateJobRunGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type TerminateJobRunGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const TerminateJobRunGlobals$outboundSchema: z.ZodType<
+    TerminateJobRunGlobals$Outbound,
+    z.ZodTypeDef,
+    TerminateJobRunGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TerminateJobRunGlobals$ {
-    export const inboundSchema: z.ZodType<TerminateJobRunGlobals, z.ZodTypeDef, unknown> = z.object(
-        {
-            workspaceId: z.string().optional(),
-        }
-    );
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `TerminateJobRunGlobals$inboundSchema` instead. */
+    export const inboundSchema = TerminateJobRunGlobals$inboundSchema;
+    /** @deprecated use `TerminateJobRunGlobals$outboundSchema` instead. */
+    export const outboundSchema = TerminateJobRunGlobals$outboundSchema;
+    /** @deprecated use `TerminateJobRunGlobals$Outbound` instead. */
+    export type Outbound = TerminateJobRunGlobals$Outbound;
 }
 
 /** @internal */
+export const TerminateJobRunRequest$inboundSchema: z.ZodType<
+    TerminateJobRunRequest,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    projectName: z.string(),
+    jobId: z.string(),
+    runId: z.string(),
+});
+
+/** @internal */
+export type TerminateJobRunRequest$Outbound = {
+    projectName: string;
+    jobId: string;
+    runId: string;
+};
+
+/** @internal */
+export const TerminateJobRunRequest$outboundSchema: z.ZodType<
+    TerminateJobRunRequest$Outbound,
+    z.ZodTypeDef,
+    TerminateJobRunRequest
+> = z.object({
+    projectName: z.string(),
+    jobId: z.string(),
+    runId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace TerminateJobRunRequest$ {
-    export const inboundSchema: z.ZodType<TerminateJobRunRequest, z.ZodTypeDef, unknown> = z.object(
-        {
-            projectName: z.string(),
-            jobId: z.string(),
-            runId: z.string(),
-        }
-    );
-
-    export type Outbound = {
-        projectName: string;
-        jobId: string;
-        runId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, TerminateJobRunRequest> =
-        z.object({
-            projectName: z.string(),
-            jobId: z.string(),
-            runId: z.string(),
-        });
+    /** @deprecated use `TerminateJobRunRequest$inboundSchema` instead. */
+    export const inboundSchema = TerminateJobRunRequest$inboundSchema;
+    /** @deprecated use `TerminateJobRunRequest$outboundSchema` instead. */
+    export const outboundSchema = TerminateJobRunRequest$outboundSchema;
+    /** @deprecated use `TerminateJobRunRequest$Outbound` instead. */
+    export type Outbound = TerminateJobRunRequest$Outbound;
 }

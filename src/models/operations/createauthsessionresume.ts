@@ -29,52 +29,91 @@ export type CreateAuthSessionResumeRequest = {
 };
 
 /** @internal */
+export const CreateAuthSessionResumeGlobals$inboundSchema: z.ZodType<
+    CreateAuthSessionResumeGlobals,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/** @internal */
+export type CreateAuthSessionResumeGlobals$Outbound = {
+    workspaceId?: string | undefined;
+};
+
+/** @internal */
+export const CreateAuthSessionResumeGlobals$outboundSchema: z.ZodType<
+    CreateAuthSessionResumeGlobals$Outbound,
+    z.ZodTypeDef,
+    CreateAuthSessionResumeGlobals
+> = z.object({
+    workspaceId: z.string().optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateAuthSessionResumeGlobals$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionResumeGlobals, z.ZodTypeDef, unknown> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
-
-    export type Outbound = {
-        workspaceId?: string | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionResumeGlobals> =
-        z.object({
-            workspaceId: z.string().optional(),
-        });
+    /** @deprecated use `CreateAuthSessionResumeGlobals$inboundSchema` instead. */
+    export const inboundSchema = CreateAuthSessionResumeGlobals$inboundSchema;
+    /** @deprecated use `CreateAuthSessionResumeGlobals$outboundSchema` instead. */
+    export const outboundSchema = CreateAuthSessionResumeGlobals$outboundSchema;
+    /** @deprecated use `CreateAuthSessionResumeGlobals$Outbound` instead. */
+    export type Outbound = CreateAuthSessionResumeGlobals$Outbound;
 }
 
 /** @internal */
-export namespace CreateAuthSessionResumeRequest$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionResumeRequest, z.ZodTypeDef, unknown> = z
-        .object({
-            projectName: z.string(),
-            operationId: z.string(),
-            AuthSessionCreateResume: components.AuthSessionCreateResume$.inboundSchema,
-        })
-        .transform((v) => {
-            return remap$(v, {
-                AuthSessionCreateResume: "authSessionCreateResume",
-            });
+export const CreateAuthSessionResumeRequest$inboundSchema: z.ZodType<
+    CreateAuthSessionResumeRequest,
+    z.ZodTypeDef,
+    unknown
+> = z
+    .object({
+        projectName: z.string(),
+        operationId: z.string(),
+        AuthSessionCreateResume: components.AuthSessionCreateResume$inboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            AuthSessionCreateResume: "authSessionCreateResume",
         });
+    });
 
-    export type Outbound = {
-        projectName: string;
-        operationId: string;
-        AuthSessionCreateResume: components.AuthSessionCreateResume$.Outbound;
-    };
+/** @internal */
+export type CreateAuthSessionResumeRequest$Outbound = {
+    projectName: string;
+    operationId: string;
+    AuthSessionCreateResume: components.AuthSessionCreateResume$Outbound;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionResumeRequest> =
-        z
-            .object({
-                projectName: z.string(),
-                operationId: z.string(),
-                authSessionCreateResume: components.AuthSessionCreateResume$.outboundSchema,
-            })
-            .transform((v) => {
-                return remap$(v, {
-                    authSessionCreateResume: "AuthSessionCreateResume",
-                });
-            });
+/** @internal */
+export const CreateAuthSessionResumeRequest$outboundSchema: z.ZodType<
+    CreateAuthSessionResumeRequest$Outbound,
+    z.ZodTypeDef,
+    CreateAuthSessionResumeRequest
+> = z
+    .object({
+        projectName: z.string(),
+        operationId: z.string(),
+        authSessionCreateResume: components.AuthSessionCreateResume$outboundSchema,
+    })
+    .transform((v) => {
+        return remap$(v, {
+            authSessionCreateResume: "AuthSessionCreateResume",
+        });
+    });
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace CreateAuthSessionResumeRequest$ {
+    /** @deprecated use `CreateAuthSessionResumeRequest$inboundSchema` instead. */
+    export const inboundSchema = CreateAuthSessionResumeRequest$inboundSchema;
+    /** @deprecated use `CreateAuthSessionResumeRequest$outboundSchema` instead. */
+    export const outboundSchema = CreateAuthSessionResumeRequest$outboundSchema;
+    /** @deprecated use `CreateAuthSessionResumeRequest$Outbound` instead. */
+    export type Outbound = CreateAuthSessionResumeRequest$Outbound;
 }

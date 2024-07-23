@@ -19,31 +19,61 @@ export type CreateAuthSessionStart = {
 };
 
 /** @internal */
+export const CreateAuthSessionStartStatus$inboundSchema: z.ZodNativeEnum<
+    typeof CreateAuthSessionStartStatus
+> = z.nativeEnum(CreateAuthSessionStartStatus);
+
+/** @internal */
+export const CreateAuthSessionStartStatus$outboundSchema: z.ZodNativeEnum<
+    typeof CreateAuthSessionStartStatus
+> = CreateAuthSessionStartStatus$inboundSchema;
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateAuthSessionStartStatus$ {
-    export const inboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionStartStatus> = z.nativeEnum(
-        CreateAuthSessionStartStatus
-    );
-    export const outboundSchema: z.ZodNativeEnum<typeof CreateAuthSessionStartStatus> =
-        inboundSchema;
+    /** @deprecated use `CreateAuthSessionStartStatus$inboundSchema` instead. */
+    export const inboundSchema = CreateAuthSessionStartStatus$inboundSchema;
+    /** @deprecated use `CreateAuthSessionStartStatus$outboundSchema` instead. */
+    export const outboundSchema = CreateAuthSessionStartStatus$outboundSchema;
 }
 
 /** @internal */
+export const CreateAuthSessionStart$inboundSchema: z.ZodType<
+    CreateAuthSessionStart,
+    z.ZodTypeDef,
+    unknown
+> = z.object({
+    status: CreateAuthSessionStartStatus$inboundSchema,
+    operationId: z.string(),
+});
+
+/** @internal */
+export type CreateAuthSessionStart$Outbound = {
+    status: string;
+    operationId: string;
+};
+
+/** @internal */
+export const CreateAuthSessionStart$outboundSchema: z.ZodType<
+    CreateAuthSessionStart$Outbound,
+    z.ZodTypeDef,
+    CreateAuthSessionStart
+> = z.object({
+    status: CreateAuthSessionStartStatus$outboundSchema,
+    operationId: z.string(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace CreateAuthSessionStart$ {
-    export const inboundSchema: z.ZodType<CreateAuthSessionStart, z.ZodTypeDef, unknown> = z.object(
-        {
-            status: CreateAuthSessionStartStatus$.inboundSchema,
-            operationId: z.string(),
-        }
-    );
-
-    export type Outbound = {
-        status: string;
-        operationId: string;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, CreateAuthSessionStart> =
-        z.object({
-            status: CreateAuthSessionStartStatus$.outboundSchema,
-            operationId: z.string(),
-        });
+    /** @deprecated use `CreateAuthSessionStart$inboundSchema` instead. */
+    export const inboundSchema = CreateAuthSessionStart$inboundSchema;
+    /** @deprecated use `CreateAuthSessionStart$outboundSchema` instead. */
+    export const outboundSchema = CreateAuthSessionStart$outboundSchema;
+    /** @deprecated use `CreateAuthSessionStart$Outbound` instead. */
+    export type Outbound = CreateAuthSessionStart$Outbound;
 }
