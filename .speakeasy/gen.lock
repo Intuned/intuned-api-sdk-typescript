@@ -1,21 +1,22 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 2e328f236753ed1942b54b623c6773c4
+  docChecksum: eddaf7bcc56e44a46ddaf2464dde2b4b
   docVersion: 0.0.1
-  speakeasyVersion: 1.344.2
-  generationVersion: 2.377.1
-  releaseVersion: 0.7.0
-  configChecksum: 0f6c64cfa843085f833e87105b4ced6b
+  speakeasyVersion: 1.352.1
+  generationVersion: 2.385.1
+  releaseVersion: 0.8.0
+  configChecksum: 8e82c6238ab58cb5bd6496454032ac3f
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
     constsAndDefaults: 0.1.5
-    core: 3.11.8
+    core: 3.11.13
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
+    envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
@@ -53,9 +54,11 @@ generatedFiles:
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -63,10 +66,12 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts

@@ -63,7 +63,7 @@ The SDK runs within the context of a workspace. You will need to provide the wor
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
+    apiKey: process.env.API_KEY,
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -78,12 +78,7 @@ async function run() {
         },
         {
             key: "<value>",
-        },
-        {
-            type: "MARKDOWN",
-            model: "gpt4-turbo",
-        },
-        "<value>"
+        }
     );
 
     // Handle the result
@@ -369,7 +364,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
+    apiKey: process.env.API_KEY,
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -385,11 +380,6 @@ async function run() {
         {
             key: "<value>",
         },
-        {
-            type: "MARKDOWN",
-            model: "gpt4-turbo",
-        },
-        "<value>",
         {
             retries: {
                 strategy: "backoff",
@@ -427,7 +417,7 @@ const intunedClient = new IntunedClient({
         },
         retryConnectionErrors: false,
     },
-    apiKey: "<YOUR_API_KEY_HERE>",
+    apiKey: process.env.API_KEY,
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -442,12 +432,7 @@ async function run() {
         },
         {
             key: "<value>",
-        },
-        {
-            type: "MARKDOWN",
-            model: "gpt4-turbo",
-        },
-        "<value>"
+        }
     );
 
     // Handle the result
@@ -458,6 +443,56 @@ run();
 
 ```
 <!-- End Retries [retries] -->
+
+<!-- Start Global Parameters [global-parameters] -->
+## Global Parameters
+
+A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
+
+For example, you can set `workspaceId` to `"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"` at SDK initialization and then you do not have to pass the same value on calls to operations like `sync`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+
+
+### Available Globals
+
+The following global parameter is available.
+
+| Name | Type | Required | Description |
+| ---- | ---- |:--------:| ----------- |
+| workspaceId | string |  | Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)? |
+
+
+### Example
+
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const intunedClient = new IntunedClient({
+    apiKey: process.env.API_KEY,
+    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+    const result = await intunedClient.files.extractStructuredData.sync(
+        {
+            type: "pdf",
+            source: {
+                type: "url",
+                data: "http://unconscious-margin.name",
+            },
+        },
+        {
+            key: "<value>",
+        }
+    );
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
+<!-- End Global Parameters [global-parameters] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
