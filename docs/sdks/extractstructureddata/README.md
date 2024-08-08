@@ -35,10 +35,7 @@ async function run() {
         },
     }, {
     "key": "<value>",
-  }, {
-    type: "MARKDOWN",
-    model: "gpt4-turbo",
-  }, "<value>");
+  });
 
   // Handle the result
   console.log(result)
@@ -96,10 +93,7 @@ async function run() {
         },
     }, {
     "key": "<value>",
-  }, {
-    type: "MARKDOWN",
-    model: "gpt-4o",
-  }, "<value>");
+  });
 
   // Handle the result
   console.log(result)

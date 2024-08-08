@@ -18,12 +18,7 @@ async function run() {
         },
         {
             key: "<value>",
-        },
-        {
-            type: "MARKDOWN",
-            model: "gpt4-turbo",
-        },
-        "<value>"
+        }
     );
 
     // Handle the result

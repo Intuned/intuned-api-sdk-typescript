@@ -1,23 +1,24 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 2e328f236753ed1942b54b623c6773c4
+  docChecksum: ccd178123b769c39c9002ec95e5306ab
   docVersion: 0.0.1
-  speakeasyVersion: 1.344.2
-  generationVersion: 2.377.1
-  releaseVersion: 0.7.0
-  configChecksum: 0f6c64cfa843085f833e87105b4ced6b
+  speakeasyVersion: 1.357.3
+  generationVersion: 2.390.0
+  releaseVersion: 0.3.9
+  configChecksum: a5f044297bd1e3755544b7463bf75a27
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    constsAndDefaults: 0.1.5
-    core: 3.11.8
+    constsAndDefaults: 0.1.6
+    core: 3.12.2
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
+    envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -31,6 +32,47 @@ features:
     unions: 2.85.6
     webhooks: 1.0.0
 generatedFiles:
+  - src/funcs/filesExtractStructuredDataSync.ts
+  - src/funcs/filesExtractStructuredDataStart.ts
+  - src/funcs/filesExtractStructuredDataResult.ts
+  - src/funcs/filesExtractMarkdownSync.ts
+  - src/funcs/filesExtractMarkdownStart.ts
+  - src/funcs/filesExtractMarkdownResult.ts
+  - src/funcs/filesExtractTablesSync.ts
+  - src/funcs/filesExtractTablesStart.ts
+  - src/funcs/filesExtractTablesResult.ts
+  - src/funcs/projectJobsAll.ts
+  - src/funcs/projectJobsCreate.ts
+  - src/funcs/projectJobsOne.ts
+  - src/funcs/projectJobsDelete.ts
+  - src/funcs/projectJobsPause.ts
+  - src/funcs/projectJobsResume.ts
+  - src/funcs/projectJobsTrigger.ts
+  - src/funcs/projectQueuesAll.ts
+  - src/funcs/projectQueuesCreate.ts
+  - src/funcs/projectQueuesOne.ts
+  - src/funcs/projectQueuesDelete.ts
+  - src/funcs/projectRunSync.ts
+  - src/funcs/projectRunStart.ts
+  - src/funcs/projectRunResult.ts
+  - src/funcs/projectAuthSessionsAll.ts
+  - src/funcs/projectAuthSessionsOne.ts
+  - src/funcs/projectAuthSessionsDelete.ts
+  - src/funcs/projectJobsRunsAll.ts
+  - src/funcs/projectJobsRunsTerminate.ts
+  - src/funcs/projectQueuesItemsAppend.ts
+  - src/funcs/projectQueuesItemsResult.ts
+  - src/funcs/projectQueuesItemsDelete.ts
+  - src/funcs/projectQueuesRepeatItemsAll.ts
+  - src/funcs/projectQueuesRepeatItemsAppend.ts
+  - src/funcs/projectQueuesRepeatItemsOne.ts
+  - src/funcs/projectQueuesRepeatItemsUpdate.ts
+  - src/funcs/projectQueuesRepeatItemsDelete.ts
+  - src/funcs/projectAuthSessionsCreateStart.ts
+  - src/funcs/projectAuthSessionsCreateResult.ts
+  - src/funcs/projectAuthSessionsCreateResume.ts
+  - src/funcs/projectAuthSessionsRecorderCreateAuthSession.ts
+  - src/funcs/projectAuthSessionsRecorderStart.ts
   - src/sdk/extractstructureddata.ts
   - src/sdk/extractmarkdown.ts
   - src/sdk/extracttables.ts
@@ -42,6 +84,7 @@ generatedFiles:
   - src/sdk/queues.ts
   - src/sdk/run.ts
   - src/sdk/create.ts
+  - src/sdk/recorder.ts
   - src/sdk/authsessions.ts
   - src/sdk/project.ts
   - src/sdk/sdk.ts
@@ -50,12 +93,15 @@ generatedFiles:
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts
+  - src/lib/dlv.ts
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
   - src/lib/schemas.ts
@@ -63,10 +109,12 @@ generatedFiles:
   - src/lib/security.ts
   - src/lib/url.ts
   - src/sdk/index.ts
+  - src/models/errors/httpclienterrors.ts
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
   - src/types/enums.ts
+  - src/types/fp.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
@@ -145,6 +193,10 @@ generatedFiles:
   - src/models/components/authsessioncreatefailedresult.ts
   - src/models/components/createauthsessionresume.ts
   - src/models/components/authsessioncreateresume.ts
+  - src/models/components/createrecorderauthsessioninstance.ts
+  - src/models/components/createrecorderauthsessionrequest.ts
+  - src/models/components/startauthsessionrecorder.ts
+  - src/models/components/startauthsessionrecorderrequest.ts
   - src/models/components/security.ts
   - src/models/components/sinkresult.ts
   - src/models/components/jobsinkresultpayload.ts
@@ -187,6 +239,8 @@ generatedFiles:
   - src/models/operations/createauthsessionstart.ts
   - src/models/operations/createauthsessionresult.ts
   - src/models/operations/createauthsessionresume.ts
+  - src/models/operations/createrecorderauthsessioninstance.ts
+  - src/models/operations/startauthsessionrecorder.ts
   - src/models/operations/fileextractstructureddatasync.ts
   - src/models/operations/fileextractstructureddatastart.ts
   - src/models/operations/fileextractmarkdownsync.ts
@@ -310,6 +364,7 @@ generatedFiles:
   - docs/models/components/asyncrunpendingresponsestatus.md
   - docs/models/components/asyncrunpendingresponse.md
   - docs/models/components/asyncresultresponse.md
+  - docs/models/components/authsessioninfostatus.md
   - docs/models/components/authsessioninfo.md
   - docs/models/components/createauthsessionstartstatus.md
   - docs/models/components/createauthsessionstart.md
@@ -333,6 +388,11 @@ generatedFiles:
   - docs/models/components/createauthsessionresumestatus.md
   - docs/models/components/createauthsessionresume.md
   - docs/models/components/authsessioncreateresume.md
+  - docs/models/components/createrecorderauthsessioninstancestatus.md
+  - docs/models/components/createrecorderauthsessioninstance.md
+  - docs/models/components/createrecorderauthsessionrequest.md
+  - docs/models/components/startauthsessionrecorder.md
+  - docs/models/components/startauthsessionrecorderrequest.md
   - docs/models/components/security.md
   - docs/models/components/sinkresult.md
   - docs/models/components/project.md
@@ -418,6 +478,10 @@ generatedFiles:
   - docs/models/operations/createauthsessionresultrequest.md
   - docs/models/operations/createauthsessionresumeglobals.md
   - docs/models/operations/createauthsessionresumerequest.md
+  - docs/models/operations/createrecorderauthsessioninstanceglobals.md
+  - docs/models/operations/createrecorderauthsessioninstancerequest.md
+  - docs/models/operations/startauthsessionrecorderglobals.md
+  - docs/models/operations/startauthsessionrecorderrequest.md
   - docs/models/operations/fileextractstructureddatasyncglobals.md
   - docs/models/operations/fileextractstructureddatastartglobals.md
   - docs/models/operations/fileextractmarkdownsyncglobals.md
@@ -439,6 +503,7 @@ generatedFiles:
   - docs/sdks/run/README.md
   - docs/sdks/authsessions/README.md
   - docs/sdks/create/README.md
+  - docs/sdks/recorder/README.md
   - USAGE.md
   - .gitattributes
   - .devcontainer/README.md

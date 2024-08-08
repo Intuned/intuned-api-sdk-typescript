@@ -27,7 +27,7 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.authSessions.create.start("my-project", {
-    authSessionDisplayName: "my-auth-session",
+    name: "my-auth-session",
   parameters:     {
         "username": "john.doe",
         "password": "password",
