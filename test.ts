@@ -70,18 +70,19 @@ async function testJobs(client: IntunedClient, projectName: string) {
 async function testQueues(client: IntunedClient, projectName: string) {
   const queueId = "this-is-a-test";
   const queues = client.project.queues;
-  const hmm = await queues.delete(projectName, queueId);
-  console.log("Delete queue", hmm);
-  const allQueues = await queues.all(projectName);
-  console.log("Get all queues", allQueues);
   const queue = await queues.create(projectName, {
-    id: queueId,
     configuration: {
       runMode: "Default",
     },
-    name: "Test Queue",
+    id: queueId,
   });
   console.log("Create queue", queue);
+
+  // const hmm = await queues.delete(projectName, queueId);
+  // console.log("Delete queue", hmm);
+  const allQueues = await queues.all(projectName);
+  console.log("Get all queues", allQueues);
+
   const getQueue = await queues.one(projectName, queueId);
   console.log("Get queue", getQueue);
   const appendItem = await queues.items.append(projectName, queueId, {
@@ -377,15 +378,15 @@ async function testFiles(client: IntunedClient) {
 async function main() {
   const client = new IntunedClient({
     serverURL: "http://localhost:3000/api/v1/workspace",
-    workspaceId: "02cf6e04-8cbd-4e57-b5bd-0236b00001c3",
-    apiKey: "in1_de24eb30ff4f4decd2913a1bf80b95d0",
+    workspaceId: "3118faad-61c0-4206-a552-b0d692c58025",
+    apiKey: "in1_5a4c43ceefcd1e9ec4b5a94a3ca77e7e",
   });
 
   // const projectName = 'queue-test-integration';
-  await testJobs(client, "ok");
-  testQueues;
-  testRun;
-  testFiles;
+  // await testJobs(client, "ok");
+  await testQueues(client, "ok");
+  // await testRun(client, "ok");
+  // await testFiles(client);
   // await testAuthSessions(client, "another-test");
 }
 
