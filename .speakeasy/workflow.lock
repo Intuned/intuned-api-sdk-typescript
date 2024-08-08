@@ -2,16 +2,16 @@ speakeasyVersion: 1.352.1
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:9dcee00930760168476d9d70e8c5e428f79a2125a0c21fc2026f0f16ae413d5d
-        sourceBlobDigest: sha256:f1fc047e4acfe9fb1cc1203ee1b47baeb9a4b7782c476c73b4eec866517fcd4f
+        sourceRevisionDigest: sha256:d803a8dfc3f573bc7e33c7444fe144e2cff785c0e56fd2d9366afd3333916e39
+        sourceBlobDigest: sha256:a8fed1b6fb737155649cfacb8fbdb4fb2339589843effa8ca290b05a8e1f34e6
         tags:
             - latest
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:9dcee00930760168476d9d70e8c5e428f79a2125a0c21fc2026f0f16ae413d5d
-        sourceBlobDigest: sha256:f1fc047e4acfe9fb1cc1203ee1b47baeb9a4b7782c476c73b4eec866517fcd4f
+        sourceRevisionDigest: sha256:d803a8dfc3f573bc7e33c7444fe144e2cff785c0e56fd2d9366afd3333916e39
+        sourceBlobDigest: sha256:a8fed1b6fb737155649cfacb8fbdb4fb2339589843effa8ca290b05a8e1f34e6
         outLocation: /Users/ramitheeb/intuned-api-sdk-typescript
     typescript-client-sdk:
         source: intunedClientApi

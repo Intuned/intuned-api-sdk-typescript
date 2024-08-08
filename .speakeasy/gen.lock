@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: eddaf7bcc56e44a46ddaf2464dde2b4b
+  docChecksum: ccd178123b769c39c9002ec95e5306ab
   docVersion: 0.0.1
   speakeasyVersion: 1.352.1
   generationVersion: 2.385.1
-  releaseVersion: 0.8.0
-  configChecksum: 8e82c6238ab58cb5bd6496454032ac3f
+  releaseVersion: 0.8.11
+  configChecksum: 0baba2c48d15a24f454068fe84981cec
   published: true
 features:
   typescript:
@@ -43,6 +43,7 @@ generatedFiles:
   - src/sdk/queues.ts
   - src/sdk/run.ts
   - src/sdk/create.ts
+  - src/sdk/recorder.ts
   - src/sdk/authsessions.ts
   - src/sdk/project.ts
   - src/sdk/sdk.ts
@@ -150,6 +151,10 @@ generatedFiles:
   - src/models/components/authsessioncreatefailedresult.ts
   - src/models/components/createauthsessionresume.ts
   - src/models/components/authsessioncreateresume.ts
+  - src/models/components/createrecorderauthsessioninstance.ts
+  - src/models/components/createrecorderauthsessionrequest.ts
+  - src/models/components/startauthsessionrecorder.ts
+  - src/models/components/startauthsessionrecorderrequest.ts
   - src/models/components/security.ts
   - src/models/components/sinkresult.ts
   - src/models/components/jobsinkresultpayload.ts
@@ -192,6 +197,8 @@ generatedFiles:
   - src/models/operations/createauthsessionstart.ts
   - src/models/operations/createauthsessionresult.ts
   - src/models/operations/createauthsessionresume.ts
+  - src/models/operations/createrecorderauthsessioninstance.ts
+  - src/models/operations/startauthsessionrecorder.ts
   - src/models/operations/fileextractstructureddatasync.ts
   - src/models/operations/fileextractstructureddatastart.ts
   - src/models/operations/fileextractmarkdownsync.ts
@@ -315,6 +322,7 @@ generatedFiles:
   - docs/models/components/asyncrunpendingresponsestatus.md
   - docs/models/components/asyncrunpendingresponse.md
   - docs/models/components/asyncresultresponse.md
+  - docs/models/components/authsessioninfostatus.md
   - docs/models/components/authsessioninfo.md
   - docs/models/components/createauthsessionstartstatus.md
   - docs/models/components/createauthsessionstart.md
@@ -338,6 +346,11 @@ generatedFiles:
   - docs/models/components/createauthsessionresumestatus.md
   - docs/models/components/createauthsessionresume.md
   - docs/models/components/authsessioncreateresume.md
+  - docs/models/components/createrecorderauthsessioninstancestatus.md
+  - docs/models/components/createrecorderauthsessioninstance.md
+  - docs/models/components/createrecorderauthsessionrequest.md
+  - docs/models/components/startauthsessionrecorder.md
+  - docs/models/components/startauthsessionrecorderrequest.md
   - docs/models/components/security.md
   - docs/models/components/sinkresult.md
   - docs/models/components/project.md
@@ -423,6 +436,10 @@ generatedFiles:
   - docs/models/operations/createauthsessionresultrequest.md
   - docs/models/operations/createauthsessionresumeglobals.md
   - docs/models/operations/createauthsessionresumerequest.md
+  - docs/models/operations/createrecorderauthsessioninstanceglobals.md
+  - docs/models/operations/createrecorderauthsessioninstancerequest.md
+  - docs/models/operations/startauthsessionrecorderglobals.md
+  - docs/models/operations/startauthsessionrecorderrequest.md
   - docs/models/operations/fileextractstructureddatasyncglobals.md
   - docs/models/operations/fileextractstructureddatastartglobals.md
   - docs/models/operations/fileextractmarkdownsyncglobals.md
@@ -444,6 +461,7 @@ generatedFiles:
   - docs/sdks/run/README.md
   - docs/sdks/authsessions/README.md
   - docs/sdks/create/README.md
+  - docs/sdks/recorder/README.md
   - USAGE.md
   - .gitattributes
   - .devcontainer/README.md

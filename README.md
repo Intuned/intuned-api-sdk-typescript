@@ -165,6 +165,11 @@ run();
 * [start](docs/sdks/create/README.md#start) - Create Auth Session - Start
 * [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
 * [resume](docs/sdks/create/README.md#resume) - Create Auth Session -  Resume
+
+### [project.authSessions.recorder](docs/sdks/recorder/README.md)
+
+* [createAuthSession](docs/sdks/recorder/README.md#createauthsession) - Create Recorder Auth Session Instance
+* [start](docs/sdks/recorder/README.md#start) - Create Recorder Auth Session Instance
 <!-- End Available Resources and Operations [operations] -->
 
 ## Error Handling
