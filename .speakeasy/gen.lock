@@ -3,22 +3,22 @@ id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
   docChecksum: ccd178123b769c39c9002ec95e5306ab
   docVersion: 0.0.1
-  speakeasyVersion: 1.352.1
-  generationVersion: 2.385.1
-  releaseVersion: 0.8.11
-  configChecksum: 0baba2c48d15a24f454068fe84981cec
+  speakeasyVersion: 1.357.3
+  generationVersion: 2.390.0
+  releaseVersion: 0.3.9
+  configChecksum: a5f044297bd1e3755544b7463bf75a27
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    constsAndDefaults: 0.1.5
-    core: 3.11.13
+    constsAndDefaults: 0.1.6
+    core: 3.12.2
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     envVarSecurityUsage: 0.1.1
     flattening: 2.81.1
-    globalSecurity: 2.82.9
+    globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.4
@@ -32,6 +32,47 @@ features:
     unions: 2.85.6
     webhooks: 1.0.0
 generatedFiles:
+  - src/funcs/filesExtractStructuredDataSync.ts
+  - src/funcs/filesExtractStructuredDataStart.ts
+  - src/funcs/filesExtractStructuredDataResult.ts
+  - src/funcs/filesExtractMarkdownSync.ts
+  - src/funcs/filesExtractMarkdownStart.ts
+  - src/funcs/filesExtractMarkdownResult.ts
+  - src/funcs/filesExtractTablesSync.ts
+  - src/funcs/filesExtractTablesStart.ts
+  - src/funcs/filesExtractTablesResult.ts
+  - src/funcs/projectJobsAll.ts
+  - src/funcs/projectJobsCreate.ts
+  - src/funcs/projectJobsOne.ts
+  - src/funcs/projectJobsDelete.ts
+  - src/funcs/projectJobsPause.ts
+  - src/funcs/projectJobsResume.ts
+  - src/funcs/projectJobsTrigger.ts
+  - src/funcs/projectQueuesAll.ts
+  - src/funcs/projectQueuesCreate.ts
+  - src/funcs/projectQueuesOne.ts
+  - src/funcs/projectQueuesDelete.ts
+  - src/funcs/projectRunSync.ts
+  - src/funcs/projectRunStart.ts
+  - src/funcs/projectRunResult.ts
+  - src/funcs/projectAuthSessionsAll.ts
+  - src/funcs/projectAuthSessionsOne.ts
+  - src/funcs/projectAuthSessionsDelete.ts
+  - src/funcs/projectJobsRunsAll.ts
+  - src/funcs/projectJobsRunsTerminate.ts
+  - src/funcs/projectQueuesItemsAppend.ts
+  - src/funcs/projectQueuesItemsResult.ts
+  - src/funcs/projectQueuesItemsDelete.ts
+  - src/funcs/projectQueuesRepeatItemsAll.ts
+  - src/funcs/projectQueuesRepeatItemsAppend.ts
+  - src/funcs/projectQueuesRepeatItemsOne.ts
+  - src/funcs/projectQueuesRepeatItemsUpdate.ts
+  - src/funcs/projectQueuesRepeatItemsDelete.ts
+  - src/funcs/projectAuthSessionsCreateStart.ts
+  - src/funcs/projectAuthSessionsCreateResult.ts
+  - src/funcs/projectAuthSessionsCreateResume.ts
+  - src/funcs/projectAuthSessionsRecorderCreateAuthSession.ts
+  - src/funcs/projectAuthSessionsRecorderStart.ts
   - src/sdk/extractstructureddata.ts
   - src/sdk/extractmarkdown.ts
   - src/sdk/extracttables.ts
@@ -52,6 +93,7 @@ generatedFiles:
   - RUNTIMES.md
   - jsr.json
   - package.json
+  - src/core.ts
   - src/index.ts
   - src/lib/base64.ts
   - src/lib/config.ts

@@ -21,7 +21,7 @@ Starts creation process of an authentication session for a project with the auth
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -73,7 +73,7 @@ Gets authentication session creation operation result.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -119,7 +119,7 @@ Resume authentication session creation operation. This is needed if the operatio
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 

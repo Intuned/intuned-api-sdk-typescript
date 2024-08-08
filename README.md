@@ -63,7 +63,7 @@ The SDK runs within the context of a workspace. You will need to provide the wor
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: process.env.API_KEY,
+    apiKey: "<YOUR_API_KEY_HERE>",
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -369,7 +369,7 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: process.env.API_KEY,
+    apiKey: "<YOUR_API_KEY_HERE>",
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -422,7 +422,7 @@ const intunedClient = new IntunedClient({
         },
         retryConnectionErrors: false,
     },
-    apiKey: process.env.API_KEY,
+    apiKey: "<YOUR_API_KEY_HERE>",
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -472,7 +472,7 @@ The following global parameter is available.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: process.env.API_KEY,
+    apiKey: "<YOUR_API_KEY_HERE>",
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 

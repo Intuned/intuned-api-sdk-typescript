@@ -21,7 +21,7 @@ Runs a project API synchronously.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -77,7 +77,7 @@ Starts a project API run operation
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -133,7 +133,7 @@ Retrieves the result of a started project API run operation.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 

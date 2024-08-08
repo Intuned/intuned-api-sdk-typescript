@@ -20,7 +20,7 @@ Get all job runs of a job.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -66,7 +66,7 @@ Terminate a job run by ID.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 

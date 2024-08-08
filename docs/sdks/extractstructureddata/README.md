@@ -22,7 +22,7 @@ It accepts the file and requested schema for the data to be extracted.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -80,7 +80,7 @@ It responds with an ID to track the operation status and retrieve the result.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -136,7 +136,7 @@ Gets the result of the structured data extraction operation using the operation 
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 

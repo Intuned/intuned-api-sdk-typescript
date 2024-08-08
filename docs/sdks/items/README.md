@@ -21,7 +21,7 @@ Appends an item to the queue.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -77,7 +77,7 @@ Get queue item result.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
@@ -124,7 +124,7 @@ Delete queued item. If the item is currently processing, the delete will fail.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-  apiKey: process.env.API_KEY,
+  apiKey: "<YOUR_API_KEY_HERE>",
   workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 

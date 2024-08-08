@@ -3,7 +3,7 @@
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: process.env.API_KEY,
+    apiKey: "<YOUR_API_KEY_HERE>",
     workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
