@@ -1,5 +1,12 @@
 # GetRepeatItemsGlobals
 
+## Example Usage
+
+```typescript
+import { GetRepeatItemsGlobals } from "@intuned/client/models/operations";
+
+let value: GetRepeatItemsGlobals = {};
+```
 
 ## Fields
 

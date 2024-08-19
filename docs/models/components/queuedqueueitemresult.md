@@ -1,5 +1,15 @@
 # QueuedQueueItemResult
 
+## Example Usage
+
+```typescript
+import { QueuedQueueItemResult } from "@intuned/client/models/components";
+
+let value: QueuedQueueItemResult = {
+    runId: "<value>",
+    status: "queued",
+};
+```
 
 ## Fields
 

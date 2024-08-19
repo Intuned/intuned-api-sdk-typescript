@@ -1,5 +1,12 @@
 # CreateQueue
 
+## Example Usage
+
+```typescript
+import { CreateQueue } from "@intuned/client/models/components";
+
+let value: CreateQueue = {};
+```
 
 ## Fields
 

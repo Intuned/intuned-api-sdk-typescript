@@ -1,5 +1,20 @@
 # GeneralExtractRequest
 
+## Example Usage
+
+```typescript
+import { GeneralExtractRequest } from "@intuned/client/models/components";
+
+let value: GeneralExtractRequest = {
+    file: {
+        type: "pdf",
+        source: {
+            type: "base64",
+            data: "<value>",
+        },
+    },
+};
+```
 
 ## Fields
 

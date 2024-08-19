@@ -1,5 +1,12 @@
 # CreateJobGlobals
 
+## Example Usage
+
+```typescript
+import { CreateJobGlobals } from "@intuned/client/models/operations";
+
+let value: CreateJobGlobals = {};
+```
 
 ## Fields
 

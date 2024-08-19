@@ -1,5 +1,12 @@
 # Every
 
+## Example Usage
+
+```typescript
+import { Every } from "@intuned/client/models/components";
+
+let value: Every = "<value>";
+```
 
 ## Supported Types
 

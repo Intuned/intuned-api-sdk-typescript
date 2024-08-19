@@ -2,9 +2,16 @@
 
 The requested action.
 
+## Example Usage
+
+```typescript
+import { Action } from "@intuned/client/models/components";
+
+let value: Action = "request_more_info";
+```
 
 ## Values
 
-| Name              | Value             |
-| ----------------- | ----------------- |
-| `RequestMoreInfo` | request_more_info |
+```typescript
+"request_more_info"
+```

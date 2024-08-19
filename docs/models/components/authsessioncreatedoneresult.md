@@ -2,6 +2,16 @@
 
 Auth session create done
 
+## Example Usage
+
+```typescript
+import { AuthSessionCreateDoneResult } from "@intuned/client/models/components";
+
+let value: AuthSessionCreateDoneResult = {
+    status: "done",
+    authSessionId: "<value>",
+};
+```
 
 ## Fields
 

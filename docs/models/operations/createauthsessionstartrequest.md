@@ -1,5 +1,15 @@
 # CreateAuthSessionStartRequest
 
+## Example Usage
+
+```typescript
+import { CreateAuthSessionStartRequest } from "@intuned/client/models/operations";
+
+let value: CreateAuthSessionStartRequest = {
+    projectName: "my-project",
+    createAuthSessionRequest: {},
+};
+```
 
 ## Fields
 

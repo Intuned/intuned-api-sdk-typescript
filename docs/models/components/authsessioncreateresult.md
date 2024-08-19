@@ -1,5 +1,14 @@
 # AuthSessionCreateResult
 
+## Example Usage
+
+```typescript
+import { AuthSessionCreateResult } from "@intuned/client/models/components";
+
+let value: AuthSessionCreateResult = {
+    status: "pending",
+};
+```
 
 ## Supported Types
 

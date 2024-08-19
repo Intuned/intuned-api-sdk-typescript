@@ -1,5 +1,12 @@
 # FileExtractMarkdownStartGlobals
 
+## Example Usage
+
+```typescript
+import { FileExtractMarkdownStartGlobals } from "@intuned/client/models/operations";
+
+let value: FileExtractMarkdownStartGlobals = {};
+```
 
 ## Fields
 

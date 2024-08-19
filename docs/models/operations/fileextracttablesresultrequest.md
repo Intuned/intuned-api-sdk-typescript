@@ -1,5 +1,14 @@
 # FileExtractTablesResultRequest
 
+## Example Usage
+
+```typescript
+import { FileExtractTablesResultRequest } from "@intuned/client/models/operations";
+
+let value: FileExtractTablesResultRequest = {
+    operationId: "aaaabbbCCCCdddd",
+};
+```
 
 ## Fields
 

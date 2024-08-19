@@ -1,8 +1,15 @@
 # PauseJobMessage
 
+## Example Usage
+
+```typescript
+import { PauseJobMessage } from "@intuned/client/models/components";
+
+let value: PauseJobMessage = "Paused";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Paused` | Paused   |
+```typescript
+"Paused"
+```

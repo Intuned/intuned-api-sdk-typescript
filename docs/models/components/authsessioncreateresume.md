@@ -2,6 +2,16 @@
 
 Auth session creation resume request.
 
+## Example Usage
+
+```typescript
+import { AuthSessionCreateResume } from "@intuned/client/models/components";
+
+let value: AuthSessionCreateResume = {
+    input: "<value>",
+    infoRequestId: "<value>",
+};
+```
 
 ## Fields
 

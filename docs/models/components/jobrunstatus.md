@@ -2,13 +2,16 @@
 
 The status of the job run.
 
+## Example Usage
+
+```typescript
+import { JobRunStatus } from "@intuned/client/models/components";
+
+let value: JobRunStatus = "PENDING";
+```
 
 ## Values
 
-| Name         | Value        |
-| ------------ | ------------ |
-| `Failed`     | FAILED       |
-| `Completed`  | COMPLETED    |
-| `Pending`    | PENDING      |
-| `Terminated` | TERMINATED   |
-| `Paused`     | PAUSED       |
+```typescript
+"FAILED" | "COMPLETED" | "PENDING" | "TERMINATED" | "PAUSED"
+```

@@ -1,5 +1,17 @@
 # Details
 
+## Example Usage
+
+```typescript
+import { Details } from "@intuned/client/models/components";
+
+let value: Details = {
+    choices: ["<value>"],
+    requestType: "multiple_choice",
+    action: "request_more_info",
+    messageToUser: "<value>",
+};
+```
 
 ## Supported Types
 

@@ -2,6 +2,17 @@
 
 A summary of the job run. Contains how many payloads are pending, how many finished executing, succeeded and failed.
 
+## Example Usage
+
+```typescript
+import { Summary } from "@intuned/client/models/components";
+
+let value: Summary = {
+    apisCount: 384.25,
+    successCount: 4386.01,
+    failuresCount: 6342.74,
+};
+```
 
 ## Fields
 

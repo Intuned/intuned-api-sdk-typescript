@@ -1,5 +1,12 @@
 # UpdateQueueRepeatItem
 
+## Example Usage
+
+```typescript
+import { UpdateQueueRepeatItem } from "@intuned/client/models/components";
+
+let value: UpdateQueueRepeatItem = {};
+```
 
 ## Fields
 

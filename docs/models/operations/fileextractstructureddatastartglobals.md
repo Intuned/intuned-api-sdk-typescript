@@ -1,5 +1,12 @@
 # FileExtractStructuredDataStartGlobals
 
+## Example Usage
+
+```typescript
+import { FileExtractStructuredDataStartGlobals } from "@intuned/client/models/operations";
+
+let value: FileExtractStructuredDataStartGlobals = {};
+```
 
 ## Fields
 

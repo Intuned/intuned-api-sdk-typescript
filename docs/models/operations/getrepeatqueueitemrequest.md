@@ -1,5 +1,16 @@
 # GetRepeatQueueItemRequest
 
+## Example Usage
+
+```typescript
+import { GetRepeatQueueItemRequest } from "@intuned/client/models/operations";
+
+let value: GetRepeatQueueItemRequest = {
+    projectName: "my-project",
+    queueId: "my-sample-queue",
+    itemId: "22222222-2222-2222-2222-222222222222",
+};
+```
 
 ## Fields
 

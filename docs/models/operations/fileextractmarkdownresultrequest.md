@@ -1,5 +1,14 @@
 # FileExtractMarkdownResultRequest
 
+## Example Usage
+
+```typescript
+import { FileExtractMarkdownResultRequest } from "@intuned/client/models/operations";
+
+let value: FileExtractMarkdownResultRequest = {
+    operationId: "aaaabbbCCCCdddd",
+};
+```
 
 ## Fields
 

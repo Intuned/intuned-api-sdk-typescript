@@ -2,6 +2,19 @@
 
 Failed API run result
 
+## Example Usage
+
+```typescript
+import { AsyncRunFailedResponse } from "@intuned/client/models/components";
+
+let value: AsyncRunFailedResponse = {
+    error: "<value>",
+    message: "<value>",
+    status: "failed",
+    statusCode: 6674.11,
+    runId: "<value>",
+};
+```
 
 ## Fields
 

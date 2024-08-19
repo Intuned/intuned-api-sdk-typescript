@@ -1,5 +1,19 @@
 # CreateAuthSessionResumeRequest
 
+## Example Usage
+
+```typescript
+import { CreateAuthSessionResumeRequest } from "@intuned/client/models/operations";
+
+let value: CreateAuthSessionResumeRequest = {
+    projectName: "my-project",
+    operationId: "aaaabbbCCCCdddd",
+    authSessionCreateResume: {
+        input: "<value>",
+        infoRequestId: "<value>",
+    },
+};
+```
 
 ## Fields
 

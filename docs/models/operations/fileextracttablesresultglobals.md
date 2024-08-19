@@ -1,5 +1,12 @@
 # FileExtractTablesResultGlobals
 
+## Example Usage
+
+```typescript
+import { FileExtractTablesResultGlobals } from "@intuned/client/models/operations";
+
+let value: FileExtractTablesResultGlobals = {};
+```
 
 ## Fields
 

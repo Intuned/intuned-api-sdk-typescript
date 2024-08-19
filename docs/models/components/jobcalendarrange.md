@@ -2,6 +2,17 @@
 
 A range of values for a calendar property. The type depends on the property.
 
+## Example Usage
+
+```typescript
+import { JobCalendarRange } from "@intuned/client/models/components";
+
+let value: JobCalendarRange = {
+    start: 1,
+    end: 30,
+    step: 1,
+};
+```
 
 ## Fields
 

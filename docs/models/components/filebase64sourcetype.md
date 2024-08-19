@@ -2,9 +2,16 @@
 
 Type of file source
 
+## Example Usage
+
+```typescript
+import { FileBase64SourceType } from "@intuned/client/models/components";
+
+let value: FileBase64SourceType = "base64";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Base64` | base64   |
+```typescript
+"base64"
+```

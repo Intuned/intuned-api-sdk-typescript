@@ -1,5 +1,12 @@
 # State
 
+## Example Usage
+
+```typescript
+import { State } from "@intuned/client/models/components";
+
+let value: State = {};
+```
 
 ## Supported Types
 

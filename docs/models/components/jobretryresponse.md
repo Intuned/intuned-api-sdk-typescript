@@ -2,6 +2,15 @@
 
 The retry policy of the job. Configure how many retries and the delay between them for each payload. The delay is calculated as `max(initialInterval * (backoffCoefficient ^ [i]), maximumInterval)`, where `i` is the current retry iteration.
 
+## Example Usage
+
+```typescript
+import { JobRetryResponse } from "@intuned/client/models/components";
+
+let value: JobRetryResponse = {
+    maximumAttempts: 9786.19,
+};
+```
 
 ## Fields
 

@@ -35,6 +35,38 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectAuthSessionsAll } from "@intuned/client/funcs/projectAuthSessionsAll.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectAuthSessionsAll(intunedClient, "my-project");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -71,7 +103,39 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  const result = await intunedClient.project.authSessions.one("my-project", "dfaa6237-f2e9-4f03-ac48-fe928f8e3863");
+  const result = await intunedClient.project.authSessions.one("my-project", "<value>");
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectAuthSessionsOne } from "@intuned/client/funcs/projectAuthSessionsOne.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectAuthSessionsOne(intunedClient, "my-project", "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -117,7 +181,38 @@ const intunedClient = new IntunedClient({
 });
 
 async function run() {
-  await intunedClient.project.authSessions.delete("my-project", "8db863f6-ef9b-413a-8a70-cb816b33de6b");
+  await intunedClient.project.authSessions.delete("my-project", "<value>");
+
+  
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectAuthSessionsDelete } from "@intuned/client/funcs/projectAuthSessionsDelete.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectAuthSessionsDelete(intunedClient, "my-project", "<value>");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   
 }

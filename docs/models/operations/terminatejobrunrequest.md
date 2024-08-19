@@ -1,5 +1,16 @@
 # TerminateJobRunRequest
 
+## Example Usage
+
+```typescript
+import { TerminateJobRunRequest } from "@intuned/client/models/operations";
+
+let value: TerminateJobRunRequest = {
+    projectName: "my-project",
+    jobId: "my-sample-job",
+    runId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+};
+```
 
 ## Fields
 

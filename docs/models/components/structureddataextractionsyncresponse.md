@@ -1,5 +1,17 @@
 # StructuredDataExtractionSyncResponse
 
+## Example Usage
+
+```typescript
+import { StructuredDataExtractionSyncResponse } from "@intuned/client/models/components";
+
+let value: StructuredDataExtractionSyncResponse = {
+    operationId: "<value>",
+    status: "failed",
+    error: "<value>",
+    message: "<value>",
+};
+```
 
 ## Supported Types
 

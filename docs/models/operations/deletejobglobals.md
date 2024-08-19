@@ -1,5 +1,12 @@
 # DeleteJobGlobals
 
+## Example Usage
+
+```typescript
+import { DeleteJobGlobals } from "@intuned/client/models/operations";
+
+let value: DeleteJobGlobals = {};
+```
 
 ## Fields
 

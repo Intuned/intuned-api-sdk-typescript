@@ -2,6 +2,16 @@
 
 Webhook sink configuration
 
+## Example Usage
+
+```typescript
+import { WebhookSink } from "@intuned/client/models/components";
+
+let value: WebhookSink = {
+    type: "webhook",
+    url: "https://deadly-corsage.info",
+};
+```
 
 ## Fields
 

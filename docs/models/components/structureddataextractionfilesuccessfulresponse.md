@@ -2,6 +2,17 @@
 
 Successful file extraction result
 
+## Example Usage
+
+```typescript
+import { StructuredDataExtractionFileSuccessfulResponse } from "@intuned/client/models/components";
+
+let value: StructuredDataExtractionFileSuccessfulResponse = {
+    result: "<value>",
+    operationId: "<value>",
+    status: "completed",
+};
+```
 
 ## Fields
 

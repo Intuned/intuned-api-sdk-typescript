@@ -1,5 +1,16 @@
 # SyncResultResponse
 
+## Example Usage
+
+```typescript
+import { SyncResultResponse } from "@intuned/client/models/components";
+
+let value: SyncResultResponse = {
+    status: "completed",
+    statusCode: 3185.69,
+    runId: "<value>",
+};
+```
 
 ## Supported Types
 

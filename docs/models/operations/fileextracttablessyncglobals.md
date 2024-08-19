@@ -1,5 +1,12 @@
 # FileExtractTablesSyncGlobals
 
+## Example Usage
+
+```typescript
+import { FileExtractTablesSyncGlobals } from "@intuned/client/models/operations";
+
+let value: FileExtractTablesSyncGlobals = {};
+```
 
 ## Fields
 

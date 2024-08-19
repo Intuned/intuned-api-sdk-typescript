@@ -1,5 +1,19 @@
 # RunApiStartRequest
 
+## Example Usage
+
+```typescript
+import { RunApiStartRequest } from "@intuned/client/models/operations";
+
+let value: RunApiStartRequest = {
+    projectName: "my-project",
+    runProjectApiRequest: {
+        api: "<value>",
+        parameters: ["<value>"],
+        proxy: "http://username@password:domain:port",
+    },
+};
+```
 
 ## Fields
 

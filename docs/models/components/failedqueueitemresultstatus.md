@@ -2,9 +2,16 @@
 
 Execution status of the item
 
+## Example Usage
+
+```typescript
+import { FailedQueueItemResultStatus } from "@intuned/client/models/components";
+
+let value: FailedQueueItemResultStatus = "failed";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Failed` | failed   |
+```typescript
+"failed"
+```

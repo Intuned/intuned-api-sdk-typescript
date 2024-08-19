@@ -2,6 +2,15 @@
 
 Auth session create pending
 
+## Example Usage
+
+```typescript
+import { AuthSessionCreatePendingResult } from "@intuned/client/models/components";
+
+let value: AuthSessionCreatePendingResult = {
+    status: "pending",
+};
+```
 
 ## Fields
 

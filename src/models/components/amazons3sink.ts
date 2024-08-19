@@ -68,7 +68,7 @@ export const AmazonS3Sink$inboundSchema: z.ZodType<AmazonS3Sink, z.ZodTypeDef, u
     accessKeyId: z.string(),
     secretAccessKey: z.string(),
     prefix: z.string().optional(),
-    skipOnFail: z.boolean().default(false),
+    skipOnFail: z.boolean(),
 });
 
 /** @internal */

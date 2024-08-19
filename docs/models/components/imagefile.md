@@ -2,6 +2,19 @@
 
 Image file data to extract from
 
+## Example Usage
+
+```typescript
+import { ImageFile } from "@intuned/client/models/components";
+
+let value: ImageFile = {
+    type: "image",
+    source: {
+        type: "url",
+        data: "https://present-giggle.info",
+    },
+};
+```
 
 ## Fields
 

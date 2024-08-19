@@ -499,6 +499,82 @@ run();
 ```
 <!-- End Global Parameters [global-parameters] -->
 
+<!-- Start Standalone functions [standalone-funcs] -->
+## Standalone functions
+
+All the methods listed above are available as standalone functions. These
+functions are ideal for use in applications running in the browser, serverless
+runtimes or other environments where application bundle size is a primary
+concern. When using a bundler to build your application, all unused
+functionality will be either excluded from the final bundle or tree-shaken away.
+
+To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
+
+<details>
+
+<summary>Available standalone functions</summary>
+
+- [filesExtractMarkdownResult](docs/sdks/extractmarkdown/README.md#result)
+- [filesExtractMarkdownStart](docs/sdks/extractmarkdown/README.md#start)
+- [filesExtractMarkdownSync](docs/sdks/extractmarkdown/README.md#sync)
+- [filesExtractStructuredDataResult](docs/sdks/extractstructureddata/README.md#result)
+- [filesExtractStructuredDataStart](docs/sdks/extractstructureddata/README.md#start)
+- [filesExtractStructuredDataSync](docs/sdks/extractstructureddata/README.md#sync)
+- [filesExtractTablesResult](docs/sdks/extracttables/README.md#result)
+- [filesExtractTablesStart](docs/sdks/extracttables/README.md#start)
+- [filesExtractTablesSync](docs/sdks/extracttables/README.md#sync)
+- [projectAuthSessionsAll](docs/sdks/authsessions/README.md#all)
+- [projectAuthSessionsCreateResult](docs/sdks/create/README.md#result)
+- [projectAuthSessionsCreateResume](docs/sdks/create/README.md#resume)
+- [projectAuthSessionsCreateStart](docs/sdks/create/README.md#start)
+- [projectAuthSessionsDelete](docs/sdks/authsessions/README.md#delete)
+- [projectAuthSessionsOne](docs/sdks/authsessions/README.md#one)
+- [projectAuthSessionsRecorderCreateAuthSession](docs/sdks/recorder/README.md#createauthsession)
+- [projectAuthSessionsRecorderStart](docs/sdks/recorder/README.md#start)
+- [projectJobsAll](docs/sdks/jobs/README.md#all)
+- [projectJobsCreate](docs/sdks/jobs/README.md#create)
+- [projectJobsDelete](docs/sdks/jobs/README.md#delete)
+- [projectJobsOne](docs/sdks/jobs/README.md#one)
+- [projectJobsPause](docs/sdks/jobs/README.md#pause)
+- [projectJobsResume](docs/sdks/jobs/README.md#resume)
+- [projectJobsRunsAll](docs/sdks/runs/README.md#all)
+- [projectJobsRunsTerminate](docs/sdks/runs/README.md#terminate)
+- [projectJobsTrigger](docs/sdks/jobs/README.md#trigger)
+- [projectQueuesAll](docs/sdks/queues/README.md#all)
+- [projectQueuesCreate](docs/sdks/queues/README.md#create)
+- [projectQueuesDelete](docs/sdks/queues/README.md#delete)
+- [projectQueuesItemsAppend](docs/sdks/items/README.md#append)
+- [projectQueuesItemsDelete](docs/sdks/items/README.md#delete)
+- [projectQueuesItemsResult](docs/sdks/items/README.md#result)
+- [projectQueuesOne](docs/sdks/queues/README.md#one)
+- [projectQueuesRepeatItemsAll](docs/sdks/repeatitems/README.md#all)
+- [projectQueuesRepeatItemsAppend](docs/sdks/repeatitems/README.md#append)
+- [projectQueuesRepeatItemsDelete](docs/sdks/repeatitems/README.md#delete)
+- [projectQueuesRepeatItemsOne](docs/sdks/repeatitems/README.md#one)
+- [projectQueuesRepeatItemsUpdate](docs/sdks/repeatitems/README.md#update)
+- [projectRunResult](docs/sdks/run/README.md#result)
+- [projectRunStart](docs/sdks/run/README.md#start)
+- [projectRunSync](docs/sdks/run/README.md#sync)
+
+
+</details>
+<!-- End Standalone functions [standalone-funcs] -->
+
+<!-- Start Debugging [debug] -->
+## Debugging
+
+To log HTTP requests and responses, you can pass a logger that matches `console`'s interface as an SDK option.
+
+> [!WARNING]
+> Beware that debug logging will reveal secrets, like API tokens in headers, in log messages printed to a console or files. It's recommended to use this feature only during local development and not in production.
+
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const sdk = new IntunedClient({ debugLogger: console });
+```
+<!-- End Debugging [debug] -->
+
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
 # Development

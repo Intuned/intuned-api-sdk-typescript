@@ -1,5 +1,12 @@
 # RunApiStartGlobals
 
+## Example Usage
+
+```typescript
+import { RunApiStartGlobals } from "@intuned/client/models/operations";
+
+let value: RunApiStartGlobals = {};
+```
 
 ## Fields
 

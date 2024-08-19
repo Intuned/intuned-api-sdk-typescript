@@ -2,6 +2,16 @@
 
 API result of completed run
 
+## Example Usage
+
+```typescript
+import { WebhookAPIInfoResultCompleted } from "@intuned/client/models/components";
+
+let value: WebhookAPIInfoResultCompleted = {
+    status: "completed",
+    statusCode: 9903.39,
+};
+```
 
 ## Fields
 

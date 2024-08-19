@@ -1,5 +1,12 @@
 # CreateAuthSessionResultGlobals
 
+## Example Usage
+
+```typescript
+import { CreateAuthSessionResultGlobals } from "@intuned/client/models/operations";
+
+let value: CreateAuthSessionResultGlobals = {};
+```
 
 ## Fields
 

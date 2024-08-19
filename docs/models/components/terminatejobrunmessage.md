@@ -1,8 +1,15 @@
 # TerminateJobRunMessage
 
+## Example Usage
+
+```typescript
+import { TerminateJobRunMessage } from "@intuned/client/models/components";
+
+let value: TerminateJobRunMessage = "Job run terminated";
+```
 
 ## Values
 
-| Name               | Value              |
-| ------------------ | ------------------ |
-| `JobRunTerminated` | Job run terminated |
+```typescript
+"Job run terminated"
+```

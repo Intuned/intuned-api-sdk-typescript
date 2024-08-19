@@ -1,5 +1,17 @@
 # CreateRecorderAuthSessionInstanceRequest
 
+## Example Usage
+
+```typescript
+import { CreateRecorderAuthSessionInstanceRequest } from "@intuned/client/models/operations";
+
+let value: CreateRecorderAuthSessionInstanceRequest = {
+    projectName: "my-project",
+    createRecorderAuthSessionRequest: {
+        id: "<id>",
+    },
+};
+```
 
 ## Fields
 

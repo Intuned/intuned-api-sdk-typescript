@@ -2,6 +2,22 @@
 
 Auth session create requested more info
 
+## Example Usage
+
+```typescript
+import { AuthSessionCreateRequestedMoreInfoResult } from "@intuned/client/models/components";
+
+let value: AuthSessionCreateRequestedMoreInfoResult = {
+    status: "requested_more_info",
+    id: "<id>",
+    details: {
+        choices: ["<value>"],
+        requestType: "multiple_choice",
+        action: "request_more_info",
+        messageToUser: "<value>",
+    },
+};
+```
 
 ## Fields
 

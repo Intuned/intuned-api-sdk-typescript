@@ -2,6 +2,17 @@
 
 Details of a repeatable item.
 
+## Example Usage
+
+```typescript
+import { QueueRepeatItem } from "@intuned/client/models/components";
+
+let value: QueueRepeatItem = {
+    apiName: "<value>",
+    repeat: "<value>",
+    id: "<id>",
+};
+```
 
 ## Fields
 

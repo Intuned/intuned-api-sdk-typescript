@@ -1,5 +1,12 @@
 # CreateAuthSessionResumeGlobals
 
+## Example Usage
+
+```typescript
+import { CreateAuthSessionResumeGlobals } from "@intuned/client/models/operations";
+
+let value: CreateAuthSessionResumeGlobals = {};
+```
 
 ## Fields
 

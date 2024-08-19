@@ -34,6 +34,38 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectJobsRunsAll } from "@intuned/client/funcs/projectJobsRunsAll.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectJobsRunsAll(intunedClient, "my-project", "my-sample-job");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -72,6 +104,38 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.jobs.runs.terminate("my-project", "my-sample-job", "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee");
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectJobsRunsTerminate } from "@intuned/client/funcs/projectJobsRunsTerminate.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectJobsRunsTerminate(intunedClient, "my-project", "my-sample-job", "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

@@ -2,6 +2,17 @@
 
 An extracted table.
 
+## Example Usage
+
+```typescript
+import { Result } from "@intuned/client/models/components";
+
+let value: Result = {
+    pageNumber: 648172,
+    title: "<value>",
+    content: [["<value>"]],
+};
+```
 
 ## Fields
 

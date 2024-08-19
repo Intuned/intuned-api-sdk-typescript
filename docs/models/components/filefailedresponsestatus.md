@@ -2,9 +2,16 @@
 
 Operation status.
 
+## Example Usage
+
+```typescript
+import { FileFailedResponseStatus } from "@intuned/client/models/components";
+
+let value: FileFailedResponseStatus = "failed";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Failed` | failed   |
+```typescript
+"failed"
+```

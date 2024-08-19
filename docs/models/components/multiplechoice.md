@@ -2,6 +2,18 @@
 
 Requested more info - Multiple choice.
 
+## Example Usage
+
+```typescript
+import { MultipleChoice } from "@intuned/client/models/components";
+
+let value: MultipleChoice = {
+    choices: ["<value>"],
+    requestType: "multiple_choice",
+    action: "request_more_info",
+    messageToUser: "<value>",
+};
+```
 
 ## Fields
 

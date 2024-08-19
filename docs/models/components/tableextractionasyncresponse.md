@@ -1,5 +1,15 @@
 # TableExtractionAsyncResponse
 
+## Example Usage
+
+```typescript
+import { TableExtractionAsyncResponse } from "@intuned/client/models/components";
+
+let value: TableExtractionAsyncResponse = {
+    operationId: "aaaabbbCCCCdddd",
+    status: "pending",
+};
+```
 
 ## Supported Types
 

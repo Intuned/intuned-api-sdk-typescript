@@ -1,5 +1,15 @@
 # PauseJobRequest
 
+## Example Usage
+
+```typescript
+import { PauseJobRequest } from "@intuned/client/models/operations";
+
+let value: PauseJobRequest = {
+    projectName: "my-project",
+    jobId: "my-sample-job",
+};
+```
 
 ## Fields
 

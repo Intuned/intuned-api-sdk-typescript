@@ -2,6 +2,17 @@
 
 Requested more info - OTP
 
+## Example Usage
+
+```typescript
+import { Otp } from "@intuned/client/models/components";
+
+let value: Otp = {
+    requestType: "otp",
+    action: "request_more_info",
+    messageToUser: "<value>",
+};
+```
 
 ## Fields
 

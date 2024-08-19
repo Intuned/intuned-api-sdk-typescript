@@ -9,9 +9,9 @@ import * as z from "zod";
  */
 export type CreateRecorderAuthSessionRequest = {
     /**
-     * Auth session name, can contain letters, numbers and hyphens
+     * Auth session id
      */
-    name: string;
+    id: string;
 };
 
 /** @internal */
@@ -20,12 +20,12 @@ export const CreateRecorderAuthSessionRequest$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    name: z.string(),
+    id: z.string(),
 });
 
 /** @internal */
 export type CreateRecorderAuthSessionRequest$Outbound = {
-    name: string;
+    id: string;
 };
 
 /** @internal */
@@ -34,7 +34,7 @@ export const CreateRecorderAuthSessionRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CreateRecorderAuthSessionRequest
 > = z.object({
-    name: z.string(),
+    id: z.string(),
 });
 
 /**

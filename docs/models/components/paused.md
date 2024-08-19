@@ -1,5 +1,12 @@
 # Paused
 
+## Example Usage
+
+```typescript
+import { Paused } from "@intuned/client/models/components";
+
+let value: Paused = {};
+```
 
 ## Fields
 

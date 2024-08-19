@@ -1,5 +1,12 @@
 # DeleteQueueGlobals
 
+## Example Usage
+
+```typescript
+import { DeleteQueueGlobals } from "@intuned/client/models/operations";
+
+let value: DeleteQueueGlobals = {};
+```
 
 ## Fields
 

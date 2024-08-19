@@ -1,5 +1,12 @@
 # RunApiResultGlobals
 
+## Example Usage
+
+```typescript
+import { RunApiResultGlobals } from "@intuned/client/models/operations";
+
+let value: RunApiResultGlobals = {};
+```
 
 ## Fields
 

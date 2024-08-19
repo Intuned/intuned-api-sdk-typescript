@@ -1,5 +1,12 @@
 # TerminateJobRunGlobals
 
+## Example Usage
+
+```typescript
+import { TerminateJobRunGlobals } from "@intuned/client/models/operations";
+
+let value: TerminateJobRunGlobals = {};
+```
 
 ## Fields
 

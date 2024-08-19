@@ -2,6 +2,15 @@
 
 Auth session recorder start session
 
+## Example Usage
+
+```typescript
+import { StartAuthSessionRecorderRequest } from "@intuned/client/models/components";
+
+let value: StartAuthSessionRecorderRequest = {
+    authSessionId: "<value>",
+};
+```
 
 ## Fields
 

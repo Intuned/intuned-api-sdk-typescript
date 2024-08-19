@@ -1,8 +1,15 @@
 # WebhookSinkType
 
+## Example Usage
+
+```typescript
+import { WebhookSinkType } from "@intuned/client/models/components";
+
+let value: WebhookSinkType = "webhook";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Webhook` | webhook   |
+```typescript
+"webhook"
+```

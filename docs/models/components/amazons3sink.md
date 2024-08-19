@@ -2,6 +2,19 @@
 
 Amazon S3 bucket sink configuration
 
+## Example Usage
+
+```typescript
+import { AmazonS3Sink } from "@intuned/client/models/components";
+
+let value: AmazonS3Sink = {
+    type: "s3",
+    region: "us-west-2",
+    bucket: "<value>",
+    accessKeyId: "<value>",
+    secretAccessKey: "<value>",
+};
+```
 
 ## Fields
 

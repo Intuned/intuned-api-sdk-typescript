@@ -1,5 +1,12 @@
 # UpdateRepeatQueueItemGlobals
 
+## Example Usage
+
+```typescript
+import { UpdateRepeatQueueItemGlobals } from "@intuned/client/models/operations";
+
+let value: UpdateRepeatQueueItemGlobals = {};
+```
 
 ## Fields
 

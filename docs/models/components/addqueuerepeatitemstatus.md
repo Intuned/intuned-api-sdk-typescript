@@ -1,8 +1,15 @@
 # AddQueueRepeatItemStatus
 
+## Example Usage
+
+```typescript
+import { AddQueueRepeatItemStatus } from "@intuned/client/models/components";
+
+let value: AddQueueRepeatItemStatus = "repeatable item created";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `RepeatableItemCreated` | repeatable item created |
+```typescript
+"repeatable item created"
+```

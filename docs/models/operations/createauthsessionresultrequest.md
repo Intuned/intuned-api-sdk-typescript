@@ -1,5 +1,15 @@
 # CreateAuthSessionResultRequest
 
+## Example Usage
+
+```typescript
+import { CreateAuthSessionResultRequest } from "@intuned/client/models/operations";
+
+let value: CreateAuthSessionResultRequest = {
+    projectName: "my-project",
+    operationId: "aaaabbbCCCCdddd",
+};
+```
 
 ## Fields
 

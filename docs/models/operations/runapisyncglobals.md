@@ -1,5 +1,12 @@
 # RunApiSyncGlobals
 
+## Example Usage
+
+```typescript
+import { RunApiSyncGlobals } from "@intuned/client/models/operations";
+
+let value: RunApiSyncGlobals = {};
+```
 
 ## Fields
 

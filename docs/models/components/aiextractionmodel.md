@@ -2,14 +2,16 @@
 
 AI model to use for extraction
 
+## Example Usage
+
+```typescript
+import { AiExtractionModel } from "@intuned/client/models/components";
+
+let value: AiExtractionModel = "gpt3.5-turbo";
+```
 
 ## Values
 
-| Name            | Value           |
-| --------------- | --------------- |
-| `Claude3Opus`   | claude-3-opus   |
-| `Claude3Sonnet` | claude-3-sonnet |
-| `Claude3Haiku`  | claude-3-haiku  |
-| `Gpt4Turbo`     | gpt4-turbo      |
-| `Gpt4o`         | gpt-4o          |
-| `Gpt35Turbo`    | gpt3.5-turbo    |
+```typescript
+"claude-3-opus" | "claude-3-sonnet" | "claude-3-haiku" | "gpt4-turbo" | "gpt-4o" | "gpt3.5-turbo"
+```

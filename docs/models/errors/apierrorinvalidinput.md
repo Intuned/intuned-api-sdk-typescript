@@ -2,6 +2,13 @@
 
 Invalid input error
 
+## Example Usage
+
+```typescript
+import { ApiErrorInvalidInput } from "@intuned/client/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 

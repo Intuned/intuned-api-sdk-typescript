@@ -2,9 +2,16 @@
 
 The status of the run
 
+## Example Usage
+
+```typescript
+import { AsyncRunCompletedResponseStatus } from "@intuned/client/models/components";
+
+let value: AsyncRunCompletedResponseStatus = "completed";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Completed` | completed   |
+```typescript
+"completed"
+```

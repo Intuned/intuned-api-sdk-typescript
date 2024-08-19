@@ -2,6 +2,13 @@
 
 Unauthorized error
 
+## Example Usage
+
+```typescript
+import { ApiErrorUnauthorized } from "@intuned/client/models/errors";
+
+// No examples available for this model
+```
 
 ## Fields
 
