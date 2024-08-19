@@ -1,5 +1,15 @@
 # ResumeJobRequest
 
+## Example Usage
+
+```typescript
+import { ResumeJobRequest } from "@intuned/client/models/operations";
+
+let value: ResumeJobRequest = {
+    projectName: "my-project",
+    jobId: "my-sample-job",
+};
+```
 
 ## Fields
 

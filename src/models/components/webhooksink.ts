@@ -53,7 +53,7 @@ export const WebhookSink$inboundSchema: z.ZodType<WebhookSink, z.ZodTypeDef, unk
     type: WebhookSinkType$inboundSchema,
     url: z.string(),
     headers: z.record(z.any()).optional(),
-    skipOnFail: z.boolean().default(false),
+    skipOnFail: z.boolean(),
 });
 
 /** @internal */

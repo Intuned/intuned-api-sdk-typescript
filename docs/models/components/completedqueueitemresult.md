@@ -1,5 +1,16 @@
 # CompletedQueueItemResult
 
+## Example Usage
+
+```typescript
+import { CompletedQueueItemResult } from "@intuned/client/models/components";
+
+let value: CompletedQueueItemResult = {
+    runId: "<value>",
+    status: "completed",
+    statusCode: 831.12,
+};
+```
 
 ## Fields
 

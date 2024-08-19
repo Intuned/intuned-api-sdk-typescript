@@ -27,10 +27,6 @@ export type AuthSessionInfo = {
      */
     id: string;
     /**
-     * Auth session name
-     */
-    name: string;
-    /**
      * Auth session status
      */
     status: AuthSessionInfoStatus;
@@ -59,14 +55,12 @@ export namespace AuthSessionInfoStatus$ {
 export const AuthSessionInfo$inboundSchema: z.ZodType<AuthSessionInfo, z.ZodTypeDef, unknown> =
     z.object({
         id: z.string(),
-        name: z.string(),
         status: AuthSessionInfoStatus$inboundSchema,
     });
 
 /** @internal */
 export type AuthSessionInfo$Outbound = {
     id: string;
-    name: string;
     status: string;
 };
 
@@ -77,7 +71,6 @@ export const AuthSessionInfo$outboundSchema: z.ZodType<
     AuthSessionInfo
 > = z.object({
     id: z.string(),
-    name: z.string(),
     status: AuthSessionInfoStatus$outboundSchema,
 });
 

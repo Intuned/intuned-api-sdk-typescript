@@ -1,5 +1,14 @@
 # FileExtractStructuredDataResultRequest
 
+## Example Usage
+
+```typescript
+import { FileExtractStructuredDataResultRequest } from "@intuned/client/models/operations";
+
+let value: FileExtractStructuredDataResultRequest = {
+    operationId: "aaaabbbCCCCdddd",
+};
+```
 
 ## Fields
 

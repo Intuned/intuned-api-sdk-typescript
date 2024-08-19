@@ -2,11 +2,16 @@
 
 Auth session status
 
+## Example Usage
+
+```typescript
+import { AuthSessionInfoStatus } from "@intuned/client/models/components";
+
+let value: AuthSessionInfoStatus = "READY";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Expired` | EXPIRED   |
-| `Pending` | PENDING   |
-| `Ready`   | READY     |
+```typescript
+"EXPIRED" | "PENDING" | "READY"
+```

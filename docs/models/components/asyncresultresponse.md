@@ -1,5 +1,16 @@
 # AsyncResultResponse
 
+## Example Usage
+
+```typescript
+import { AsyncResultResponse } from "@intuned/client/models/components";
+
+let value: AsyncResultResponse = {
+    status: "completed",
+    statusCode: 7163.27,
+    runId: "<value>",
+};
+```
 
 ## Supported Types
 

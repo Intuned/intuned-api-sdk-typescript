@@ -1,5 +1,16 @@
 # MarkdownExtractionAsyncResponse
 
+## Example Usage
+
+```typescript
+import { MarkdownExtractionAsyncResponse } from "@intuned/client/models/components";
+
+let value: MarkdownExtractionAsyncResponse = {
+    result: "<value>",
+    operationId: "<value>",
+    status: "completed",
+};
+```
 
 ## Supported Types
 

@@ -1,5 +1,12 @@
 # StartAuthSessionRecorderGlobals
 
+## Example Usage
+
+```typescript
+import { StartAuthSessionRecorderGlobals } from "@intuned/client/models/operations";
+
+let value: StartAuthSessionRecorderGlobals = {};
+```
 
 ## Fields
 

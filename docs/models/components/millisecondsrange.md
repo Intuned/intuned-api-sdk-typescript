@@ -1,5 +1,15 @@
 # MillisecondsRange
 
+## Example Usage
+
+```typescript
+import { MillisecondsRange } from "@intuned/client/models/components";
+
+let value: MillisecondsRange = {
+    min: 5089.69,
+    max: 5232.48,
+};
+```
 
 ## Fields
 

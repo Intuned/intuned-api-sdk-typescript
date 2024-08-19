@@ -1,5 +1,12 @@
 # FileExtractStructuredDataSyncGlobals
 
+## Example Usage
+
+```typescript
+import { FileExtractStructuredDataSyncGlobals } from "@intuned/client/models/operations";
+
+let value: FileExtractStructuredDataSyncGlobals = {};
+```
 
 ## Fields
 

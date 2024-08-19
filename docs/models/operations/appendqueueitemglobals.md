@@ -1,5 +1,12 @@
 # AppendQueueItemGlobals
 
+## Example Usage
+
+```typescript
+import { AppendQueueItemGlobals } from "@intuned/client/models/operations";
+
+let value: AppendQueueItemGlobals = {};
+```
 
 ## Fields
 

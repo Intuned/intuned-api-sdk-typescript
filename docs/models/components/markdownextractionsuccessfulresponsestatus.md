@@ -2,9 +2,16 @@
 
 Operation status.
 
+## Example Usage
+
+```typescript
+import { MarkdownExtractionSuccessfulResponseStatus } from "@intuned/client/models/components";
+
+let value: MarkdownExtractionSuccessfulResponseStatus = "completed";
+```
 
 ## Values
 
-| Name        | Value       |
-| ----------- | ----------- |
-| `Completed` | completed   |
+```typescript
+"completed"
+```

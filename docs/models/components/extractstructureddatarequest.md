@@ -2,6 +2,40 @@
 
 The request to extract structured data from file
 
+## Example Usage
+
+```typescript
+import { ExtractStructuredDataRequest } from "@intuned/client/models/components";
+
+let value: ExtractStructuredDataRequest = {
+    file: {
+        type: "pdf",
+        source: {
+            type: "url",
+            data: "https://intuned.io/example.pdf",
+        },
+    },
+    dataSchema: {
+        type: "object",
+        description: "Employee Information",
+        properties: {
+            name: {
+                type: "string",
+            },
+            age: {
+                type: "number",
+            },
+            jobTitle: {
+                type: "string",
+            },
+        },
+    },
+    strategy: {
+        type: "MARKDOWN",
+        model: "gpt4-turbo",
+    },
+};
+```
 
 ## Fields
 

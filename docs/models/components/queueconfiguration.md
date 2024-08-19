@@ -2,6 +2,15 @@
 
 The configuration of the queue. Configure retries, rate limits, execution schedules and waits between items.
 
+## Example Usage
+
+```typescript
+import { QueueConfiguration } from "@intuned/client/models/components";
+
+let value: QueueConfiguration = {
+    runMode: "Default",
+};
+```
 
 ## Fields
 

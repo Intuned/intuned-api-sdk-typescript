@@ -1,10 +1,15 @@
 # CreateRecorderAuthSessionInstanceStatus
 
+## Example Usage
+
+```typescript
+import { CreateRecorderAuthSessionInstanceStatus } from "@intuned/client/models/components";
+
+let value: CreateRecorderAuthSessionInstanceStatus = "PENDING";
+```
 
 ## Values
 
-| Name      | Value     |
-| --------- | --------- |
-| `Expired` | EXPIRED   |
-| `Pending` | PENDING   |
-| `Ready`   | READY     |
+```typescript
+"EXPIRED" | "PENDING" | "READY"
+```

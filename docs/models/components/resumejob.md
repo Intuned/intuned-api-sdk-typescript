@@ -1,5 +1,12 @@
 # ResumeJob
 
+## Example Usage
+
+```typescript
+import { ResumeJob } from "@intuned/client/models/components";
+
+let value: ResumeJob = {};
+```
 
 ## Fields
 

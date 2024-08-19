@@ -1,5 +1,15 @@
 # GetAuthSessionRequest
 
+## Example Usage
+
+```typescript
+import { GetAuthSessionRequest } from "@intuned/client/models/operations";
+
+let value: GetAuthSessionRequest = {
+    projectName: "my-project",
+    authSessionId: "<value>",
+};
+```
 
 ## Fields
 

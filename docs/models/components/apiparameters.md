@@ -2,6 +2,13 @@
 
 The parameters to be passed to the API.
 
+## Example Usage
+
+```typescript
+import { APIParameters } from "@intuned/client/models/components";
+
+let value: APIParameters = ["<value>"];
+```
 
 ## Supported Types
 

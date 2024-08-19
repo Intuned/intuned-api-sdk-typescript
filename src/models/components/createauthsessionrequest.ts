@@ -15,9 +15,9 @@ import * as z from "zod";
  */
 export type CreateAuthSessionRequest = {
     /**
-     * Auth session name, can contain letters, numbers and hyphens
+     * Auth session id, can contain letters, numbers and hyphens, default is a random uuid
      */
-    name?: string | undefined;
+    id?: string | undefined;
     /**
      * The parameters to be passed to the API.
      */
@@ -34,14 +34,14 @@ export const CreateAuthSessionRequest$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    name: z.string().optional(),
+    id: z.string().optional(),
     parameters: APIParameters$inboundSchema.optional(),
     proxy: z.string().optional(),
 });
 
 /** @internal */
 export type CreateAuthSessionRequest$Outbound = {
-    name?: string | undefined;
+    id?: string | undefined;
     parameters?: APIParameters$Outbound | undefined;
     proxy?: string | undefined;
 };
@@ -52,7 +52,7 @@ export const CreateAuthSessionRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CreateAuthSessionRequest
 > = z.object({
-    name: z.string().optional(),
+    id: z.string().optional(),
     parameters: APIParameters$outboundSchema.optional(),
     proxy: z.string().optional(),
 });

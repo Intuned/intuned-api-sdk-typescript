@@ -1,5 +1,12 @@
 # ResumeJobGlobals
 
+## Example Usage
+
+```typescript
+import { ResumeJobGlobals } from "@intuned/client/models/operations";
+
+let value: ResumeJobGlobals = {};
+```
 
 ## Fields
 

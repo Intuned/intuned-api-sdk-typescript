@@ -2,9 +2,16 @@
 
 The status of the run
 
+## Example Usage
+
+```typescript
+import { AsyncRunFailedResponseStatus } from "@intuned/client/models/components";
+
+let value: AsyncRunFailedResponseStatus = "failed";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Failed` | failed   |
+```typescript
+"failed"
+```

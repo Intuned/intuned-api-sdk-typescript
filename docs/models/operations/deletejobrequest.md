@@ -1,5 +1,15 @@
 # DeleteJobRequest
 
+## Example Usage
+
+```typescript
+import { DeleteJobRequest } from "@intuned/client/models/operations";
+
+let value: DeleteJobRequest = {
+    projectName: "my-project",
+    jobId: "my-sample-job",
+};
+```
 
 ## Fields
 

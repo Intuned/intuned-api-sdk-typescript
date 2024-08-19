@@ -1,5 +1,15 @@
 # GetJobRunsRequest
 
+## Example Usage
+
+```typescript
+import { GetJobRunsRequest } from "@intuned/client/models/operations";
+
+let value: GetJobRunsRequest = {
+    projectName: "my-project",
+    jobId: "my-sample-job",
+};
+```
 
 ## Fields
 

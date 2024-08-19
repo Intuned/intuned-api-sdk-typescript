@@ -2,6 +2,16 @@
 
 Base64-encoded file source.
 
+## Example Usage
+
+```typescript
+import { FileBase64Source } from "@intuned/client/models/components";
+
+let value: FileBase64Source = {
+    type: "base64",
+    data: "<value>",
+};
+```
 
 ## Fields
 

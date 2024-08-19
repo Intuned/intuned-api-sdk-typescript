@@ -16,7 +16,6 @@ export type CreateRecorderAuthSessionInstanceStatus = ClosedEnum<
 
 export type CreateRecorderAuthSessionInstance = {
     id: string;
-    name: string;
     status: CreateRecorderAuthSessionInstanceStatus;
 };
 
@@ -48,14 +47,12 @@ export const CreateRecorderAuthSessionInstance$inboundSchema: z.ZodType<
     unknown
 > = z.object({
     id: z.string(),
-    name: z.string(),
     status: CreateRecorderAuthSessionInstanceStatus$inboundSchema,
 });
 
 /** @internal */
 export type CreateRecorderAuthSessionInstance$Outbound = {
     id: string;
-    name: string;
     status: string;
 };
 
@@ -66,7 +63,6 @@ export const CreateRecorderAuthSessionInstance$outboundSchema: z.ZodType<
     CreateRecorderAuthSessionInstance
 > = z.object({
     id: z.string(),
-    name: z.string(),
     status: CreateRecorderAuthSessionInstanceStatus$outboundSchema,
 });
 

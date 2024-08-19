@@ -2,6 +2,15 @@
 
 Retry policy configurations
 
+## Example Usage
+
+```typescript
+import { Retry } from "@intuned/client/models/components";
+
+let value: Retry = {
+    maximumAttempts: 939.4,
+};
+```
 
 ## Fields
 

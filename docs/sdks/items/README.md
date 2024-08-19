@@ -44,6 +44,49 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectQueuesItemsAppend } from "@intuned/client/funcs/projectQueuesItemsAppend.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectQueuesItemsAppend(intunedClient, "my-project", "my-sample-queue", {
+    apiName: "get-contracts",
+  parameters:     [
+        {
+          "page": 1,
+          "isLastPage": false,
+        },
+      ],
+    retry: {
+      maximumAttempts: 3,
+    },
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -91,6 +134,38 @@ async function run() {
 run();
 ```
 
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectQueuesItemsResult } from "@intuned/client/funcs/projectQueuesItemsResult.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectQueuesItemsResult(intunedClient, "my-project", "my-sample-queue", "11111111-1111-1111-1111-111111111111");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
 ### Parameters
 
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
@@ -130,6 +205,37 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   await intunedClient.project.queues.items.delete("my-project", "my-sample-queue", "11111111-1111-1111-1111-111111111111");
+
+  
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectQueuesItemsDelete } from "@intuned/client/funcs/projectQueuesItemsDelete.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectQueuesItemsDelete(intunedClient, "my-project", "my-sample-queue", "11111111-1111-1111-1111-111111111111");
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   
 }

@@ -1,5 +1,19 @@
 # CreateQueueRequest
 
+## Example Usage
+
+```typescript
+import { CreateQueueRequest } from "@intuned/client/models/operations";
+
+let value: CreateQueueRequest = {
+    projectName: "my-project",
+    queueInput: {
+        configuration: {
+            runMode: "Default",
+        },
+    },
+};
+```
 
 ## Fields
 

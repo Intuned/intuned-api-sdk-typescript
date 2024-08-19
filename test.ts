@@ -70,13 +70,16 @@ async function testJobs(client: IntunedClient, projectName: string) {
 async function testQueues(client: IntunedClient, projectName: string) {
   const queueId = "this-is-a-test";
   const queues = client.project.queues;
-  const queue = await queues.create(projectName, {
-    configuration: {
-      runMode: "Default",
-    },
-    id: queueId,
-  });
-  console.log("Create queue", queue);
+  // const queue = await queues.create(projectName, {
+  //   configuration: {
+  //     runMode: "Default",
+  //   },
+  //   authSession: {
+  //     id: "new-session-1723983735880",
+  //   },
+  //   id: queueId,
+  // });
+  // console.log("Create queue", queue);
 
   // const hmm = await queues.delete(projectName, queueId);
   // console.log("Delete queue", hmm);
@@ -86,77 +89,77 @@ async function testQueues(client: IntunedClient, projectName: string) {
   const getQueue = await queues.one(projectName, queueId);
   console.log("Get queue", getQueue);
   const appendItem = await queues.items.append(projectName, queueId, {
-    apiName: "api",
+    apiName: "sample",
     parameters: {},
   });
-  console.log("Append item", appendItem);
-  // const deleteItem = await queues.items.delete(projectName, queueId, appendItem.runId);
-  // console.log("Delete item", deleteItem);
-  async function appendAndGetResult(apiName: string) {
-    const appendItem = await queues.items.append(projectName, queueId, {
-      apiName,
-      parameters: {},
-    });
-    console.log("Append item", appendItem);
-    while (true) {
-      await new Promise((resolve) => setTimeout(resolve, 6000));
-      const getResult = await queues.items.result(
-        projectName,
-        queueId,
-        appendItem.runId
-      );
-      console.log("Get result", getResult);
-      if (getResult.status === "completed" || getResult.status === "failed") {
-        break;
-      }
-    }
+  // console.log("Append item", appendItem);
+  // // const deleteItem = await queues.items.delete(projectName, queueId, appendItem.runId);
+  // // console.log("Delete item", deleteItem);
+  // async function appendAndGetResult(apiName: string) {
+  //   const appendItem = await queues.items.append(projectName, queueId, {
+  //     apiName,
+  //     parameters: {},
+  //   });
+  //   console.log("Append item", appendItem);
+  //   while (true) {
+  //     await new Promise((resolve) => setTimeout(resolve, 6000));
+  //     const getResult = await queues.items.result(
+  //       projectName,
+  //       queueId,
+  //       appendItem.runId
+  //     );
+  //     console.log("Get result", getResult);
+  //     if (getResult.status === "completed" || getResult.status === "failed") {
+  //       break;
+  //     }
+  //   }
 
-    return appendItem.runId;
-  }
+  //   return appendItem.runId;
+  // }
 
-  const [appendSuccess, appendFail] = await Promise.all([
-    appendAndGetResult("api"),
-    appendAndGetResult("api2"),
-  ]);
-  await queues.items
-    .delete(projectName, queueId, appendSuccess)
-    .catch((error) => console.log("Delete success item", error));
-  await queues.items
-    .delete(projectName, queueId, appendFail)
-    .catch((error) => console.log("Delete fail item", error));
+  // const [appendSuccess, appendFail] = await Promise.all([
+  //   appendAndGetResult("api"),
+  //   appendAndGetResult("api2"),
+  // ]);
+  // await queues.items
+  //   .delete(projectName, queueId, appendSuccess)
+  //   .catch((error) => console.log("Delete success item", error));
+  // await queues.items
+  //   .delete(projectName, queueId, appendFail)
+  //   .catch((error) => console.log("Delete fail item", error));
 
-  const repeatItemAppend = await queues.repeatItems.append(
-    projectName,
-    queueId,
-    {
-      apiName: "api",
-      parameters: {},
-      repeat: "10 minutes",
-    }
-  );
-  console.log("Repeat item append", repeatItemAppend);
-  const repeatItemsGet = await queues.repeatItems.all(projectName, queueId);
-  console.log("Get repeat items", repeatItemsGet);
+  // const repeatItemAppend = await queues.repeatItems.append(
+  //   projectName,
+  //   queueId,
+  //   {
+  //     apiName: "api",
+  //     parameters: {},
+  //     repeat: "10 minutes",
+  //   }
+  // );
+  // console.log("Repeat item append", repeatItemAppend);
+  // const repeatItemsGet = await queues.repeatItems.all(projectName, queueId);
+  // console.log("Get repeat items", repeatItemsGet);
 
-  const repeatItemUpdate = await queues.repeatItems.update(
-    projectName,
-    queueId,
-    repeatItemAppend.id,
-    {
-      apiName: "api",
-      parameters: {},
-      repeat: "20 minutes",
-    }
-  );
-  console.log("Repeat item update", repeatItemUpdate);
-  const repeatItemDelete = await queues.repeatItems.delete(
-    projectName,
-    queueId,
-    repeatItemAppend.id
-  );
-  console.log("Repeat item delete", repeatItemDelete);
-  const deleteQueue = await queues.delete(projectName, queueId);
-  console.log("Delete queue", deleteQueue);
+  // const repeatItemUpdate = await queues.repeatItems.update(
+  //   projectName,
+  //   queueId,
+  //   repeatItemAppend.id,
+  //   {
+  //     apiName: "api",
+  //     parameters: {},
+  //     repeat: "20 minutes",
+  //   }
+  // );
+  // console.log("Repeat item update", repeatItemUpdate);
+  // const repeatItemDelete = await queues.repeatItems.delete(
+  //   projectName,
+  //   queueId,
+  //   repeatItemAppend.id
+  // );
+  // console.log("Repeat item delete", repeatItemDelete);
+  // const deleteQueue = await queues.delete(projectName, queueId);
+  // console.log("Delete queue", deleteQueue);
 }
 
 async function testRun(client: IntunedClient, projectName: string) {
@@ -377,14 +380,14 @@ async function testFiles(client: IntunedClient) {
 
 async function main() {
   const client = new IntunedClient({
-    serverURL: "http://localhost:3000/api/v1/workspace",
+    serverURL: "http://dev.intuned.io/api/v1/workspace",
     workspaceId: "3118faad-61c0-4206-a552-b0d692c58025",
-    apiKey: "in1_5a4c43ceefcd1e9ec4b5a94a3ca77e7e",
+    apiKey: "in1_5ee03386c9e5b9ae9155e353ef7e64e9",
   });
 
   // const projectName = 'queue-test-integration';
   // await testJobs(client, "ok");
-  await testQueues(client, "ok");
+  await testQueues(client, "test-auth");
   // await testRun(client, "ok");
   // await testFiles(client);
   // await testAuthSessions(client, "another-test");

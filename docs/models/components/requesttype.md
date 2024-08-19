@@ -2,9 +2,16 @@
 
 Type of the requested info.
 
+## Example Usage
+
+```typescript
+import { RequestType } from "@intuned/client/models/components";
+
+let value: RequestType = "multiple_choice";
+```
 
 ## Values
 
-| Name             | Value            |
-| ---------------- | ---------------- |
-| `MultipleChoice` | multiple_choice  |
+```typescript
+"multiple_choice"
+```

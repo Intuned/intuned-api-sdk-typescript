@@ -22,8 +22,42 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.authSessions.recorder.createAuthSession("my-project", {
-    name: "my-auth-session",
+    id: "<id>",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectAuthSessionsRecorderCreateAuthSession } from "@intuned/client/funcs/projectAuthSessionsRecorderCreateAuthSession.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectAuthSessionsRecorderCreateAuthSession(intunedClient, "my-project", {
+    id: "<id>",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)
@@ -72,6 +106,40 @@ async function run() {
   const result = await intunedClient.project.authSessions.recorder.start("my-project", {
     authSessionId: "1a1a1a1a-1a1a-1a1a-1a1a-1a1a1a1a1a1a",
   });
+
+  // Handle the result
+  console.log(result)
+}
+
+run();
+```
+
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectAuthSessionsRecorderStart } from "@intuned/client/funcs/projectAuthSessionsRecorderStart.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+});
+
+async function run() {
+  const res = await projectAuthSessionsRecorderStart(intunedClient, "my-project", {
+    authSessionId: "1a1a1a1a-1a1a-1a1a-1a1a-1a1a1a1a1a1a",
+  });
+
+  if (!res.ok) {
+    throw res.error;
+  }
+
+  const { value: result } = res;
 
   // Handle the result
   console.log(result)

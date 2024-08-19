@@ -1,5 +1,15 @@
 # TriggerJobRequest
 
+## Example Usage
+
+```typescript
+import { TriggerJobRequest } from "@intuned/client/models/operations";
+
+let value: TriggerJobRequest = {
+    projectName: "my-project",
+    jobId: "my-sample-job",
+};
+```
 
 ## Fields
 

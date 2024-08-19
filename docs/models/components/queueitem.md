@@ -2,6 +2,15 @@
 
 An item to be appended once to the queue.
 
+## Example Usage
+
+```typescript
+import { QueueItem } from "@intuned/client/models/components";
+
+let value: QueueItem = {
+    apiName: "<value>",
+};
+```
 
 ## Fields
 

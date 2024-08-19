@@ -2,6 +2,16 @@
 
 Pending API run
 
+## Example Usage
+
+```typescript
+import { AsyncRunPendingResponse } from "@intuned/client/models/components";
+
+let value: AsyncRunPendingResponse = {
+    status: "pending",
+    runId: "<value>",
+};
+```
 
 ## Fields
 

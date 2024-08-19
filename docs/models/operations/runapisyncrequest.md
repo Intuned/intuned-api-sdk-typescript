@@ -1,5 +1,19 @@
 # RunApiSyncRequest
 
+## Example Usage
+
+```typescript
+import { RunApiSyncRequest } from "@intuned/client/models/operations";
+
+let value: RunApiSyncRequest = {
+    projectName: "my-project",
+    runProjectApiRequest: {
+        api: "<value>",
+        parameters: ["<value>"],
+        proxy: "http://username@password:domain:port",
+    },
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # FileExtractTablesStartGlobals
 
+## Example Usage
+
+```typescript
+import { FileExtractTablesStartGlobals } from "@intuned/client/models/operations";
+
+let value: FileExtractTablesStartGlobals = {};
+```
 
 ## Fields
 

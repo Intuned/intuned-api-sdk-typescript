@@ -2,6 +2,32 @@
 
 Webhook payload of queue item run result
 
+## Example Usage
+
+```typescript
+import { QueueSinkResultPayload } from "@intuned/client/models/components";
+
+let value: QueueSinkResultPayload = {
+    apiInfo: {
+        name: "<value>",
+        result: {
+            error: "<value>",
+            message: "<value>",
+            status: "failed",
+            statusCode: 2768.94,
+        },
+        runId: "<value>",
+    },
+    workspaceId: "22bb679d-2322-4715-bf0c-bb1e31b8b90f",
+    project: {
+        id: "3443a110-8e0a-4dcf-8b92-1879fce953f7",
+        name: "<value>",
+    },
+    projectQueue: {
+        id: "<id>",
+    },
+};
+```
 
 ## Fields
 

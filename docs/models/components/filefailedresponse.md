@@ -2,6 +2,18 @@
 
 Failed file extraction result
 
+## Example Usage
+
+```typescript
+import { FileFailedResponse } from "@intuned/client/models/components";
+
+let value: FileFailedResponse = {
+    operationId: "<value>",
+    status: "failed",
+    error: "<value>",
+    message: "<value>",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,12 @@
 # GetAuthSessionsGlobals
 
+## Example Usage
+
+```typescript
+import { GetAuthSessionsGlobals } from "@intuned/client/models/operations";
+
+let value: GetAuthSessionsGlobals = {};
+```
 
 ## Fields
 

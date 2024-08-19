@@ -1,5 +1,12 @@
 # PauseJobGlobals
 
+## Example Usage
+
+```typescript
+import { PauseJobGlobals } from "@intuned/client/models/operations";
+
+let value: PauseJobGlobals = {};
+```
 
 ## Fields
 

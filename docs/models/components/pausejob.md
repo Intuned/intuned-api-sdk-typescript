@@ -1,5 +1,12 @@
 # PauseJob
 
+## Example Usage
+
+```typescript
+import { PauseJob } from "@intuned/client/models/components";
+
+let value: PauseJob = {};
+```
 
 ## Fields
 

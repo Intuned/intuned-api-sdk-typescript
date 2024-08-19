@@ -1,5 +1,12 @@
 # CreateRecorderAuthSessionInstanceGlobals
 
+## Example Usage
+
+```typescript
+import { CreateRecorderAuthSessionInstanceGlobals } from "@intuned/client/models/operations";
+
+let value: CreateRecorderAuthSessionInstanceGlobals = {};
+```
 
 ## Fields
 

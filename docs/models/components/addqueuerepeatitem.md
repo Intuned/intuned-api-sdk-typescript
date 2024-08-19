@@ -1,5 +1,15 @@
 # AddQueueRepeatItem
 
+## Example Usage
+
+```typescript
+import { AddQueueRepeatItem } from "@intuned/client/models/components";
+
+let value: AddQueueRepeatItem = {
+    id: "<id>",
+    status: "repeatable item created",
+};
+```
 
 ## Fields
 

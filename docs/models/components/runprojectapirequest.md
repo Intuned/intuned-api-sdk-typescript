@@ -2,6 +2,17 @@
 
 Run API request
 
+## Example Usage
+
+```typescript
+import { RunProjectApiRequest } from "@intuned/client/models/components";
+
+let value: RunProjectApiRequest = {
+    api: "<value>",
+    parameters: ["<value>"],
+    proxy: "http://username@password:domain:port",
+};
+```
 
 ## Fields
 

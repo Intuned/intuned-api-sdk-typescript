@@ -2,6 +2,15 @@
 
 The job run details
 
+## Example Usage
+
+```typescript
+import { ProjectJobRun } from "@intuned/client/models/components";
+
+let value: ProjectJobRun = {
+    id: "<id>",
+};
+```
 
 ## Fields
 

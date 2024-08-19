@@ -2,6 +2,16 @@
 
 The strategy to extract structured data from a file. Includes the model and type of extraction.
 
+## Example Usage
+
+```typescript
+import { ExtractStructuredDataStrategy } from "@intuned/client/models/components";
+
+let value: ExtractStructuredDataStrategy = {
+    type: "MARKDOWN",
+    model: "gpt4-turbo",
+};
+```
 
 ## Fields
 

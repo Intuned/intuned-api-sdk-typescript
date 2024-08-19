@@ -2,6 +2,16 @@
 
 Pending file extraction result
 
+## Example Usage
+
+```typescript
+import { AsyncFilePendingResponse } from "@intuned/client/models/components";
+
+let value: AsyncFilePendingResponse = {
+    operationId: "aaaabbbCCCCdddd",
+    status: "pending",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,17 @@
 
 Auth session create failed.
 
+## Example Usage
+
+```typescript
+import { AuthSessionCreateFailedResult } from "@intuned/client/models/components";
+
+let value: AuthSessionCreateFailedResult = {
+    status: "failed",
+    error: "<value>",
+    message: "<value>",
+};
+```
 
 ## Fields
 

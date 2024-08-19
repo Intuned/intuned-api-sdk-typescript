@@ -2,6 +2,16 @@
 
 A rate limit. The queue will not exceed the amount of items defined in the limit in the provided duration.
 
+## Example Usage
+
+```typescript
+import { RateLimits } from "@intuned/client/models/components";
+
+let value: RateLimits = {
+    limit: 2653.89,
+    duration: "<value>",
+};
+```
 
 ## Fields
 

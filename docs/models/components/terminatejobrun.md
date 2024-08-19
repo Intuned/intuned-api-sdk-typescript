@@ -1,5 +1,12 @@
 # TerminateJobRun
 
+## Example Usage
+
+```typescript
+import { TerminateJobRun } from "@intuned/client/models/components";
+
+let value: TerminateJobRun = {};
+```
 
 ## Fields
 

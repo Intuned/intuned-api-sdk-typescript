@@ -2,9 +2,16 @@
 
 The file type
 
+## Example Usage
+
+```typescript
+import { Type } from "@intuned/client/models/components";
+
+let value: Type = "image";
+```
 
 ## Values
 
-| Name    | Value   |
-| ------- | ------- |
-| `Image` | image   |
+```typescript
+"image"
+```

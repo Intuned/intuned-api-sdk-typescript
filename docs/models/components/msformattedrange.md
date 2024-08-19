@@ -1,5 +1,15 @@
 # MsFormattedRange
 
+## Example Usage
+
+```typescript
+import { MsFormattedRange } from "@intuned/client/models/components";
+
+let value: MsFormattedRange = {
+    min: "<value>",
+    max: "<value>",
+};
+```
 
 ## Fields
 

@@ -2,6 +2,36 @@
 
 A calendar object. It is similar to a cron string, but more verbose.
 
+## Example Usage
+
+```typescript
+import { Calendars } from "@intuned/client/models/components";
+
+let value: Calendars = {
+    second: "*",
+    minute: "*",
+    hour: "0",
+    dayOfMonth: [
+        {
+            start: 1,
+            end: 30,
+            step: 1,
+        },
+    ],
+    dayOfWeek: {
+        start: "MONDAY",
+        end: "FRIDAY",
+        step: 1,
+    },
+    month: {
+        start: 1,
+        end: 30,
+        step: 1,
+    },
+    year: 6130.64,
+    comment: "Trigger every midnight hour on work days",
+};
+```
 
 ## Fields
 

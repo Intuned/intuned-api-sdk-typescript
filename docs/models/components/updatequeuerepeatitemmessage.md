@@ -1,8 +1,15 @@
 # UpdateQueueRepeatItemMessage
 
+## Example Usage
+
+```typescript
+import { UpdateQueueRepeatItemMessage } from "@intuned/client/models/components";
+
+let value: UpdateQueueRepeatItemMessage = "repeatable item updated";
+```
 
 ## Values
 
-| Name                    | Value                   |
-| ----------------------- | ----------------------- |
-| `RepeatableItemUpdated` | repeatable item updated |
+```typescript
+"repeatable item updated"
+```

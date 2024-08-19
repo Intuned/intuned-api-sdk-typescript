@@ -2,6 +2,30 @@
 
 Create job input
 
+## Example Usage
+
+```typescript
+import { JobInput } from "@intuned/client/models/components";
+
+let value: JobInput = {
+    id: "<id>",
+    sink: {
+        type: "webhook",
+        url: "https://front-odyssey.info",
+    },
+    payload: [
+        {
+            apiName: "<value>",
+        },
+    ],
+    schedule: {
+        calendars: [],
+    },
+    configuration: {
+        runMode: "Order-Irrelevant",
+    },
+};
+```
 
 ## Fields
 

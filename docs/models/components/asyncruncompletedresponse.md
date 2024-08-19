@@ -2,6 +2,17 @@
 
 Completed API run result
 
+## Example Usage
+
+```typescript
+import { AsyncRunCompletedResponse } from "@intuned/client/models/components";
+
+let value: AsyncRunCompletedResponse = {
+    status: "completed",
+    statusCode: 93.56,
+    runId: "<value>",
+};
+```
 
 ## Fields
 

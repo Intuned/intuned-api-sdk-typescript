@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: ccd178123b769c39c9002ec95e5306ab
+  docChecksum: 780868ea49490a066c6b6b74c761e255
   docVersion: 0.0.1
-  speakeasyVersion: 1.357.3
-  generationVersion: 2.390.0
-  releaseVersion: 0.3.9
-  configChecksum: a5f044297bd1e3755544b7463bf75a27
+  speakeasyVersion: 1.374.2
+  generationVersion: 2.401.2
+  releaseVersion: 0.3.10
+  configChecksum: d39d7c9d363d3fb742df2c0ac2b82c7a
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     additionalProperties: 0.1.1
-    constsAndDefaults: 0.1.6
-    core: 3.12.2
+    constsAndDefaults: 0.1.10
+    core: 3.13.2
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.0
     envVarSecurityUsage: 0.1.1
@@ -29,7 +29,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.1.0
-    unions: 2.85.6
+    unions: 2.85.7
     webhooks: 1.0.0
 generatedFiles:
   - src/funcs/filesExtractStructuredDataSync.ts
@@ -90,6 +90,7 @@ generatedFiles:
   - src/sdk/sdk.ts
   - .eslintrc.cjs
   - .npmignore
+  - FUNCTIONS.md
   - RUNTIMES.md
   - jsr.json
   - package.json
@@ -101,6 +102,7 @@ generatedFiles:
   - src/lib/encodings.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts
+  - src/lib/logger.ts
   - src/lib/matchers.ts
   - src/lib/primitives.ts
   - src/lib/retries.ts
@@ -113,6 +115,7 @@ generatedFiles:
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/constdatetime.ts
   - src/types/enums.ts
   - src/types/fp.ts
   - src/types/index.ts

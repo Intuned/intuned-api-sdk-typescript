@@ -1,8 +1,15 @@
 # AmazonS3SinkType
 
+## Example Usage
+
+```typescript
+import { AmazonS3SinkType } from "@intuned/client/models/components";
+
+let value: AmazonS3SinkType = "s3";
+```
 
 ## Values
 
-| Name  | Value |
-| ----- | ----- |
-| `S3`  | s3    |
+```typescript
+"s3"
+```

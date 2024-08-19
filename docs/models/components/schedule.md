@@ -2,6 +2,16 @@
 
 Execution schedule for the queue.
 
+## Example Usage
+
+```typescript
+import { Schedule } from "@intuned/client/models/components";
+
+let value: Schedule = {
+    pause: "<value>",
+    resume: "<value>",
+};
+```
 
 ## Fields
 

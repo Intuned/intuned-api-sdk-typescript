@@ -1,5 +1,12 @@
 # Active
 
+## Example Usage
+
+```typescript
+import { Active } from "@intuned/client/models/components";
+
+let value: Active = {};
+```
 
 ## Fields
 

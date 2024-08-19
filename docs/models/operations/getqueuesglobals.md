@@ -1,5 +1,12 @@
 # GetQueuesGlobals
 
+## Example Usage
+
+```typescript
+import { GetQueuesGlobals } from "@intuned/client/models/operations";
+
+let value: GetQueuesGlobals = {};
+```
 
 ## Fields
 

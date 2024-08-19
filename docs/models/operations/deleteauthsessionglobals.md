@@ -1,5 +1,12 @@
 # DeleteAuthSessionGlobals
 
+## Example Usage
+
+```typescript
+import { DeleteAuthSessionGlobals } from "@intuned/client/models/operations";
+
+let value: DeleteAuthSessionGlobals = {};
+```
 
 ## Fields
 

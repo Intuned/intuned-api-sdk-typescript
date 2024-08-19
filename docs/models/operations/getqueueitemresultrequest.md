@@ -1,5 +1,16 @@
 # GetQueueItemResultRequest
 
+## Example Usage
+
+```typescript
+import { GetQueueItemResultRequest } from "@intuned/client/models/operations";
+
+let value: GetQueueItemResultRequest = {
+    projectName: "my-project",
+    queueId: "my-sample-queue",
+    itemRunId: "11111111-1111-1111-1111-111111111111",
+};
+```
 
 ## Fields
 

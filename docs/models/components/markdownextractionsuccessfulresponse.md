@@ -2,6 +2,17 @@
 
 Successful file extraction result
 
+## Example Usage
+
+```typescript
+import { MarkdownExtractionSuccessfulResponse } from "@intuned/client/models/components";
+
+let value: MarkdownExtractionSuccessfulResponse = {
+    result: "<value>",
+    operationId: "<value>",
+    status: "completed",
+};
+```
 
 ## Fields
 

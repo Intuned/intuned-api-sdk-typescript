@@ -1,8 +1,15 @@
 # AddQueueItemStatus
 
+## Example Usage
+
+```typescript
+import { AddQueueItemStatus } from "@intuned/client/models/components";
+
+let value: AddQueueItemStatus = "queued";
+```
 
 ## Values
 
-| Name     | Value    |
-| -------- | -------- |
-| `Queued` | queued   |
+```typescript
+"queued"
+```

@@ -1,5 +1,12 @@
 # TriggerJob
 
+## Example Usage
+
+```typescript
+import { TriggerJob } from "@intuned/client/models/components";
+
+let value: TriggerJob = {};
+```
 
 ## Fields
 

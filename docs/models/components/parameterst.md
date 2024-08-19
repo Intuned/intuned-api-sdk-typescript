@@ -2,6 +2,15 @@
 
 The parameters to be passed to the API.
 
+## Example Usage
+
+```typescript
+import { ParametersT } from "@intuned/client/models/components";
+
+let value: ParametersT = {
+    key: "<value>",
+};
+```
 
 ## Supported Types
 

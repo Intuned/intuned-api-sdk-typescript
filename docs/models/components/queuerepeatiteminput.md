@@ -2,6 +2,16 @@
 
 An item that will be repeatably appended to the queue.
 
+## Example Usage
+
+```typescript
+import { QueueRepeatItemInput } from "@intuned/client/models/components";
+
+let value: QueueRepeatItemInput = {
+    apiName: "<value>",
+    repeat: "<value>",
+};
+```
 
 ## Fields
 

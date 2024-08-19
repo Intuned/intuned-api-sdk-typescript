@@ -1,5 +1,18 @@
 # FileT
 
+## Example Usage
+
+```typescript
+import { FileT } from "@intuned/client/models/components";
+
+let value: FileT = {
+    type: "pdf",
+    source: {
+        type: "base64",
+        data: "<value>",
+    },
+};
+```
 
 ## Supported Types
 

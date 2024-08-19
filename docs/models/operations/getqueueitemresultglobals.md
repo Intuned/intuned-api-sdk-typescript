@@ -1,5 +1,12 @@
 # GetQueueItemResultGlobals
 
+## Example Usage
+
+```typescript
+import { GetQueueItemResultGlobals } from "@intuned/client/models/operations";
+
+let value: GetQueueItemResultGlobals = {};
+```
 
 ## Fields
 

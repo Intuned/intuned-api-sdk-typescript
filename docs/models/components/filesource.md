@@ -1,5 +1,15 @@
 # FileSource
 
+## Example Usage
+
+```typescript
+import { FileSource } from "@intuned/client/models/components";
+
+let value: FileSource = {
+    type: "url",
+    data: "https://awesome-voter.biz",
+};
+```
 
 ## Supported Types
 

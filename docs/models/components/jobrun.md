@@ -2,6 +2,21 @@
 
 The details of a job run.
 
+## Example Usage
+
+```typescript
+import { JobRun } from "@intuned/client/models/components";
+
+let value: JobRun = {
+    id: "<id>",
+    projectId: "f1a3a2fa-9467-4739-a51a-a52c3f5ad019",
+    jobId: "<value>",
+    startTime: new Date("2024-07-07T09:18:10.171Z"),
+    status: "TERMINATED",
+    type: "MANUAL",
+    workspaceId: "ffe78f09-7b00-474f-9547-1b5e6e13b99d",
+};
+```
 
 ## Fields
 

@@ -1,5 +1,15 @@
 # CreateAuthSessionStart
 
+## Example Usage
+
+```typescript
+import { CreateAuthSessionStart } from "@intuned/client/models/components";
+
+let value: CreateAuthSessionStart = {
+    status: "started",
+    operationId: "<value>",
+};
+```
 
 ## Fields
 

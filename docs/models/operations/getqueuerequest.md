@@ -1,5 +1,15 @@
 # GetQueueRequest
 
+## Example Usage
+
+```typescript
+import { GetQueueRequest } from "@intuned/client/models/operations";
+
+let value: GetQueueRequest = {
+    projectName: "my-project",
+    queueId: "my-sample-queue",
+};
+```
 
 ## Fields
 

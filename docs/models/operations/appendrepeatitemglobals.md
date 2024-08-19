@@ -1,5 +1,12 @@
 # AppendRepeatItemGlobals
 
+## Example Usage
+
+```typescript
+import { AppendRepeatItemGlobals } from "@intuned/client/models/operations";
+
+let value: AppendRepeatItemGlobals = {};
+```
 
 ## Fields
 
