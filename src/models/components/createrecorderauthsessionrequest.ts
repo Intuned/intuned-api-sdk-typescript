@@ -11,7 +11,11 @@ export type CreateRecorderAuthSessionRequest = {
     /**
      * Auth session id
      */
-    id: string;
+    id?: string | undefined;
+    /**
+     * Proxy URL following this format `http://username:password@domain:port`
+     */
+    proxy?: string | undefined;
 };
 
 /** @internal */
@@ -20,12 +24,14 @@ export const CreateRecorderAuthSessionRequest$inboundSchema: z.ZodType<
     z.ZodTypeDef,
     unknown
 > = z.object({
-    id: z.string(),
+    id: z.string().optional(),
+    proxy: z.string().optional(),
 });
 
 /** @internal */
 export type CreateRecorderAuthSessionRequest$Outbound = {
-    id: string;
+    id?: string | undefined;
+    proxy?: string | undefined;
 };
 
 /** @internal */
@@ -34,7 +40,8 @@ export const CreateRecorderAuthSessionRequest$outboundSchema: z.ZodType<
     z.ZodTypeDef,
     CreateRecorderAuthSessionRequest
 > = z.object({
-    id: z.string(),
+    id: z.string().optional(),
+    proxy: z.string().optional(),
 });
 
 /**

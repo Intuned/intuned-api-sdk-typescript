@@ -4,7 +4,7 @@
 ### Available Operations
 
 * [createAuthSession](#createauthsession) - Create Recorder Auth Session Instance
-* [start](#start) - Create Recorder Auth Session Instance
+* [start](#start) - Start recorder session for an auth session
 
 ## createAuthSession
 
@@ -22,7 +22,7 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.authSessions.recorder.createAuthSession("my-project", {
-    id: "<id>",
+    id: "my-auth-session",
   });
 
   // Handle the result
@@ -50,7 +50,7 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await projectAuthSessionsRecorderCreateAuthSession(intunedClient, "my-project", {
-    id: "<id>",
+    id: "my-auth-session",
   });
 
   if (!res.ok) {

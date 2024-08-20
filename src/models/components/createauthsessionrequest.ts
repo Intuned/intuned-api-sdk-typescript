@@ -23,7 +23,7 @@ export type CreateAuthSessionRequest = {
      */
     parameters?: APIParameters | undefined;
     /**
-     * Proxy URL following this format `http://username@password:domain:port`
+     * Proxy URL following this format `http://username:password@domain:port`
      */
     proxy?: string | undefined;
 };
