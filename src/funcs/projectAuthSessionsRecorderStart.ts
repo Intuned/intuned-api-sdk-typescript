@@ -24,7 +24,7 @@ import * as operations from "../models/operations/index.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create Recorder Auth Session Instance
+ * Start recorder session for an auth session
  *
  * @remarks
  * create a recording session for a specific auth session

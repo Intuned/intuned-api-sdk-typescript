@@ -10,7 +10,7 @@ let value: RunApiStartRequest = {
     runProjectApiRequest: {
         api: "<value>",
         parameters: ["<value>"],
-        proxy: "http://username@password:domain:port",
+        proxy: "http://username:password@domain:port",
     },
 };
 ```

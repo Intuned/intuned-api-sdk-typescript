@@ -37,7 +37,7 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
-    proxy: "http://username@password:domain:port",
+    proxy: "http://username:password@domain:port",
   });
 
   // Handle the result
@@ -73,7 +73,7 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
-    proxy: "http://username@password:domain:port",
+    proxy: "http://username:password@domain:port",
   });
 
   if (!res.ok) {
@@ -135,7 +135,7 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
-    proxy: "http://username@password:domain:port",
+    proxy: "http://username:password@domain:port",
   });
 
   // Handle the result
@@ -173,7 +173,7 @@ async function run() {
     retry: {
       maximumAttempts: 3,
     },
-    proxy: "http://username@password:domain:port",
+    proxy: "http://username:password@domain:port",
   });
 
   if (!res.ok) {

@@ -7,9 +7,7 @@ import { CreateRecorderAuthSessionInstanceRequest } from "@intuned/client/models
 
 let value: CreateRecorderAuthSessionInstanceRequest = {
     projectName: "my-project",
-    createRecorderAuthSessionRequest: {
-        id: "<id>",
-    },
+    createRecorderAuthSessionRequest: {},
 };
 ```
 
