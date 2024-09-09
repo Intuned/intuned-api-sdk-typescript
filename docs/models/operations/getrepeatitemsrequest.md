@@ -6,8 +6,8 @@
 import { GetRepeatItemsRequest } from "@intuned/client/models/operations";
 
 let value: GetRepeatItemsRequest = {
-    projectName: "my-project",
-    queueId: "my-sample-queue",
+  projectName: "my-project",
+  queueId: "my-sample-queue",
 };
 ```
 

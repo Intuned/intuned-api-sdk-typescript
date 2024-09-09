@@ -6,8 +6,8 @@
 import { MillisecondsRange } from "@intuned/client/models/components";
 
 let value: MillisecondsRange = {
-    min: 5089.69,
-    max: 5232.48,
+  min: 9292.97,
+  max: 2777.18,
 };
 ```
 

@@ -6,7 +6,7 @@
 import { AuthSessionCreateResult } from "@intuned/client/models/components";
 
 let value: AuthSessionCreateResult = {
-    status: "pending",
+  status: "pending",
 };
 ```
 

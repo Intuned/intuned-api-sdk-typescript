@@ -8,8 +8,8 @@ Execution schedule for the queue.
 import { Schedule } from "@intuned/client/models/components";
 
 let value: Schedule = {
-    pause: "<value>",
-    resume: "<value>",
+  pause: "<value>",
+  resume: "<value>",
 };
 ```
 

@@ -6,11 +6,11 @@
 import { AppendQueueItemRequest } from "@intuned/client/models/operations";
 
 let value: AppendQueueItemRequest = {
-    projectName: "my-project",
-    queueId: "my-sample-queue",
-    queueItem: {
-        apiName: "<value>",
-    },
+  projectName: "my-project",
+  queueId: "my-sample-queue",
+  queueItem: {
+    apiName: "<value>",
+  },
 };
 ```
 

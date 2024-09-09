@@ -6,8 +6,8 @@
 import { AddQueueItem } from "@intuned/client/models/components";
 
 let value: AddQueueItem = {
-    runId: "<value>",
-    status: "queued",
+  runId: "<value>",
+  status: "queued",
 };
 ```
 

@@ -28,20 +28,19 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractTables.sync({
-      type: "pdf",
-    source:     {
-          type: "url",
-          data: "http://unconscious-margin.name",
-        },
-    });
-
+    type: "pdf",
+    source: {
+      type: "url",
+      data: "http://unconscious-margin.name",
+    },
+  });
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -60,12 +59,12 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await filesExtractTablesSync(intunedClient, {
-      type: "image",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    });
+    type: "image",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -89,10 +88,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.TableExtractionSyncResponse](../../models/components/tableextractionsyncresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -100,6 +99,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## start
 
@@ -119,20 +119,19 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractTables.start({
-      type: "image",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    });
-
+    type: "image",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  });
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -151,12 +150,12 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await filesExtractTablesStart(intunedClient, {
-      type: "pdf",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    });
+    type: "pdf",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  });
 
   if (!res.ok) {
     throw res.error;
@@ -180,10 +179,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |
 
-
 ### Response
 
 **Promise\<[components.AsyncFilePendingResponse](../../models/components/asyncfilependingresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -191,6 +190,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## result
 
@@ -208,14 +208,13 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractTables.result("aaaabbbCCCCdddd");
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -257,10 +256,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.TableExtractionAsyncResponse](../../models/components/tableextractionasyncresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

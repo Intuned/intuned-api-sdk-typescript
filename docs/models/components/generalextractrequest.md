@@ -6,13 +6,13 @@
 import { GeneralExtractRequest } from "@intuned/client/models/components";
 
 let value: GeneralExtractRequest = {
-    file: {
-        type: "pdf",
-        source: {
-            type: "base64",
-            data: "<value>",
-        },
+  file: {
+    type: "image",
+    source: {
+      type: "base64",
+      data: "<value>",
     },
+  },
 };
 ```
 

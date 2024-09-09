@@ -8,8 +8,8 @@ Pending file extraction result
 import { AsyncFilePendingResponse } from "@intuned/client/models/components";
 
 let value: AsyncFilePendingResponse = {
-    operationId: "aaaabbbCCCCdddd",
-    status: "pending",
+  operationId: "aaaabbbCCCCdddd",
+  status: "pending",
 };
 ```
 

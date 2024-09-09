@@ -8,9 +8,9 @@ Auth session create failed.
 import { AuthSessionCreateFailedResult } from "@intuned/client/models/components";
 
 let value: AuthSessionCreateFailedResult = {
-    status: "failed",
-    error: "<value>",
-    message: "<value>",
+  status: "failed",
+  error: "<value>",
+  message: "<value>",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { CreateAuthSessionResume } from "@intuned/client/models/components";
 
 let value: CreateAuthSessionResume = {
-    status: "resumed",
+  status: "resumed",
 };
 ```
 

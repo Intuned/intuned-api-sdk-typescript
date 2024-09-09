@@ -8,7 +8,7 @@ The configuration of the queue. Configure retries, rate limits, execution schedu
 import { QueueConfiguration } from "@intuned/client/models/components";
 
 let value: QueueConfiguration = {
-    runMode: "Default",
+  runMode: "Default",
 };
 ```
 

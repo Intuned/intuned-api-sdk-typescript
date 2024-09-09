@@ -6,12 +6,12 @@
 import { CreateQueueRequest } from "@intuned/client/models/operations";
 
 let value: CreateQueueRequest = {
-    projectName: "my-project",
-    queueInput: {
-        configuration: {
-            runMode: "Default",
-        },
+  projectName: "my-project",
+  queueInput: {
+    configuration: {
+      runMode: "Default",
     },
+  },
 };
 ```
 

@@ -8,8 +8,8 @@ URL file source.
 import { FileUrlSource } from "@intuned/client/models/components";
 
 let value: FileUrlSource = {
-    type: "url",
-    data: "http://lasting-sex.net",
+  type: "url",
+  data: "http://nice-gorilla.org",
 };
 ```
 

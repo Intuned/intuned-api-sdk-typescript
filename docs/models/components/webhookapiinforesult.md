@@ -6,10 +6,10 @@
 import { WebhookAPIInfoResult } from "@intuned/client/models/components";
 
 let value: WebhookAPIInfoResult = {
-    error: "<value>",
-    message: "<value>",
-    status: "failed",
-    statusCode: 6070.45,
+  error: "<value>",
+  message: "<value>",
+  status: "failed",
+  statusCode: 2274.14,
 };
 ```
 

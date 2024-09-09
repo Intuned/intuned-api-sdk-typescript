@@ -8,8 +8,8 @@ A random wait duration range added between executed items. The range can be in m
 import { RandomWait } from "@intuned/client/models/components";
 
 let value: RandomWait = {
-    min: "<value>",
-    max: "<value>",
+  min: 93.56,
+  max: 6674.11,
 };
 ```
 

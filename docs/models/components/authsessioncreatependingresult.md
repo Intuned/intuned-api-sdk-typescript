@@ -8,7 +8,7 @@ Auth session create pending
 import { AuthSessionCreatePendingResult } from "@intuned/client/models/components";
 
 let value: AuthSessionCreatePendingResult = {
-    status: "pending",
+  status: "pending",
 };
 ```
 

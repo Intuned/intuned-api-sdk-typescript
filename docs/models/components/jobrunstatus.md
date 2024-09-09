@@ -7,7 +7,7 @@ The status of the job run.
 ```typescript
 import { JobRunStatus } from "@intuned/client/models/components";
 
-let value: JobRunStatus = "PENDING";
+let value: JobRunStatus = "TERMINATED";
 ```
 
 ## Values

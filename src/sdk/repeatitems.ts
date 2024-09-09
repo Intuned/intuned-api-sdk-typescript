@@ -12,99 +12,108 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class RepeatItems extends ClientSDK {
-    /**
-     * Get Queue Repeat Items
-     *
-     * @remarks
-     * Gets all repeatable items of a queue.
-     */
-    async all(
-        projectName: string,
-        queueId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.QueueRepeatItem>> {
-        return unwrapAsync(projectQueuesRepeatItemsAll(this, projectName, queueId, options));
-    }
+  /**
+   * Get Queue Repeat Items
+   *
+   * @remarks
+   * Gets all repeatable items of a queue.
+   */
+  async all(
+    projectName: string,
+    queueId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.QueueRepeatItem>> {
+    return unwrapAsync(projectQueuesRepeatItemsAll(
+      this,
+      projectName,
+      queueId,
+      options,
+    ));
+  }
 
-    /**
-     * Append Queue Repeat Item
-     *
-     * @remarks
-     * Creates and appends a repeatable item to the queue. Repeatable items will automatically re-append to the queue according to the repeat settings.
-     */
-    async append(
-        projectName: string,
-        queueId: string,
-        queueRepeatItemInput: components.QueueRepeatItemInput,
-        options?: RequestOptions
-    ): Promise<components.AddQueueRepeatItem> {
-        return unwrapAsync(
-            projectQueuesRepeatItemsAppend(
-                this,
-                projectName,
-                queueId,
-                queueRepeatItemInput,
-                options
-            )
-        );
-    }
+  /**
+   * Append Queue Repeat Item
+   *
+   * @remarks
+   * Creates and appends a repeatable item to the queue. Repeatable items will automatically re-append to the queue according to the repeat settings.
+   */
+  async append(
+    projectName: string,
+    queueId: string,
+    queueRepeatItemInput: components.QueueRepeatItemInput,
+    options?: RequestOptions,
+  ): Promise<components.AddQueueRepeatItem> {
+    return unwrapAsync(projectQueuesRepeatItemsAppend(
+      this,
+      projectName,
+      queueId,
+      queueRepeatItemInput,
+      options,
+    ));
+  }
 
-    /**
-     * Get Queue Repeat Item
-     *
-     * @remarks
-     * Gets a repeatable item from a queue by ID. The last execution result of the item is also returned.
-     */
-    async one(
-        projectName: string,
-        queueId: string,
-        itemId: string,
-        options?: RequestOptions
-    ): Promise<components.QueueRepeatItem> {
-        return unwrapAsync(
-            projectQueuesRepeatItemsOne(this, projectName, queueId, itemId, options)
-        );
-    }
+  /**
+   * Get Queue Repeat Item
+   *
+   * @remarks
+   * Gets a repeatable item from a queue by ID. The last execution result of the item is also returned.
+   */
+  async one(
+    projectName: string,
+    queueId: string,
+    itemId: string,
+    options?: RequestOptions,
+  ): Promise<components.QueueRepeatItem> {
+    return unwrapAsync(projectQueuesRepeatItemsOne(
+      this,
+      projectName,
+      queueId,
+      itemId,
+      options,
+    ));
+  }
 
-    /**
-     * Update Queue Repeat Item
-     *
-     * @remarks
-     * Updates the configurations of a repeatable item by ID.
-     */
-    async update(
-        projectName: string,
-        queueId: string,
-        itemId: string,
-        queueRepeatItemInput: components.QueueRepeatItemInput,
-        options?: RequestOptions
-    ): Promise<components.UpdateQueueRepeatItem> {
-        return unwrapAsync(
-            projectQueuesRepeatItemsUpdate(
-                this,
-                projectName,
-                queueId,
-                itemId,
-                queueRepeatItemInput,
-                options
-            )
-        );
-    }
+  /**
+   * Update Queue Repeat Item
+   *
+   * @remarks
+   * Updates the configurations of a repeatable item by ID.
+   */
+  async update(
+    projectName: string,
+    queueId: string,
+    itemId: string,
+    queueRepeatItemInput: components.QueueRepeatItemInput,
+    options?: RequestOptions,
+  ): Promise<components.UpdateQueueRepeatItem> {
+    return unwrapAsync(projectQueuesRepeatItemsUpdate(
+      this,
+      projectName,
+      queueId,
+      itemId,
+      queueRepeatItemInput,
+      options,
+    ));
+  }
 
-    /**
-     * Delete Queue Repeat Item
-     *
-     * @remarks
-     * Deletes a repeatable item by ID. The item will no longer be re-appended to the queue.
-     */
-    async delete(
-        projectName: string,
-        queueId: string,
-        itemId: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(
-            projectQueuesRepeatItemsDelete(this, projectName, queueId, itemId, options)
-        );
-    }
+  /**
+   * Delete Queue Repeat Item
+   *
+   * @remarks
+   * Deletes a repeatable item by ID. The item will no longer be re-appended to the queue.
+   */
+  async delete(
+    projectName: string,
+    queueId: string,
+    itemId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(projectQueuesRepeatItemsDelete(
+      this,
+      projectName,
+      queueId,
+      itemId,
+      options,
+    ));
+  }
 }

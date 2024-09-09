@@ -6,8 +6,8 @@
 import { GetJobRunsRequest } from "@intuned/client/models/operations";
 
 let value: GetJobRunsRequest = {
-    projectName: "my-project",
-    jobId: "my-sample-job",
+  projectName: "my-project",
+  jobId: "my-sample-job",
 };
 ```
 

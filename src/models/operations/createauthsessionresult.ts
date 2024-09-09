@@ -5,44 +5,44 @@
 import * as z from "zod";
 
 export type CreateAuthSessionResultGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type CreateAuthSessionResultRequest = {
-    /**
-     * Your project name. It is the name you provide when creating a project.
-     */
-    projectName: string;
-    /**
-     * The ID for the requested auth session creation operation. This is obtained from the start request.
-     */
-    operationId: string;
+  /**
+   * Your project name. It is the name you provide when creating a project.
+   */
+  projectName: string;
+  /**
+   * The ID for the requested auth session creation operation. This is obtained from the start request.
+   */
+  operationId: string;
 };
 
 /** @internal */
 export const CreateAuthSessionResultGlobals$inboundSchema: z.ZodType<
-    CreateAuthSessionResultGlobals,
-    z.ZodTypeDef,
-    unknown
+  CreateAuthSessionResultGlobals,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /** @internal */
 export type CreateAuthSessionResultGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const CreateAuthSessionResultGlobals$outboundSchema: z.ZodType<
-    CreateAuthSessionResultGlobals$Outbound,
-    z.ZodTypeDef,
-    CreateAuthSessionResultGlobals
+  CreateAuthSessionResultGlobals$Outbound,
+  z.ZodTypeDef,
+  CreateAuthSessionResultGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -50,38 +50,38 @@ export const CreateAuthSessionResultGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateAuthSessionResultGlobals$ {
-    /** @deprecated use `CreateAuthSessionResultGlobals$inboundSchema` instead. */
-    export const inboundSchema = CreateAuthSessionResultGlobals$inboundSchema;
-    /** @deprecated use `CreateAuthSessionResultGlobals$outboundSchema` instead. */
-    export const outboundSchema = CreateAuthSessionResultGlobals$outboundSchema;
-    /** @deprecated use `CreateAuthSessionResultGlobals$Outbound` instead. */
-    export type Outbound = CreateAuthSessionResultGlobals$Outbound;
+  /** @deprecated use `CreateAuthSessionResultGlobals$inboundSchema` instead. */
+  export const inboundSchema = CreateAuthSessionResultGlobals$inboundSchema;
+  /** @deprecated use `CreateAuthSessionResultGlobals$outboundSchema` instead. */
+  export const outboundSchema = CreateAuthSessionResultGlobals$outboundSchema;
+  /** @deprecated use `CreateAuthSessionResultGlobals$Outbound` instead. */
+  export type Outbound = CreateAuthSessionResultGlobals$Outbound;
 }
 
 /** @internal */
 export const CreateAuthSessionResultRequest$inboundSchema: z.ZodType<
-    CreateAuthSessionResultRequest,
-    z.ZodTypeDef,
-    unknown
+  CreateAuthSessionResultRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    projectName: z.string(),
-    operationId: z.string(),
+  projectName: z.string(),
+  operationId: z.string(),
 });
 
 /** @internal */
 export type CreateAuthSessionResultRequest$Outbound = {
-    projectName: string;
-    operationId: string;
+  projectName: string;
+  operationId: string;
 };
 
 /** @internal */
 export const CreateAuthSessionResultRequest$outboundSchema: z.ZodType<
-    CreateAuthSessionResultRequest$Outbound,
-    z.ZodTypeDef,
-    CreateAuthSessionResultRequest
+  CreateAuthSessionResultRequest$Outbound,
+  z.ZodTypeDef,
+  CreateAuthSessionResultRequest
 > = z.object({
-    projectName: z.string(),
-    operationId: z.string(),
+  projectName: z.string(),
+  operationId: z.string(),
 });
 
 /**
@@ -89,10 +89,10 @@ export const CreateAuthSessionResultRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateAuthSessionResultRequest$ {
-    /** @deprecated use `CreateAuthSessionResultRequest$inboundSchema` instead. */
-    export const inboundSchema = CreateAuthSessionResultRequest$inboundSchema;
-    /** @deprecated use `CreateAuthSessionResultRequest$outboundSchema` instead. */
-    export const outboundSchema = CreateAuthSessionResultRequest$outboundSchema;
-    /** @deprecated use `CreateAuthSessionResultRequest$Outbound` instead. */
-    export type Outbound = CreateAuthSessionResultRequest$Outbound;
+  /** @deprecated use `CreateAuthSessionResultRequest$inboundSchema` instead. */
+  export const inboundSchema = CreateAuthSessionResultRequest$inboundSchema;
+  /** @deprecated use `CreateAuthSessionResultRequest$outboundSchema` instead. */
+  export const outboundSchema = CreateAuthSessionResultRequest$outboundSchema;
+  /** @deprecated use `CreateAuthSessionResultRequest$Outbound` instead. */
+  export type Outbound = CreateAuthSessionResultRequest$Outbound;
 }

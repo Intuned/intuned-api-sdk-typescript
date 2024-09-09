@@ -32,12 +32,12 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await filesExtractStructuredDataSync(intunedClient, {
-      type: "pdf",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    }, {
+    type: "pdf",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  }, {
     "key": "<value>",
   });
 

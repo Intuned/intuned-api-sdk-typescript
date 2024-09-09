@@ -8,7 +8,7 @@ The queue details of the run
 import { ProjectQueue } from "@intuned/client/models/components";
 
 let value: ProjectQueue = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

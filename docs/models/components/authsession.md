@@ -8,7 +8,7 @@ Auth session configurations
 import { AuthSession } from "@intuned/client/models/components";
 
 let value: AuthSession = {
-    id: "7cc78ca1-ba92-48fc-8167-42cb73920592",
+  id: "28fc8167-42cb-4739-a059-29396fea7596",
 };
 ```
 

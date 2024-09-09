@@ -8,7 +8,7 @@ Schedule configurations for the job. If set, the job will periodically run accor
 import { JobSchedule } from "@intuned/client/models/components";
 
 let value: JobSchedule = {
-    calendars: [],
+  calendars: [],
 };
 ```
 

@@ -8,9 +8,9 @@ A range of values for a calendar property. The type depends on the property.
 import { JobCalendarRange } from "@intuned/client/models/components";
 
 let value: JobCalendarRange = {
-    start: 1,
-    end: 30,
-    step: 1,
+  start: 1,
+  end: 30,
+  step: 1,
 };
 ```
 

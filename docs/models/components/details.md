@@ -6,10 +6,12 @@
 import { Details } from "@intuned/client/models/components";
 
 let value: Details = {
-    choices: ["<value>"],
-    requestType: "multiple_choice",
-    action: "request_more_info",
-    messageToUser: "<value>",
+  choices: [
+    "<value>",
+  ],
+  requestType: "multiple_choice",
+  action: "request_more_info",
+  messageToUser: "<value>",
 };
 ```
 

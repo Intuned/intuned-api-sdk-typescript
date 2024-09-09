@@ -8,7 +8,7 @@ A payload to be executed by the job
 import { JobPayload } from "@intuned/client/models/components";
 
 let value: JobPayload = {
-    apiName: "<value>",
+  apiName: "<value>",
 };
 ```
 

@@ -6,7 +6,7 @@
 import { GetJobsRequest } from "@intuned/client/models/operations";
 
 let value: GetJobsRequest = {
-    projectName: "my-project",
+  projectName: "my-project",
 };
 ```
 

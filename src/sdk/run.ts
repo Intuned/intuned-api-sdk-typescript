@@ -10,45 +10,60 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Run extends ClientSDK {
-    /**
-     * Run API - Sync
-     *
-     * @remarks
-     * Runs a project API synchronously.
-     */
-    async sync(
-        projectName: string,
-        runProjectApiRequest: components.RunProjectApiRequest,
-        options?: RequestOptions
-    ): Promise<components.SyncResultResponse> {
-        return unwrapAsync(projectRunSync(this, projectName, runProjectApiRequest, options));
-    }
+  /**
+   * Run API - Sync
+   *
+   * @remarks
+   * Runs a project API synchronously.
+   */
+  async sync(
+    projectName: string,
+    runProjectApiRequest: components.RunProjectApiRequest,
+    options?: RequestOptions,
+  ): Promise<components.SyncResultResponse> {
+    return unwrapAsync(projectRunSync(
+      this,
+      projectName,
+      runProjectApiRequest,
+      options,
+    ));
+  }
 
-    /**
-     * Run API - Async Start
-     *
-     * @remarks
-     * Starts a project API run operation
-     */
-    async start(
-        projectName: string,
-        runProjectApiRequest: components.RunProjectApiRequest,
-        options?: RequestOptions
-    ): Promise<components.AsyncRunPendingResponse> {
-        return unwrapAsync(projectRunStart(this, projectName, runProjectApiRequest, options));
-    }
+  /**
+   * Run API - Async Start
+   *
+   * @remarks
+   * Starts a project API run operation
+   */
+  async start(
+    projectName: string,
+    runProjectApiRequest: components.RunProjectApiRequest,
+    options?: RequestOptions,
+  ): Promise<components.AsyncRunPendingResponse> {
+    return unwrapAsync(projectRunStart(
+      this,
+      projectName,
+      runProjectApiRequest,
+      options,
+    ));
+  }
 
-    /**
-     * Run API - Async Result
-     *
-     * @remarks
-     * Retrieves the result of a started project API run operation.
-     */
-    async result(
-        projectName: string,
-        runId: string,
-        options?: RequestOptions
-    ): Promise<components.AsyncResultResponse> {
-        return unwrapAsync(projectRunResult(this, projectName, runId, options));
-    }
+  /**
+   * Run API - Async Result
+   *
+   * @remarks
+   * Retrieves the result of a started project API run operation.
+   */
+  async result(
+    projectName: string,
+    runId: string,
+    options?: RequestOptions,
+  ): Promise<components.AsyncResultResponse> {
+    return unwrapAsync(projectRunResult(
+      this,
+      projectName,
+      runId,
+      options,
+    ));
+  }
 }

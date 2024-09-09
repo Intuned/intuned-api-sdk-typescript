@@ -29,14 +29,13 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.queues.repeatItems.all("my-project", "my-sample-queue");
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -79,10 +78,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.QueueRepeatItem[]](../../models/.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -90,6 +89,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## append
 
@@ -110,14 +110,13 @@ async function run() {
     apiName: "<value>",
     repeat: "10m",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -164,10 +163,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.AddQueueRepeatItem](../../models/components/addqueuerepeatitem.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -175,6 +174,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## one
 
@@ -192,14 +192,13 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.queues.repeatItems.one("my-project", "my-sample-queue", "22222222-2222-2222-2222-222222222222");
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -243,10 +242,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.QueueRepeatItem](../../models/components/queuerepeatitem.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -254,6 +253,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## update
 
@@ -274,14 +274,13 @@ async function run() {
     apiName: "<value>",
     repeat: "10m",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -329,10 +328,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.UpdateQueueRepeatItem](../../models/components/updatequeuerepeatitem.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -340,6 +339,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## delete
 
@@ -357,13 +357,10 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   await intunedClient.project.queues.repeatItems.delete("my-project", "my-sample-queue", "22222222-2222-2222-2222-222222222222");
-
-  
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -406,10 +403,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<void\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

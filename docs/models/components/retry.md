@@ -8,7 +8,7 @@ Retry policy configurations
 import { Retry } from "@intuned/client/models/components";
 
 let value: Retry = {
-    maximumAttempts: 939.4,
+  maximumAttempts: 8423.42,
 };
 ```
 

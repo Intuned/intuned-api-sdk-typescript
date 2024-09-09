@@ -6,11 +6,11 @@
 import { FileT } from "@intuned/client/models/components";
 
 let value: FileT = {
-    type: "pdf",
-    source: {
-        type: "base64",
-        data: "<value>",
-    },
+  type: "image",
+  source: {
+    type: "url",
+    data: "http://unique-baboon.org",
+  },
 };
 ```
 

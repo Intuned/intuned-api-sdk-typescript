@@ -8,7 +8,7 @@ The job details of the run
 import { ProjectJob } from "@intuned/client/models/components";
 
 let value: ProjectJob = {
-    id: "<id>",
+  id: "<id>",
 };
 ```
 

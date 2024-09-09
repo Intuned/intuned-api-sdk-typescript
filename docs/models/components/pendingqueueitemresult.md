@@ -6,8 +6,8 @@
 import { PendingQueueItemResult } from "@intuned/client/models/components";
 
 let value: PendingQueueItemResult = {
-    runId: "<value>",
-    status: "pending",
+  runId: "<value>",
+  status: "pending",
 };
 ```
 

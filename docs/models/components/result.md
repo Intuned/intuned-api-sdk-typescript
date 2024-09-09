@@ -8,9 +8,13 @@ An extracted table.
 import { Result } from "@intuned/client/models/components";
 
 let value: Result = {
-    pageNumber: 648172,
-    title: "<value>",
-    content: [["<value>"]],
+  pageNumber: 473608,
+  title: "<value>",
+  content: [
+    [
+      "<value>",
+    ],
+  ],
 };
 ```
 

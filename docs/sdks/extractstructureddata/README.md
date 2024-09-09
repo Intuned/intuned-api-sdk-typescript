@@ -28,22 +28,21 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractStructuredData.sync({
-      type: "pdf",
-    source:     {
-          type: "url",
-          data: "http://unconscious-margin.name",
-        },
-    }, {
+    type: "pdf",
+    source: {
+      type: "url",
+      data: "http://unconscious-margin.name",
+    },
+  }, {
     "key": "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -62,12 +61,12 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await filesExtractStructuredDataSync(intunedClient, {
-      type: "image",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    }, {
+    type: "image",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  }, {
     "key": "<value>",
   });
 
@@ -90,16 +89,16 @@ run();
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `file`                                                                                                                                                                                                                                  | *components.FileT*                                                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                                                                      | N/A                                                                                                                                                                                                                                     |
 | `dataSchema`                                                                                                                                                                                                                            | Record<string, *any*>                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                      | The schema (in JSONSchema) to which the extracted data should conform to. [More about JSONSchema](https://json-schema.org/learn/getting-started-step-by-step)<br/><br/>[JSONSchema](https://json-schema.org/learn/getting-started-step-by-step) |
-| `strategy`                                                                                                                                                                                                                              | [components.ExtractStructuredDataStrategy](../../models/components/extractstructureddatastrategy.md)                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                      | The strategy to extract structured data from a file. Includes the model and type of extraction.                                                                                                                                         |
+| `strategy`                                                                                                                                                                                                                              | *components.ExtractStructuredDataStrategy*                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                      | The strategy to extract structured data from a file. Includes the model and type of extraction.                                                                                                                                         |
 | `prompt`                                                                                                                                                                                                                                | *string*                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                      | Prompt given to the AI model to help with extraction.                                                                                                                                                                                   |
 | `options`                                                                                                                                                                                                                               | RequestOptions                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                      | Used to set various options for making HTTP requests.                                                                                                                                                                                   |
 | `options.fetchOptions`                                                                                                                                                                                                                  | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                      | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                          |
 | `options.retries`                                                                                                                                                                                                                       | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                      | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                        |
 
-
 ### Response
 
 **Promise\<[components.StructuredDataExtractionSyncResponse](../../models/components/structureddataextractionsyncresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -107,6 +106,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## start
 
@@ -126,22 +126,21 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractStructuredData.start({
-      type: "image",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    }, {
+    type: "image",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  }, {
     "key": "<value>",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -160,12 +159,12 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await filesExtractStructuredDataStart(intunedClient, {
-      type: "pdf",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    }, {
+    type: "pdf",
+    source: {
+      type: "base64",
+      data: "<value>",
+    },
+  }, {
     "key": "<value>",
   });
 
@@ -188,16 +187,16 @@ run();
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `file`                                                                                                                                                                                                                                  | *components.FileT*                                                                                                                                                                                                                      | :heavy_check_mark:                                                                                                                                                                                                                      | N/A                                                                                                                                                                                                                                     |
 | `dataSchema`                                                                                                                                                                                                                            | Record<string, *any*>                                                                                                                                                                                                                   | :heavy_check_mark:                                                                                                                                                                                                                      | The schema (in JSONSchema) to which the extracted data should conform to. [More about JSONSchema](https://json-schema.org/learn/getting-started-step-by-step)<br/><br/>[JSONSchema](https://json-schema.org/learn/getting-started-step-by-step) |
-| `strategy`                                                                                                                                                                                                                              | [components.ExtractStructuredDataStrategy](../../models/components/extractstructureddatastrategy.md)                                                                                                                                    | :heavy_minus_sign:                                                                                                                                                                                                                      | The strategy to extract structured data from a file. Includes the model and type of extraction.                                                                                                                                         |
+| `strategy`                                                                                                                                                                                                                              | *components.ExtractStructuredDataStrategy*                                                                                                                                                                                              | :heavy_minus_sign:                                                                                                                                                                                                                      | The strategy to extract structured data from a file. Includes the model and type of extraction.                                                                                                                                         |
 | `prompt`                                                                                                                                                                                                                                | *string*                                                                                                                                                                                                                                | :heavy_minus_sign:                                                                                                                                                                                                                      | Prompt given to the AI model to help with extraction.                                                                                                                                                                                   |
 | `options`                                                                                                                                                                                                                               | RequestOptions                                                                                                                                                                                                                          | :heavy_minus_sign:                                                                                                                                                                                                                      | Used to set various options for making HTTP requests.                                                                                                                                                                                   |
 | `options.fetchOptions`                                                                                                                                                                                                                  | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                                                                                      | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed.                                                          |
 | `options.retries`                                                                                                                                                                                                                       | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                                                                                      | Enables retrying HTTP requests under certain failure conditions.                                                                                                                                                                        |
 
-
 ### Response
 
 **Promise\<[components.AsyncFilePendingResponse](../../models/components/asyncfilependingresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -205,6 +204,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## result
 
@@ -222,14 +222,13 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.files.extractStructuredData.result("aaaabbbCCCCdddd");
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -271,10 +270,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.StructuredDataExtractionAsyncResponse](../../models/components/structureddataextractionasyncresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

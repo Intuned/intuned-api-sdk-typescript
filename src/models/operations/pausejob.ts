@@ -5,41 +5,44 @@
 import * as z from "zod";
 
 export type PauseJobGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type PauseJobRequest = {
-    /**
-     * Your project name. It is the name you provide when creating a project.
-     */
-    projectName: string;
-    /**
-     * Your job ID. It is the ID of the job you provide when creating it.
-     */
-    jobId: string;
+  /**
+   * Your project name. It is the name you provide when creating a project.
+   */
+  projectName: string;
+  /**
+   * Your job ID. It is the ID of the job you provide when creating it.
+   */
+  jobId: string;
 };
 
 /** @internal */
-export const PauseJobGlobals$inboundSchema: z.ZodType<PauseJobGlobals, z.ZodTypeDef, unknown> =
-    z.object({
-        workspaceId: z.string().optional(),
-    });
+export const PauseJobGlobals$inboundSchema: z.ZodType<
+  PauseJobGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  workspaceId: z.string().optional(),
+});
 
 /** @internal */
 export type PauseJobGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const PauseJobGlobals$outboundSchema: z.ZodType<
-    PauseJobGlobals$Outbound,
-    z.ZodTypeDef,
-    PauseJobGlobals
+  PauseJobGlobals$Outbound,
+  z.ZodTypeDef,
+  PauseJobGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -47,35 +50,38 @@ export const PauseJobGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace PauseJobGlobals$ {
-    /** @deprecated use `PauseJobGlobals$inboundSchema` instead. */
-    export const inboundSchema = PauseJobGlobals$inboundSchema;
-    /** @deprecated use `PauseJobGlobals$outboundSchema` instead. */
-    export const outboundSchema = PauseJobGlobals$outboundSchema;
-    /** @deprecated use `PauseJobGlobals$Outbound` instead. */
-    export type Outbound = PauseJobGlobals$Outbound;
+  /** @deprecated use `PauseJobGlobals$inboundSchema` instead. */
+  export const inboundSchema = PauseJobGlobals$inboundSchema;
+  /** @deprecated use `PauseJobGlobals$outboundSchema` instead. */
+  export const outboundSchema = PauseJobGlobals$outboundSchema;
+  /** @deprecated use `PauseJobGlobals$Outbound` instead. */
+  export type Outbound = PauseJobGlobals$Outbound;
 }
 
 /** @internal */
-export const PauseJobRequest$inboundSchema: z.ZodType<PauseJobRequest, z.ZodTypeDef, unknown> =
-    z.object({
-        projectName: z.string(),
-        jobId: z.string(),
-    });
+export const PauseJobRequest$inboundSchema: z.ZodType<
+  PauseJobRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  projectName: z.string(),
+  jobId: z.string(),
+});
 
 /** @internal */
 export type PauseJobRequest$Outbound = {
-    projectName: string;
-    jobId: string;
+  projectName: string;
+  jobId: string;
 };
 
 /** @internal */
 export const PauseJobRequest$outboundSchema: z.ZodType<
-    PauseJobRequest$Outbound,
-    z.ZodTypeDef,
-    PauseJobRequest
+  PauseJobRequest$Outbound,
+  z.ZodTypeDef,
+  PauseJobRequest
 > = z.object({
-    projectName: z.string(),
-    jobId: z.string(),
+  projectName: z.string(),
+  jobId: z.string(),
 });
 
 /**
@@ -83,10 +89,10 @@ export const PauseJobRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace PauseJobRequest$ {
-    /** @deprecated use `PauseJobRequest$inboundSchema` instead. */
-    export const inboundSchema = PauseJobRequest$inboundSchema;
-    /** @deprecated use `PauseJobRequest$outboundSchema` instead. */
-    export const outboundSchema = PauseJobRequest$outboundSchema;
-    /** @deprecated use `PauseJobRequest$Outbound` instead. */
-    export type Outbound = PauseJobRequest$Outbound;
+  /** @deprecated use `PauseJobRequest$inboundSchema` instead. */
+  export const inboundSchema = PauseJobRequest$inboundSchema;
+  /** @deprecated use `PauseJobRequest$outboundSchema` instead. */
+  export const outboundSchema = PauseJobRequest$outboundSchema;
+  /** @deprecated use `PauseJobRequest$Outbound` instead. */
+  export type Outbound = PauseJobRequest$Outbound;
 }

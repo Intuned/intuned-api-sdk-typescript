@@ -8,7 +8,7 @@ The configuration of the job. Configures the retry policy and maximum concurrent
 import { JobConfiguration } from "@intuned/client/models/components";
 
 let value: JobConfiguration = {
-    runMode: "Order-Irrelevant",
+  runMode: "Order-Irrelevant",
 };
 ```
 

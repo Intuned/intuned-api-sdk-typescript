@@ -1,5 +1,2 @@
 # Files
 (*files*)
-
-### Available Operations
-

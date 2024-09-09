@@ -10,54 +10,66 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Items extends ClientSDK {
-    /**
-     * Append Queue Item
-     *
-     * @remarks
-     * Appends an item to the queue.
-     */
-    async append(
-        projectName: string,
-        queueId: string,
-        queueItem: components.QueueItem,
-        options?: RequestOptions
-    ): Promise<components.AddQueueItem> {
-        return unwrapAsync(
-            projectQueuesItemsAppend(this, projectName, queueId, queueItem, options)
-        );
-    }
+  /**
+   * Append Queue Item
+   *
+   * @remarks
+   * Appends an item to the queue.
+   */
+  async append(
+    projectName: string,
+    queueId: string,
+    queueItem: components.QueueItem,
+    options?: RequestOptions,
+  ): Promise<components.AddQueueItem> {
+    return unwrapAsync(projectQueuesItemsAppend(
+      this,
+      projectName,
+      queueId,
+      queueItem,
+      options,
+    ));
+  }
 
-    /**
-     * Get Queue Item result
-     *
-     * @remarks
-     * Get queue item result.
-     */
-    async result(
-        projectName: string,
-        queueId: string,
-        itemRunId: string,
-        options?: RequestOptions
-    ): Promise<components.QueueItemResult> {
-        return unwrapAsync(
-            projectQueuesItemsResult(this, projectName, queueId, itemRunId, options)
-        );
-    }
+  /**
+   * Get Queue Item result
+   *
+   * @remarks
+   * Get queue item result.
+   */
+  async result(
+    projectName: string,
+    queueId: string,
+    itemRunId: string,
+    options?: RequestOptions,
+  ): Promise<components.QueueItemResult> {
+    return unwrapAsync(projectQueuesItemsResult(
+      this,
+      projectName,
+      queueId,
+      itemRunId,
+      options,
+    ));
+  }
 
-    /**
-     * Delete Queue item
-     *
-     * @remarks
-     * Delete queued item. If the item is currently processing, the delete will fail.
-     */
-    async delete(
-        projectName: string,
-        queueId: string,
-        itemRunId: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(
-            projectQueuesItemsDelete(this, projectName, queueId, itemRunId, options)
-        );
-    }
+  /**
+   * Delete Queue item
+   *
+   * @remarks
+   * Delete queued item. If the item is currently processing, the delete will fail.
+   */
+  async delete(
+    projectName: string,
+    queueId: string,
+    itemRunId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(projectQueuesItemsDelete(
+      this,
+      projectName,
+      queueId,
+      itemRunId,
+      options,
+    ));
+  }
 }

@@ -6,9 +6,9 @@
 import { QueueInput } from "@intuned/client/models/components";
 
 let value: QueueInput = {
-    configuration: {
-        runMode: "Default",
-    },
+  configuration: {
+    runMode: "Default",
+  },
 };
 ```
 

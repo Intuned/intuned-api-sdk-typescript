@@ -10,55 +10,69 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class ExtractStructuredData extends ClientSDK {
-    /**
-     * Extract Structured Data - Sync
-     *
-     * @remarks
-     * Extracts structured data from a file. Supported file types are image, pdf (more coming soon!).
-     * It accepts the file and requested schema for the data to be extracted.
-     */
-    async sync(
-        file: components.FileT,
-        dataSchema: { [k: string]: any },
-        strategy?: components.ExtractStructuredDataStrategy | undefined,
-        prompt?: string | undefined,
-        options?: RequestOptions
-    ): Promise<components.StructuredDataExtractionSyncResponse> {
-        return unwrapAsync(
-            filesExtractStructuredDataSync(this, file, dataSchema, strategy, prompt, options)
-        );
-    }
+  /**
+   * Extract Structured Data - Sync
+   *
+   * @remarks
+   * Extracts structured data from a file. Supported file types are image, pdf (more coming soon!).
+   * It accepts the file and requested schema for the data to be extracted.
+   */
+  async sync(
+    file: components.FileT,
+    dataSchema: { [k: string]: any },
+    strategy?: components.ExtractStructuredDataStrategy | undefined,
+    prompt?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<components.StructuredDataExtractionSyncResponse> {
+    return unwrapAsync(filesExtractStructuredDataSync(
+      this,
+      file,
+      dataSchema,
+      strategy,
+      prompt,
+      options,
+    ));
+  }
 
-    /**
-     * Extract Structured Data - Async Start
-     *
-     * @remarks
-     * Starts an asynchronous operation to extract structured data from a file. Supported file types are image, pdf (more coming soon!).
-     * It accepts the file and requested schema for the data to be extracted.
-     * It responds with an ID to track the operation status and retrieve the result.
-     */
-    async start(
-        file: components.FileT,
-        dataSchema: { [k: string]: any },
-        strategy?: components.ExtractStructuredDataStrategy | undefined,
-        prompt?: string | undefined,
-        options?: RequestOptions
-    ): Promise<components.AsyncFilePendingResponse> {
-        return unwrapAsync(
-            filesExtractStructuredDataStart(this, file, dataSchema, strategy, prompt, options)
-        );
-    }
+  /**
+   * Extract Structured Data - Async Start
+   *
+   * @remarks
+   * Starts an asynchronous operation to extract structured data from a file. Supported file types are image, pdf (more coming soon!).
+   * It accepts the file and requested schema for the data to be extracted.
+   * It responds with an ID to track the operation status and retrieve the result.
+   */
+  async start(
+    file: components.FileT,
+    dataSchema: { [k: string]: any },
+    strategy?: components.ExtractStructuredDataStrategy | undefined,
+    prompt?: string | undefined,
+    options?: RequestOptions,
+  ): Promise<components.AsyncFilePendingResponse> {
+    return unwrapAsync(filesExtractStructuredDataStart(
+      this,
+      file,
+      dataSchema,
+      strategy,
+      prompt,
+      options,
+    ));
+  }
 
-    /**
-     * Extract Structured Data - Async Result
-     *
-     * @remarks
-     * Gets the result of the structured data extraction operation using the operation ID.
-     */
-    async result(
-        operationId: string,
-        options?: RequestOptions
-    ): Promise<components.StructuredDataExtractionAsyncResponse> {
-        return unwrapAsync(filesExtractStructuredDataResult(this, operationId, options));
-    }
+  /**
+   * Extract Structured Data - Async Result
+   *
+   * @remarks
+   * Gets the result of the structured data extraction operation using the operation ID.
+   */
+  async result(
+    operationId: string,
+    options?: RequestOptions,
+  ): Promise<components.StructuredDataExtractionAsyncResponse> {
+    return unwrapAsync(filesExtractStructuredDataResult(
+      this,
+      operationId,
+      options,
+    ));
+  }
 }

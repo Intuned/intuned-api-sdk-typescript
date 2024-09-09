@@ -7,9 +7,9 @@ The parameters to be passed to the API.
 ```typescript
 import { ParametersT } from "@intuned/client/models/components";
 
-let value: ParametersT = {
-    key: "<value>",
-};
+let value: ParametersT = [
+  "<value>",
+];
 ```
 
 ## Supported Types

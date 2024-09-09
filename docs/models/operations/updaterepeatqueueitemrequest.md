@@ -6,13 +6,13 @@
 import { UpdateRepeatQueueItemRequest } from "@intuned/client/models/operations";
 
 let value: UpdateRepeatQueueItemRequest = {
-    projectName: "my-project",
-    queueId: "my-sample-queue",
-    itemId: "22222222-2222-2222-2222-222222222222",
-    queueRepeatItemInput: {
-        apiName: "<value>",
-        repeat: "<value>",
-    },
+  projectName: "my-project",
+  queueId: "my-sample-queue",
+  itemId: "22222222-2222-2222-2222-222222222222",
+  queueRepeatItemInput: {
+    apiName: "<value>",
+    repeat: "<value>",
+  },
 };
 ```
 

@@ -8,7 +8,7 @@ The retry policy of the job. Configure how many retries and the delay between th
 import { JobRetry } from "@intuned/client/models/components";
 
 let value: JobRetry = {
-    maximumAttempts: 3250.47,
+  maximumAttempts: 1020.44,
 };
 ```
 

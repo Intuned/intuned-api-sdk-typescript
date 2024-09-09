@@ -6,8 +6,8 @@
 import { FileSource } from "@intuned/client/models/components";
 
 let value: FileSource = {
-    type: "url",
-    data: "https://awesome-voter.biz",
+  type: "base64",
+  data: "<value>",
 };
 ```
 

@@ -6,9 +6,9 @@
 import { JobCalendarValue } from "@intuned/client/models/components";
 
 let value: JobCalendarValue = {
-    start: 1,
-    end: 30,
-    step: 1,
+  start: 1,
+  end: 30,
+  step: 1,
 };
 ```
 

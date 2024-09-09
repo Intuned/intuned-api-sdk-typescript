@@ -6,8 +6,8 @@
 import { MsFormattedRange } from "@intuned/client/models/components";
 
 let value: MsFormattedRange = {
-    min: "<value>",
-    max: "<value>",
+  min: "<value>",
+  max: "<value>",
 };
 ```
 

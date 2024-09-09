@@ -5,40 +5,40 @@
 import * as z from "zod";
 
 export type GetAuthSessionsGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type GetAuthSessionsRequest = {
-    /**
-     * Your project name. It is the name you provide when creating a project.
-     */
-    projectName: string;
+  /**
+   * Your project name. It is the name you provide when creating a project.
+   */
+  projectName: string;
 };
 
 /** @internal */
 export const GetAuthSessionsGlobals$inboundSchema: z.ZodType<
-    GetAuthSessionsGlobals,
-    z.ZodTypeDef,
-    unknown
+  GetAuthSessionsGlobals,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /** @internal */
 export type GetAuthSessionsGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const GetAuthSessionsGlobals$outboundSchema: z.ZodType<
-    GetAuthSessionsGlobals$Outbound,
-    z.ZodTypeDef,
-    GetAuthSessionsGlobals
+  GetAuthSessionsGlobals$Outbound,
+  z.ZodTypeDef,
+  GetAuthSessionsGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -46,35 +46,35 @@ export const GetAuthSessionsGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetAuthSessionsGlobals$ {
-    /** @deprecated use `GetAuthSessionsGlobals$inboundSchema` instead. */
-    export const inboundSchema = GetAuthSessionsGlobals$inboundSchema;
-    /** @deprecated use `GetAuthSessionsGlobals$outboundSchema` instead. */
-    export const outboundSchema = GetAuthSessionsGlobals$outboundSchema;
-    /** @deprecated use `GetAuthSessionsGlobals$Outbound` instead. */
-    export type Outbound = GetAuthSessionsGlobals$Outbound;
+  /** @deprecated use `GetAuthSessionsGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetAuthSessionsGlobals$inboundSchema;
+  /** @deprecated use `GetAuthSessionsGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetAuthSessionsGlobals$outboundSchema;
+  /** @deprecated use `GetAuthSessionsGlobals$Outbound` instead. */
+  export type Outbound = GetAuthSessionsGlobals$Outbound;
 }
 
 /** @internal */
 export const GetAuthSessionsRequest$inboundSchema: z.ZodType<
-    GetAuthSessionsRequest,
-    z.ZodTypeDef,
-    unknown
+  GetAuthSessionsRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    projectName: z.string(),
+  projectName: z.string(),
 });
 
 /** @internal */
 export type GetAuthSessionsRequest$Outbound = {
-    projectName: string;
+  projectName: string;
 };
 
 /** @internal */
 export const GetAuthSessionsRequest$outboundSchema: z.ZodType<
-    GetAuthSessionsRequest$Outbound,
-    z.ZodTypeDef,
-    GetAuthSessionsRequest
+  GetAuthSessionsRequest$Outbound,
+  z.ZodTypeDef,
+  GetAuthSessionsRequest
 > = z.object({
-    projectName: z.string(),
+  projectName: z.string(),
 });
 
 /**
@@ -82,10 +82,10 @@ export const GetAuthSessionsRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetAuthSessionsRequest$ {
-    /** @deprecated use `GetAuthSessionsRequest$inboundSchema` instead. */
-    export const inboundSchema = GetAuthSessionsRequest$inboundSchema;
-    /** @deprecated use `GetAuthSessionsRequest$outboundSchema` instead. */
-    export const outboundSchema = GetAuthSessionsRequest$outboundSchema;
-    /** @deprecated use `GetAuthSessionsRequest$Outbound` instead. */
-    export type Outbound = GetAuthSessionsRequest$Outbound;
+  /** @deprecated use `GetAuthSessionsRequest$inboundSchema` instead. */
+  export const inboundSchema = GetAuthSessionsRequest$inboundSchema;
+  /** @deprecated use `GetAuthSessionsRequest$outboundSchema` instead. */
+  export const outboundSchema = GetAuthSessionsRequest$outboundSchema;
+  /** @deprecated use `GetAuthSessionsRequest$Outbound` instead. */
+  export type Outbound = GetAuthSessionsRequest$Outbound;
 }

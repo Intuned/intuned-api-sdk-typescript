@@ -6,7 +6,7 @@
 import { FileExtractMarkdownResultRequest } from "@intuned/client/models/operations";
 
 let value: FileExtractMarkdownResultRequest = {
-    operationId: "aaaabbbCCCCdddd",
+  operationId: "aaaabbbCCCCdddd",
 };
 ```
 

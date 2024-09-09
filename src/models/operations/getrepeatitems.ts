@@ -5,44 +5,44 @@
 import * as z from "zod";
 
 export type GetRepeatItemsGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type GetRepeatItemsRequest = {
-    /**
-     * Your project name. It is the name you provide when creating a project.
-     */
-    projectName: string;
-    /**
-     * Your queue ID. It is the ID of the queue you provided when creating it.
-     */
-    queueId: string;
+  /**
+   * Your project name. It is the name you provide when creating a project.
+   */
+  projectName: string;
+  /**
+   * Your queue ID. It is the ID of the queue you provided when creating it.
+   */
+  queueId: string;
 };
 
 /** @internal */
 export const GetRepeatItemsGlobals$inboundSchema: z.ZodType<
-    GetRepeatItemsGlobals,
-    z.ZodTypeDef,
-    unknown
+  GetRepeatItemsGlobals,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /** @internal */
 export type GetRepeatItemsGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const GetRepeatItemsGlobals$outboundSchema: z.ZodType<
-    GetRepeatItemsGlobals$Outbound,
-    z.ZodTypeDef,
-    GetRepeatItemsGlobals
+  GetRepeatItemsGlobals$Outbound,
+  z.ZodTypeDef,
+  GetRepeatItemsGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -50,38 +50,38 @@ export const GetRepeatItemsGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetRepeatItemsGlobals$ {
-    /** @deprecated use `GetRepeatItemsGlobals$inboundSchema` instead. */
-    export const inboundSchema = GetRepeatItemsGlobals$inboundSchema;
-    /** @deprecated use `GetRepeatItemsGlobals$outboundSchema` instead. */
-    export const outboundSchema = GetRepeatItemsGlobals$outboundSchema;
-    /** @deprecated use `GetRepeatItemsGlobals$Outbound` instead. */
-    export type Outbound = GetRepeatItemsGlobals$Outbound;
+  /** @deprecated use `GetRepeatItemsGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetRepeatItemsGlobals$inboundSchema;
+  /** @deprecated use `GetRepeatItemsGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetRepeatItemsGlobals$outboundSchema;
+  /** @deprecated use `GetRepeatItemsGlobals$Outbound` instead. */
+  export type Outbound = GetRepeatItemsGlobals$Outbound;
 }
 
 /** @internal */
 export const GetRepeatItemsRequest$inboundSchema: z.ZodType<
-    GetRepeatItemsRequest,
-    z.ZodTypeDef,
-    unknown
+  GetRepeatItemsRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    projectName: z.string(),
-    queueId: z.string(),
+  projectName: z.string(),
+  queueId: z.string(),
 });
 
 /** @internal */
 export type GetRepeatItemsRequest$Outbound = {
-    projectName: string;
-    queueId: string;
+  projectName: string;
+  queueId: string;
 };
 
 /** @internal */
 export const GetRepeatItemsRequest$outboundSchema: z.ZodType<
-    GetRepeatItemsRequest$Outbound,
-    z.ZodTypeDef,
-    GetRepeatItemsRequest
+  GetRepeatItemsRequest$Outbound,
+  z.ZodTypeDef,
+  GetRepeatItemsRequest
 > = z.object({
-    projectName: z.string(),
-    queueId: z.string(),
+  projectName: z.string(),
+  queueId: z.string(),
 });
 
 /**
@@ -89,10 +89,10 @@ export const GetRepeatItemsRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetRepeatItemsRequest$ {
-    /** @deprecated use `GetRepeatItemsRequest$inboundSchema` instead. */
-    export const inboundSchema = GetRepeatItemsRequest$inboundSchema;
-    /** @deprecated use `GetRepeatItemsRequest$outboundSchema` instead. */
-    export const outboundSchema = GetRepeatItemsRequest$outboundSchema;
-    /** @deprecated use `GetRepeatItemsRequest$Outbound` instead. */
-    export type Outbound = GetRepeatItemsRequest$Outbound;
+  /** @deprecated use `GetRepeatItemsRequest$inboundSchema` instead. */
+  export const inboundSchema = GetRepeatItemsRequest$inboundSchema;
+  /** @deprecated use `GetRepeatItemsRequest$outboundSchema` instead. */
+  export const outboundSchema = GetRepeatItemsRequest$outboundSchema;
+  /** @deprecated use `GetRepeatItemsRequest$Outbound` instead. */
+  export type Outbound = GetRepeatItemsRequest$Outbound;
 }

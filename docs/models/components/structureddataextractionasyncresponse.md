@@ -6,10 +6,10 @@
 import { StructuredDataExtractionAsyncResponse } from "@intuned/client/models/components";
 
 let value: StructuredDataExtractionAsyncResponse = {
-    operationId: "<value>",
-    status: "failed",
-    error: "<value>",
-    message: "<value>",
+  operationId: "<value>",
+  status: "failed",
+  error: "<value>",
+  message: "<value>",
 };
 ```
 

@@ -8,18 +8,20 @@ import { ExtractStructuredData } from "./extractstructureddata.js";
 import { ExtractTables } from "./extracttables.js";
 
 export class Files extends ClientSDK {
-    private _extractStructuredData?: ExtractStructuredData;
-    get extractStructuredData(): ExtractStructuredData {
-        return (this._extractStructuredData ??= new ExtractStructuredData(this.options$));
-    }
+  private _extractStructuredData?: ExtractStructuredData;
+  get extractStructuredData(): ExtractStructuredData {
+    return (this._extractStructuredData ??= new ExtractStructuredData(
+      this.options$,
+    ));
+  }
 
-    private _extractMarkdown?: ExtractMarkdown;
-    get extractMarkdown(): ExtractMarkdown {
-        return (this._extractMarkdown ??= new ExtractMarkdown(this.options$));
-    }
+  private _extractMarkdown?: ExtractMarkdown;
+  get extractMarkdown(): ExtractMarkdown {
+    return (this._extractMarkdown ??= new ExtractMarkdown(this.options$));
+  }
 
-    private _extractTables?: ExtractTables;
-    get extractTables(): ExtractTables {
-        return (this._extractTables ??= new ExtractTables(this.options$));
-    }
+  private _extractTables?: ExtractTables;
+  get extractTables(): ExtractTables {
+    return (this._extractTables ??= new ExtractTables(this.options$));
+  }
 }

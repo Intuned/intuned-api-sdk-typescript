@@ -8,10 +8,10 @@ API result of failed run
 import { WebhookAPIInfoResultFailed } from "@intuned/client/models/components";
 
 let value: WebhookAPIInfoResultFailed = {
-    error: "<value>",
-    message: "<value>",
-    status: "failed",
-    statusCode: 4694.97,
+  error: "<value>",
+  message: "<value>",
+  status: "failed",
+  statusCode: 580.29,
 };
 ```
 

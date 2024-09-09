@@ -8,8 +8,8 @@ Pending API run
 import { AsyncRunPendingResponse } from "@intuned/client/models/components";
 
 let value: AsyncRunPendingResponse = {
-    status: "pending",
-    runId: "<value>",
+  status: "pending",
+  runId: "<value>",
 };
 ```
 

@@ -8,33 +8,40 @@ import * as z from "zod";
  * Auth session recorder start session
  */
 export type StartAuthSessionRecorderRequest = {
-    /**
-     * Auth session id.
-     */
-    authSessionId: string;
+  /**
+   * Auth session id, could be an existing auth session to update it, or a new id to create a new session.
+   */
+  authSessionId?: string | undefined;
+  /**
+   * Proxy URL following this format `http://username:password@domain:port`
+   */
+  proxy?: string | undefined;
 };
 
 /** @internal */
 export const StartAuthSessionRecorderRequest$inboundSchema: z.ZodType<
-    StartAuthSessionRecorderRequest,
-    z.ZodTypeDef,
-    unknown
+  StartAuthSessionRecorderRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    authSessionId: z.string(),
+  authSessionId: z.string().optional(),
+  proxy: z.string().optional(),
 });
 
 /** @internal */
 export type StartAuthSessionRecorderRequest$Outbound = {
-    authSessionId: string;
+  authSessionId?: string | undefined;
+  proxy?: string | undefined;
 };
 
 /** @internal */
 export const StartAuthSessionRecorderRequest$outboundSchema: z.ZodType<
-    StartAuthSessionRecorderRequest$Outbound,
-    z.ZodTypeDef,
-    StartAuthSessionRecorderRequest
+  StartAuthSessionRecorderRequest$Outbound,
+  z.ZodTypeDef,
+  StartAuthSessionRecorderRequest
 > = z.object({
-    authSessionId: z.string(),
+  authSessionId: z.string().optional(),
+  proxy: z.string().optional(),
 });
 
 /**
@@ -42,10 +49,10 @@ export const StartAuthSessionRecorderRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace StartAuthSessionRecorderRequest$ {
-    /** @deprecated use `StartAuthSessionRecorderRequest$inboundSchema` instead. */
-    export const inboundSchema = StartAuthSessionRecorderRequest$inboundSchema;
-    /** @deprecated use `StartAuthSessionRecorderRequest$outboundSchema` instead. */
-    export const outboundSchema = StartAuthSessionRecorderRequest$outboundSchema;
-    /** @deprecated use `StartAuthSessionRecorderRequest$Outbound` instead. */
-    export type Outbound = StartAuthSessionRecorderRequest$Outbound;
+  /** @deprecated use `StartAuthSessionRecorderRequest$inboundSchema` instead. */
+  export const inboundSchema = StartAuthSessionRecorderRequest$inboundSchema;
+  /** @deprecated use `StartAuthSessionRecorderRequest$outboundSchema` instead. */
+  export const outboundSchema = StartAuthSessionRecorderRequest$outboundSchema;
+  /** @deprecated use `StartAuthSessionRecorderRequest$Outbound` instead. */
+  export type Outbound = StartAuthSessionRecorderRequest$Outbound;
 }

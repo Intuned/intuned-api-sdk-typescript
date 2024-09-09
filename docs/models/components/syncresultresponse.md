@@ -6,9 +6,11 @@
 import { SyncResultResponse } from "@intuned/client/models/components";
 
 let value: SyncResultResponse = {
-    status: "completed",
-    statusCode: 3185.69,
-    runId: "<value>",
+  error: "<value>",
+  message: "<value>",
+  status: "failed",
+  statusCode: 2894.06,
+  runId: "<value>",
 };
 ```
 

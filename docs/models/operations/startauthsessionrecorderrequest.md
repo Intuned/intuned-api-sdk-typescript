@@ -6,10 +6,8 @@
 import { StartAuthSessionRecorderRequest } from "@intuned/client/models/operations";
 
 let value: StartAuthSessionRecorderRequest = {
-    projectName: "my-project",
-    startAuthSessionRecorderRequest: {
-        authSessionId: "<value>",
-    },
+  projectName: "my-project",
+  startAuthSessionRecorderRequest: {},
 };
 ```
 

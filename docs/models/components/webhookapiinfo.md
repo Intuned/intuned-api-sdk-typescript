@@ -8,14 +8,14 @@ Webhook API info
 import { WebhookAPIInfo } from "@intuned/client/models/components";
 
 let value: WebhookAPIInfo = {
-    name: "<value>",
-    result: {
-        error: "<value>",
-        message: "<value>",
-        status: "failed",
-        statusCode: 7146.97,
-    },
-    runId: "<value>",
+  name: "<value>",
+  result: {
+    error: "<value>",
+    message: "<value>",
+    status: "failed",
+    statusCode: 2543.56,
+  },
+  runId: "<value>",
 };
 ```
 
