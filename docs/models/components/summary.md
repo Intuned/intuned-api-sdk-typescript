@@ -8,9 +8,9 @@ A summary of the job run. Contains how many payloads are pending, how many finis
 import { Summary } from "@intuned/client/models/components";
 
 let value: Summary = {
-    apisCount: 384.25,
-    successCount: 4386.01,
-    failuresCount: 6342.74,
+  apisCount: 2088.76,
+  successCount: 6350.59,
+  failuresCount: 1613.09,
 };
 ```
 

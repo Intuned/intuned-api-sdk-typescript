@@ -8,8 +8,8 @@ A rate limit. The queue will not exceed the amount of items defined in the limit
 import { RateLimits } from "@intuned/client/models/components";
 
 let value: RateLimits = {
-    limit: 2653.89,
-    duration: "<value>",
+  limit: 831.12,
+  duration: "<value>",
 };
 ```
 

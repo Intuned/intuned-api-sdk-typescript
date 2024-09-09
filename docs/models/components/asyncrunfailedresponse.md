@@ -8,11 +8,11 @@ Failed API run result
 import { AsyncRunFailedResponse } from "@intuned/client/models/components";
 
 let value: AsyncRunFailedResponse = {
-    error: "<value>",
-    message: "<value>",
-    status: "failed",
-    statusCode: 6674.11,
-    runId: "<value>",
+  error: "<value>",
+  message: "<value>",
+  status: "failed",
+  statusCode: 1831.91,
+  runId: "<value>",
 };
 ```
 

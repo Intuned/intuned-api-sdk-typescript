@@ -6,9 +6,9 @@
 import { AsyncResultResponse } from "@intuned/client/models/components";
 
 let value: AsyncResultResponse = {
-    status: "completed",
-    statusCode: 7163.27,
-    runId: "<value>",
+  status: "completed",
+  statusCode: 201.07,
+  runId: "<value>",
 };
 ```
 

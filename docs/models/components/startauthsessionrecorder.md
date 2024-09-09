@@ -6,7 +6,7 @@
 import { StartAuthSessionRecorder } from "@intuned/client/models/components";
 
 let value: StartAuthSessionRecorder = {
-    recorderUrl: "<value>",
+  recorderUrl: "<value>",
 };
 ```
 

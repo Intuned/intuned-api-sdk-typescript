@@ -8,7 +8,7 @@ The auth session used in the run
 import { QueueSinkResultPayloadAuthSession } from "@intuned/client/models/components";
 
 let value: QueueSinkResultPayloadAuthSession = {
-    id: "73cf3be4-53f8-470b-b26b-5a73429cdb1a",
+  id: "03ce5e6a-95d8-4a0d-846c-e2af7a73cf3b",
 };
 ```
 

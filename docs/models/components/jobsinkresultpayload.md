@@ -8,25 +8,25 @@ Webhook payload of job run result
 import { JobSinkResultPayload } from "@intuned/client/models/components";
 
 let value: JobSinkResultPayload = {
-    apiInfo: {
-        name: "<value>",
-        result: {
-            status: "completed",
-            statusCode: 9441.2,
-        },
-        runId: "<value>",
+  apiInfo: {
+    name: "<value>",
+    result: {
+      status: "completed",
+      statusCode: 9755.22,
     },
-    workspaceId: "e9b90c28-909b-43fe-89a8-d9cbf4863332",
-    project: {
-        id: "3f9b77f3-a410-4067-8ebf-69280d1ba77a",
-        name: "<value>",
-    },
-    projectJob: {
-        id: "<id>",
-    },
-    projectJobRun: {
-        id: "<id>",
-    },
+    runId: "<value>",
+  },
+  workspaceId: "0d30c5fb-b258-4705-b202-c73d5fe9b90c",
+  project: {
+    id: "28909b3f-e49a-48d9-8bf4-8633323f9b77",
+    name: "<value>",
+  },
+  projectJob: {
+    id: "<id>",
+  },
+  projectJobRun: {
+    id: "<id>",
+  },
 };
 ```
 

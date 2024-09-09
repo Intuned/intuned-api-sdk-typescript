@@ -8,12 +8,8 @@ The result of an item execution. Can be queued, pending, completed or failed. Qu
 import { QueueItemResult } from "@intuned/client/models/components";
 
 let value: QueueItemResult = {
-    runId: "<value>",
-    status: "failed",
-    error: {
-        key: "<value>",
-    },
-    statusCode: 5759.47,
+  runId: "<value>",
+  status: "queued",
 };
 ```
 

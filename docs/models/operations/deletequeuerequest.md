@@ -6,8 +6,8 @@
 import { DeleteQueueRequest } from "@intuned/client/models/operations";
 
 let value: DeleteQueueRequest = {
-    projectName: "my-project",
-    queueId: "my-sample-queue",
+  projectName: "my-project",
+  queueId: "my-sample-queue",
 };
 ```
 

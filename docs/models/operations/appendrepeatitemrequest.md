@@ -6,12 +6,12 @@
 import { AppendRepeatItemRequest } from "@intuned/client/models/operations";
 
 let value: AppendRepeatItemRequest = {
-    projectName: "my-project",
-    queueId: "my-sample-queue",
-    queueRepeatItemInput: {
-        apiName: "<value>",
-        repeat: "<value>",
-    },
+  projectName: "my-project",
+  queueId: "my-sample-queue",
+  queueRepeatItemInput: {
+    apiName: "<value>",
+    repeat: "<value>",
+  },
 };
 ```
 

@@ -6,25 +6,25 @@
 import { CreateJobRequest } from "@intuned/client/models/operations";
 
 let value: CreateJobRequest = {
-    projectName: "my-project",
-    jobInput: {
-        id: "<id>",
-        sink: {
-            type: "webhook",
-            url: "https://weary-kneejerk.org",
-        },
-        payload: [
-            {
-                apiName: "<value>",
-            },
-        ],
-        schedule: {
-            calendars: [],
-        },
-        configuration: {
-            runMode: "Order-Irrelevant",
-        },
+  projectName: "my-project",
+  jobInput: {
+    id: "<id>",
+    sink: {
+      type: "webhook",
+      url: "http://narrow-tritone.com",
     },
+    payload: [
+      {
+        apiName: "<value>",
+      },
+    ],
+    schedule: {
+      calendars: [],
+    },
+    configuration: {
+      runMode: "Order-Irrelevant",
+    },
+  },
 };
 ```
 

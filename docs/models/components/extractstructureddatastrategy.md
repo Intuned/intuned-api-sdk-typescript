@@ -8,14 +8,22 @@ The strategy to extract structured data from a file. Includes the model and type
 import { ExtractStructuredDataStrategy } from "@intuned/client/models/components";
 
 let value: ExtractStructuredDataStrategy = {
-    type: "MARKDOWN",
-    model: "gpt4-turbo",
+  type: "IMAGE",
+  model: "claude-3.5-sonnet",
 };
 ```
 
-## Fields
+## Supported Types
 
-| Field                                                                                                        | Type                                                                                                         | Required                                                                                                     | Description                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| `type`                                                                                                       | [components.ExtractStructuredDataStrategyType](../../models/components/extractstructureddatastrategytype.md) | :heavy_check_mark:                                                                                           | The type of extraction to perform.                                                                           |
-| `model`                                                                                                      | [components.AiExtractionModel](../../models/components/aiextractionmodel.md)                                 | :heavy_check_mark:                                                                                           | AI model to use for extraction                                                                               |
+### `components.ExtractStructuredDataMarkdownStrategy`
+
+```typescript
+const value: components.ExtractStructuredDataMarkdownStrategy = /* values here */
+```
+
+### `components.ExtractStructuredDataImageStrategy`
+
+```typescript
+const value: components.ExtractStructuredDataImageStrategy = /* values here */
+```
+

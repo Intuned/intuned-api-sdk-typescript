@@ -8,9 +8,11 @@ Run API request
 import { RunProjectApiRequest } from "@intuned/client/models/components";
 
 let value: RunProjectApiRequest = {
-    api: "<value>",
-    parameters: ["<value>"],
-    proxy: "http://username:password@domain:port",
+  api: "<value>",
+  parameters: {
+    "key": "<value>",
+  },
+  proxy: "http://username:password@domain:port",
 };
 ```
 

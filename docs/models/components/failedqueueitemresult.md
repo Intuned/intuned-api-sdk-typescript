@@ -6,12 +6,12 @@
 import { FailedQueueItemResult } from "@intuned/client/models/components";
 
 let value: FailedQueueItemResult = {
-    runId: "<value>",
-    status: "failed",
-    error: {
-        key: "<value>",
-    },
-    statusCode: 9292.97,
+  runId: "<value>",
+  status: "failed",
+  error: {
+    "key": "<value>",
+  },
+  statusCode: 7163.27,
 };
 ```
 

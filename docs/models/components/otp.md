@@ -8,9 +8,9 @@ Requested more info - OTP
 import { Otp } from "@intuned/client/models/components";
 
 let value: Otp = {
-    requestType: "otp",
-    action: "request_more_info",
-    messageToUser: "<value>",
+  requestType: "otp",
+  action: "request_more_info",
+  messageToUser: "<value>",
 };
 ```
 

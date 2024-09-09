@@ -13,64 +13,87 @@ import { Items } from "./items.js";
 import { RepeatItems } from "./repeatitems.js";
 
 export class Queues extends ClientSDK {
-    private _items?: Items;
-    get items(): Items {
-        return (this._items ??= new Items(this.options$));
-    }
+  private _items?: Items;
+  get items(): Items {
+    return (this._items ??= new Items(this.options$));
+  }
 
-    private _repeatItems?: RepeatItems;
-    get repeatItems(): RepeatItems {
-        return (this._repeatItems ??= new RepeatItems(this.options$));
-    }
+  private _repeatItems?: RepeatItems;
+  get repeatItems(): RepeatItems {
+    return (this._repeatItems ??= new RepeatItems(this.options$));
+  }
 
-    /**
-     * Get Queues
-     *
-     * @remarks
-     * Gets all queues in a project.
-     */
-    async all(
-        projectName: string,
-        options?: RequestOptions
-    ): Promise<Array<components.QueueInput>> {
-        return unwrapAsync(projectQueuesAll(this, projectName, options));
-    }
+  /**
+   * Get Queues
+   *
+   * @remarks
+   * Gets all queues in a project.
+   */
+  async all(
+    projectName: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.QueueInput>> {
+    return unwrapAsync(projectQueuesAll(
+      this,
+      projectName,
+      options,
+    ));
+  }
 
-    /**
-     * Create Queue
-     *
-     * @remarks
-     * Creates a new queue.
-     */
-    async create(
-        projectName: string,
-        queueInput: components.QueueInput,
-        options?: RequestOptions
-    ): Promise<components.CreateQueue> {
-        return unwrapAsync(projectQueuesCreate(this, projectName, queueInput, options));
-    }
+  /**
+   * Create Queue
+   *
+   * @remarks
+   * Creates a new queue.
+   */
+  async create(
+    projectName: string,
+    queueInput: components.QueueInput,
+    options?: RequestOptions,
+  ): Promise<components.CreateQueue> {
+    return unwrapAsync(projectQueuesCreate(
+      this,
+      projectName,
+      queueInput,
+      options,
+    ));
+  }
 
-    /**
-     * Get Queue
-     *
-     * @remarks
-     * Gets a queue in a project by ID.
-     */
-    async one(
-        projectName: string,
-        queueId: string,
-        options?: RequestOptions
-    ): Promise<components.QueueInput> {
-        return unwrapAsync(projectQueuesOne(this, projectName, queueId, options));
-    }
+  /**
+   * Get Queue
+   *
+   * @remarks
+   * Gets a queue in a project by ID.
+   */
+  async one(
+    projectName: string,
+    queueId: string,
+    options?: RequestOptions,
+  ): Promise<components.QueueInput> {
+    return unwrapAsync(projectQueuesOne(
+      this,
+      projectName,
+      queueId,
+      options,
+    ));
+  }
 
-    /**
-     * Delete Queue
-     *
-     * @remarks
-     * Deletes a queue by ID.
-     */
-    async delete(projectName: string, queueId: string, options?: RequestOptions): Promise<void> {
-        return unwrapAsync(projectQueuesDelete(this, projectName, queueId, options));
-    }
+  /**
+   * Delete Queue
+   *
+   * @remarks
+   * Deletes a queue by ID.
+   */
+  async delete(
+    projectName: string,
+    queueId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(projectQueuesDelete(
+      this,
+      projectName,
+      queueId,
+      options,
+    ));
+  }
 }

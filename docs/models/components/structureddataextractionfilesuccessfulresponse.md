@@ -8,9 +8,9 @@ Successful file extraction result
 import { StructuredDataExtractionFileSuccessfulResponse } from "@intuned/client/models/components";
 
 let value: StructuredDataExtractionFileSuccessfulResponse = {
-    result: "<value>",
-    operationId: "<value>",
-    status: "completed",
+  result: "<value>",
+  operationId: "<value>",
+  status: "completed",
 };
 ```
 

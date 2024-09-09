@@ -8,24 +8,24 @@ Webhook payload of queue item run result
 import { QueueSinkResultPayload } from "@intuned/client/models/components";
 
 let value: QueueSinkResultPayload = {
-    apiInfo: {
-        name: "<value>",
-        result: {
-            error: "<value>",
-            message: "<value>",
-            status: "failed",
-            statusCode: 2768.94,
-        },
-        runId: "<value>",
+  apiInfo: {
+    name: "<value>",
+    result: {
+      error: "<value>",
+      message: "<value>",
+      status: "failed",
+      statusCode: 2539.41,
     },
-    workspaceId: "22bb679d-2322-4715-bf0c-bb1e31b8b90f",
-    project: {
-        id: "3443a110-8e0a-4dcf-8b92-1879fce953f7",
-        name: "<value>",
-    },
-    projectQueue: {
-        id: "<id>",
-    },
+    runId: "<value>",
+  },
+  workspaceId: "53f870b3-26b5-4a73-829c-db1a8422bb67",
+  project: {
+    id: "9d232271-5bf0-4cbb-9e31-b8b90f3443a1",
+    name: "<value>",
+  },
+  projectQueue: {
+    id: "<id>",
+  },
 };
 ```
 

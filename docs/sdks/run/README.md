@@ -28,25 +28,21 @@ const intunedClient = new IntunedClient({
 async function run() {
   const result = await intunedClient.project.run.sync("my-project", {
     api: "get-contracts",
-  parameters:     [
-        {
-          "page": 1,
-          "isLastPage": false,
-        },
-      ],
+    parameters: {
+  
+    },
     retry: {
       maximumAttempts: 3,
     },
     proxy: "http://username:password@domain:port",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -66,10 +62,9 @@ const intunedClient = new IntunedClientCore({
 async function run() {
   const res = await projectRunSync(intunedClient, "my-project", {
     api: "get-contracts",
-  parameters:     {
-        "page": 1,
-        "isLastPage": false,
-      },
+    parameters: {
+  
+    },
     retry: {
       maximumAttempts: 3,
     },
@@ -99,10 +94,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.SyncResultResponse](../../models/components/syncresultresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -110,6 +105,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## start
 
@@ -128,23 +124,21 @@ const intunedClient = new IntunedClient({
 async function run() {
   const result = await intunedClient.project.run.start("my-project", {
     api: "get-contracts",
-  parameters:     {
-        "page": 1,
-        "isLastPage": false,
-      },
+    parameters: {
+      "key": "<value>",
+    },
     retry: {
       maximumAttempts: 3,
     },
     proxy: "http://username:password@domain:port",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -164,12 +158,9 @@ const intunedClient = new IntunedClientCore({
 async function run() {
   const res = await projectRunStart(intunedClient, "my-project", {
     api: "get-contracts",
-  parameters:     [
-        {
-          "page": 1,
-          "isLastPage": false,
-        },
-      ],
+    parameters: [
+      "<value>",
+    ],
     retry: {
       maximumAttempts: 3,
     },
@@ -199,10 +190,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.AsyncRunPendingResponse](../../models/components/asyncrunpendingresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -210,6 +201,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## result
 
@@ -227,14 +219,13 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.run.result("my-project", "aabbccddeeffggh");
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -277,10 +268,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.AsyncResultResponse](../../models/components/asyncresultresponse.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

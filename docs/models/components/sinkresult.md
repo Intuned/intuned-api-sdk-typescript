@@ -6,25 +6,24 @@
 import { SinkResult } from "@intuned/client/models/components";
 
 let value: SinkResult = {
-    apiInfo: {
-        name: "<value>",
-        result: {
-            status: "completed",
-            statusCode: 7670.24,
-        },
-        runId: "<value>",
+  apiInfo: {
+    name: "<value>",
+    result: {
+      error: "<value>",
+      message: "<value>",
+      status: "failed",
+      statusCode: 2700.08,
     },
-    workspaceId: "d66ae395-efb9-4ba8-8f3a-66997074ba44",
-    project: {
-        id: "69b6e214-1959-4890-afa5-63e2516fe4c8",
-        name: "<value>",
-    },
-    projectJob: {
-        id: "<id>",
-    },
-    projectJobRun: {
-        id: "<id>",
-    },
+    runId: "<value>",
+  },
+  workspaceId: "bb4f63c9-69e9-4a3e-ba77-dfb14cd66ae3",
+  project: {
+    id: "95efb9ba-88f3-4a66-9970-74ba4469b6e2",
+    name: "<value>",
+  },
+  projectQueue: {
+    id: "<id>",
+  },
 };
 ```
 

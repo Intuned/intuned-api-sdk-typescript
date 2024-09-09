@@ -8,8 +8,8 @@ Auth session creation resume request.
 import { AuthSessionCreateResume } from "@intuned/client/models/components";
 
 let value: AuthSessionCreateResume = {
-    input: "<value>",
-    infoRequestId: "<value>",
+  input: "<value>",
+  infoRequestId: "<value>",
 };
 ```
 

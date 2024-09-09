@@ -6,7 +6,7 @@
 import { GetQueuesRequest } from "@intuned/client/models/operations";
 
 let value: GetQueuesRequest = {
-    projectName: "my-project",
+  projectName: "my-project",
 };
 ```
 

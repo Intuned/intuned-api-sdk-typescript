@@ -8,8 +8,8 @@ API result of completed run
 import { WebhookAPIInfoResultCompleted } from "@intuned/client/models/components";
 
 let value: WebhookAPIInfoResultCompleted = {
-    status: "completed",
-    statusCode: 9903.39,
+  status: "completed",
+  statusCode: 852.95,
 };
 ```
 

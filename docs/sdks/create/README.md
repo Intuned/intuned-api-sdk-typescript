@@ -27,19 +27,18 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.authSessions.create.start("my-project", {
-  parameters:     {
-        "username": "john.doe",
-        "password": "password",
-      },
+    id: "my-auth-session",
+    parameters: {
+      "key": "<value>",
+    },
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -58,12 +57,10 @@ const intunedClient = new IntunedClientCore({
 
 async function run() {
   const res = await projectAuthSessionsCreateStart(intunedClient, "my-project", {
-  parameters:     [
-        {
-          "username": "john.doe",
-          "password": "password",
-        },
-      ],
+    id: "my-auth-session",
+    parameters: [
+      "<value>",
+    ],
   });
 
   if (!res.ok) {
@@ -89,10 +86,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
-**Promise\<[components.CreateAuthSessionStart](../../models/components/createauthsessionstart.md)\>**
+**Promise\<[components.CreateOrUpdateAuthSessionStart](../../models/components/createorupdateauthsessionstart.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -100,6 +97,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## result
 
@@ -117,14 +115,13 @@ const intunedClient = new IntunedClient({
 
 async function run() {
   const result = await intunedClient.project.authSessions.create.result("my-project", "aaaabbbCCCCdddd");
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -167,10 +164,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.AuthSessionCreateResult](../../models/components/authsessioncreateresult.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |
@@ -178,6 +175,7 @@ run();
 | errors.ApiErrorInvalidInput | 400                         | application/json            |
 | errors.ApiErrorUnauthorized | 401                         | application/json            |
 | errors.SDKError             | 4xx-5xx                     | */*                         |
+
 
 ## resume
 
@@ -198,14 +196,13 @@ async function run() {
     input: "123456",
     infoRequestId: "99999999-9999-9999-9999-999999999999",
   });
-
+  
   // Handle the result
   console.log(result)
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -252,10 +249,10 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
 **Promise\<[components.CreateAuthSessionResume](../../models/components/createauthsessionresume.md)\>**
+
 ### Errors
 
 | Error Object                | Status Code                 | Content Type                |

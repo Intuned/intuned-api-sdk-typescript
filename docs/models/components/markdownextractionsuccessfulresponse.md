@@ -8,9 +8,9 @@ Successful file extraction result
 import { MarkdownExtractionSuccessfulResponse } from "@intuned/client/models/components";
 
 let value: MarkdownExtractionSuccessfulResponse = {
-    result: "<value>",
-    operationId: "<value>",
-    status: "completed",
+  result: "<value>",
+  operationId: "<value>",
+  status: "completed",
 };
 ```
 

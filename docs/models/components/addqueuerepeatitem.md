@@ -6,8 +6,8 @@
 import { AddQueueRepeatItem } from "@intuned/client/models/components";
 
 let value: AddQueueRepeatItem = {
-    id: "<id>",
-    status: "repeatable item created",
+  id: "<id>",
+  status: "repeatable item created",
 };
 ```
 

@@ -5,26 +5,30 @@
 import * as z from "zod";
 
 export type CreateQueue = {
-    id?: string | undefined;
+  id?: string | undefined;
 };
 
 /** @internal */
-export const CreateQueue$inboundSchema: z.ZodType<CreateQueue, z.ZodTypeDef, unknown> = z.object({
-    id: z.string().optional(),
+export const CreateQueue$inboundSchema: z.ZodType<
+  CreateQueue,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string().optional(),
 });
 
 /** @internal */
 export type CreateQueue$Outbound = {
-    id?: string | undefined;
+  id?: string | undefined;
 };
 
 /** @internal */
 export const CreateQueue$outboundSchema: z.ZodType<
-    CreateQueue$Outbound,
-    z.ZodTypeDef,
-    CreateQueue
+  CreateQueue$Outbound,
+  z.ZodTypeDef,
+  CreateQueue
 > = z.object({
-    id: z.string().optional(),
+  id: z.string().optional(),
 });
 
 /**
@@ -32,10 +36,10 @@ export const CreateQueue$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace CreateQueue$ {
-    /** @deprecated use `CreateQueue$inboundSchema` instead. */
-    export const inboundSchema = CreateQueue$inboundSchema;
-    /** @deprecated use `CreateQueue$outboundSchema` instead. */
-    export const outboundSchema = CreateQueue$outboundSchema;
-    /** @deprecated use `CreateQueue$Outbound` instead. */
-    export type Outbound = CreateQueue$Outbound;
+  /** @deprecated use `CreateQueue$inboundSchema` instead. */
+  export const inboundSchema = CreateQueue$inboundSchema;
+  /** @deprecated use `CreateQueue$outboundSchema` instead. */
+  export const outboundSchema = CreateQueue$outboundSchema;
+  /** @deprecated use `CreateQueue$Outbound` instead. */
+  export type Outbound = CreateQueue$Outbound;
 }

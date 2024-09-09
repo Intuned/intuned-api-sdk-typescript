@@ -8,8 +8,8 @@ Auth session information
 import { AuthSessionInfo } from "@intuned/client/models/components";
 
 let value: AuthSessionInfo = {
-    id: "<id>",
-    status: "EXPIRED",
+  id: "<id>",
+  status: "READY",
 };
 ```
 

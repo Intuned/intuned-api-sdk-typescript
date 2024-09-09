@@ -10,19 +10,20 @@ import * as z from "zod";
 export type ParametersT = { [k: string]: any } | Array<any>;
 
 /** @internal */
-export const ParametersT$inboundSchema: z.ZodType<ParametersT, z.ZodTypeDef, unknown> = z.union([
-    z.record(z.any()),
-    z.array(z.any()),
-]);
+export const ParametersT$inboundSchema: z.ZodType<
+  ParametersT,
+  z.ZodTypeDef,
+  unknown
+> = z.union([z.record(z.any()), z.array(z.any())]);
 
 /** @internal */
 export type ParametersT$Outbound = { [k: string]: any } | Array<any>;
 
 /** @internal */
 export const ParametersT$outboundSchema: z.ZodType<
-    ParametersT$Outbound,
-    z.ZodTypeDef,
-    ParametersT
+  ParametersT$Outbound,
+  z.ZodTypeDef,
+  ParametersT
 > = z.union([z.record(z.any()), z.array(z.any())]);
 
 /**
@@ -30,10 +31,10 @@ export const ParametersT$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace ParametersT$ {
-    /** @deprecated use `ParametersT$inboundSchema` instead. */
-    export const inboundSchema = ParametersT$inboundSchema;
-    /** @deprecated use `ParametersT$outboundSchema` instead. */
-    export const outboundSchema = ParametersT$outboundSchema;
-    /** @deprecated use `ParametersT$Outbound` instead. */
-    export type Outbound = ParametersT$Outbound;
+  /** @deprecated use `ParametersT$inboundSchema` instead. */
+  export const inboundSchema = ParametersT$inboundSchema;
+  /** @deprecated use `ParametersT$outboundSchema` instead. */
+  export const outboundSchema = ParametersT$outboundSchema;
+  /** @deprecated use `ParametersT$Outbound` instead. */
+  export type Outbound = ParametersT$Outbound;
 }

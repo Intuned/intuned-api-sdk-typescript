@@ -8,11 +8,11 @@ PDF file data to extract from
 import { PdfFile } from "@intuned/client/models/components";
 
 let value: PdfFile = {
-    type: "pdf",
-    source: {
-        type: "base64",
-        data: "<value>",
-    },
+  type: "pdf",
+  source: {
+    type: "base64",
+    data: "<value>",
+  },
 };
 ```
 

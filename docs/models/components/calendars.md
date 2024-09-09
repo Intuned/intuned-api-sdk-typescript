@@ -8,28 +8,28 @@ A calendar object. It is similar to a cron string, but more verbose.
 import { Calendars } from "@intuned/client/models/components";
 
 let value: Calendars = {
-    second: "*",
-    minute: "*",
-    hour: "0",
-    dayOfMonth: [
-        {
-            start: 1,
-            end: 30,
-            step: 1,
-        },
-    ],
-    dayOfWeek: {
-        start: "MONDAY",
-        end: "FRIDAY",
-        step: 1,
+  second: "*",
+  minute: "*",
+  hour: "<value>",
+  dayOfMonth: "<value>",
+  dayOfWeek: {
+    start: "MONDAY",
+    end: "FRIDAY",
+    step: 1,
+  },
+  month: [
+    {
+      start: 1,
+      end: 30,
+      step: 1,
     },
-    month: {
-        start: 1,
-        end: 30,
-        step: 1,
-    },
-    year: 6130.64,
-    comment: "Trigger every midnight hour on work days",
+  ],
+  year: {
+    start: 1,
+    end: 30,
+    step: 1,
+  },
+  comment: "Trigger every midnight hour on work days",
 };
 ```
 

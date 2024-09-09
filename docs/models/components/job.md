@@ -8,29 +8,29 @@ Job properties and configurations
 import { Job } from "@intuned/client/models/components";
 
 let value: Job = {
-    id: "<id>",
-    sink: {
-        type: "s3",
-        region: "us-west-2",
-        bucket: "<value>",
-        accessKeyId: "<value>",
-        secretAccessKey: "<value>",
+  id: "<id>",
+  sink: {
+    type: "s3",
+    region: "us-west-2",
+    bucket: "<value>",
+    accessKeyId: "<value>",
+    secretAccessKey: "<value>",
+  },
+  payload: [
+    {
+      apiName: "<value>",
     },
-    payload: [
-        {
-            apiName: "<value>",
-        },
-    ],
-    schedule: {
-        calendars: [],
-    },
-    configuration: {
-        runMode: "Order-Irrelevant",
-    },
-    nextRunTime: new Date("2022-06-03T19:47:12.657Z"),
-    lastRunTime: new Date("2024-08-11T12:47:58.088Z"),
-    state: {},
-    projectId: "<value>",
+  ],
+  schedule: {
+    calendars: [],
+  },
+  configuration: {
+    runMode: "Order-Irrelevant",
+  },
+  nextRunTime: new Date("2022-05-10T15:05:25.593Z"),
+  lastRunTime: new Date("2024-02-29T19:31:16.563Z"),
+  state: {},
+  projectId: "<value>",
 };
 ```
 

@@ -8,58 +8,65 @@ import * as z from "zod";
  * The retry policy of the job. Configure how many retries and the delay between them for each payload. The delay is calculated as `max(initialInterval * (backoffCoefficient ^ [i]), maximumInterval)`, where `i` is the current retry iteration.
  */
 export type JobRetry = {
-    /**
-     * The maximum number of attempts to retry the API execution if it fails.
-     */
-    maximumAttempts: number;
-    /**
-     * The exponential backoff coefficient used in calculating the interval between retries.
-     */
-    backoffCoefficient?: number | undefined;
-    /**
-     * The first interval between retries. [ms-formatted string](https://github.com/vercel/ms).
-     */
-    initialInterval?: string | undefined;
-    /**
-     * The maximum interval between retries. This value will be used if the calculated interval is larger than this. [ms-formatted string](https://github.com/vercel/ms).
-     */
-    maximumInterval?: string | undefined;
+  /**
+   * The maximum number of attempts to retry the API execution if it fails.
+   */
+  maximumAttempts: number;
+  /**
+   * The exponential backoff coefficient used in calculating the interval between retries.
+   */
+  backoffCoefficient?: number | undefined;
+  /**
+   * The first interval between retries. [ms-formatted string](https://github.com/vercel/ms).
+   */
+  initialInterval?: string | undefined;
+  /**
+   * The maximum interval between retries. This value will be used if the calculated interval is larger than this. [ms-formatted string](https://github.com/vercel/ms).
+   */
+  maximumInterval?: string | undefined;
 };
 
 /** @internal */
-export const JobRetry$inboundSchema: z.ZodType<JobRetry, z.ZodTypeDef, unknown> = z.object({
-    maximumAttempts: z.number(),
-    backoffCoefficient: z.number().default(1),
-    initialInterval: z.string().default("1s"),
-    maximumInterval: z.string().optional(),
+export const JobRetry$inboundSchema: z.ZodType<
+  JobRetry,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  maximumAttempts: z.number(),
+  backoffCoefficient: z.number().default(1),
+  initialInterval: z.string().default("1s"),
+  maximumInterval: z.string().optional(),
 });
 
 /** @internal */
 export type JobRetry$Outbound = {
-    maximumAttempts: number;
-    backoffCoefficient: number;
-    initialInterval: string;
-    maximumInterval?: string | undefined;
+  maximumAttempts: number;
+  backoffCoefficient: number;
+  initialInterval: string;
+  maximumInterval?: string | undefined;
 };
 
 /** @internal */
-export const JobRetry$outboundSchema: z.ZodType<JobRetry$Outbound, z.ZodTypeDef, JobRetry> =
-    z.object({
-        maximumAttempts: z.number(),
-        backoffCoefficient: z.number().default(1),
-        initialInterval: z.string().default("1s"),
-        maximumInterval: z.string().optional(),
-    });
+export const JobRetry$outboundSchema: z.ZodType<
+  JobRetry$Outbound,
+  z.ZodTypeDef,
+  JobRetry
+> = z.object({
+  maximumAttempts: z.number(),
+  backoffCoefficient: z.number().default(1),
+  initialInterval: z.string().default("1s"),
+  maximumInterval: z.string().optional(),
+});
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace JobRetry$ {
-    /** @deprecated use `JobRetry$inboundSchema` instead. */
-    export const inboundSchema = JobRetry$inboundSchema;
-    /** @deprecated use `JobRetry$outboundSchema` instead. */
-    export const outboundSchema = JobRetry$outboundSchema;
-    /** @deprecated use `JobRetry$Outbound` instead. */
-    export type Outbound = JobRetry$Outbound;
+  /** @deprecated use `JobRetry$inboundSchema` instead. */
+  export const inboundSchema = JobRetry$inboundSchema;
+  /** @deprecated use `JobRetry$outboundSchema` instead. */
+  export const outboundSchema = JobRetry$outboundSchema;
+  /** @deprecated use `JobRetry$Outbound` instead. */
+  export type Outbound = JobRetry$Outbound;
 }

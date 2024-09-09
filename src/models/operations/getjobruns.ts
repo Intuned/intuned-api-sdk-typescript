@@ -5,41 +5,44 @@
 import * as z from "zod";
 
 export type GetJobRunsGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type GetJobRunsRequest = {
-    /**
-     * Your project name. It is the name you provide when creating a project.
-     */
-    projectName: string;
-    /**
-     * Your job ID. It is the ID of the job you provide when creating it.
-     */
-    jobId: string;
+  /**
+   * Your project name. It is the name you provide when creating a project.
+   */
+  projectName: string;
+  /**
+   * Your job ID. It is the ID of the job you provide when creating it.
+   */
+  jobId: string;
 };
 
 /** @internal */
-export const GetJobRunsGlobals$inboundSchema: z.ZodType<GetJobRunsGlobals, z.ZodTypeDef, unknown> =
-    z.object({
-        workspaceId: z.string().optional(),
-    });
+export const GetJobRunsGlobals$inboundSchema: z.ZodType<
+  GetJobRunsGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  workspaceId: z.string().optional(),
+});
 
 /** @internal */
 export type GetJobRunsGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const GetJobRunsGlobals$outboundSchema: z.ZodType<
-    GetJobRunsGlobals$Outbound,
-    z.ZodTypeDef,
-    GetJobRunsGlobals
+  GetJobRunsGlobals$Outbound,
+  z.ZodTypeDef,
+  GetJobRunsGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -47,35 +50,38 @@ export const GetJobRunsGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetJobRunsGlobals$ {
-    /** @deprecated use `GetJobRunsGlobals$inboundSchema` instead. */
-    export const inboundSchema = GetJobRunsGlobals$inboundSchema;
-    /** @deprecated use `GetJobRunsGlobals$outboundSchema` instead. */
-    export const outboundSchema = GetJobRunsGlobals$outboundSchema;
-    /** @deprecated use `GetJobRunsGlobals$Outbound` instead. */
-    export type Outbound = GetJobRunsGlobals$Outbound;
+  /** @deprecated use `GetJobRunsGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetJobRunsGlobals$inboundSchema;
+  /** @deprecated use `GetJobRunsGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetJobRunsGlobals$outboundSchema;
+  /** @deprecated use `GetJobRunsGlobals$Outbound` instead. */
+  export type Outbound = GetJobRunsGlobals$Outbound;
 }
 
 /** @internal */
-export const GetJobRunsRequest$inboundSchema: z.ZodType<GetJobRunsRequest, z.ZodTypeDef, unknown> =
-    z.object({
-        projectName: z.string(),
-        jobId: z.string(),
-    });
+export const GetJobRunsRequest$inboundSchema: z.ZodType<
+  GetJobRunsRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  projectName: z.string(),
+  jobId: z.string(),
+});
 
 /** @internal */
 export type GetJobRunsRequest$Outbound = {
-    projectName: string;
-    jobId: string;
+  projectName: string;
+  jobId: string;
 };
 
 /** @internal */
 export const GetJobRunsRequest$outboundSchema: z.ZodType<
-    GetJobRunsRequest$Outbound,
-    z.ZodTypeDef,
-    GetJobRunsRequest
+  GetJobRunsRequest$Outbound,
+  z.ZodTypeDef,
+  GetJobRunsRequest
 > = z.object({
-    projectName: z.string(),
-    jobId: z.string(),
+  projectName: z.string(),
+  jobId: z.string(),
 });
 
 /**
@@ -83,10 +89,10 @@ export const GetJobRunsRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetJobRunsRequest$ {
-    /** @deprecated use `GetJobRunsRequest$inboundSchema` instead. */
-    export const inboundSchema = GetJobRunsRequest$inboundSchema;
-    /** @deprecated use `GetJobRunsRequest$outboundSchema` instead. */
-    export const outboundSchema = GetJobRunsRequest$outboundSchema;
-    /** @deprecated use `GetJobRunsRequest$Outbound` instead. */
-    export type Outbound = GetJobRunsRequest$Outbound;
+  /** @deprecated use `GetJobRunsRequest$inboundSchema` instead. */
+  export const inboundSchema = GetJobRunsRequest$inboundSchema;
+  /** @deprecated use `GetJobRunsRequest$outboundSchema` instead. */
+  export const outboundSchema = GetJobRunsRequest$outboundSchema;
+  /** @deprecated use `GetJobRunsRequest$Outbound` instead. */
+  export type Outbound = GetJobRunsRequest$Outbound;
 }

@@ -5,37 +5,40 @@
 import * as z from "zod";
 
 export type GetQueuesGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type GetQueuesRequest = {
-    /**
-     * Your project name. It is the name you provide when creating a project.
-     */
-    projectName: string;
+  /**
+   * Your project name. It is the name you provide when creating a project.
+   */
+  projectName: string;
 };
 
 /** @internal */
-export const GetQueuesGlobals$inboundSchema: z.ZodType<GetQueuesGlobals, z.ZodTypeDef, unknown> =
-    z.object({
-        workspaceId: z.string().optional(),
-    });
+export const GetQueuesGlobals$inboundSchema: z.ZodType<
+  GetQueuesGlobals,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  workspaceId: z.string().optional(),
+});
 
 /** @internal */
 export type GetQueuesGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const GetQueuesGlobals$outboundSchema: z.ZodType<
-    GetQueuesGlobals$Outbound,
-    z.ZodTypeDef,
-    GetQueuesGlobals
+  GetQueuesGlobals$Outbound,
+  z.ZodTypeDef,
+  GetQueuesGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -43,32 +46,35 @@ export const GetQueuesGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetQueuesGlobals$ {
-    /** @deprecated use `GetQueuesGlobals$inboundSchema` instead. */
-    export const inboundSchema = GetQueuesGlobals$inboundSchema;
-    /** @deprecated use `GetQueuesGlobals$outboundSchema` instead. */
-    export const outboundSchema = GetQueuesGlobals$outboundSchema;
-    /** @deprecated use `GetQueuesGlobals$Outbound` instead. */
-    export type Outbound = GetQueuesGlobals$Outbound;
+  /** @deprecated use `GetQueuesGlobals$inboundSchema` instead. */
+  export const inboundSchema = GetQueuesGlobals$inboundSchema;
+  /** @deprecated use `GetQueuesGlobals$outboundSchema` instead. */
+  export const outboundSchema = GetQueuesGlobals$outboundSchema;
+  /** @deprecated use `GetQueuesGlobals$Outbound` instead. */
+  export type Outbound = GetQueuesGlobals$Outbound;
 }
 
 /** @internal */
-export const GetQueuesRequest$inboundSchema: z.ZodType<GetQueuesRequest, z.ZodTypeDef, unknown> =
-    z.object({
-        projectName: z.string(),
-    });
+export const GetQueuesRequest$inboundSchema: z.ZodType<
+  GetQueuesRequest,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  projectName: z.string(),
+});
 
 /** @internal */
 export type GetQueuesRequest$Outbound = {
-    projectName: string;
+  projectName: string;
 };
 
 /** @internal */
 export const GetQueuesRequest$outboundSchema: z.ZodType<
-    GetQueuesRequest$Outbound,
-    z.ZodTypeDef,
-    GetQueuesRequest
+  GetQueuesRequest$Outbound,
+  z.ZodTypeDef,
+  GetQueuesRequest
 > = z.object({
-    projectName: z.string(),
+  projectName: z.string(),
 });
 
 /**
@@ -76,10 +82,10 @@ export const GetQueuesRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace GetQueuesRequest$ {
-    /** @deprecated use `GetQueuesRequest$inboundSchema` instead. */
-    export const inboundSchema = GetQueuesRequest$inboundSchema;
-    /** @deprecated use `GetQueuesRequest$outboundSchema` instead. */
-    export const outboundSchema = GetQueuesRequest$outboundSchema;
-    /** @deprecated use `GetQueuesRequest$Outbound` instead. */
-    export type Outbound = GetQueuesRequest$Outbound;
+  /** @deprecated use `GetQueuesRequest$inboundSchema` instead. */
+  export const inboundSchema = GetQueuesRequest$inboundSchema;
+  /** @deprecated use `GetQueuesRequest$outboundSchema` instead. */
+  export const outboundSchema = GetQueuesRequest$outboundSchema;
+  /** @deprecated use `GetQueuesRequest$Outbound` instead. */
+  export type Outbound = GetQueuesRequest$Outbound;
 }

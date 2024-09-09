@@ -8,9 +8,9 @@ Completed API run result
 import { AsyncRunCompletedResponse } from "@intuned/client/models/components";
 
 let value: AsyncRunCompletedResponse = {
-    status: "completed",
-    statusCode: 93.56,
-    runId: "<value>",
+  status: "completed",
+  statusCode: 2647.3,
+  runId: "<value>",
 };
 ```
 

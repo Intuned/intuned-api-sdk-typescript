@@ -5,7 +5,7 @@
 ```typescript
 import { End } from "@intuned/client/models/components";
 
-let value: End = "<value>";
+let value: End = 1289.26;
 ```
 
 ## Supported Types

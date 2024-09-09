@@ -8,11 +8,8 @@ A sink to send the results to. Can be a webhook or Amazon S3 bucket.
 import { JobSink } from "@intuned/client/models/components";
 
 let value: JobSink = {
-    type: "s3",
-    region: "us-west-2",
-    bucket: "<value>",
-    accessKeyId: "<value>",
-    secretAccessKey: "<value>",
+  type: "webhook",
+  url: "https://gummy-expedition.name",
 };
 ```
 

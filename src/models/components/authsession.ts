@@ -8,29 +8,33 @@ import * as z from "zod";
  * Auth session configurations
  */
 export type AuthSession = {
-    /**
-     * The ID of the auth session to be used
-     */
-    id: string;
+  /**
+   * The ID of the auth session to be used
+   */
+  id: string;
 };
 
 /** @internal */
-export const AuthSession$inboundSchema: z.ZodType<AuthSession, z.ZodTypeDef, unknown> = z.object({
-    id: z.string(),
+export const AuthSession$inboundSchema: z.ZodType<
+  AuthSession,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  id: z.string(),
 });
 
 /** @internal */
 export type AuthSession$Outbound = {
-    id: string;
+  id: string;
 };
 
 /** @internal */
 export const AuthSession$outboundSchema: z.ZodType<
-    AuthSession$Outbound,
-    z.ZodTypeDef,
-    AuthSession
+  AuthSession$Outbound,
+  z.ZodTypeDef,
+  AuthSession
 > = z.object({
-    id: z.string(),
+  id: z.string(),
 });
 
 /**
@@ -38,10 +42,10 @@ export const AuthSession$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace AuthSession$ {
-    /** @deprecated use `AuthSession$inboundSchema` instead. */
-    export const inboundSchema = AuthSession$inboundSchema;
-    /** @deprecated use `AuthSession$outboundSchema` instead. */
-    export const outboundSchema = AuthSession$outboundSchema;
-    /** @deprecated use `AuthSession$Outbound` instead. */
-    export type Outbound = AuthSession$Outbound;
+  /** @deprecated use `AuthSession$inboundSchema` instead. */
+  export const inboundSchema = AuthSession$inboundSchema;
+  /** @deprecated use `AuthSession$outboundSchema` instead. */
+  export const outboundSchema = AuthSession$outboundSchema;
+  /** @deprecated use `AuthSession$Outbound` instead. */
+  export type Outbound = AuthSession$Outbound;
 }

@@ -8,22 +8,25 @@ Create job input
 import { JobInput } from "@intuned/client/models/components";
 
 let value: JobInput = {
-    id: "<id>",
-    sink: {
-        type: "webhook",
-        url: "https://front-odyssey.info",
+  id: "<id>",
+  sink: {
+    type: "s3",
+    region: "us-west-2",
+    bucket: "<value>",
+    accessKeyId: "<value>",
+    secretAccessKey: "<value>",
+  },
+  payload: [
+    {
+      apiName: "<value>",
     },
-    payload: [
-        {
-            apiName: "<value>",
-        },
-    ],
-    schedule: {
-        calendars: [],
-    },
-    configuration: {
-        runMode: "Order-Irrelevant",
-    },
+  ],
+  schedule: {
+    calendars: [],
+  },
+  configuration: {
+    runMode: "Order-Irrelevant",
+  },
 };
 ```
 

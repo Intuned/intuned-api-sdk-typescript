@@ -8,13 +8,13 @@ The details of a job run.
 import { JobRun } from "@intuned/client/models/components";
 
 let value: JobRun = {
-    id: "<id>",
-    projectId: "f1a3a2fa-9467-4739-a51a-a52c3f5ad019",
-    jobId: "<value>",
-    startTime: new Date("2024-07-07T09:18:10.171Z"),
-    status: "TERMINATED",
-    type: "MANUAL",
-    workspaceId: "ffe78f09-7b00-474f-9547-1b5e6e13b99d",
+  id: "<id>",
+  projectId: "a9467739-251a-4a52-83f5-ad019da1ffe7",
+  jobId: "<value>",
+  startTime: new Date("2023-07-13T13:09:34.110Z"),
+  status: "PAUSED",
+  type: "MANUAL",
+  workspaceId: "97b0074f-1547-41b5-a6e1-3b99d488e1e9",
 };
 ```
 

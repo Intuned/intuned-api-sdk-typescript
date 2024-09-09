@@ -8,11 +8,11 @@ Image file data to extract from
 import { ImageFile } from "@intuned/client/models/components";
 
 let value: ImageFile = {
-    type: "image",
-    source: {
-        type: "url",
-        data: "https://present-giggle.info",
-    },
+  type: "image",
+  source: {
+    type: "url",
+    data: "http://lasting-sex.net",
+  },
 };
 ```
 

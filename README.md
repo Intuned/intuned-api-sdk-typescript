@@ -4,8 +4,35 @@
 
 Consume your browser automation projects and perform file operations with the Intuned API using this TypeScript SDK.
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Intuned Client: Intuned API Client to call APIs exposed by the Intuned Platform (https://docs.intunedhq.com/).
+
+For more information about the API: [Find out more about Intuned](https://docs.intunedhq.com/)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [Requirements](#requirements)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Standalone functions](#standalone-functions)
+* [Global Parameters](#global-parameters)
+* [Retries](#retries)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Custom HTTP Client](#custom-http-client)
+* [Authentication](#authentication)
+* [Debugging](#debugging)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -63,26 +90,23 @@ The SDK runs within the context of a workspace. You will need to provide the wor
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.files.extractStructuredData.sync({
+    type: "pdf",
+    source: {
+      type: "url",
+      data: "http://unconscious-margin.name",
+    },
+  }, {
+    "key": "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -166,9 +190,14 @@ run();
 * [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
 * [resume](docs/sdks/create/README.md#resume) - Create Auth Session -  Resume
 
+### [project.authSessions.update](docs/sdks/update/README.md)
+
+* [start](docs/sdks/update/README.md#start) - Update Auth Session - Start
+* [result](docs/sdks/update/README.md#result) - Update Auth Session - Result
+* [resume](docs/sdks/update/README.md#resume) - Update Auth Session -  Resume
+
 ### [project.authSessions.recorder](docs/sdks/recorder/README.md)
 
-* [createAuthSession](docs/sdks/recorder/README.md#createauthsession) - Create Recorder Auth Session Instance
 * [start](docs/sdks/recorder/README.md#start) - Start recorder session for an auth session
 <!-- End Available Resources and Operations [operations] -->
 
@@ -369,38 +398,34 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        },
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await intunedClient.files.extractStructuredData.sync({
+    type: "pdf",
+    source: {
+      type: "url",
+      data: "http://unconscious-margin.name",
+    },
+  }, {
+    "key": "<value>",
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -412,36 +437,33 @@ If you'd like to override the default retry strategy for all operations that sup
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    retryConnectionErrors: false,
+  },
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.files.extractStructuredData.sync({
+    type: "pdf",
+    source: {
+      type: "url",
+      data: "http://unconscious-margin.name",
+    },
+  }, {
+    "key": "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -463,7 +485,7 @@ The following global parameter is available.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| workspaceId | string |  | Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)? |
+| workspaceId | string |  | Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)? |
 
 
 ### Example
@@ -472,26 +494,23 @@ The following global parameter is available.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  apiKey: "<YOUR_API_KEY_HERE>",
+  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.files.extractStructuredData.sync({
+    type: "pdf",
+    source: {
+      type: "url",
+      data: "http://unconscious-margin.name",
+    },
+  }, {
+    "key": "<value>",
+  });
 
-    // Handle the result
-    console.log(result);
+  // Handle the result
+  console.log(result);
 }
 
 run();
@@ -529,8 +548,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [projectAuthSessionsCreateStart](docs/sdks/create/README.md#start)
 - [projectAuthSessionsDelete](docs/sdks/authsessions/README.md#delete)
 - [projectAuthSessionsOne](docs/sdks/authsessions/README.md#one)
-- [projectAuthSessionsRecorderCreateAuthSession](docs/sdks/recorder/README.md#createauthsession)
 - [projectAuthSessionsRecorderStart](docs/sdks/recorder/README.md#start)
+- [projectAuthSessionsUpdateResult](docs/sdks/update/README.md#result)
+- [projectAuthSessionsUpdateResume](docs/sdks/update/README.md#resume)
+- [projectAuthSessionsUpdateStart](docs/sdks/update/README.md#start)
 - [projectJobsAll](docs/sdks/jobs/README.md#all)
 - [projectJobsCreate](docs/sdks/jobs/README.md#create)
 - [projectJobsDelete](docs/sdks/jobs/README.md#delete)

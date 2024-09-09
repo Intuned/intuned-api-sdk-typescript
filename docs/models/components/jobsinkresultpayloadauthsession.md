@@ -8,7 +8,7 @@ The auth session used in the run
 import { JobSinkResultPayloadAuthSession } from "@intuned/client/models/components";
 
 let value: JobSinkResultPayloadAuthSession = {
-    id: "576b0d5f-0d30-4c5f-bb25-87053202c73d",
+  id: "b7fd2ed0-2892-41cd-9c69-2601fb576b0d",
 };
 ```
 

@@ -6,8 +6,10 @@
 import { TableExtractionAsyncResponse } from "@intuned/client/models/components";
 
 let value: TableExtractionAsyncResponse = {
-    operationId: "aaaabbbCCCCdddd",
-    status: "pending",
+  operationId: "<value>",
+  status: "failed",
+  error: "<value>",
+  message: "<value>",
 };
 ```
 

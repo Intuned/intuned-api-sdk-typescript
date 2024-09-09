@@ -8,10 +8,10 @@ Failed file extraction result
 import { FileFailedResponse } from "@intuned/client/models/components";
 
 let value: FileFailedResponse = {
-    operationId: "<value>",
-    status: "failed",
-    error: "<value>",
-    message: "<value>",
+  operationId: "<value>",
+  status: "failed",
+  error: "<value>",
+  message: "<value>",
 };
 ```
 

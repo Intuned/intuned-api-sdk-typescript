@@ -9,32 +9,43 @@ import * as components from "../models/components/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Runs extends ClientSDK {
-    /**
-     * Get Job Runs
-     *
-     * @remarks
-     * Get all job runs of a job.
-     */
-    async all(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.JobRun>> {
-        return unwrapAsync(projectJobsRunsAll(this, projectName, jobId, options));
-    }
+  /**
+   * Get Job Runs
+   *
+   * @remarks
+   * Get all job runs of a job.
+   */
+  async all(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<Array<components.JobRun>> {
+    return unwrapAsync(projectJobsRunsAll(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
 
-    /**
-     * Terminate Job Run
-     *
-     * @remarks
-     * Terminate a job run by ID.
-     */
-    async terminate(
-        projectName: string,
-        jobId: string,
-        runId: string,
-        options?: RequestOptions
-    ): Promise<components.TerminateJobRun> {
-        return unwrapAsync(projectJobsRunsTerminate(this, projectName, jobId, runId, options));
-    }
+  /**
+   * Terminate Job Run
+   *
+   * @remarks
+   * Terminate a job run by ID.
+   */
+  async terminate(
+    projectName: string,
+    jobId: string,
+    runId: string,
+    options?: RequestOptions,
+  ): Promise<components.TerminateJobRun> {
+    return unwrapAsync(projectJobsRunsTerminate(
+      this,
+      projectName,
+      jobId,
+      runId,
+      options,
+    ));
+  }
 }

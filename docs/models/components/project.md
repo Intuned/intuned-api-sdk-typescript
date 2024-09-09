@@ -8,8 +8,8 @@ The project details of the API
 import { Project } from "@intuned/client/models/components";
 
 let value: Project = {
-    id: "b711e5b7-fd2e-4d02-8921-cddc692601fb",
-    name: "<value>",
+  id: "14195989-0afa-4563-a251-6fe4c8b711e5",
+  name: "<value>",
 };
 ```
 

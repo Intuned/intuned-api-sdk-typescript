@@ -7,7 +7,7 @@ Auth session status
 ```typescript
 import { AuthSessionInfoStatus } from "@intuned/client/models/components";
 
-let value: AuthSessionInfoStatus = "READY";
+let value: AuthSessionInfoStatus = "EXPIRED";
 ```
 
 ## Values

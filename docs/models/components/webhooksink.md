@@ -8,8 +8,8 @@ Webhook sink configuration
 import { WebhookSink } from "@intuned/client/models/components";
 
 let value: WebhookSink = {
-    type: "webhook",
-    url: "https://deadly-corsage.info",
+  type: "webhook",
+  url: "http://insidious-parole.org",
 };
 ```
 

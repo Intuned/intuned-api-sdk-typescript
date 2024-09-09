@@ -8,7 +8,7 @@ An interval object, which represents a period to trigger the job. The interval i
 import { Intervals } from "@intuned/client/models/components";
 
 let value: Intervals = {
-    every: 6169.34,
+  every: "<value>",
 };
 ```
 

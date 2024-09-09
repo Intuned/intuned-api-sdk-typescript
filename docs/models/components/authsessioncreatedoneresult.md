@@ -8,8 +8,8 @@ Auth session create done
 import { AuthSessionCreateDoneResult } from "@intuned/client/models/components";
 
 let value: AuthSessionCreateDoneResult = {
-    status: "done",
-    authSessionId: "<value>",
+  status: "done",
+  authSessionId: "<value>",
 };
 ```
 

@@ -6,15 +6,10 @@
 import { TableExtractionSyncResponse } from "@intuned/client/models/components";
 
 let value: TableExtractionSyncResponse = {
-    result: [
-        {
-            pageNumber: 87129,
-            title: "<value>",
-            content: [["<value>"]],
-        },
-    ],
-    operationId: "<value>",
-    status: "completed",
+  operationId: "<value>",
+  status: "failed",
+  error: "<value>",
+  message: "<value>",
 };
 ```
 

@@ -5,40 +5,40 @@
 import * as z from "zod";
 
 export type FileExtractStructuredDataResultGlobals = {
-    /**
-     * Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)?
-     */
-    workspaceId?: string | undefined;
+  /**
+   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   */
+  workspaceId?: string | undefined;
 };
 
 export type FileExtractStructuredDataResultRequest = {
-    /**
-     * The ID for the requested file operation. This is obtained from the start request.
-     */
-    operationId: string;
+  /**
+   * The ID for the requested file operation. This is obtained from the start request.
+   */
+  operationId: string;
 };
 
 /** @internal */
 export const FileExtractStructuredDataResultGlobals$inboundSchema: z.ZodType<
-    FileExtractStructuredDataResultGlobals,
-    z.ZodTypeDef,
-    unknown
+  FileExtractStructuredDataResultGlobals,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /** @internal */
 export type FileExtractStructuredDataResultGlobals$Outbound = {
-    workspaceId?: string | undefined;
+  workspaceId?: string | undefined;
 };
 
 /** @internal */
 export const FileExtractStructuredDataResultGlobals$outboundSchema: z.ZodType<
-    FileExtractStructuredDataResultGlobals$Outbound,
-    z.ZodTypeDef,
-    FileExtractStructuredDataResultGlobals
+  FileExtractStructuredDataResultGlobals$Outbound,
+  z.ZodTypeDef,
+  FileExtractStructuredDataResultGlobals
 > = z.object({
-    workspaceId: z.string().optional(),
+  workspaceId: z.string().optional(),
 });
 
 /**
@@ -46,35 +46,37 @@ export const FileExtractStructuredDataResultGlobals$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace FileExtractStructuredDataResultGlobals$ {
-    /** @deprecated use `FileExtractStructuredDataResultGlobals$inboundSchema` instead. */
-    export const inboundSchema = FileExtractStructuredDataResultGlobals$inboundSchema;
-    /** @deprecated use `FileExtractStructuredDataResultGlobals$outboundSchema` instead. */
-    export const outboundSchema = FileExtractStructuredDataResultGlobals$outboundSchema;
-    /** @deprecated use `FileExtractStructuredDataResultGlobals$Outbound` instead. */
-    export type Outbound = FileExtractStructuredDataResultGlobals$Outbound;
+  /** @deprecated use `FileExtractStructuredDataResultGlobals$inboundSchema` instead. */
+  export const inboundSchema =
+    FileExtractStructuredDataResultGlobals$inboundSchema;
+  /** @deprecated use `FileExtractStructuredDataResultGlobals$outboundSchema` instead. */
+  export const outboundSchema =
+    FileExtractStructuredDataResultGlobals$outboundSchema;
+  /** @deprecated use `FileExtractStructuredDataResultGlobals$Outbound` instead. */
+  export type Outbound = FileExtractStructuredDataResultGlobals$Outbound;
 }
 
 /** @internal */
 export const FileExtractStructuredDataResultRequest$inboundSchema: z.ZodType<
-    FileExtractStructuredDataResultRequest,
-    z.ZodTypeDef,
-    unknown
+  FileExtractStructuredDataResultRequest,
+  z.ZodTypeDef,
+  unknown
 > = z.object({
-    operationId: z.string(),
+  operationId: z.string(),
 });
 
 /** @internal */
 export type FileExtractStructuredDataResultRequest$Outbound = {
-    operationId: string;
+  operationId: string;
 };
 
 /** @internal */
 export const FileExtractStructuredDataResultRequest$outboundSchema: z.ZodType<
-    FileExtractStructuredDataResultRequest$Outbound,
-    z.ZodTypeDef,
-    FileExtractStructuredDataResultRequest
+  FileExtractStructuredDataResultRequest$Outbound,
+  z.ZodTypeDef,
+  FileExtractStructuredDataResultRequest
 > = z.object({
-    operationId: z.string(),
+  operationId: z.string(),
 });
 
 /**
@@ -82,10 +84,12 @@ export const FileExtractStructuredDataResultRequest$outboundSchema: z.ZodType<
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
 export namespace FileExtractStructuredDataResultRequest$ {
-    /** @deprecated use `FileExtractStructuredDataResultRequest$inboundSchema` instead. */
-    export const inboundSchema = FileExtractStructuredDataResultRequest$inboundSchema;
-    /** @deprecated use `FileExtractStructuredDataResultRequest$outboundSchema` instead. */
-    export const outboundSchema = FileExtractStructuredDataResultRequest$outboundSchema;
-    /** @deprecated use `FileExtractStructuredDataResultRequest$Outbound` instead. */
-    export type Outbound = FileExtractStructuredDataResultRequest$Outbound;
+  /** @deprecated use `FileExtractStructuredDataResultRequest$inboundSchema` instead. */
+  export const inboundSchema =
+    FileExtractStructuredDataResultRequest$inboundSchema;
+  /** @deprecated use `FileExtractStructuredDataResultRequest$outboundSchema` instead. */
+  export const outboundSchema =
+    FileExtractStructuredDataResultRequest$outboundSchema;
+  /** @deprecated use `FileExtractStructuredDataResultRequest$Outbound` instead. */
+  export type Outbound = FileExtractStructuredDataResultRequest$Outbound;
 }

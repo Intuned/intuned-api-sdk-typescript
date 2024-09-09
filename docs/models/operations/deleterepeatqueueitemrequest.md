@@ -6,9 +6,9 @@
 import { DeleteRepeatQueueItemRequest } from "@intuned/client/models/operations";
 
 let value: DeleteRepeatQueueItemRequest = {
-    projectName: "my-project",
-    queueId: "my-sample-queue",
-    itemId: "22222222-2222-2222-2222-222222222222",
+  projectName: "my-project",
+  queueId: "my-sample-queue",
+  itemId: "22222222-2222-2222-2222-222222222222",
 };
 ```
 
