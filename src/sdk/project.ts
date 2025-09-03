@@ -5,27 +5,21 @@
 import { ClientSDK } from "../lib/sdks.js";
 import { AuthSessions } from "./authsessions.js";
 import { Jobs } from "./jobs.js";
-import { Queues } from "./queues.js";
 import { Run } from "./run.js";
 
 export class Project extends ClientSDK {
-    private _jobs?: Jobs;
-    get jobs(): Jobs {
-        return (this._jobs ??= new Jobs(this.options$));
-    }
+  private _run?: Run;
+  get run(): Run {
+    return (this._run ??= new Run(this._options));
+  }
 
-    private _queues?: Queues;
-    get queues(): Queues {
-        return (this._queues ??= new Queues(this.options$));
-    }
+  private _jobs?: Jobs;
+  get jobs(): Jobs {
+    return (this._jobs ??= new Jobs(this._options));
+  }
 
-    private _run?: Run;
-    get run(): Run {
-        return (this._run ??= new Run(this.options$));
-    }
-
-    private _authSessions?: AuthSessions;
-    get authSessions(): AuthSessions {
-        return (this._authSessions ??= new AuthSessions(this.options$));
-    }
+  private _authSessions?: AuthSessions;
+  get authSessions(): AuthSessions {
+    return (this._authSessions ??= new AuthSessions(this._options));
+  }
 }

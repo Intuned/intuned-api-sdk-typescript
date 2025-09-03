@@ -7,144 +7,40 @@ Run Project's exposed APIs
 
 ### Available Operations
 
-* [sync](#sync) - Run API - Sync
 * [start](#start) - Run API - Async Start
 * [result](#result) - Run API - Async Result
 
-## sync
-
-Runs a project API synchronously.
-
-### Example Usage
-
-```typescript
-import { IntunedClient } from "@intuned/client";
-
-const intunedClient = new IntunedClient({
-  apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-});
-
-async function run() {
-  const result = await intunedClient.project.run.sync("my-project", {
-    api: "get-contracts",
-  parameters:     [
-        {
-          "page": 1,
-          "isLastPage": false,
-        },
-      ],
-    retry: {
-      maximumAttempts: 3,
-    },
-    proxy: "http://username:password@domain:port",
-  });
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { IntunedClientCore } from "@intuned/client/core.js";
-import { projectRunSync } from "@intuned/client/funcs/projectRunSync.js";
-
-// Use `IntunedClientCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const intunedClient = new IntunedClientCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-});
-
-async function run() {
-  const res = await projectRunSync(intunedClient, "my-project", {
-    api: "get-contracts",
-  parameters:     {
-        "page": 1,
-        "isLastPage": false,
-      },
-    retry: {
-      maximumAttempts: 3,
-    },
-    proxy: "http://username:password@domain:port",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
-| `runProjectApiRequest`                                                                                                                                                         | [components.RunProjectApiRequest](../../models/components/runprojectapirequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | run project api request                                                                                                                                                        |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-
-
-### Response
-
-**Promise\<[components.SyncResultResponse](../../models/components/syncresultresponse.md)\>**
-### Errors
-
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
-
 ## start
 
-Starts a project API run operation
+Starts an API run for a specific project in a workspace.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="runApiStart" method="post" path="/{workspaceId}/projects/{projectName}/run/start" -->
 ```typescript
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
   const result = await intunedClient.project.run.start("my-project", {
-    api: "get-contracts",
-  parameters:     {
-        "page": 1,
-        "isLastPage": false,
-      },
-    retry: {
-      maximumAttempts: 3,
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
     },
-    proxy: "http://username:password@domain:port",
+    retry: {},
+    api: "my-awesome-api",
   });
 
-  // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -157,33 +53,26 @@ import { projectRunStart } from "@intuned/client/funcs/projectRunStart.js";
 // Use `IntunedClientCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
   const res = await projectRunStart(intunedClient, "my-project", {
-    api: "get-contracts",
-  parameters:     [
-        {
-          "page": 1,
-          "isLastPage": false,
-        },
-      ],
-    retry: {
-      maximumAttempts: 3,
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
     },
-    proxy: "http://username:password@domain:port",
+    retry: {},
+    api: "my-awesome-api",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("projectRunStart failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -194,22 +83,20 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
-| `runProjectApiRequest`                                                                                                                                                         | [components.RunProjectApiRequest](../../models/components/runprojectapirequest.md)                                                                                             | :heavy_check_mark:                                                                                                                                                             | run project api request                                                                                                                                                        |                                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.RunApiStartRequestBody](../../models/operations/runapistartrequestbody.md)                                                                                         | :heavy_check_mark:                                                                                                                                                             | Run API input schema                                                                                                                                                           |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
-**Promise\<[components.AsyncRunPendingResponse](../../models/components/asyncrunpendingresponse.md)\>**
+**Promise\<[operations.RunApiStartResponseBody](../../models/operations/runapistartresponsebody.md)\>**
+
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
 
 ## result
 
@@ -217,24 +104,23 @@ Retrieves the result of a started project API run operation.
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="runApiResult" method="get" path="/{workspaceId}/projects/{projectName}/run/{runId}/result" -->
 ```typescript
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
   const result = await intunedClient.project.run.result("my-project", "aabbccddeeffggh");
 
-  // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -247,21 +133,18 @@ import { projectRunResult } from "@intuned/client/funcs/projectRunResult.js";
 // Use `IntunedClientCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
   const res = await projectRunResult(intunedClient, "my-project", "aabbccddeeffggh");
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("projectRunResult failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -277,14 +160,12 @@ run();
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
-**Promise\<[components.AsyncResultResponse](../../models/components/asyncresultresponse.md)\>**
+**Promise\<[operations.RunApiResultResponseBody](../../models/operations/runapiresultresponsebody.md)\>**
+
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |

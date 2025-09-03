@@ -1,0 +1,24 @@
+# GetJobsCalendars
+
+A calendar object. It is similar to a cron string, but more verbose.
+
+## Example Usage
+
+```typescript
+import { GetJobsCalendars } from "@intuned/client/models/operations";
+
+let value: GetJobsCalendars = {};
+```
+
+## Fields
+
+| Field                                                                                                           | Type                                                                                                            | Required                                                                                                        | Description                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `second`                                                                                                        | *operations.GetJobsSecond*                                                                                      | :heavy_minus_sign:                                                                                              | Seconds of the calendar, a number in the range 0 - 59                                                           |
+| `minute`                                                                                                        | *operations.GetJobsMinute*                                                                                      | :heavy_minus_sign:                                                                                              | Minutes of the calendar, a number in the range 0 - 59                                                           |
+| `hour`                                                                                                          | *operations.GetJobsHour*                                                                                        | :heavy_minus_sign:                                                                                              | Hours of the calendar, a number in the range 0 - 23                                                             |
+| `dayOfWeek`                                                                                                     | *operations.GetJobsDayOfWeek*                                                                                   | :heavy_minus_sign:                                                                                              | Days of week, one of SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY                             |
+| `dayOfMonth`                                                                                                    | *operations.GetJobsDayOfMonth*                                                                                  | :heavy_minus_sign:                                                                                              | Days of the month, a number in the range 1 - 31                                                                 |
+| `month`                                                                                                         | *operations.GetJobsMonth*                                                                                       | :heavy_minus_sign:                                                                                              | Months, one of JANUARY, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OCTOBER, NOVEMBER, DECEMBER |
+| `year`                                                                                                          | *operations.GetJobsYear*                                                                                        | :heavy_minus_sign:                                                                                              | Full year. For example: 2024                                                                                    |
+| `comment`                                                                                                       | *string*                                                                                                        | :heavy_minus_sign:                                                                                              | A comment to describe what the calendar is supposed to represent                                                |

@@ -3,65 +3,47 @@
  */
 
 import { projectAuthSessionsCreateResult } from "../funcs/projectAuthSessionsCreateResult.js";
-import { projectAuthSessionsCreateResume } from "../funcs/projectAuthSessionsCreateResume.js";
 import { projectAuthSessionsCreateStart } from "../funcs/projectAuthSessionsCreateStart.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Create extends ClientSDK {
-    /**
-     * Create Auth Session - Start
-     *
-     * @remarks
-     * Starts creation process of an authentication session for a project with the authentication session creation setting enabled.
-     */
-    async start(
-        projectName: string,
-        createAuthSessionRequest: components.CreateAuthSessionRequest,
-        options?: RequestOptions
-    ): Promise<components.CreateAuthSessionStart> {
-        return unwrapAsync(
-            projectAuthSessionsCreateStart(this, projectName, createAuthSessionRequest, options)
-        );
-    }
+  /**
+   * Create Auth Session - Start
+   *
+   * @remarks
+   * Starts creation process of an authentication session for a project with the authentication session creation setting enabled.
+   */
+  async start(
+    projectName: string,
+    requestBody: operations.CreateOrUpdateAuthSessionStartRequestBody,
+    options?: RequestOptions,
+  ): Promise<operations.CreateOrUpdateAuthSessionStartResponseBody> {
+    return unwrapAsync(projectAuthSessionsCreateStart(
+      this,
+      projectName,
+      requestBody,
+      options,
+    ));
+  }
 
-    /**
-     * Create Auth Session - Result
-     *
-     * @remarks
-     * Gets authentication session creation operation result.
-     */
-    async result(
-        projectName: string,
-        operationId: string,
-        options?: RequestOptions
-    ): Promise<components.AuthSessionCreateResult> {
-        return unwrapAsync(
-            projectAuthSessionsCreateResult(this, projectName, operationId, options)
-        );
-    }
-
-    /**
-     * Create Auth Session -  Resume
-     *
-     * @remarks
-     * Resume authentication session creation operation. This is needed if the operation requests more info.
-     */
-    async resume(
-        projectName: string,
-        operationId: string,
-        authSessionCreateResume: components.AuthSessionCreateResume,
-        options?: RequestOptions
-    ): Promise<components.CreateAuthSessionResume> {
-        return unwrapAsync(
-            projectAuthSessionsCreateResume(
-                this,
-                projectName,
-                operationId,
-                authSessionCreateResume,
-                options
-            )
-        );
-    }
+  /**
+   * Create Auth Session - Result
+   *
+   * @remarks
+   * Gets authentication session creation operation result.
+   */
+  async result(
+    projectName: string,
+    operationId: string,
+    options?: RequestOptions,
+  ): Promise<operations.CreateAuthSessionResultResponseBody> {
+    return unwrapAsync(projectAuthSessionsCreateResult(
+      this,
+      projectName,
+      operationId,
+      options,
+    ));
+  }
 }

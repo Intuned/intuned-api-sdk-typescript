@@ -3,24 +3,26 @@
  */
 
 import { IntunedClientCore } from "../core.js";
-import { encodeSimple as encodeSimple$ } from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { compactMap } from "../lib/primitives.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
-import * as components from "../models/components/index.js";
 import {
-    ConnectionError,
-    InvalidRequestError,
-    RequestAbortedError,
-    RequestTimeoutError,
-    UnexpectedClientError,
+  ConnectionError,
+  InvalidRequestError,
+  RequestAbortedError,
+  RequestTimeoutError,
+  UnexpectedClientError,
 } from "../models/errors/httpclienterrors.js";
 import * as errors from "../models/errors/index.js";
-import { SDKError } from "../models/errors/sdkerror.js";
+import { IntunedClientError } from "../models/errors/intunedclienterror.js";
+import { ResponseValidationError } from "../models/errors/responsevalidationerror.js";
 import { SDKValidationError } from "../models/errors/sdkvalidationerror.js";
 import * as operations from "../models/operations/index.js";
+import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
@@ -29,122 +31,174 @@ import { Result } from "../types/fp.js";
  * @remarks
  * Pauses a job. Will pause any job runs and the job schedule if applicable.
  */
-export async function projectJobsPause(
-    client$: IntunedClientCore,
-    projectName: string,
-    jobId: string,
-    options?: RequestOptions
-): Promise<
-    Result<
-        components.PauseJob,
-        | errors.ApiErrorInvalidInput
-        | errors.ApiErrorUnauthorized
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >
+export function projectJobsPause(
+  client: IntunedClientCore,
+  projectName: string,
+  jobId: string,
+  options?: RequestOptions,
+): APIPromise<
+  Result<
+    operations.PauseJobResponseBody,
+    | errors.PauseJobResponseBody
+    | errors.PauseJobProjectJobsResponseBody
+    | errors.PauseJobProjectJobsResponseResponseBody
+    | IntunedClientError
+    | ResponseValidationError
+    | ConnectionError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
+  >
 > {
-    const input$: operations.PauseJobRequest = {
-        projectName: projectName,
-        jobId: jobId,
-    };
+  return new APIPromise($do(
+    client,
+    projectName,
+    jobId,
+    options,
+  ));
+}
 
-    const parsed$ = schemas$.safeParse(
-        input$,
-        (value$) => operations.PauseJobRequest$outboundSchema.parse(value$),
-        "Input validation failed"
-    );
-    if (!parsed$.ok) {
-        return parsed$;
-    }
-    const payload$ = parsed$.value;
-    const body$ = null;
+async function $do(
+  client: IntunedClientCore,
+  projectName: string,
+  jobId: string,
+  options?: RequestOptions,
+): Promise<
+  [
+    Result<
+      operations.PauseJobResponseBody,
+      | errors.PauseJobResponseBody
+      | errors.PauseJobProjectJobsResponseBody
+      | errors.PauseJobProjectJobsResponseResponseBody
+      | IntunedClientError
+      | ResponseValidationError
+      | ConnectionError
+      | RequestAbortedError
+      | RequestTimeoutError
+      | InvalidRequestError
+      | UnexpectedClientError
+      | SDKValidationError
+    >,
+    APICall,
+  ]
+> {
+  const input: operations.PauseJobRequest = {
+    projectName: projectName,
+    jobId: jobId,
+  };
 
-    const pathParams$ = {
-        jobId: encodeSimple$("jobId", payload$.jobId, { explode: false, charEncoding: "percent" }),
-        projectName: encodeSimple$("projectName", payload$.projectName, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-        workspaceId: encodeSimple$("workspaceId", client$.options$.workspaceId, {
-            explode: false,
-            charEncoding: "percent",
-        }),
-    };
+  const parsed = safeParse(
+    input,
+    (value) => operations.PauseJobRequest$outboundSchema.parse(value),
+    "Input validation failed",
+  );
+  if (!parsed.ok) {
+    return [parsed, { status: "invalid" }];
+  }
+  const payload = parsed.value;
+  const body = null;
 
-    const path$ = pathToFunc("/{workspaceId}/projects/{projectName}/jobs/{jobId}/pause")(
-        pathParams$
-    );
+  const pathParams = {
+    jobId: encodeSimple("jobId", payload.jobId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+    projectName: encodeSimple("projectName", payload.projectName, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+    workspaceId: encodeSimple("workspaceId", client._options.workspaceId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
+  };
 
-    const headers$ = new Headers({
-        Accept: "application/json",
-    });
+  const path = pathToFunc(
+    "/{workspaceId}/projects/{projectName}/jobs/{jobId}/pause",
+  )(pathParams);
 
-    const apiKey$ = await extractSecurity(client$.options$.apiKey);
-    const security$ = apiKey$ == null ? {} : { apiKey: apiKey$ };
-    const context = {
-        operationID: "pauseJob",
-        oAuth2Scopes: [],
-        securitySource: client$.options$.apiKey,
-    };
-    const securitySettings$ = resolveGlobalSecurity(security$);
+  const headers = new Headers(compactMap({
+    Accept: "application/json",
+  }));
 
-    const requestRes = client$.createRequest$(
-        context,
-        {
-            security: securitySettings$,
-            method: "POST",
-            path: path$,
-            headers: headers$,
-            body: body$,
-            timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
-        },
-        options
-    );
-    if (!requestRes.ok) {
-        return requestRes;
-    }
-    const request$ = requestRes.value;
+  const secConfig = await extractSecurity(client._options.apiKey);
+  const securityInput = secConfig == null ? {} : { apiKey: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-    const doResult = await client$.do$(request$, {
-        context,
-        errorCodes: ["400", "401", "404", "4XX", "5XX"],
-        retryConfig: options?.retries || client$.options$.retryConfig,
-        retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
-    });
-    if (!doResult.ok) {
-        return doResult;
-    }
-    const response = doResult.value;
+  const context = {
+    options: client._options,
+    baseURL: options?.serverURL ?? client._baseURL ?? "",
+    operationID: "pauseJob",
+    oAuth2Scopes: [],
 
-    const responseFields$ = {
-        HttpMeta: { Response: response, Request: request$ },
-    };
+    resolvedSecurity: requestSecurity,
 
-    const [result$] = await m$.match<
-        components.PauseJob,
-        | errors.ApiErrorInvalidInput
-        | errors.ApiErrorUnauthorized
-        | SDKError
-        | SDKValidationError
-        | UnexpectedClientError
-        | InvalidRequestError
-        | RequestAbortedError
-        | RequestTimeoutError
-        | ConnectionError
-    >(
-        m$.json(200, components.PauseJob$inboundSchema),
-        m$.jsonErr(400, errors.ApiErrorInvalidInput$inboundSchema),
-        m$.jsonErr(401, errors.ApiErrorUnauthorized$inboundSchema),
-        m$.fail([404, "4XX", "5XX"])
-    )(response, { extraFields: responseFields$ });
-    if (!result$.ok) {
-        return result$;
-    }
+    securitySource: client._options.apiKey,
+    retryConfig: options?.retries
+      || client._options.retryConfig
+      || { strategy: "none" },
+    retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
+  };
 
-    return result$;
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
+    method: "POST",
+    baseURL: options?.serverURL,
+    path: path,
+    headers: headers,
+    body: body,
+    userAgent: client._options.userAgent,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
+  }, options);
+  if (!requestRes.ok) {
+    return [requestRes, { status: "invalid" }];
+  }
+  const req = requestRes.value;
+
+  const doResult = await client._do(req, {
+    context,
+    errorCodes: ["400", "401", "404", "4XX", "5XX"],
+    retryConfig: context.retryConfig,
+    retryCodes: context.retryCodes,
+  });
+  if (!doResult.ok) {
+    return [doResult, { status: "request-error", request: req }];
+  }
+  const response = doResult.value;
+
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
+  };
+
+  const [result] = await M.match<
+    operations.PauseJobResponseBody,
+    | errors.PauseJobResponseBody
+    | errors.PauseJobProjectJobsResponseBody
+    | errors.PauseJobProjectJobsResponseResponseBody
+    | IntunedClientError
+    | ResponseValidationError
+    | ConnectionError
+    | RequestAbortedError
+    | RequestTimeoutError
+    | InvalidRequestError
+    | UnexpectedClientError
+    | SDKValidationError
+  >(
+    M.json(200, operations.PauseJobResponseBody$inboundSchema),
+    M.jsonErr(400, errors.PauseJobResponseBody$inboundSchema),
+    M.jsonErr(401, errors.PauseJobProjectJobsResponseBody$inboundSchema),
+    M.jsonErr(
+      404,
+      errors.PauseJobProjectJobsResponseResponseBody$inboundSchema,
+    ),
+    M.fail("4XX"),
+    M.fail("5XX"),
+  )(response, req, { extraFields: responseFields });
+  if (!result.ok) {
+    return [result, { status: "complete", request: req, response }];
+  }
+
+  return [result, { status: "complete", request: req, response }];
 }

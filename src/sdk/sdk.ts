@@ -3,17 +3,11 @@
  */
 
 import { ClientSDK } from "../lib/sdks.js";
-import { Files } from "./files.js";
 import { Project } from "./project.js";
 
 export class IntunedClient extends ClientSDK {
-    private _files?: Files;
-    get files(): Files {
-        return (this._files ??= new Files(this.options$));
-    }
-
-    private _project?: Project;
-    get project(): Project {
-        return (this._project ??= new Project(this.options$));
-    }
+  private _project?: Project;
+  get project(): Project {
+    return (this._project ??= new Project(this._options));
+  }
 }

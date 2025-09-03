@@ -6,8 +6,8 @@
 import { GetAuthSessionRequest } from "@intuned/client/models/operations";
 
 let value: GetAuthSessionRequest = {
-    projectName: "my-project",
-    authSessionId: "<value>",
+  projectName: "my-project",
+  authSessionId: "<id>",
 };
 ```
 

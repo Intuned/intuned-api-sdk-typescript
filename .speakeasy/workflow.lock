@@ -1,24 +1,25 @@
-speakeasyVersion: 1.376.0
+speakeasyVersion: 1.607.1
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:26c60640b00e68ff5ae42d672149114d303ae42f57d60693200f8488e8ded1d6
-        sourceBlobDigest: sha256:651532b0ebccdfc63034d65e5a3882eb14fd993f67cbdd20d24ffe1918298ba4
+        sourceRevisionDigest: sha256:813f4f2bd3ada094c6bb26c0ba8a5d31ad2e41ef4b5d07aefcbf19275f6e74b3
+        sourceBlobDigest: sha256:36e6f110b01538b8f9b67f0f013a1a72e9cbd9c5fbbadfab629c54f2feba745b
         tags:
             - latest
+            - 0.0.2
 targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:26c60640b00e68ff5ae42d672149114d303ae42f57d60693200f8488e8ded1d6
-        sourceBlobDigest: sha256:651532b0ebccdfc63034d65e5a3882eb14fd993f67cbdd20d24ffe1918298ba4
-        outLocation: /Users/ramitheeb/intuned-api-sdk-typescript
+        sourceRevisionDigest: sha256:813f4f2bd3ada094c6bb26c0ba8a5d31ad2e41ef4b5d07aefcbf19275f6e74b3
+        sourceBlobDigest: sha256:36e6f110b01538b8f9b67f0f013a1a72e9cbd9c5fbbadfab629c54f2feba745b
+        codeSamplesNamespace: intuned-client-api-typescript-code-samples
+        codeSamplesRevisionDigest: sha256:420853b0364bfe5922cbd295165d6f992c120dfd3782200023b5abc94d434a04
     typescript-client-sdk:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
         sourceRevisionDigest: sha256:9d655760c5f6e73d9afa01afa022e7671bd8abf0ebebdf68f7970b84d43b46db
         sourceBlobDigest: sha256:6dc36e0db5972b8c20bc754eabe50b6df2c20f3a156a12399ec332ca7a4924a1
-        outLocation: /Users/faisal/src/intuned-api-sdk-typescript
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -34,3 +35,5 @@ workflow:
             source: intunedClientApi
             codeSamples:
                 output: ../docs/_resources/openapi/generated/codeSamples.yaml
+                registry:
+                    location: registry.speakeasyapi.dev/intuned/intuned/intuned-client-api-typescript-code-samples

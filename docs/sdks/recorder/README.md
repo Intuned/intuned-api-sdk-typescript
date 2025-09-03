@@ -1,92 +1,13 @@
 # Recorder
 (*project.authSessions.recorder*)
 
+## Overview
+
+auth sessions recorder API
+
 ### Available Operations
 
-* [createAuthSession](#createauthsession) - Create Recorder Auth Session Instance
 * [start](#start) - Start recorder session for an auth session
-
-## createAuthSession
-
-create a new auth session instance to be used later for recording
-
-### Example Usage
-
-```typescript
-import { IntunedClient } from "@intuned/client";
-
-const intunedClient = new IntunedClient({
-  apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-});
-
-async function run() {
-  const result = await intunedClient.project.authSessions.recorder.createAuthSession("my-project", {
-    id: "my-auth-session",
-  });
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-
-### Standalone function
-
-The standalone function version of this method:
-
-```typescript
-import { IntunedClientCore } from "@intuned/client/core.js";
-import { projectAuthSessionsRecorderCreateAuthSession } from "@intuned/client/funcs/projectAuthSessionsRecorderCreateAuthSession.js";
-
-// Use `IntunedClientCore` for best tree-shaking performance.
-// You can create one instance of it to use across an application.
-const intunedClient = new IntunedClientCore({
-  apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
-});
-
-async function run() {
-  const res = await projectAuthSessionsRecorderCreateAuthSession(intunedClient, "my-project", {
-    id: "my-auth-session",
-  });
-
-  if (!res.ok) {
-    throw res.error;
-  }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
-}
-
-run();
-```
-
-### Parameters
-
-| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
-| `createRecorderAuthSessionRequest`                                                                                                                                             | [components.CreateRecorderAuthSessionRequest](../../models/components/createrecorderauthsessionrequest.md)                                                                     | :heavy_check_mark:                                                                                                                                                             | create recorder authentication session instance request                                                                                                                        |                                                                                                                                                                                |
-| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
-| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
-| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
-
-
-### Response
-
-**Promise\<[components.CreateRecorderAuthSessionInstance](../../models/components/createrecorderauthsessioninstance.md)\>**
-### Errors
-
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
 
 ## start
 
@@ -94,26 +15,26 @@ create a recording session for a specific auth session
 
 ### Example Usage
 
+<!-- UsageSnippet language="typescript" operationID="startAuthSessionRecorder" method="post" path="/{workspaceId}/projects/{projectName}/auth-sessions/recorder/start" -->
 ```typescript
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
   const result = await intunedClient.project.authSessions.recorder.start("my-project", {
-    authSessionId: "1a1a1a1a-1a1a-1a1a-1a1a-1a1a1a1a1a1a",
+    authSessionId: "auth-session-123",
+    proxy: "http://proxy.example.com:8080",
   });
 
-  // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
 ```
-
 
 ### Standalone function
 
@@ -126,23 +47,21 @@ import { projectAuthSessionsRecorderStart } from "@intuned/client/funcs/projectA
 // Use `IntunedClientCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
   const res = await projectAuthSessionsRecorderStart(intunedClient, "my-project", {
-    authSessionId: "1a1a1a1a-1a1a-1a1a-1a1a-1a1a1a1a1a1a",
+    authSessionId: "auth-session-123",
+    proxy: "http://proxy.example.com:8080",
   });
-
-  if (!res.ok) {
-    throw res.error;
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("projectAuthSessionsRecorderStart failed:", res.error);
   }
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
 }
 
 run();
@@ -153,19 +72,17 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
-| `startAuthSessionRecorderRequest`                                                                                                                                              | [components.StartAuthSessionRecorderRequest](../../models/components/startauthsessionrecorderrequest.md)                                                                       | :heavy_check_mark:                                                                                                                                                             | start auth session recorder request                                                                                                                                            |                                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.StartAuthSessionRecorderRequestBody](../../models/operations/startauthsessionrecorderrequestbody.md)                                                               | :heavy_check_mark:                                                                                                                                                             | Start auth session recorder input schema                                                                                                                                       |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
 
-
 ### Response
 
-**Promise\<[components.StartAuthSessionRecorder](../../models/components/startauthsessionrecorder.md)\>**
+**Promise\<[operations.StartAuthSessionRecorderResponseBody](../../models/operations/startauthsessionrecorderresponsebody.md)\>**
+
 ### Errors
 
-| Error Object                | Status Code                 | Content Type                |
-| --------------------------- | --------------------------- | --------------------------- |
-| errors.ApiErrorInvalidInput | 400                         | application/json            |
-| errors.ApiErrorUnauthorized | 401                         | application/json            |
-| errors.SDKError             | 4xx-5xx                     | */*                         |
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4XX, 5XX        | \*/\*           |
