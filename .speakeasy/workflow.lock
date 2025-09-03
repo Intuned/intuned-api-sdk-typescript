@@ -14,7 +14,7 @@ targets:
         sourceRevisionDigest: sha256:813f4f2bd3ada094c6bb26c0ba8a5d31ad2e41ef4b5d07aefcbf19275f6e74b3
         sourceBlobDigest: sha256:36e6f110b01538b8f9b67f0f013a1a72e9cbd9c5fbbadfab629c54f2feba745b
         codeSamplesNamespace: intuned-client-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:420853b0364bfe5922cbd295165d6f992c120dfd3782200023b5abc94d434a04
+        codeSamplesRevisionDigest: sha256:aebc682c4705c99f1e5af118c77bf510c864825f50a45b8fcaf6b5241b437160
     typescript-client-sdk:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
