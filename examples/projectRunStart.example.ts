@@ -19,7 +19,7 @@ const intunedClient = new IntunedClient({
 });
 
 async function main() {
-  const result = await intunedClient.start("my-project", {
+  const result = await intunedClient.project.run.start("my-project", {
     parameters: {
       "param1": "value1",
       "param2": 42,

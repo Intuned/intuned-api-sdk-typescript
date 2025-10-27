@@ -9,6 +9,8 @@ Project Jobs API
 
 * [all](#all) - Get Jobs
 * [create](#create) - Create Job
+* [one](#one) - Get Job
+* [delete](#delete) - Delete Job
 * [pause](#pause) - Pause Job
 * [resume](#resume) - Resume Job
 * [trigger](#trigger) - Trigger Job
@@ -191,6 +193,155 @@ run();
 | errors.CreateJobProjectJobsResponseBody         | 401                                             | application/json                                |
 | errors.CreateJobProjectJobsResponseResponseBody | 404                                             | application/json                                |
 | errors.SDKError                                 | 4XX, 5XX                                        | \*/\*                                           |
+
+## one
+
+Gets a job in a project by ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="getJob" method="get" path="/{workspaceId}/projects/{projectName}/jobs/{jobId}" -->
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const intunedClient = new IntunedClient({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const result = await intunedClient.project.jobs.one("my-project", "my-sample-job");
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectJobsOne } from "@intuned/client/funcs/projectJobsOne.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await projectJobsOne(intunedClient, "my-project", "my-sample-job");
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("projectJobsOne failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
+| `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your job ID. It is the ID of the job you provide when creating it.                                                                                                             | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.GetJobJobDetailsResponse](../../models/operations/getjobjobdetailsresponse.md)\>**
+
+### Errors
+
+| Error Type                                   | Status Code                                  | Content Type                                 |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| errors.GetJobResponseBody                    | 400                                          | application/json                             |
+| errors.GetJobProjectJobsResponseBody         | 401                                          | application/json                             |
+| errors.GetJobProjectJobsResponseResponseBody | 404                                          | application/json                             |
+| errors.SDKError                              | 4XX, 5XX                                     | \*/\*                                        |
+
+## delete
+
+Deletes a job by ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="deleteJob" method="delete" path="/{workspaceId}/projects/{projectName}/jobs/{jobId}" -->
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const intunedClient = new IntunedClient({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  await intunedClient.project.jobs.delete("my-project", "my-sample-job");
+
+
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectJobsDelete } from "@intuned/client/funcs/projectJobsDelete.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
+});
+
+async function run() {
+  const res = await projectJobsDelete(intunedClient, "my-project", "my-sample-job");
+  if (res.ok) {
+    const { value: result } = res;
+    
+  } else {
+    console.log("projectJobsDelete failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
+| `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your job ID. It is the ID of the job you provide when creating it.                                                                                                             | [object Object]                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<void\>**
+
+### Errors
+
+| Error Type                              | Status Code                             | Content Type                            |
+| --------------------------------------- | --------------------------------------- | --------------------------------------- |
+| errors.DeleteJobResponseBody            | 401                                     | application/json                        |
+| errors.DeleteJobProjectJobsResponseBody | 404                                     | application/json                        |
+| errors.SDKError                         | 4XX, 5XX                                | \*/\*                                   |
 
 ## pause
 

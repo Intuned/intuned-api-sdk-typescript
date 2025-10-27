@@ -9,23 +9,21 @@
 const value: number = 128403;
 ```
 
-### `operations.GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodyJobs2`
+### `operations.GetJob42`
 
 ```typescript
-const value:
-  operations.GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodyJobs2 = {
-    start: 560281,
-    step: 718385,
-    end: 663562,
-  };
+const value: operations.GetJob42 = {
+  start: 538964,
+  step: 346277,
+  end: 335190,
+};
 ```
 
-### `operations.GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodyJobs3`
+### `operations.GetJob43`
 
 ```typescript
-const value:
-  operations.GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodyJobs3 = {
-    start: 65068,
-  };
+const value: operations.GetJob43 = {
+  start: 354295,
+};
 ```
 

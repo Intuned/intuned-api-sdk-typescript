@@ -1,24 +1,24 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 80eade21889fe720b2631b7ef98607e7
+  docChecksum: e405821bd096a33a8eeebb7b7a948210
   docVersion: 0.0.2
-  speakeasyVersion: 1.607.1
-  generationVersion: 2.690.1
+  speakeasyVersion: 1.639.3
+  generationVersion: 2.730.5
   releaseVersion: 0.4.0
-  configChecksum: bff5d56b14d43c744b42aba787e752d4
+  configChecksum: 4a17a6440f937b7b6b6e556c8e276847
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.21.21
+    core: 3.24.1
     defaultEnabledRetries: 0.1.0
-    devContainers: 2.90.0
+    devContainers: 2.90.1
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.2
     flattening: 2.82.1
-    globalSecurity: 2.82.13
+    globalSecurity: 2.82.14
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
     globalServerURLs: 2.82.5
@@ -29,7 +29,7 @@ features:
     responseFormat: 0.2.3
     retries: 2.83.0
     sdkHooks: 0.3.0
-    unions: 2.85.11
+    unions: 2.86.0
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -52,6 +52,21 @@ generatedFiles:
   - docs/models/errors/createjobprojectjobsresponsecode.md
   - docs/models/errors/createjobprojectjobsresponseresponsebody.md
   - docs/models/errors/createjobresponsebody.md
+  - docs/models/errors/deletejobcategory.md
+  - docs/models/errors/deletejobcode.md
+  - docs/models/errors/deletejobprojectjobscategory.md
+  - docs/models/errors/deletejobprojectjobscode.md
+  - docs/models/errors/deletejobprojectjobsresponsebody.md
+  - docs/models/errors/deletejobresponsebody.md
+  - docs/models/errors/getjobcategory.md
+  - docs/models/errors/getjobcode.md
+  - docs/models/errors/getjobprojectjobscategory.md
+  - docs/models/errors/getjobprojectjobscode.md
+  - docs/models/errors/getjobprojectjobsresponsebody.md
+  - docs/models/errors/getjobprojectjobsresponsecategory.md
+  - docs/models/errors/getjobprojectjobsresponsecode.md
+  - docs/models/errors/getjobprojectjobsresponseresponsebody.md
+  - docs/models/errors/getjobresponsebody.md
   - docs/models/errors/getjobruncategory.md
   - docs/models/errors/getjobruncode.md
   - docs/models/errors/getjobrunprojectjobsrunscategory.md
@@ -112,6 +127,7 @@ generatedFiles:
   - docs/models/errors/triggerjobresponsebody.md
   - docs/models/operations/authsession.md
   - docs/models/operations/calendars.md
+  - docs/models/operations/canceled.md
   - docs/models/operations/category.md
   - docs/models/operations/code.md
   - docs/models/operations/configuration.md
@@ -158,6 +174,7 @@ generatedFiles:
   - docs/models/operations/createorupdateauthsessionstartrequestbody.md
   - docs/models/operations/createorupdateauthsessionstartresponsebody.md
   - docs/models/operations/createorupdateauthsessionstartstatus.md
+  - docs/models/operations/credentialsbasedauthsessioninput.md
   - docs/models/operations/dayofmonth.md
   - docs/models/operations/dayofmonth2.md
   - docs/models/operations/dayofmonth3.md
@@ -173,10 +190,14 @@ generatedFiles:
   - docs/models/operations/dayofweekstart.md
   - docs/models/operations/deleteauthsessionglobals.md
   - docs/models/operations/deleteauthsessionrequest.md
+  - docs/models/operations/deletejobglobals.md
+  - docs/models/operations/deletejobrequest.md
+  - docs/models/operations/done.md
   - docs/models/operations/end.md
   - docs/models/operations/errort.md
   - docs/models/operations/every.md
   - docs/models/operations/extendedpayloads.md
+  - docs/models/operations/failed.md
   - docs/models/operations/five.md
   - docs/models/operations/four.md
   - docs/models/operations/four1.md
@@ -193,26 +214,117 @@ generatedFiles:
   - docs/models/operations/getauthsessionstatus.md
   - docs/models/operations/getauthsessionstype.md
   - docs/models/operations/getauthsessiontype.md
+  - docs/models/operations/getjob41.md
+  - docs/models/operations/getjob42.md
+  - docs/models/operations/getjob43.md
+  - docs/models/operations/getjob4end.md
+  - docs/models/operations/getjob4projectjobs1.md
+  - docs/models/operations/getjob4projectjobs2.md
+  - docs/models/operations/getjob4projectjobs3.md
+  - docs/models/operations/getjob4projectjobsend.md
+  - docs/models/operations/getjob4projectjobsresponse2.md
+  - docs/models/operations/getjob4projectjobsresponse2002.md
+  - docs/models/operations/getjob4projectjobsresponse2003.md
+  - docs/models/operations/getjob4projectjobsresponse200applicationjson2.md
+  - docs/models/operations/getjob4projectjobsresponse200applicationjson3.md
+  - docs/models/operations/getjob4projectjobsresponse200applicationjsonresponsebody2.md
+  - docs/models/operations/getjob4projectjobsresponse200applicationjsonresponsebody3.md
+  - docs/models/operations/getjob4projectjobsresponse200applicationjsonresponsebodyschedule2.md
+  - docs/models/operations/getjob4projectjobsresponse200applicationjsonresponsebodyschedule3.md
+  - docs/models/operations/getjob4projectjobsresponse200end.md
+  - docs/models/operations/getjob4projectjobsresponse200start.md
+  - docs/models/operations/getjob4projectjobsresponse3.md
+  - docs/models/operations/getjob4projectjobsresponseend.md
+  - docs/models/operations/getjob4projectjobsresponsestart.md
+  - docs/models/operations/getjob4projectjobsstart.md
+  - docs/models/operations/getjob4start.md
+  - docs/models/operations/getjobauthsession.md
+  - docs/models/operations/getjobcalendars.md
+  - docs/models/operations/getjobconfiguration.md
+  - docs/models/operations/getjobdayofmonth.md
+  - docs/models/operations/getjobdayofmonth2.md
+  - docs/models/operations/getjobdayofmonth3.md
+  - docs/models/operations/getjobdayofmonth4.md
+  - docs/models/operations/getjobdayofmonth5.md
+  - docs/models/operations/getjobdayofweek.md
+  - docs/models/operations/getjobdayofweek2.md
+  - docs/models/operations/getjobdayofweek3.md
+  - docs/models/operations/getjobdayofweek4.md
+  - docs/models/operations/getjobdayofweek5.md
+  - docs/models/operations/getjobdayofweekend.md
+  - docs/models/operations/getjobdayofweekprojectjobsend.md
+  - docs/models/operations/getjobdayofweekprojectjobsstart.md
+  - docs/models/operations/getjobdayofweekstart.md
+  - docs/models/operations/getjobevery.md
+  - docs/models/operations/getjobglobals.md
+  - docs/models/operations/getjobhour.md
+  - docs/models/operations/getjobhour2.md
+  - docs/models/operations/getjobhour3.md
+  - docs/models/operations/getjobhour4.md
+  - docs/models/operations/getjobhour5.md
+  - docs/models/operations/getjobintervals.md
+  - docs/models/operations/getjobjitter.md
+  - docs/models/operations/getjobjobdetailsresponse.md
+  - docs/models/operations/getjobminute.md
+  - docs/models/operations/getjobminute2.md
+  - docs/models/operations/getjobminute3.md
+  - docs/models/operations/getjobminute4.md
+  - docs/models/operations/getjobminute5.md
+  - docs/models/operations/getjobmonth.md
+  - docs/models/operations/getjobmonth1.md
+  - docs/models/operations/getjobmonth2.md
+  - docs/models/operations/getjobmonth3.md
+  - docs/models/operations/getjobmonth4.md
+  - docs/models/operations/getjobmonth5.md
+  - docs/models/operations/getjobmonthend.md
+  - docs/models/operations/getjobmonthprojectjobsend.md
+  - docs/models/operations/getjobmonthprojectjobsstart.md
+  - docs/models/operations/getjobmonthstart.md
+  - docs/models/operations/getjobpayload.md
+  - docs/models/operations/getjobprojectjobsretry.md
+  - docs/models/operations/getjobrequest.md
+  - docs/models/operations/getjobretry.md
+  - docs/models/operations/getjobrunauthsession.md
   - docs/models/operations/getjobruncategory.md
   - docs/models/operations/getjobruncode.md
+  - docs/models/operations/getjobrunconfiguration.md
   - docs/models/operations/getjobrunerror.md
   - docs/models/operations/getjobrunglobals.md
+  - docs/models/operations/getjobrunjobconfigurationsnapshot.md
   - docs/models/operations/getjobrunprojectjobsrunstype.md
+  - docs/models/operations/getjobrunproxy.md
   - docs/models/operations/getjobrunreason.md
   - docs/models/operations/getjobrunrequest.md
   - docs/models/operations/getjobrunresponsebody.md
+  - docs/models/operations/getjobrunretry.md
+  - docs/models/operations/getjobrunsauthsession.md
   - docs/models/operations/getjobrunscategory.md
   - docs/models/operations/getjobrunscode.md
+  - docs/models/operations/getjobrunsconfiguration.md
   - docs/models/operations/getjobrunserror.md
   - docs/models/operations/getjobrunsglobals.md
+  - docs/models/operations/getjobrunsink.md
+  - docs/models/operations/getjobrunsinkprojectjobsrunstype.md
+  - docs/models/operations/getjobrunsinks3sinkconfiguration.md
+  - docs/models/operations/getjobrunsinktype.md
+  - docs/models/operations/getjobrunsinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobrunsprojectjobsrunstype.md
+  - docs/models/operations/getjobrunsproxy.md
   - docs/models/operations/getjobrunsreason.md
   - docs/models/operations/getjobrunsrequest.md
   - docs/models/operations/getjobrunsresponsebody.md
+  - docs/models/operations/getjobrunsretry.md
+  - docs/models/operations/getjobrunssink.md
+  - docs/models/operations/getjobrunssinkprojectjobsrunstype.md
+  - docs/models/operations/getjobrunssinks3sinkconfiguration.md
+  - docs/models/operations/getjobrunssinktype.md
+  - docs/models/operations/getjobrunssinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobrunsstatus.md
   - docs/models/operations/getjobrunstatus.md
   - docs/models/operations/getjobrunstype.md
+  - docs/models/operations/getjobrunsversion.md
   - docs/models/operations/getjobruntype.md
+  - docs/models/operations/getjobrunversion.md
   - docs/models/operations/getjobs41.md
   - docs/models/operations/getjobs42.md
   - docs/models/operations/getjobs43.md
@@ -239,6 +351,7 @@ generatedFiles:
   - docs/models/operations/getjobs4start.md
   - docs/models/operations/getjobsauthsession.md
   - docs/models/operations/getjobscalendars.md
+  - docs/models/operations/getjobschedule.md
   - docs/models/operations/getjobsconfiguration.md
   - docs/models/operations/getjobsdayofmonth.md
   - docs/models/operations/getjobsdayofmonth2.md
@@ -255,6 +368,7 @@ generatedFiles:
   - docs/models/operations/getjobsdayofweekprojectjobsend.md
   - docs/models/operations/getjobsdayofweekprojectjobsstart.md
   - docs/models/operations/getjobsdayofweekstart.md
+  - docs/models/operations/getjobsecond.md
   - docs/models/operations/getjobsevery.md
   - docs/models/operations/getjobsglobals.md
   - docs/models/operations/getjobshour.md
@@ -262,6 +376,11 @@ generatedFiles:
   - docs/models/operations/getjobshour3.md
   - docs/models/operations/getjobshour4.md
   - docs/models/operations/getjobshour5.md
+  - docs/models/operations/getjobsink.md
+  - docs/models/operations/getjobsinkprojectjobstype.md
+  - docs/models/operations/getjobsinks3sinkconfiguration.md
+  - docs/models/operations/getjobsinktype.md
+  - docs/models/operations/getjobsinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobsintervals.md
   - docs/models/operations/getjobsjitter.md
   - docs/models/operations/getjobsminute.md
@@ -288,24 +407,35 @@ generatedFiles:
   - docs/models/operations/getjobsschedule.md
   - docs/models/operations/getjobssecond.md
   - docs/models/operations/getjobssecond2.md
+  - docs/models/operations/getjobssecond3.md
+  - docs/models/operations/getjobssecond4.md
+  - docs/models/operations/getjobssecond5.md
   - docs/models/operations/getjobssink.md
   - docs/models/operations/getjobssinkprojectjobstype.md
   - docs/models/operations/getjobssinks3sinkconfiguration.md
   - docs/models/operations/getjobssinktype.md
   - docs/models/operations/getjobssinkwebhooksinkconfiguration.md
+  - docs/models/operations/getjobsstate.md
   - docs/models/operations/getjobstype.md
   - docs/models/operations/getjobsyear.md
   - docs/models/operations/getjobsyear2.md
   - docs/models/operations/getjobsyear3.md
   - docs/models/operations/getjobsyear4.md
   - docs/models/operations/getjobsyear5.md
+  - docs/models/operations/getjobyear.md
+  - docs/models/operations/getjobyear2.md
+  - docs/models/operations/getjobyear3.md
+  - docs/models/operations/getjobyear4.md
+  - docs/models/operations/getjobyear5.md
   - docs/models/operations/hour.md
   - docs/models/operations/hour2.md
   - docs/models/operations/hour3.md
   - docs/models/operations/hour4.md
   - docs/models/operations/hour5.md
+  - docs/models/operations/inprogress.md
   - docs/models/operations/intervals.md
   - docs/models/operations/jitter.md
+  - docs/models/operations/jobconfigurationsnapshot.md
   - docs/models/operations/jobdbobjectschema.md
   - docs/models/operations/jobrun.md
   - docs/models/operations/jobruns.md
@@ -329,17 +459,18 @@ generatedFiles:
   - docs/models/operations/pausejobrequest.md
   - docs/models/operations/pausejobresponsebody.md
   - docs/models/operations/payload.md
+  - docs/models/operations/pending.md
   - docs/models/operations/proxy.md
   - docs/models/operations/reason.md
   - docs/models/operations/responsebody.md
-  - docs/models/operations/responsebody1.md
-  - docs/models/operations/responsebody2.md
-  - docs/models/operations/responsebody3.md
-  - docs/models/operations/responsebody4.md
-  - docs/models/operations/responsebody5.md
+  - docs/models/operations/responsebodycanceled.md
   - docs/models/operations/responsebodycategory.md
   - docs/models/operations/responsebodycode.md
+  - docs/models/operations/responsebodydone.md
   - docs/models/operations/responsebodyerror.md
+  - docs/models/operations/responsebodyfailed.md
+  - docs/models/operations/responsebodyinprogress.md
+  - docs/models/operations/responsebodypending.md
   - docs/models/operations/responsebodyreason.md
   - docs/models/operations/responsebodystatus.md
   - docs/models/operations/responsebodytype.md
@@ -358,6 +489,7 @@ generatedFiles:
   - docs/models/operations/runapistartrequest.md
   - docs/models/operations/runapistartrequestbody.md
   - docs/models/operations/runapistartresponsebody.md
+  - docs/models/operations/runtimebasedauthsessioninput.md
   - docs/models/operations/s3sinkconfiguration.md
   - docs/models/operations/schedule.md
   - docs/models/operations/second.md
@@ -388,11 +520,6 @@ generatedFiles:
   - docs/models/operations/updateauthsessionresultglobals.md
   - docs/models/operations/updateauthsessionresultrequest.md
   - docs/models/operations/updateauthsessionresultresponsebody.md
-  - docs/models/operations/updateauthsessionresultresponsebody1.md
-  - docs/models/operations/updateauthsessionresultresponsebody2.md
-  - docs/models/operations/updateauthsessionresultresponsebody3.md
-  - docs/models/operations/updateauthsessionresultresponsebody4.md
-  - docs/models/operations/updateauthsessionresultresponsebody5.md
   - docs/models/operations/updateauthsessionresultresponsebodycategory.md
   - docs/models/operations/updateauthsessionresultresponsebodycode.md
   - docs/models/operations/updateauthsessionresultresponsebodyerror.md
@@ -417,9 +544,7 @@ generatedFiles:
   - docs/models/operations/year5.md
   - docs/sdks/authsessions/README.md
   - docs/sdks/create/README.md
-  - docs/sdks/intunedclient/README.md
   - docs/sdks/jobs/README.md
-  - docs/sdks/project/README.md
   - docs/sdks/recorder/README.md
   - docs/sdks/run/README.md
   - docs/sdks/runs/README.md
@@ -442,6 +567,8 @@ generatedFiles:
   - src/funcs/projectAuthSessionsUpdateStart.ts
   - src/funcs/projectJobsAll.ts
   - src/funcs/projectJobsCreate.ts
+  - src/funcs/projectJobsDelete.ts
+  - src/funcs/projectJobsOne.ts
   - src/funcs/projectJobsPause.ts
   - src/funcs/projectJobsResume.ts
   - src/funcs/projectJobsRunsAll.ts
@@ -472,6 +599,8 @@ generatedFiles:
   - src/models/components/index.ts
   - src/models/components/security.ts
   - src/models/errors/createjob.ts
+  - src/models/errors/deletejob.ts
+  - src/models/errors/getjob.ts
   - src/models/errors/getjobrun.ts
   - src/models/errors/getjobruns.ts
   - src/models/errors/getjobs.ts
@@ -489,8 +618,10 @@ generatedFiles:
   - src/models/operations/createjob.ts
   - src/models/operations/createorupdateauthsessionstart.ts
   - src/models/operations/deleteauthsession.ts
+  - src/models/operations/deletejob.ts
   - src/models/operations/getauthsession.ts
   - src/models/operations/getauthsessions.ts
+  - src/models/operations/getjob.ts
   - src/models/operations/getjobrun.ts
   - src/models/operations/getjobruns.ts
   - src/models/operations/getjobs.ts
@@ -595,7 +726,7 @@ examples:
           workspaceId: "123e4567-e89b-12d3-a456-426614174000"
           projectName: "my-project"
       requestBody:
-        application/json: {"id": "123e4567-e89b-12d3-a456-426614174000", "payload": [], "configuration": {"retry": {"maximumAttempts": 3}}, "sink": {"type": "s3", "bucket": "my-s3-bucket", "accessKeyId": "AKIAIOSFODNN7EXSSPLE", "secretAccessKey": "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY", "region": "us-west-2", "prefix": "my-prefix/", "skipOnFail": false, "apisToSend": ["api1", "api2"], "endpoint": "https://s3.custom-endpoint.com", "forcePathStyle": true}, "proxy": "http://username:password@proxy.example.com:8080", "auth_session": {"id": "<id>", "checkAttempts": 3, "createAttempts": 3}}
+        application/json: {"id": "123e4567-e89b-12d3-a456-426614174000", "payload": [], "configuration": {"retry": {"maximumAttempts": 3}, "requestTimeout": 600}, "sink": {"type": "s3", "bucket": "my-s3-bucket", "accessKeyId": "AKIAIOSFODNN7EXSSPLE", "secretAccessKey": "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY", "region": "us-west-2", "prefix": "my-prefix/", "skipOnFail": false, "apisToSend": ["api1", "api2"], "endpoint": "https://s3.custom-endpoint.com", "forcePathStyle": true}, "proxy": "http://username:password@proxy.example.com:8080", "auth_session": {"id": "<id>", "checkAttempts": 3, "createAttempts": 3}}
       responses:
         "201":
           application/json: {"id": "<id>", "message": "created"}
@@ -666,7 +797,7 @@ examples:
           sortBy: "start_time,desc/status,asc"
       responses:
         "200":
-          application/json: {"jobRuns": [{"id": "123e4567-e89b-12d3-a456-426614174000", "start_time": "2024-01-01T00:00:00Z", "end_time": "2024-01-01T00:30:00Z", "workspace_id": "123e4567-e89b-12d3-a456-426614174000", "project_id": "123e4567-e89b-12d3-a456-426614174000", "job_id": "job-123e4567-e89b-12d3", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-01-01T00:00:00Z", "type": "SCHEDULED", "status": "SUCCESS", "payloads": 100, "successful_runs": 95, "failed_runs": 5, "error": {"message": "An error occurred while executing the job", "code": "internal-server-error", "category": "billing", "correlationId": "123e4567-e89b-12d3-a456-426614174000", "retirable": false, "doc_url": "https://docs.intunedhq.com/docs/support/errors"}, "reason": {"type": "terminated", "message": "<value>", "doc_url": "https://docs.intunedhq.com/docs/support/reasons#no-valid-output-received"}}], "totalCount": 150}
+          application/json: {"jobRuns": [{"id": "123e4567-e89b-12d3-a456-426614174000", "start_time": "2024-01-01T00:00:00Z", "end_time": "2024-01-01T00:30:00Z", "workspace_id": "123e4567-e89b-12d3-a456-426614174000", "project_id": "123e4567-e89b-12d3-a456-426614174000", "job_id": "job-123e4567-e89b-12d3", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-01-01T00:00:00Z", "type": "SCHEDULED", "status": "SUCCESS", "payloads": 100, "successful_runs": 95, "failed_runs": 5, "error": {"message": "An error occurred while executing the job", "code": "internal-server-error", "category": "billing", "correlationId": "123e4567-e89b-12d3-a456-426614174000", "retirable": false, "doc_url": "https://docs.intunedhq.com/docs/support/errors"}, "reason": {"type": "terminated", "message": "<value>", "doc_url": "https://docs.intunedhq.com/docs/support/reasons#no-valid-output-received"}, "job_configuration_snapshot": {"configuration": {"retry": {"maximumAttempts": 3}, "requestTimeout": 600}, "sink": {"type": "s3", "bucket": "my-s3-bucket", "accessKeyId": "AKIAIOSFODNN7EXSSPLE", "secretAccessKey": "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY", "region": "us-west-2", "prefix": "my-prefix/", "skipOnFail": false, "apisToSend": ["api1", "api2"], "endpoint": "https://s3.custom-endpoint.com", "forcePathStyle": true}, "auth_session": {"id": "auth-session-123", "checkAttempts": 3, "createAttempts": 3}}}], "totalCount": 150}
         "400":
           application/json: {"code": "bad-request", "category": "user", "message": "<value>", "retirable": false, "correlationId": "<id>"}
         "401":
@@ -683,7 +814,7 @@ examples:
           jobRunId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"
       responses:
         "200":
-          application/json: {"jobRun": {"id": "123e4567-e89b-12d3-a456-426614174000", "start_time": "2024-01-01T00:00:00Z", "end_time": "2024-01-01T00:30:00Z", "workspace_id": "123e4567-e89b-12d3-a456-426614174000", "project_id": "123e4567-e89b-12d3-a456-426614174000", "job_id": "job-123e4567-e89b-12d3", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-01-01T00:00:00Z", "type": "SCHEDULED", "status": "SUCCESS", "payloads": 100, "successful_runs": 95, "failed_runs": 5, "error": {"message": "An error occurred while executing the job", "code": "internal-server-error", "category": "infrastructure", "correlationId": "123e4567-e89b-12d3-a456-426614174000", "retirable": false, "doc_url": "https://docs.intunedhq.com/docs/support/errors"}, "reason": {"type": "auth-session-invalid-mid-job", "message": "<value>", "doc_url": "https://docs.intunedhq.com/docs/support/reasons#no-valid-output-received"}}}
+          application/json: {"jobRun": {"id": "123e4567-e89b-12d3-a456-426614174000", "start_time": "2024-01-01T00:00:00Z", "end_time": "2024-01-01T00:30:00Z", "workspace_id": "123e4567-e89b-12d3-a456-426614174000", "project_id": "123e4567-e89b-12d3-a456-426614174000", "job_id": "job-123e4567-e89b-12d3", "created_at": "2024-01-01T00:00:00Z", "updated_at": "2024-01-01T00:00:00Z", "type": "SCHEDULED", "status": "SUCCESS", "payloads": 100, "successful_runs": 95, "failed_runs": 5, "error": {"message": "An error occurred while executing the job", "code": "internal-server-error", "category": "infrastructure", "correlationId": "123e4567-e89b-12d3-a456-426614174000", "retirable": false, "doc_url": "https://docs.intunedhq.com/docs/support/errors"}, "reason": {"type": "auth-session-invalid-mid-job", "message": "<value>", "doc_url": "https://docs.intunedhq.com/docs/support/reasons#no-valid-output-received"}, "job_configuration_snapshot": {"configuration": {"retry": {"maximumAttempts": 3}, "requestTimeout": 600}, "sink": {"type": "s3", "bucket": "my-s3-bucket", "accessKeyId": "AKIAIOSFODNN7EXSSPLE", "secretAccessKey": "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY", "region": "us-west-2", "prefix": "my-prefix/", "skipOnFail": false, "apisToSend": ["api1", "api2"], "endpoint": "https://s3.custom-endpoint.com", "forcePathStyle": true}, "auth_session": {"id": "auth-session-123", "checkAttempts": 3, "createAttempts": 3}}}}
         "400":
           application/json: {"code": "bad-request", "category": "user", "message": "<value>", "retirable": false, "correlationId": "<id>"}
         "401":
@@ -872,5 +1003,33 @@ examples:
       responses:
         "201":
           application/json: {"recorder_url": "http://recorder.example.com/session/123"}
+  getJob:
+    speakeasy-default-get-job:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          jobId: "my-sample-job"
+      responses:
+        "200":
+          application/json: {"id": "123e4567-e89b-12d3-a456-426614174000", "configuration": {"retry": {"maximumAttempts": 3}, "requestTimeout": 600}, "sink": {"type": "s3", "bucket": "my-s3-bucket", "accessKeyId": "AKIAIOSFODNN7EXSSPLE", "secretAccessKey": "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY", "region": "us-west-2", "prefix": "my-prefix/", "skipOnFail": false, "apisToSend": ["api1", "api2"], "endpoint": "https://s3.custom-endpoint.com", "forcePathStyle": true}, "created_at": "2024-01-01T00:00:00Z", "next_run_time": "2024-01-01T00:00:00Z", "last_run_time": "2024-01-01T00:00:00Z", "state": "ACTIVE", "payload": [{"parameters": {"param1": "value1", "param2": 42, "param3": true}, "requestTimeout": 600, "retry": {"maximumAttempts": 3}, "apiName": "<value>"}], "projectId": "123e4567-e89b-12d3-a456-426614174000", "auth_session": {"id": "auth-session-123", "checkAttempts": 3, "createAttempts": 3}, "proxy": "http://username:password@proxy.example.com:8080"}
+        "400":
+          application/json: {"code": "bad-request", "category": "user", "message": "<value>", "retirable": true, "correlationId": "<id>"}
+        "401":
+          application/json: {"code": "unauthorized", "category": "user", "message": "<value>", "retirable": true, "correlationId": "<id>"}
+        "404":
+          application/json: {"code": "not-found", "category": "user", "message": "<value>", "retirable": false, "correlationId": "<id>"}
+  deleteJob:
+    speakeasy-default-delete-job:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          jobId: "my-sample-job"
+      responses:
+        "401":
+          application/json: {"code": "unauthorized", "category": "user", "message": "<value>", "retirable": false, "correlationId": "<id>"}
+        "404":
+          application/json: {"code": "not-found", "category": "user", "message": "<value>", "retirable": true, "correlationId": "<id>"}
 examplesVersion: 1.0.2
 generatedTests: {}

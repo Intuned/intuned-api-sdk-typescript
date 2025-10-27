@@ -11,13 +11,13 @@ Seconds of the calendar, a number in the range 0 - 59
 const value: number = 128403;
 ```
 
-### `operations.Second2`
+### `operations.Two`
 
 ```typescript
-const value: operations.Second2 = {
-  start: 902361,
-  step: 985700,
-  end: 435538,
+const value: operations.Two = {
+  start: 759820,
+  step: 66714,
+  end: 290933,
 };
 ```
 

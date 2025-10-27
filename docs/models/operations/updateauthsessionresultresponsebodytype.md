@@ -5,11 +5,11 @@
 ```typescript
 import { UpdateAuthSessionResultResponseBodyType } from "@intuned/client/models/operations";
 
-let value: UpdateAuthSessionResultResponseBodyType = "terminated";
+let value: UpdateAuthSessionResultResponseBodyType = "job-run-paused";
 ```
 
 ## Values
 
 ```typescript
-"auth-session-validate-dependency-failed" | "terminated" | "job-run-terminated" | "failed-to-initialize-job-run"
+"auth-session-validate-dependency-failed" | "terminated" | "job-run-paused" | "job-run-terminated" | "failed-to-initialize-job-run" | "api-access-disabled"
 ```

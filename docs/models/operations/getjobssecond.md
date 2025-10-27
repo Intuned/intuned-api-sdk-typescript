@@ -21,29 +21,27 @@ const value: operations.GetJobsSecond2 = {
 };
 ```
 
-### `operations.Second3`
+### `operations.GetJobsSecond3`
 
 ```typescript
-const value: operations.Second3 = {
-  start: 608812,
+const value: operations.GetJobsSecond3 = {
+  start: 401533,
 };
 ```
 
-### `operations.Second4[]`
+### `operations.GetJobsSecond4[]`
 
 ```typescript
-const value: operations.Second4[] = [
+const value: operations.GetJobsSecond4[] = [
   {
-    start: 12564,
-    step: 74683,
-    end: 857532,
+    start: 75592,
   },
 ];
 ```
 
-### `operations.Second5`
+### `operations.GetJobsSecond5`
 
 ```typescript
-const value: operations.Second5 = "*";
+const value: operations.GetJobsSecond5 = "*";
 ```
 

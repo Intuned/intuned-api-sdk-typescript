@@ -4,6 +4,8 @@
 
 import { projectJobsAll } from "../funcs/projectJobsAll.js";
 import { projectJobsCreate } from "../funcs/projectJobsCreate.js";
+import { projectJobsDelete } from "../funcs/projectJobsDelete.js";
+import { projectJobsOne } from "../funcs/projectJobsOne.js";
 import { projectJobsPause } from "../funcs/projectJobsPause.js";
 import { projectJobsResume } from "../funcs/projectJobsResume.js";
 import { projectJobsTrigger } from "../funcs/projectJobsTrigger.js";
@@ -50,6 +52,44 @@ export class Jobs extends ClientSDK {
       this,
       projectName,
       requestBody,
+      options,
+    ));
+  }
+
+  /**
+   * Get Job
+   *
+   * @remarks
+   * Gets a job in a project by ID.
+   */
+  async one(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetJobJobDetailsResponse> {
+    return unwrapAsync(projectJobsOne(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
+
+  /**
+   * Delete Job
+   *
+   * @remarks
+   * Deletes a job by ID.
+   */
+  async delete(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(projectJobsDelete(
+      this,
+      projectName,
+      jobId,
       options,
     ));
   }

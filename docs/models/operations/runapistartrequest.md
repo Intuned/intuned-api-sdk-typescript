@@ -16,12 +16,15 @@ let value: RunApiStartRequest = {
     proxy: "http://username:password@domain:port",
     retry: {},
     authSession: {
-      id: "auth-session-123",
       autoRecreate: true,
       checkAttempts: 3,
       createAttempts: 3,
       proxy: "http://username:password@domain:port",
       requestTimeout: 600,
+      runtimeInput: {
+        "username": "user",
+        "password": "pass",
+      },
     },
     sink: {
       type: "webhook",

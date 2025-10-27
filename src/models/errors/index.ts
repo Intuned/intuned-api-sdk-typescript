@@ -3,10 +3,13 @@
  */
 
 export * from "./createjob.js";
+export * from "./deletejob.js";
+export * from "./getjob.js";
 export * from "./getjobrun.js";
 export * from "./getjobruns.js";
 export * from "./getjobs.js";
 export * from "./httpclienterrors.js";
+export * from "./intunedclienterror.js";
 export * from "./pausejob.js";
 export * from "./responsevalidationerror.js";
 export * from "./resumejob.js";

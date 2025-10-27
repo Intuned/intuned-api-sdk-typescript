@@ -59,10 +59,7 @@ bun add @intuned/client
 ### Yarn
 
 ```bash
-yarn add @intuned/client zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @intuned/client
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -123,10 +120,6 @@ run();
 <details open>
 <summary>Available methods</summary>
 
-
-### [project](docs/sdks/project/README.md)
-
-
 #### [project.authSessions](docs/sdks/authsessions/README.md)
 
 * [all](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
@@ -151,6 +144,8 @@ run();
 
 * [all](docs/sdks/jobs/README.md#all) - Get Jobs
 * [create](docs/sdks/jobs/README.md#create) - Create Job
+* [one](docs/sdks/jobs/README.md#one) - Get Job
+* [delete](docs/sdks/jobs/README.md#delete) - Delete Job
 * [pause](docs/sdks/jobs/README.md#pause) - Pause Job
 * [resume](docs/sdks/jobs/README.md#resume) - Resume Job
 * [trigger](docs/sdks/jobs/README.md#trigger) - Trigger Job
@@ -350,7 +345,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new IntunedClient({ httpClient });
+const sdk = new IntunedClient({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -507,6 +502,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update Auth Session - Start
 - [`projectJobsAll`](docs/sdks/jobs/README.md#all) - Get Jobs
 - [`projectJobsCreate`](docs/sdks/jobs/README.md#create) - Create Job
+- [`projectJobsDelete`](docs/sdks/jobs/README.md#delete) - Delete Job
+- [`projectJobsOne`](docs/sdks/jobs/README.md#one) - Get Job
 - [`projectJobsPause`](docs/sdks/jobs/README.md#pause) - Pause Job
 - [`projectJobsResume`](docs/sdks/jobs/README.md#resume) - Resume Job
 - [`projectJobsRunsAll`](docs/sdks/runs/README.md#all) - Get Job Runs

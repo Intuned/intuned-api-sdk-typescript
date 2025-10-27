@@ -5,56 +5,56 @@ Auth session creation result
 
 ## Supported Types
 
-### `operations.ResponseBody1`
+### `operations.Done`
 
 ```typescript
-const value: operations.ResponseBody1 = {
+const value: operations.Done = {
   status: "done",
   authSessionId: "auth-session-123",
 };
 ```
 
-### `operations.ResponseBody2`
+### `operations.Pending`
 
 ```typescript
-const value: operations.ResponseBody2 = {
+const value: operations.Pending = {
   status: "pending",
 };
 ```
 
-### `operations.ResponseBody3`
+### `operations.Canceled`
 
 ```typescript
-const value: operations.ResponseBody3 = {
+const value: operations.Canceled = {
   status: "canceled",
   message: "<value>",
   reason: {
-    type: "failed-to-initialize-job-run",
+    type: "terminated",
     message: "<value>",
     docUrl: "https://docs.intunedhq.com/docs/support/reasons#terminated",
   },
 };
 ```
 
-### `operations.ResponseBody4`
+### `operations.InProgress`
 
 ```typescript
-const value: operations.ResponseBody4 = {
+const value: operations.InProgress = {
   status: "in_progress",
   runId: "<id>",
 };
 ```
 
-### `operations.ResponseBody5`
+### `operations.Failed`
 
 ```typescript
-const value: operations.ResponseBody5 = {
+const value: operations.Failed = {
   status: "failed",
   message: "<value>",
   error: {
     message: "An error occurred while executing the run",
     code: "script-process-crashed",
-    category: "execution",
+    category: "user",
     docUrl:
       "https://docs.intunedhq.com/docs/support/errors#run-execution-error",
     correlationId: "123e4567-e89b-12d3-a456-426614174000",

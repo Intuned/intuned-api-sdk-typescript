@@ -35,6 +35,29 @@ let value: GetJobRunResponseBody = {
       docUrl:
         "https://docs.intunedhq.com/docs/support/reasons#no-valid-output-received",
     },
+    jobConfigurationSnapshot: {
+      configuration: {
+        retry: {},
+      },
+      sink: {
+        type: "s3",
+        bucket: "my-s3-bucket",
+        accessKeyId: "AKIAIOSFODNN7EXSSPLE",
+        secretAccessKey: "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY",
+        region: "us-west-2",
+        prefix: "my-prefix/",
+        skipOnFail: false,
+        apisToSend: [
+          "api1",
+          "api2",
+        ],
+        endpoint: "https://s3.custom-endpoint.com",
+        forcePathStyle: true,
+      },
+      authSession: {
+        id: "auth-session-123",
+      },
+    },
   },
 };
 ```

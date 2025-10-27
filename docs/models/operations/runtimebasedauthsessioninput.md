@@ -1,0 +1,29 @@
+# RuntimeBasedAuthSessionInput
+
+Runtime based auth session config to be used with the run. This is a required field if the auth session is enabled on the project and uses runtime input.
+
+## Example Usage
+
+```typescript
+import { RuntimeBasedAuthSessionInput } from "@intuned/client/models/operations";
+
+let value: RuntimeBasedAuthSessionInput = {
+  proxy: "http://username:password@domain:port",
+  runtimeInput: {
+    "username": "user",
+    "password": "pass",
+  },
+};
+```
+
+## Fields
+
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           | Example                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `id`                                                                                                                  | *string*                                                                                                              | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |                                                                                                                       |
+| `autoRecreate`                                                                                                        | *boolean*                                                                                                             | :heavy_minus_sign:                                                                                                    | N/A                                                                                                                   |                                                                                                                       |
+| `checkAttempts`                                                                                                       | *number*                                                                                                              | :heavy_minus_sign:                                                                                                    | Number of attempts to check the validity of the auth session before recreating it.                                    | 3                                                                                                                     |
+| `createAttempts`                                                                                                      | *number*                                                                                                              | :heavy_minus_sign:                                                                                                    | Number of attempts to create a new auth session if the current one is invalid or expired.                             | 3                                                                                                                     |
+| `proxy`                                                                                                               | *string*                                                                                                              | :heavy_minus_sign:                                                                                                    | Proxy URL to be used for the API call. This is optional and can be used to route the API call through a proxy server. | http://username:password@domain:port                                                                                  |
+| `requestTimeout`                                                                                                      | *number*                                                                                                              | :heavy_minus_sign:                                                                                                    | Timeout for the API request in seconds. Default is 10 minutes (600 seconds).                                          | 600                                                                                                                   |
+| `runtimeInput`                                                                                                        | Record<string, *any*>                                                                                                 | :heavy_check_mark:                                                                                                    | Runtime input to be used for the auth session. This is optional and can be used to pass dynamic values at runtime.    | {<br/>"username": "user",<br/>"password": "pass"<br/>}                                                                |
