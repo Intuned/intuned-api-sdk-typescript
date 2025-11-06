@@ -6,31 +6,37 @@
 import { CreateJobRequest } from "@intuned/client/models/operations";
 
 let value: CreateJobRequest = {
-    projectName: "my-project",
-    jobInput: {
-        id: "<id>",
-        sink: {
-            type: "webhook",
-            url: "https://weary-kneejerk.org",
-        },
-        payload: [
-            {
-                apiName: "<value>",
-            },
-        ],
-        schedule: {
-            calendars: [],
-        },
-        configuration: {
-            runMode: "Order-Irrelevant",
-        },
+  projectName: "my-project",
+  requestBody: {
+    id: "123e4567-e89b-12d3-a456-426614174000",
+    payload: [],
+    configuration: {
+      retry: {},
     },
+    sink: {
+      type: "webhook",
+      url: "https://example.com/webhook",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer token",
+      },
+      skipOnFail: false,
+      apisToSend: [
+        "api1",
+        "api2",
+      ],
+    },
+    proxy: "http://username:password@proxy.example.com:8080",
+    authSession: {
+      id: "<id>",
+    },
+  },
 };
 ```
 
 ## Fields
 
-| Field                                                                  | Type                                                                   | Required                                                               | Description                                                            | Example                                                                |
-| ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| `projectName`                                                          | *string*                                                               | :heavy_check_mark:                                                     | Your project name. It is the name you provide when creating a project. | my-project                                                             |
-| `jobInput`                                                             | [components.JobInput](../../models/components/jobinput.md)             | :heavy_check_mark:                                                     | create job request                                                     |                                                                        |
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        | Example                                                                            |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `projectName`                                                                      | *string*                                                                           | :heavy_check_mark:                                                                 | Your project name. It is the name you provide when creating a project.             | my-project                                                                         |
+| `requestBody`                                                                      | [operations.CreateJobRequestBody](../../models/operations/createjobrequestbody.md) | :heavy_check_mark:                                                                 | Job creation input schema                                                          |                                                                                    |

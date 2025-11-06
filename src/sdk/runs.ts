@@ -3,38 +3,69 @@
  */
 
 import { projectJobsRunsAll } from "../funcs/projectJobsRunsAll.js";
+import { projectJobsRunsOne } from "../funcs/projectJobsRunsOne.js";
 import { projectJobsRunsTerminate } from "../funcs/projectJobsRunsTerminate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 
 export class Runs extends ClientSDK {
-    /**
-     * Get Job Runs
-     *
-     * @remarks
-     * Get all job runs of a job.
-     */
-    async all(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<Array<components.JobRun>> {
-        return unwrapAsync(projectJobsRunsAll(this, projectName, jobId, options));
-    }
+  /**
+   * Get Job Runs
+   *
+   * @remarks
+   * Get all job runs of a job.
+   */
+  async all(
+    request: operations.GetJobRunsRequest,
+    options?: RequestOptions,
+  ): Promise<operations.GetJobRunsResponseBody> {
+    return unwrapAsync(projectJobsRunsAll(
+      this,
+      request,
+      options,
+    ));
+  }
 
-    /**
-     * Terminate Job Run
-     *
-     * @remarks
-     * Terminate a job run by ID.
-     */
-    async terminate(
-        projectName: string,
-        jobId: string,
-        runId: string,
-        options?: RequestOptions
-    ): Promise<components.TerminateJobRun> {
-        return unwrapAsync(projectJobsRunsTerminate(this, projectName, jobId, runId, options));
-    }
+  /**
+   * Get Job Run
+   *
+   * @remarks
+   * Get information and results for a specific job run.
+   */
+  async one(
+    projectName: string,
+    jobId: string,
+    jobRunId: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetJobRunResponseBody> {
+    return unwrapAsync(projectJobsRunsOne(
+      this,
+      projectName,
+      jobId,
+      jobRunId,
+      options,
+    ));
+  }
+
+  /**
+   * Terminate Job Run
+   *
+   * @remarks
+   * Terminate a job run by ID.
+   */
+  async terminate(
+    projectName: string,
+    jobId: string,
+    jobRunId: string,
+    options?: RequestOptions,
+  ): Promise<operations.TerminateJobRunResponseBody> {
+    return unwrapAsync(projectJobsRunsTerminate(
+      this,
+      projectName,
+      jobId,
+      jobRunId,
+      options,
+    ));
+  }
 }

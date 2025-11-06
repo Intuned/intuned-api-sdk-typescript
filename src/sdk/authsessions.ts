@@ -6,60 +6,80 @@ import { projectAuthSessionsAll } from "../funcs/projectAuthSessionsAll.js";
 import { projectAuthSessionsDelete } from "../funcs/projectAuthSessionsDelete.js";
 import { projectAuthSessionsOne } from "../funcs/projectAuthSessionsOne.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Create } from "./create.js";
 import { Recorder } from "./recorder.js";
+import { Update } from "./update.js";
 
 export class AuthSessions extends ClientSDK {
-    private _create?: Create;
-    get create(): Create {
-        return (this._create ??= new Create(this.options$));
-    }
+  private _create?: Create;
+  get create(): Create {
+    return (this._create ??= new Create(this._options));
+  }
 
-    private _recorder?: Recorder;
-    get recorder(): Recorder {
-        return (this._recorder ??= new Recorder(this.options$));
-    }
+  private _update?: Update;
+  get update(): Update {
+    return (this._update ??= new Update(this._options));
+  }
 
-    /**
-     * Get Auth Sessions
-     *
-     * @remarks
-     * Gets all authentication sessions of project
-     */
-    async all(
-        projectName: string,
-        options?: RequestOptions
-    ): Promise<Array<components.AuthSessionInfo>> {
-        return unwrapAsync(projectAuthSessionsAll(this, projectName, options));
-    }
+  private _recorder?: Recorder;
+  get recorder(): Recorder {
+    return (this._recorder ??= new Recorder(this._options));
+  }
 
-    /**
-     * Get Auth Session
-     *
-     * @remarks
-     * Gets authentication session of project by ID
-     */
-    async one(
-        projectName: string,
-        authSessionId: string,
-        options?: RequestOptions
-    ): Promise<components.AuthSessionInfo> {
-        return unwrapAsync(projectAuthSessionsOne(this, projectName, authSessionId, options));
-    }
+  /**
+   * Get Auth Sessions
+   *
+   * @remarks
+   * Gets all authentication sessions of project
+   */
+  async all(
+    projectName: string,
+    options?: RequestOptions,
+  ): Promise<Array<operations.ResponseBody>> {
+    return unwrapAsync(projectAuthSessionsAll(
+      this,
+      projectName,
+      options,
+    ));
+  }
 
-    /**
-     * Delete Auth Session
-     *
-     * @remarks
-     * Deletes an authentication session by ID.
-     */
-    async delete(
-        projectName: string,
-        authSessionId: string,
-        options?: RequestOptions
-    ): Promise<void> {
-        return unwrapAsync(projectAuthSessionsDelete(this, projectName, authSessionId, options));
-    }
+  /**
+   * Get Auth Session
+   *
+   * @remarks
+   * Gets authentication session of project by ID
+   */
+  async one(
+    projectName: string,
+    authSessionId: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetAuthSessionResponseBody> {
+    return unwrapAsync(projectAuthSessionsOne(
+      this,
+      projectName,
+      authSessionId,
+      options,
+    ));
+  }
+
+  /**
+   * Delete Auth Session
+   *
+   * @remarks
+   * Deletes an authentication session by ID.
+   */
+  async delete(
+    projectName: string,
+    authSessionId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(projectAuthSessionsDelete(
+      this,
+      projectName,
+      authSessionId,
+      options,
+    ));
+  }
 }

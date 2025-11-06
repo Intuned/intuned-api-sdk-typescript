@@ -6,8 +6,8 @@
 import { RunApiResultRequest } from "@intuned/client/models/operations";
 
 let value: RunApiResultRequest = {
-    projectName: "my-project",
-    runId: "aabbccddeeffggh",
+  projectName: "my-project",
+  runId: "aabbccddeeffggh",
 };
 ```
 

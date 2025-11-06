@@ -3,26 +3,22 @@
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.project.run.start("my-project", {
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
+    },
+    retry: {},
+    api: "my-awesome-api",
+  });
 
-    // Handle the result
-    console.log(result);
+  console.log(result);
 }
 
 run();

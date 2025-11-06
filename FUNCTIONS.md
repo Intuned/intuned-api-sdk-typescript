@@ -20,48 +20,31 @@ specific category of applications.
 
 ```typescript
 import { IntunedClientCore } from "@intuned/client/core.js";
-import { filesExtractStructuredDataSync } from "@intuned/client/funcs/filesExtractStructuredDataSync.js";
-import { SDKValidationError } from "@intuned/client/models/errors/sdkvalidationerror.js";
+import { projectRunStart } from "@intuned/client/funcs/projectRunStart.js";
 
 // Use `IntunedClientCore` for best tree-shaking performance.
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
   apiKey: "<YOUR_API_KEY_HERE>",
-  workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
 });
 
 async function run() {
-  const res = await filesExtractStructuredDataSync(intunedClient, {
-      type: "pdf",
-    source:     {
-          type: "base64",
-          data: "<value>",
-        },
-    }, {
-    "key": "<value>",
+  const res = await projectRunStart(intunedClient, "my-project", {
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
+    },
+    retry: {},
+    api: "my-awesome-api",
   });
-
-  switch (true) {
-    case res.ok:
-      // The success case will be handled outside of the switch block
-      break;
-    case res.error instanceof SDKValidationError:
-      // Pretty-print validation errors.
-      return console.log(res.error.pretty());
-    case res.error instanceof Error:
-      return console.log(res.error);
-    default:
-      // TypeScript's type checking will fail on the following line if the above
-      // cases were not exhaustive.
-      res.error satisfies never;
-      throw new Error("Assertion failed: expected error checks to be exhaustive: " + res.error);
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("projectRunStart failed:", res.error);
   }
-
-
-  const { value: result } = res;
-
-  // Handle the result
-  console.log(result)
 }
 
 run();

@@ -4,8 +4,39 @@
 
 Consume your browser automation projects and perform file operations with the Intuned API using this TypeScript SDK.
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Intuned Client: Intuned API Client to call APIs exposed by the Intuned Platform (https://docs.intunedhq.com/).
+
+For more information about the API: [Find out more about Intuned](https://docs.intunedhq.com/)
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [Intuned Client SDK](#intuned-client-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [Requirements](#requirements)
+  * [Getting Started](#getting-started)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Available Resources and Operations](#available-resources-and-operations)
+  * [Error Handling](#error-handling)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Retries](#retries)
+  * [Global Parameters](#global-parameters)
+  * [Standalone functions](#standalone-functions)
+  * [Debugging](#debugging)
+* [Development](#development)
+  * [Maturity](#maturity)
+  * [Contributions](#contributions)
+
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
+
+The SDK can be installed with either [npm](https://www.npmjs.com/), [pnpm](https://pnpm.io/), [bun](https://bun.sh/) or [yarn](https://classic.yarnpkg.com/en/) package managers.
 
 ### NPM
 
@@ -28,10 +59,7 @@ bun add @intuned/client
 ### Yarn
 
 ```bash
-yarn add @intuned/client zod
-
-# Note that Yarn does not install peer dependencies automatically. You will need
-# to install zod as shown above.
+yarn add @intuned/client
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -63,26 +91,22 @@ The SDK runs within the context of a workspace. You will need to provide the wor
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.project.run.start("my-project", {
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
+    },
+    retry: {},
+    api: "my-awesome-api",
+  });
 
-    // Handle the result
-    console.log(result);
+  console.log(result);
 }
 
 run();
@@ -93,26 +117,30 @@ run();
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [files.extractStructuredData](docs/sdks/extractstructureddata/README.md)
+<details open>
+<summary>Available methods</summary>
 
-* [sync](docs/sdks/extractstructureddata/README.md#sync) - Extract Structured Data - Sync
-* [start](docs/sdks/extractstructureddata/README.md#start) - Extract Structured Data - Async Start
-* [result](docs/sdks/extractstructureddata/README.md#result) - Extract Structured Data - Async Result
+#### [project.authSessions](docs/sdks/authsessions/README.md)
 
-### [files.extractMarkdown](docs/sdks/extractmarkdown/README.md)
+* [all](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
+* [one](docs/sdks/authsessions/README.md#one) - Get Auth Session
+* [delete](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
 
-* [sync](docs/sdks/extractmarkdown/README.md#sync) - Extract Markdown - Sync
-* [start](docs/sdks/extractmarkdown/README.md#start) - Extract Markdown - Async Start
-* [result](docs/sdks/extractmarkdown/README.md#result) - Extract Markdown - Async Result
+#### [project.authSessions.create](docs/sdks/create/README.md)
 
-### [files.extractTables](docs/sdks/extracttables/README.md)
+* [start](docs/sdks/create/README.md#start) - Create Auth Session - Start
+* [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
 
-* [sync](docs/sdks/extracttables/README.md#sync) - Extract Tables - Sync
-* [start](docs/sdks/extracttables/README.md#start) - Extract Tables - Async Start
-* [result](docs/sdks/extracttables/README.md#result) - Extract Tables - Async Result
+#### [project.authSessions.recorder](docs/sdks/recorder/README.md)
 
+* [start](docs/sdks/recorder/README.md#start) - Start recorder session for an auth session
 
-### [project.jobs](docs/sdks/jobs/README.md)
+#### [project.authSessions.update](docs/sdks/update/README.md)
+
+* [start](docs/sdks/update/README.md#start) - Update Auth Session - Start
+* [result](docs/sdks/update/README.md#result) - Update Auth Session - Result
+
+#### [project.jobs](docs/sdks/jobs/README.md)
 
 * [all](docs/sdks/jobs/README.md#all) - Get Jobs
 * [create](docs/sdks/jobs/README.md#create) - Create Job
@@ -122,54 +150,18 @@ run();
 * [resume](docs/sdks/jobs/README.md#resume) - Resume Job
 * [trigger](docs/sdks/jobs/README.md#trigger) - Trigger Job
 
-### [project.jobs.runs](docs/sdks/runs/README.md)
+#### [project.jobs.runs](docs/sdks/runs/README.md)
 
 * [all](docs/sdks/runs/README.md#all) - Get Job Runs
+* [one](docs/sdks/runs/README.md#one) - Get Job Run
 * [terminate](docs/sdks/runs/README.md#terminate) - Terminate Job Run
 
-### [project.queues](docs/sdks/queues/README.md)
+#### [project.run](docs/sdks/run/README.md)
 
-* [all](docs/sdks/queues/README.md#all) - Get Queues
-* [create](docs/sdks/queues/README.md#create) - Create Queue
-* [one](docs/sdks/queues/README.md#one) - Get Queue
-* [delete](docs/sdks/queues/README.md#delete) - Delete Queue
-
-### [project.queues.items](docs/sdks/items/README.md)
-
-* [append](docs/sdks/items/README.md#append) - Append Queue Item
-* [result](docs/sdks/items/README.md#result) - Get Queue Item result
-* [delete](docs/sdks/items/README.md#delete) - Delete Queue item
-
-### [project.queues.repeatItems](docs/sdks/repeatitems/README.md)
-
-* [all](docs/sdks/repeatitems/README.md#all) - Get Queue Repeat Items
-* [append](docs/sdks/repeatitems/README.md#append) - Append Queue Repeat Item
-* [one](docs/sdks/repeatitems/README.md#one) - Get Queue Repeat Item
-* [update](docs/sdks/repeatitems/README.md#update) - Update Queue Repeat Item
-* [delete](docs/sdks/repeatitems/README.md#delete) - Delete Queue Repeat Item
-
-### [project.run](docs/sdks/run/README.md)
-
-* [sync](docs/sdks/run/README.md#sync) - Run API - Sync
 * [start](docs/sdks/run/README.md#start) - Run API - Async Start
 * [result](docs/sdks/run/README.md#result) - Run API - Async Result
 
-### [project.authSessions](docs/sdks/authsessions/README.md)
-
-* [all](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
-* [one](docs/sdks/authsessions/README.md#one) - Get Auth Session
-* [delete](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
-
-### [project.authSessions.create](docs/sdks/create/README.md)
-
-* [start](docs/sdks/create/README.md#start) - Create Auth Session - Start
-* [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
-* [resume](docs/sdks/create/README.md#resume) - Create Auth Session -  Resume
-
-### [project.authSessions.recorder](docs/sdks/recorder/README.md)
-
-* [createAuthSession](docs/sdks/recorder/README.md#createauthsession) - Create Recorder Auth Session Instance
-* [start](docs/sdks/recorder/README.md#start) - Start recorder session for an auth session
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 ## Error Handling
@@ -353,7 +345,7 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new IntunedClient({ httpClient });
+const sdk = new IntunedClient({ httpClient: httpClient });
 ```
 <!-- End Custom HTTP Client [http-client] -->
 
@@ -369,38 +361,33 @@ To change the default retry strategy for a single API call, simply provide a ret
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        },
-        {
-            retries: {
-                strategy: "backoff",
-                backoff: {
-                    initialInterval: 1,
-                    maxInterval: 50,
-                    exponent: 1.1,
-                    maxElapsedTime: 100,
-                },
-                retryConnectionErrors: false,
-            },
-        }
-    );
+  const result = await intunedClient.project.run.start("my-project", {
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
+    },
+    retry: {},
+    api: "my-awesome-api",
+  }, {
+    retries: {
+      strategy: "backoff",
+      backoff: {
+        initialInterval: 1,
+        maxInterval: 50,
+        exponent: 1.1,
+        maxElapsedTime: 100,
+      },
+      retryConnectionErrors: false,
+    },
+  });
 
-    // Handle the result
-    console.log(result);
+  console.log(result);
 }
 
 run();
@@ -412,36 +399,32 @@ If you'd like to override the default retry strategy for all operations that sup
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    retryConfig: {
-        strategy: "backoff",
-        backoff: {
-            initialInterval: 1,
-            maxInterval: 50,
-            exponent: 1.1,
-            maxElapsedTime: 100,
-        },
-        retryConnectionErrors: false,
+  retryConfig: {
+    strategy: "backoff",
+    backoff: {
+      initialInterval: 1,
+      maxInterval: 50,
+      exponent: 1.1,
+      maxElapsedTime: 100,
     },
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+    retryConnectionErrors: false,
+  },
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.project.run.start("my-project", {
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
+    },
+    retry: {},
+    api: "my-awesome-api",
+  });
 
-    // Handle the result
-    console.log(result);
+  console.log(result);
 }
 
 run();
@@ -454,17 +437,16 @@ run();
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceId` to `"aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee"` at SDK initialization and then you do not have to pass the same value on calls to operations like `sync`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceId` to `"123e4567-e89b-12d3-a456-426614174000"` at SDK initialization and then you do not have to pass the same value on calls to operations like `start`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
 
 The following global parameter is available.
 
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| workspaceId | string |  | Your workspace ID. [How to find it](/docs/guides/platform/how-to-get-a-workspace-id)? |
-
+| Name        | Type   | Description                                                                          |
+| ----------- | ------ | ------------------------------------------------------------------------------------ |
+| workspaceId | string | Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)? |
 
 ### Example
 
@@ -472,26 +454,22 @@ The following global parameter is available.
 import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
-    apiKey: "<YOUR_API_KEY_HERE>",
-    workspaceId: "aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee",
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: "<YOUR_API_KEY_HERE>",
 });
 
 async function run() {
-    const result = await intunedClient.files.extractStructuredData.sync(
-        {
-            type: "pdf",
-            source: {
-                type: "url",
-                data: "http://unconscious-margin.name",
-            },
-        },
-        {
-            key: "<value>",
-        }
-    );
+  const result = await intunedClient.project.run.start("my-project", {
+    parameters: {
+      "param1": "value1",
+      "param2": 42,
+      "param3": true,
+    },
+    retry: {},
+    api: "my-awesome-api",
+  });
 
-    // Handle the result
-    console.log(result);
+  console.log(result);
 }
 
 run();
@@ -514,48 +492,26 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [filesExtractMarkdownResult](docs/sdks/extractmarkdown/README.md#result)
-- [filesExtractMarkdownStart](docs/sdks/extractmarkdown/README.md#start)
-- [filesExtractMarkdownSync](docs/sdks/extractmarkdown/README.md#sync)
-- [filesExtractStructuredDataResult](docs/sdks/extractstructureddata/README.md#result)
-- [filesExtractStructuredDataStart](docs/sdks/extractstructureddata/README.md#start)
-- [filesExtractStructuredDataSync](docs/sdks/extractstructureddata/README.md#sync)
-- [filesExtractTablesResult](docs/sdks/extracttables/README.md#result)
-- [filesExtractTablesStart](docs/sdks/extracttables/README.md#start)
-- [filesExtractTablesSync](docs/sdks/extracttables/README.md#sync)
-- [projectAuthSessionsAll](docs/sdks/authsessions/README.md#all)
-- [projectAuthSessionsCreateResult](docs/sdks/create/README.md#result)
-- [projectAuthSessionsCreateResume](docs/sdks/create/README.md#resume)
-- [projectAuthSessionsCreateStart](docs/sdks/create/README.md#start)
-- [projectAuthSessionsDelete](docs/sdks/authsessions/README.md#delete)
-- [projectAuthSessionsOne](docs/sdks/authsessions/README.md#one)
-- [projectAuthSessionsRecorderCreateAuthSession](docs/sdks/recorder/README.md#createauthsession)
-- [projectAuthSessionsRecorderStart](docs/sdks/recorder/README.md#start)
-- [projectJobsAll](docs/sdks/jobs/README.md#all)
-- [projectJobsCreate](docs/sdks/jobs/README.md#create)
-- [projectJobsDelete](docs/sdks/jobs/README.md#delete)
-- [projectJobsOne](docs/sdks/jobs/README.md#one)
-- [projectJobsPause](docs/sdks/jobs/README.md#pause)
-- [projectJobsResume](docs/sdks/jobs/README.md#resume)
-- [projectJobsRunsAll](docs/sdks/runs/README.md#all)
-- [projectJobsRunsTerminate](docs/sdks/runs/README.md#terminate)
-- [projectJobsTrigger](docs/sdks/jobs/README.md#trigger)
-- [projectQueuesAll](docs/sdks/queues/README.md#all)
-- [projectQueuesCreate](docs/sdks/queues/README.md#create)
-- [projectQueuesDelete](docs/sdks/queues/README.md#delete)
-- [projectQueuesItemsAppend](docs/sdks/items/README.md#append)
-- [projectQueuesItemsDelete](docs/sdks/items/README.md#delete)
-- [projectQueuesItemsResult](docs/sdks/items/README.md#result)
-- [projectQueuesOne](docs/sdks/queues/README.md#one)
-- [projectQueuesRepeatItemsAll](docs/sdks/repeatitems/README.md#all)
-- [projectQueuesRepeatItemsAppend](docs/sdks/repeatitems/README.md#append)
-- [projectQueuesRepeatItemsDelete](docs/sdks/repeatitems/README.md#delete)
-- [projectQueuesRepeatItemsOne](docs/sdks/repeatitems/README.md#one)
-- [projectQueuesRepeatItemsUpdate](docs/sdks/repeatitems/README.md#update)
-- [projectRunResult](docs/sdks/run/README.md#result)
-- [projectRunStart](docs/sdks/run/README.md#start)
-- [projectRunSync](docs/sdks/run/README.md#sync)
-
+- [`projectAuthSessionsAll`](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
+- [`projectAuthSessionsCreateResult`](docs/sdks/create/README.md#result) - Create Auth Session - Result
+- [`projectAuthSessionsCreateStart`](docs/sdks/create/README.md#start) - Create Auth Session - Start
+- [`projectAuthSessionsDelete`](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
+- [`projectAuthSessionsOne`](docs/sdks/authsessions/README.md#one) - Get Auth Session
+- [`projectAuthSessionsRecorderStart`](docs/sdks/recorder/README.md#start) - Start recorder session for an auth session
+- [`projectAuthSessionsUpdateResult`](docs/sdks/update/README.md#result) - Update Auth Session - Result
+- [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update Auth Session - Start
+- [`projectJobsAll`](docs/sdks/jobs/README.md#all) - Get Jobs
+- [`projectJobsCreate`](docs/sdks/jobs/README.md#create) - Create Job
+- [`projectJobsDelete`](docs/sdks/jobs/README.md#delete) - Delete Job
+- [`projectJobsOne`](docs/sdks/jobs/README.md#one) - Get Job
+- [`projectJobsPause`](docs/sdks/jobs/README.md#pause) - Pause Job
+- [`projectJobsResume`](docs/sdks/jobs/README.md#resume) - Resume Job
+- [`projectJobsRunsAll`](docs/sdks/runs/README.md#all) - Get Job Runs
+- [`projectJobsRunsOne`](docs/sdks/runs/README.md#one) - Get Job Run
+- [`projectJobsRunsTerminate`](docs/sdks/runs/README.md#terminate) - Terminate Job Run
+- [`projectJobsTrigger`](docs/sdks/jobs/README.md#trigger) - Trigger Job
+- [`projectRunResult`](docs/sdks/run/README.md#result) - Run API - Async Result
+- [`projectRunStart`](docs/sdks/run/README.md#start) - Run API - Async Start
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

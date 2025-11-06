@@ -11,4 +11,6 @@ targets:
         target: typescript
         source: intunedClientApi
         codeSamples:
-            output:  ../docs/_resources/openapi/generated/codeSamples.yaml
+            output: ../docs/_resources/openapi/generated/codeSamplesTypescript.yaml
+            registry:
+                location: registry.speakeasyapi.dev/intuned/intuned/intuned-client-api-typescript-code-samples

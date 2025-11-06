@@ -6,8 +6,8 @@
 import { DeleteAuthSessionRequest } from "@intuned/client/models/operations";
 
 let value: DeleteAuthSessionRequest = {
-    projectName: "my-project",
-    authSessionId: "<value>",
+  projectName: "my-project",
+  authSessionId: "<id>",
 };
 ```
 

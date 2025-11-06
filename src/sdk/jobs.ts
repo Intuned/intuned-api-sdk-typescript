@@ -10,103 +10,144 @@ import { projectJobsPause } from "../funcs/projectJobsPause.js";
 import { projectJobsResume } from "../funcs/projectJobsResume.js";
 import { projectJobsTrigger } from "../funcs/projectJobsTrigger.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
-import * as components from "../models/components/index.js";
+import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Runs } from "./runs.js";
 
 export class Jobs extends ClientSDK {
-    private _runs?: Runs;
-    get runs(): Runs {
-        return (this._runs ??= new Runs(this.options$));
-    }
+  private _runs?: Runs;
+  get runs(): Runs {
+    return (this._runs ??= new Runs(this._options));
+  }
 
-    /**
-     * Get Jobs
-     *
-     * @remarks
-     * Gets all jobs in a project.
-     */
-    async all(projectName: string, options?: RequestOptions): Promise<Array<components.Job>> {
-        return unwrapAsync(projectJobsAll(this, projectName, options));
-    }
+  /**
+   * Get Jobs
+   *
+   * @remarks
+   * Gets all jobs in a project.
+   */
+  async all(
+    projectName: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetJobsResponseBody> {
+    return unwrapAsync(projectJobsAll(
+      this,
+      projectName,
+      options,
+    ));
+  }
 
-    /**
-     * Create Job
-     *
-     * @remarks
-     * Creates a new job for a project.
-     */
-    async create(
-        projectName: string,
-        jobInput: components.JobInput,
-        options?: RequestOptions
-    ): Promise<components.CreateJob> {
-        return unwrapAsync(projectJobsCreate(this, projectName, jobInput, options));
-    }
+  /**
+   * Create Job
+   *
+   * @remarks
+   * Creates a new job for a project.
+   */
+  async create(
+    projectName: string,
+    requestBody: operations.CreateJobRequestBody,
+    options?: RequestOptions,
+  ): Promise<operations.CreateJobResponseBody> {
+    return unwrapAsync(projectJobsCreate(
+      this,
+      projectName,
+      requestBody,
+      options,
+    ));
+  }
 
-    /**
-     * Get Job
-     *
-     * @remarks
-     * Gets a job in a project by ID.
-     */
-    async one(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<components.Job> {
-        return unwrapAsync(projectJobsOne(this, projectName, jobId, options));
-    }
+  /**
+   * Get Job
+   *
+   * @remarks
+   * Gets a job in a project by ID.
+   */
+  async one(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<operations.GetJobJobDetailsResponse> {
+    return unwrapAsync(projectJobsOne(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
 
-    /**
-     * Delete Job
-     *
-     * @remarks
-     * Deletes a job by ID.
-     */
-    async delete(projectName: string, jobId: string, options?: RequestOptions): Promise<void> {
-        return unwrapAsync(projectJobsDelete(this, projectName, jobId, options));
-    }
+  /**
+   * Delete Job
+   *
+   * @remarks
+   * Deletes a job by ID.
+   */
+  async delete(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<void> {
+    return unwrapAsync(projectJobsDelete(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
 
-    /**
-     * Pause Job
-     *
-     * @remarks
-     * Pauses a job. Will pause any job runs and the job schedule if applicable.
-     */
-    async pause(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<components.PauseJob> {
-        return unwrapAsync(projectJobsPause(this, projectName, jobId, options));
-    }
+  /**
+   * Pause Job
+   *
+   * @remarks
+   * Pauses a job. Will pause any job runs and the job schedule if applicable.
+   */
+  async pause(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<operations.PauseJobResponseBody> {
+    return unwrapAsync(projectJobsPause(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
 
-    /**
-     * Resume Job
-     *
-     * @remarks
-     * Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
-     */
-    async resume(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<components.ResumeJob> {
-        return unwrapAsync(projectJobsResume(this, projectName, jobId, options));
-    }
+  /**
+   * Resume Job
+   *
+   * @remarks
+   * Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
+   */
+  async resume(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<operations.ResumeJobResponseBody> {
+    return unwrapAsync(projectJobsResume(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
 
-    /**
-     * Trigger Job
-     *
-     * @remarks
-     * Manually triggers a job run for a job. If the job is paused, the trigger fails.
-     */
-    async trigger(
-        projectName: string,
-        jobId: string,
-        options?: RequestOptions
-    ): Promise<components.TriggerJob> {
-        return unwrapAsync(projectJobsTrigger(this, projectName, jobId, options));
-    }
+  /**
+   * Trigger Job
+   *
+   * @remarks
+   * Manually triggers a job run for a job. If the job is paused, the trigger fails.
+   */
+  async trigger(
+    projectName: string,
+    jobId: string,
+    options?: RequestOptions,
+  ): Promise<operations.TriggerJobResponseBody> {
+    return unwrapAsync(projectJobsTrigger(
+      this,
+      projectName,
+      jobId,
+      options,
+    ));
+  }
 }
