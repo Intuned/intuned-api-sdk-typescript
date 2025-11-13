@@ -131,14 +131,15 @@ run();
 * [start](docs/sdks/create/README.md#start) - Create Auth Session - Start
 * [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
 
-#### [project.authSessions.recorder](docs/sdks/recorder/README.md)
-
-* [start](docs/sdks/recorder/README.md#start) - Start recorder session for an auth session
-
 #### [project.authSessions.update](docs/sdks/update/README.md)
 
 * [start](docs/sdks/update/README.md#start) - Update Auth Session - Start
 * [result](docs/sdks/update/README.md#result) - Update Auth Session - Result
+
+#### [project.authSessions.validate](docs/sdks/validate/README.md)
+
+* [start](docs/sdks/validate/README.md#start) - Validate Auth Session - Start
+* [result](docs/sdks/validate/README.md#result) - Validate Auth Session - Result
 
 #### [project.jobs](docs/sdks/jobs/README.md)
 
@@ -158,8 +159,8 @@ run();
 
 #### [project.run](docs/sdks/run/README.md)
 
-* [start](docs/sdks/run/README.md#start) - Run API - Async Start
-* [result](docs/sdks/run/README.md#result) - Run API - Async Result
+* [start](docs/sdks/run/README.md#start) - Run API - Start
+* [result](docs/sdks/run/README.md#result) - Run API - Result
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -497,9 +498,10 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`projectAuthSessionsCreateStart`](docs/sdks/create/README.md#start) - Create Auth Session - Start
 - [`projectAuthSessionsDelete`](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
 - [`projectAuthSessionsOne`](docs/sdks/authsessions/README.md#one) - Get Auth Session
-- [`projectAuthSessionsRecorderStart`](docs/sdks/recorder/README.md#start) - Start recorder session for an auth session
 - [`projectAuthSessionsUpdateResult`](docs/sdks/update/README.md#result) - Update Auth Session - Result
 - [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update Auth Session - Start
+- [`projectAuthSessionsValidateResult`](docs/sdks/validate/README.md#result) - Validate Auth Session - Result
+- [`projectAuthSessionsValidateStart`](docs/sdks/validate/README.md#start) - Validate Auth Session - Start
 - [`projectJobsAll`](docs/sdks/jobs/README.md#all) - Get Jobs
 - [`projectJobsCreate`](docs/sdks/jobs/README.md#create) - Create Job
 - [`projectJobsDelete`](docs/sdks/jobs/README.md#delete) - Delete Job
@@ -510,8 +512,8 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 - [`projectJobsRunsOne`](docs/sdks/runs/README.md#one) - Get Job Run
 - [`projectJobsRunsTerminate`](docs/sdks/runs/README.md#terminate) - Terminate Job Run
 - [`projectJobsTrigger`](docs/sdks/jobs/README.md#trigger) - Trigger Job
-- [`projectRunResult`](docs/sdks/run/README.md#result) - Run API - Async Result
-- [`projectRunStart`](docs/sdks/run/README.md#start) - Run API - Async Start
+- [`projectRunResult`](docs/sdks/run/README.md#result) - Run API - Result
+- [`projectRunStart`](docs/sdks/run/README.md#start) - Run API - Start
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

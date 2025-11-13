@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Create Auth Session - Result
  *
  * @remarks
- * Gets authentication session creation operation result.
+ * Get Auth Session Create result.
  */
 export function projectAuthSessionsCreateResult(
   client: IntunedClientCore,

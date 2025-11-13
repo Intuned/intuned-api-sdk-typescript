@@ -1,13 +1,14 @@
-# GetJobsSecond3
+# GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3
 
 ## Example Usage
 
 ```typescript
-import { GetJobsSecond3 } from "@intuned/client/models/operations";
+import { GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3 } from "@intuned/client/models/operations";
 
-let value: GetJobsSecond3 = {
-  start: 401533,
-};
+let value: GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3 =
+  {
+    start: 730499,
+  };
 ```
 
 ## Fields

@@ -1,11 +1,11 @@
-# StartAuthSessionRecorderGlobals
+# ValidateAuthSessionResultGlobals
 
 ## Example Usage
 
 ```typescript
-import { StartAuthSessionRecorderGlobals } from "@intuned/client/models/operations";
+import { ValidateAuthSessionResultGlobals } from "@intuned/client/models/operations";
 
-let value: StartAuthSessionRecorderGlobals = {
+let value: ValidateAuthSessionResultGlobals = {
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
 };
 ```

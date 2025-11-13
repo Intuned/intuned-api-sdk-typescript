@@ -379,73 +379,6 @@ export type GetJobRunsResponseBody = {
 };
 
 /** @internal */
-export const GetJobRunsGlobals$inboundSchema: z.ZodType<
-  GetJobRunsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type GetJobRunsGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const GetJobRunsGlobals$outboundSchema: z.ZodType<
-  GetJobRunsGlobals$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsGlobals$ {
-  /** @deprecated use `GetJobRunsGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsGlobals$inboundSchema;
-  /** @deprecated use `GetJobRunsGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsGlobals$outboundSchema;
-  /** @deprecated use `GetJobRunsGlobals$Outbound` instead. */
-  export type Outbound = GetJobRunsGlobals$Outbound;
-}
-
-export function getJobRunsGlobalsToJSON(
-  getJobRunsGlobals: GetJobRunsGlobals,
-): string {
-  return JSON.stringify(
-    GetJobRunsGlobals$outboundSchema.parse(getJobRunsGlobals),
-  );
-}
-
-export function getJobRunsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetJobRunsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetJobRunsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetJobRunsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetJobRunsRequest$inboundSchema: z.ZodType<
-  GetJobRunsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  jobId: z.string(),
-  pageSize: z.string().optional(),
-  pageNumber: z.string().optional(),
-  sortBy: z.string().optional(),
-});
-
-/** @internal */
 export type GetJobRunsRequest$Outbound = {
   projectName: string;
   jobId: string;
@@ -467,34 +400,11 @@ export const GetJobRunsRequest$outboundSchema: z.ZodType<
   sortBy: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsRequest$ {
-  /** @deprecated use `GetJobRunsRequest$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsRequest$inboundSchema;
-  /** @deprecated use `GetJobRunsRequest$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsRequest$outboundSchema;
-  /** @deprecated use `GetJobRunsRequest$Outbound` instead. */
-  export type Outbound = GetJobRunsRequest$Outbound;
-}
-
 export function getJobRunsRequestToJSON(
   getJobRunsRequest: GetJobRunsRequest,
 ): string {
   return JSON.stringify(
     GetJobRunsRequest$outboundSchema.parse(getJobRunsRequest),
-  );
-}
-
-export function getJobRunsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetJobRunsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetJobRunsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetJobRunsRequest' from JSON`,
   );
 }
 
@@ -504,41 +414,9 @@ export const GetJobRunsType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetJobRunsType);
 
 /** @internal */
-export const GetJobRunsType$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsType
-> = GetJobRunsType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsType$ {
-  /** @deprecated use `GetJobRunsType$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsType$inboundSchema;
-  /** @deprecated use `GetJobRunsType$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsType$outboundSchema;
-}
-
-/** @internal */
 export const GetJobRunsStatus$inboundSchema: z.ZodNativeEnum<
   typeof GetJobRunsStatus
 > = z.nativeEnum(GetJobRunsStatus);
-
-/** @internal */
-export const GetJobRunsStatus$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsStatus
-> = GetJobRunsStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsStatus$ {
-  /** @deprecated use `GetJobRunsStatus$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsStatus$inboundSchema;
-  /** @deprecated use `GetJobRunsStatus$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsStatus$outboundSchema;
-}
 
 /** @internal */
 export const GetJobRunsCode$inboundSchema: z.ZodNativeEnum<
@@ -546,41 +424,9 @@ export const GetJobRunsCode$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetJobRunsCode);
 
 /** @internal */
-export const GetJobRunsCode$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsCode
-> = GetJobRunsCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsCode$ {
-  /** @deprecated use `GetJobRunsCode$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsCode$inboundSchema;
-  /** @deprecated use `GetJobRunsCode$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsCode$outboundSchema;
-}
-
-/** @internal */
 export const GetJobRunsCategory$inboundSchema: z.ZodNativeEnum<
   typeof GetJobRunsCategory
 > = z.nativeEnum(GetJobRunsCategory);
-
-/** @internal */
-export const GetJobRunsCategory$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsCategory
-> = GetJobRunsCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsCategory$ {
-  /** @deprecated use `GetJobRunsCategory$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsCategory$inboundSchema;
-  /** @deprecated use `GetJobRunsCategory$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsCategory$outboundSchema;
-}
 
 /** @internal */
 export const GetJobRunsError$inboundSchema: z.ZodType<
@@ -601,55 +447,6 @@ export const GetJobRunsError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type GetJobRunsError$Outbound = {
-  message: string;
-  code: string;
-  details?: any | undefined;
-  category: string;
-  correlationId?: string | undefined;
-  retirable: boolean;
-  doc_url?: string | undefined;
-};
-
-/** @internal */
-export const GetJobRunsError$outboundSchema: z.ZodType<
-  GetJobRunsError$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsError
-> = z.object({
-  message: z.string(),
-  code: GetJobRunsCode$outboundSchema,
-  details: z.any().optional(),
-  category: GetJobRunsCategory$outboundSchema,
-  correlationId: z.string().optional(),
-  retirable: z.boolean().default(false),
-  docUrl: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    docUrl: "doc_url",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsError$ {
-  /** @deprecated use `GetJobRunsError$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsError$inboundSchema;
-  /** @deprecated use `GetJobRunsError$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsError$outboundSchema;
-  /** @deprecated use `GetJobRunsError$Outbound` instead. */
-  export type Outbound = GetJobRunsError$Outbound;
-}
-
-export function getJobRunsErrorToJSON(
-  getJobRunsError: GetJobRunsError,
-): string {
-  return JSON.stringify(GetJobRunsError$outboundSchema.parse(getJobRunsError));
-}
-
 export function getJobRunsErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<GetJobRunsError, SDKValidationError> {
@@ -666,22 +463,6 @@ export const GetJobRunsProjectJobsRunsType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetJobRunsProjectJobsRunsType);
 
 /** @internal */
-export const GetJobRunsProjectJobsRunsType$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsProjectJobsRunsType
-> = GetJobRunsProjectJobsRunsType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsProjectJobsRunsType$ {
-  /** @deprecated use `GetJobRunsProjectJobsRunsType$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsProjectJobsRunsType$inboundSchema;
-  /** @deprecated use `GetJobRunsProjectJobsRunsType$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsProjectJobsRunsType$outboundSchema;
-}
-
-/** @internal */
 export const GetJobRunsReason$inboundSchema: z.ZodType<
   GetJobRunsReason,
   z.ZodTypeDef,
@@ -696,51 +477,6 @@ export const GetJobRunsReason$inboundSchema: z.ZodType<
     "doc_url": "docUrl",
   });
 });
-
-/** @internal */
-export type GetJobRunsReason$Outbound = {
-  type: string;
-  message: string;
-  details?: any | undefined;
-  doc_url?: string | undefined;
-};
-
-/** @internal */
-export const GetJobRunsReason$outboundSchema: z.ZodType<
-  GetJobRunsReason$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsReason
-> = z.object({
-  type: GetJobRunsProjectJobsRunsType$outboundSchema,
-  message: z.string(),
-  details: z.any().optional(),
-  docUrl: z.string().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    docUrl: "doc_url",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsReason$ {
-  /** @deprecated use `GetJobRunsReason$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsReason$inboundSchema;
-  /** @deprecated use `GetJobRunsReason$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsReason$outboundSchema;
-  /** @deprecated use `GetJobRunsReason$Outbound` instead. */
-  export type Outbound = GetJobRunsReason$Outbound;
-}
-
-export function getJobRunsReasonToJSON(
-  getJobRunsReason: GetJobRunsReason,
-): string {
-  return JSON.stringify(
-    GetJobRunsReason$outboundSchema.parse(getJobRunsReason),
-  );
-}
 
 export function getJobRunsReasonFromJSON(
   jsonString: string,
@@ -760,39 +496,6 @@ export const GetJobRunsRetry$inboundSchema: z.ZodType<
 > = z.object({
   maximumAttempts: z.number().int().default(3),
 });
-
-/** @internal */
-export type GetJobRunsRetry$Outbound = {
-  maximumAttempts: number;
-};
-
-/** @internal */
-export const GetJobRunsRetry$outboundSchema: z.ZodType<
-  GetJobRunsRetry$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsRetry
-> = z.object({
-  maximumAttempts: z.number().int().default(3),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsRetry$ {
-  /** @deprecated use `GetJobRunsRetry$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsRetry$inboundSchema;
-  /** @deprecated use `GetJobRunsRetry$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsRetry$outboundSchema;
-  /** @deprecated use `GetJobRunsRetry$Outbound` instead. */
-  export type Outbound = GetJobRunsRetry$Outbound;
-}
-
-export function getJobRunsRetryToJSON(
-  getJobRunsRetry: GetJobRunsRetry,
-): string {
-  return JSON.stringify(GetJobRunsRetry$outboundSchema.parse(getJobRunsRetry));
-}
 
 export function getJobRunsRetryFromJSON(
   jsonString: string,
@@ -815,45 +518,6 @@ export const GetJobRunsConfiguration$inboundSchema: z.ZodType<
   requestTimeout: z.number().int().default(600),
 });
 
-/** @internal */
-export type GetJobRunsConfiguration$Outbound = {
-  retry?: GetJobRunsRetry$Outbound | undefined;
-  maxConcurrentRequests?: number | undefined;
-  requestTimeout: number;
-};
-
-/** @internal */
-export const GetJobRunsConfiguration$outboundSchema: z.ZodType<
-  GetJobRunsConfiguration$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsConfiguration
-> = z.object({
-  retry: z.lazy(() => GetJobRunsRetry$outboundSchema).optional(),
-  maxConcurrentRequests: z.number().optional(),
-  requestTimeout: z.number().int().default(600),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsConfiguration$ {
-  /** @deprecated use `GetJobRunsConfiguration$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsConfiguration$inboundSchema;
-  /** @deprecated use `GetJobRunsConfiguration$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsConfiguration$outboundSchema;
-  /** @deprecated use `GetJobRunsConfiguration$Outbound` instead. */
-  export type Outbound = GetJobRunsConfiguration$Outbound;
-}
-
-export function getJobRunsConfigurationToJSON(
-  getJobRunsConfiguration: GetJobRunsConfiguration,
-): string {
-  return JSON.stringify(
-    GetJobRunsConfiguration$outboundSchema.parse(getJobRunsConfiguration),
-  );
-}
-
 export function getJobRunsConfigurationFromJSON(
   jsonString: string,
 ): SafeParseResult<GetJobRunsConfiguration, SDKValidationError> {
@@ -868,23 +532,6 @@ export function getJobRunsConfigurationFromJSON(
 export const GetJobRunsSinkProjectJobsRunsType$inboundSchema: z.ZodNativeEnum<
   typeof GetJobRunsSinkProjectJobsRunsType
 > = z.nativeEnum(GetJobRunsSinkProjectJobsRunsType);
-
-/** @internal */
-export const GetJobRunsSinkProjectJobsRunsType$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsSinkProjectJobsRunsType
-> = GetJobRunsSinkProjectJobsRunsType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsSinkProjectJobsRunsType$ {
-  /** @deprecated use `GetJobRunsSinkProjectJobsRunsType$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsSinkProjectJobsRunsType$inboundSchema;
-  /** @deprecated use `GetJobRunsSinkProjectJobsRunsType$outboundSchema` instead. */
-  export const outboundSchema =
-    GetJobRunsSinkProjectJobsRunsType$outboundSchema;
-}
 
 /** @internal */
 export const GetJobRunsSinkS3SinkConfiguration$inboundSchema: z.ZodType<
@@ -904,62 +551,6 @@ export const GetJobRunsSinkS3SinkConfiguration$inboundSchema: z.ZodType<
   forcePathStyle: z.boolean().optional(),
 });
 
-/** @internal */
-export type GetJobRunsSinkS3SinkConfiguration$Outbound = {
-  type: string;
-  bucket: string;
-  accessKeyId: string;
-  secretAccessKey: string;
-  region: string;
-  prefix?: string | undefined;
-  skipOnFail: boolean;
-  apisToSend?: Array<string> | undefined;
-  endpoint?: string | undefined;
-  forcePathStyle?: boolean | undefined;
-};
-
-/** @internal */
-export const GetJobRunsSinkS3SinkConfiguration$outboundSchema: z.ZodType<
-  GetJobRunsSinkS3SinkConfiguration$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsSinkS3SinkConfiguration
-> = z.object({
-  type: GetJobRunsSinkProjectJobsRunsType$outboundSchema,
-  bucket: z.string(),
-  accessKeyId: z.string(),
-  secretAccessKey: z.string(),
-  region: z.string(),
-  prefix: z.string().optional(),
-  skipOnFail: z.boolean().default(false),
-  apisToSend: z.array(z.string()).optional(),
-  endpoint: z.string().optional(),
-  forcePathStyle: z.boolean().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsSinkS3SinkConfiguration$ {
-  /** @deprecated use `GetJobRunsSinkS3SinkConfiguration$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsSinkS3SinkConfiguration$inboundSchema;
-  /** @deprecated use `GetJobRunsSinkS3SinkConfiguration$outboundSchema` instead. */
-  export const outboundSchema =
-    GetJobRunsSinkS3SinkConfiguration$outboundSchema;
-  /** @deprecated use `GetJobRunsSinkS3SinkConfiguration$Outbound` instead. */
-  export type Outbound = GetJobRunsSinkS3SinkConfiguration$Outbound;
-}
-
-export function getJobRunsSinkS3SinkConfigurationToJSON(
-  getJobRunsSinkS3SinkConfiguration: GetJobRunsSinkS3SinkConfiguration,
-): string {
-  return JSON.stringify(
-    GetJobRunsSinkS3SinkConfiguration$outboundSchema.parse(
-      getJobRunsSinkS3SinkConfiguration,
-    ),
-  );
-}
-
 export function getJobRunsSinkS3SinkConfigurationFromJSON(
   jsonString: string,
 ): SafeParseResult<GetJobRunsSinkS3SinkConfiguration, SDKValidationError> {
@@ -976,22 +567,6 @@ export const GetJobRunsSinkType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetJobRunsSinkType);
 
 /** @internal */
-export const GetJobRunsSinkType$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsSinkType
-> = GetJobRunsSinkType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsSinkType$ {
-  /** @deprecated use `GetJobRunsSinkType$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsSinkType$inboundSchema;
-  /** @deprecated use `GetJobRunsSinkType$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsSinkType$outboundSchema;
-}
-
-/** @internal */
 export const GetJobRunsSinkWebhookSinkConfiguration$inboundSchema: z.ZodType<
   GetJobRunsSinkWebhookSinkConfiguration,
   z.ZodTypeDef,
@@ -1003,54 +578,6 @@ export const GetJobRunsSinkWebhookSinkConfiguration$inboundSchema: z.ZodType<
   skipOnFail: z.boolean().default(false),
   apisToSend: z.array(z.string()).optional(),
 });
-
-/** @internal */
-export type GetJobRunsSinkWebhookSinkConfiguration$Outbound = {
-  type: string;
-  url: string;
-  headers?: { [k: string]: string } | undefined;
-  skipOnFail: boolean;
-  apisToSend?: Array<string> | undefined;
-};
-
-/** @internal */
-export const GetJobRunsSinkWebhookSinkConfiguration$outboundSchema: z.ZodType<
-  GetJobRunsSinkWebhookSinkConfiguration$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsSinkWebhookSinkConfiguration
-> = z.object({
-  type: GetJobRunsSinkType$outboundSchema,
-  url: z.string(),
-  headers: z.record(z.string()).optional(),
-  skipOnFail: z.boolean().default(false),
-  apisToSend: z.array(z.string()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsSinkWebhookSinkConfiguration$ {
-  /** @deprecated use `GetJobRunsSinkWebhookSinkConfiguration$inboundSchema` instead. */
-  export const inboundSchema =
-    GetJobRunsSinkWebhookSinkConfiguration$inboundSchema;
-  /** @deprecated use `GetJobRunsSinkWebhookSinkConfiguration$outboundSchema` instead. */
-  export const outboundSchema =
-    GetJobRunsSinkWebhookSinkConfiguration$outboundSchema;
-  /** @deprecated use `GetJobRunsSinkWebhookSinkConfiguration$Outbound` instead. */
-  export type Outbound = GetJobRunsSinkWebhookSinkConfiguration$Outbound;
-}
-
-export function getJobRunsSinkWebhookSinkConfigurationToJSON(
-  getJobRunsSinkWebhookSinkConfiguration:
-    GetJobRunsSinkWebhookSinkConfiguration,
-): string {
-  return JSON.stringify(
-    GetJobRunsSinkWebhookSinkConfiguration$outboundSchema.parse(
-      getJobRunsSinkWebhookSinkConfiguration,
-    ),
-  );
-}
 
 export function getJobRunsSinkWebhookSinkConfigurationFromJSON(
   jsonString: string,
@@ -1073,38 +600,6 @@ export const GetJobRunsSink$inboundSchema: z.ZodType<
   z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$inboundSchema),
 ]);
 
-/** @internal */
-export type GetJobRunsSink$Outbound =
-  | GetJobRunsSinkS3SinkConfiguration$Outbound
-  | GetJobRunsSinkWebhookSinkConfiguration$Outbound;
-
-/** @internal */
-export const GetJobRunsSink$outboundSchema: z.ZodType<
-  GetJobRunsSink$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsSink
-> = z.union([
-  z.lazy(() => GetJobRunsSinkS3SinkConfiguration$outboundSchema),
-  z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsSink$ {
-  /** @deprecated use `GetJobRunsSink$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsSink$inboundSchema;
-  /** @deprecated use `GetJobRunsSink$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsSink$outboundSchema;
-  /** @deprecated use `GetJobRunsSink$Outbound` instead. */
-  export type Outbound = GetJobRunsSink$Outbound;
-}
-
-export function getJobRunsSinkToJSON(getJobRunsSink: GetJobRunsSink): string {
-  return JSON.stringify(GetJobRunsSink$outboundSchema.parse(getJobRunsSink));
-}
-
 export function getJobRunsSinkFromJSON(
   jsonString: string,
 ): SafeParseResult<GetJobRunsSink, SDKValidationError> {
@@ -1126,45 +621,6 @@ export const GetJobRunsAuthSession$inboundSchema: z.ZodType<
   createAttempts: z.number().int().default(3),
 });
 
-/** @internal */
-export type GetJobRunsAuthSession$Outbound = {
-  id: string;
-  checkAttempts: number;
-  createAttempts: number;
-};
-
-/** @internal */
-export const GetJobRunsAuthSession$outboundSchema: z.ZodType<
-  GetJobRunsAuthSession$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsAuthSession
-> = z.object({
-  id: z.string(),
-  checkAttempts: z.number().int().default(3),
-  createAttempts: z.number().int().default(3),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsAuthSession$ {
-  /** @deprecated use `GetJobRunsAuthSession$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsAuthSession$inboundSchema;
-  /** @deprecated use `GetJobRunsAuthSession$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsAuthSession$outboundSchema;
-  /** @deprecated use `GetJobRunsAuthSession$Outbound` instead. */
-  export type Outbound = GetJobRunsAuthSession$Outbound;
-}
-
-export function getJobRunsAuthSessionToJSON(
-  getJobRunsAuthSession: GetJobRunsAuthSession,
-): string {
-  return JSON.stringify(
-    GetJobRunsAuthSession$outboundSchema.parse(getJobRunsAuthSession),
-  );
-}
-
 export function getJobRunsAuthSessionFromJSON(
   jsonString: string,
 ): SafeParseResult<GetJobRunsAuthSession, SDKValidationError> {
@@ -1181,22 +637,6 @@ export const GetJobRunsVersion$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetJobRunsVersion);
 
 /** @internal */
-export const GetJobRunsVersion$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunsVersion
-> = GetJobRunsVersion$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsVersion$ {
-  /** @deprecated use `GetJobRunsVersion$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsVersion$inboundSchema;
-  /** @deprecated use `GetJobRunsVersion$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsVersion$outboundSchema;
-}
-
-/** @internal */
 export const GetJobRunsProxy$inboundSchema: z.ZodType<
   GetJobRunsProxy,
   z.ZodTypeDef,
@@ -1205,41 +645,6 @@ export const GetJobRunsProxy$inboundSchema: z.ZodType<
   version: GetJobRunsVersion$inboundSchema,
   url: z.string(),
 });
-
-/** @internal */
-export type GetJobRunsProxy$Outbound = {
-  version: string;
-  url: string;
-};
-
-/** @internal */
-export const GetJobRunsProxy$outboundSchema: z.ZodType<
-  GetJobRunsProxy$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsProxy
-> = z.object({
-  version: GetJobRunsVersion$outboundSchema,
-  url: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsProxy$ {
-  /** @deprecated use `GetJobRunsProxy$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsProxy$inboundSchema;
-  /** @deprecated use `GetJobRunsProxy$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsProxy$outboundSchema;
-  /** @deprecated use `GetJobRunsProxy$Outbound` instead. */
-  export type Outbound = GetJobRunsProxy$Outbound;
-}
-
-export function getJobRunsProxyToJSON(
-  getJobRunsProxy: GetJobRunsProxy,
-): string {
-  return JSON.stringify(GetJobRunsProxy$outboundSchema.parse(getJobRunsProxy));
-}
 
 export function getJobRunsProxyFromJSON(
   jsonString: string,
@@ -1272,61 +677,6 @@ export const JobConfigurationSnapshot$inboundSchema: z.ZodType<
     "auth_session": "authSession",
   });
 });
-
-/** @internal */
-export type JobConfigurationSnapshot$Outbound = {
-  configuration: GetJobRunsConfiguration$Outbound;
-  sink?:
-    | GetJobRunsSinkS3SinkConfiguration$Outbound
-    | GetJobRunsSinkWebhookSinkConfiguration$Outbound
-    | null
-    | undefined;
-  auth_session?: GetJobRunsAuthSession$Outbound | null | undefined;
-  proxy?: GetJobRunsProxy$Outbound | null | undefined;
-};
-
-/** @internal */
-export const JobConfigurationSnapshot$outboundSchema: z.ZodType<
-  JobConfigurationSnapshot$Outbound,
-  z.ZodTypeDef,
-  JobConfigurationSnapshot
-> = z.object({
-  configuration: z.lazy(() => GetJobRunsConfiguration$outboundSchema),
-  sink: z.nullable(
-    z.union([
-      z.lazy(() => GetJobRunsSinkS3SinkConfiguration$outboundSchema),
-      z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$outboundSchema),
-    ]),
-  ).optional(),
-  authSession: z.nullable(z.lazy(() => GetJobRunsAuthSession$outboundSchema))
-    .optional(),
-  proxy: z.nullable(z.lazy(() => GetJobRunsProxy$outboundSchema)).optional(),
-}).transform((v) => {
-  return remap$(v, {
-    authSession: "auth_session",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JobConfigurationSnapshot$ {
-  /** @deprecated use `JobConfigurationSnapshot$inboundSchema` instead. */
-  export const inboundSchema = JobConfigurationSnapshot$inboundSchema;
-  /** @deprecated use `JobConfigurationSnapshot$outboundSchema` instead. */
-  export const outboundSchema = JobConfigurationSnapshot$outboundSchema;
-  /** @deprecated use `JobConfigurationSnapshot$Outbound` instead. */
-  export type Outbound = JobConfigurationSnapshot$Outbound;
-}
-
-export function jobConfigurationSnapshotToJSON(
-  jobConfigurationSnapshot: JobConfigurationSnapshot,
-): string {
-  return JSON.stringify(
-    JobConfigurationSnapshot$outboundSchema.parse(jobConfigurationSnapshot),
-  );
-}
 
 export function jobConfigurationSnapshotFromJSON(
   jsonString: string,
@@ -1374,82 +724,6 @@ export const JobRuns$inboundSchema: z.ZodType<JobRuns, z.ZodTypeDef, unknown> =
     });
   });
 
-/** @internal */
-export type JobRuns$Outbound = {
-  id: string;
-  start_time: string;
-  end_time: string | null;
-  workspace_id: string;
-  project_id: string;
-  job_id: string;
-  created_at: string;
-  updated_at: string;
-  type: string;
-  status: string;
-  payloads: number | null;
-  successful_runs: number | null;
-  failed_runs: number | null;
-  error?: GetJobRunsError$Outbound | null | undefined;
-  reason?: GetJobRunsReason$Outbound | null | undefined;
-  job_configuration_snapshot: JobConfigurationSnapshot$Outbound;
-};
-
-/** @internal */
-export const JobRuns$outboundSchema: z.ZodType<
-  JobRuns$Outbound,
-  z.ZodTypeDef,
-  JobRuns
-> = z.object({
-  id: z.string(),
-  startTime: z.string(),
-  endTime: z.nullable(z.string()),
-  workspaceId: z.string(),
-  projectId: z.string(),
-  jobId: z.string(),
-  createdAt: z.string(),
-  updatedAt: z.string(),
-  type: GetJobRunsType$outboundSchema,
-  status: GetJobRunsStatus$outboundSchema,
-  payloads: z.nullable(z.number().int()),
-  successfulRuns: z.nullable(z.number().int()),
-  failedRuns: z.nullable(z.number().int()),
-  error: z.nullable(z.lazy(() => GetJobRunsError$outboundSchema)).optional(),
-  reason: z.nullable(z.lazy(() => GetJobRunsReason$outboundSchema)).optional(),
-  jobConfigurationSnapshot: z.lazy(() =>
-    JobConfigurationSnapshot$outboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    startTime: "start_time",
-    endTime: "end_time",
-    workspaceId: "workspace_id",
-    projectId: "project_id",
-    jobId: "job_id",
-    createdAt: "created_at",
-    updatedAt: "updated_at",
-    successfulRuns: "successful_runs",
-    failedRuns: "failed_runs",
-    jobConfigurationSnapshot: "job_configuration_snapshot",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace JobRuns$ {
-  /** @deprecated use `JobRuns$inboundSchema` instead. */
-  export const inboundSchema = JobRuns$inboundSchema;
-  /** @deprecated use `JobRuns$outboundSchema` instead. */
-  export const outboundSchema = JobRuns$outboundSchema;
-  /** @deprecated use `JobRuns$Outbound` instead. */
-  export type Outbound = JobRuns$Outbound;
-}
-
-export function jobRunsToJSON(jobRuns: JobRuns): string {
-  return JSON.stringify(JobRuns$outboundSchema.parse(jobRuns));
-}
-
 export function jobRunsFromJSON(
   jsonString: string,
 ): SafeParseResult<JobRuns, SDKValidationError> {
@@ -1469,43 +743,6 @@ export const GetJobRunsResponseBody$inboundSchema: z.ZodType<
   jobRuns: z.array(z.lazy(() => JobRuns$inboundSchema)),
   totalCount: z.number().int(),
 });
-
-/** @internal */
-export type GetJobRunsResponseBody$Outbound = {
-  jobRuns: Array<JobRuns$Outbound>;
-  totalCount: number;
-};
-
-/** @internal */
-export const GetJobRunsResponseBody$outboundSchema: z.ZodType<
-  GetJobRunsResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetJobRunsResponseBody
-> = z.object({
-  jobRuns: z.array(z.lazy(() => JobRuns$outboundSchema)),
-  totalCount: z.number().int(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobRunsResponseBody$ {
-  /** @deprecated use `GetJobRunsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetJobRunsResponseBody$inboundSchema;
-  /** @deprecated use `GetJobRunsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetJobRunsResponseBody$outboundSchema;
-  /** @deprecated use `GetJobRunsResponseBody$Outbound` instead. */
-  export type Outbound = GetJobRunsResponseBody$Outbound;
-}
-
-export function getJobRunsResponseBodyToJSON(
-  getJobRunsResponseBody: GetJobRunsResponseBody,
-): string {
-  return JSON.stringify(
-    GetJobRunsResponseBody$outboundSchema.parse(getJobRunsResponseBody),
-  );
-}
 
 export function getJobRunsResponseBodyFromJSON(
   jsonString: string,

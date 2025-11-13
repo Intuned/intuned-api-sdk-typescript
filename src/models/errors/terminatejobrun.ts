@@ -188,45 +188,10 @@ export const TerminateJobRunProjectJobsRunsCode$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(TerminateJobRunProjectJobsRunsCode);
 
 /** @internal */
-export const TerminateJobRunProjectJobsRunsCode$outboundSchema: z.ZodNativeEnum<
-  typeof TerminateJobRunProjectJobsRunsCode
-> = TerminateJobRunProjectJobsRunsCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunProjectJobsRunsCode$ {
-  /** @deprecated use `TerminateJobRunProjectJobsRunsCode$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunProjectJobsRunsCode$inboundSchema;
-  /** @deprecated use `TerminateJobRunProjectJobsRunsCode$outboundSchema` instead. */
-  export const outboundSchema =
-    TerminateJobRunProjectJobsRunsCode$outboundSchema;
-}
-
-/** @internal */
 export const TerminateJobRunProjectJobsRunsCategory$inboundSchema:
   z.ZodNativeEnum<typeof TerminateJobRunProjectJobsRunsCategory> = z.nativeEnum(
     TerminateJobRunProjectJobsRunsCategory,
   );
-
-/** @internal */
-export const TerminateJobRunProjectJobsRunsCategory$outboundSchema:
-  z.ZodNativeEnum<typeof TerminateJobRunProjectJobsRunsCategory> =
-    TerminateJobRunProjectJobsRunsCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunProjectJobsRunsCategory$ {
-  /** @deprecated use `TerminateJobRunProjectJobsRunsCategory$inboundSchema` instead. */
-  export const inboundSchema =
-    TerminateJobRunProjectJobsRunsCategory$inboundSchema;
-  /** @deprecated use `TerminateJobRunProjectJobsRunsCategory$outboundSchema` instead. */
-  export const outboundSchema =
-    TerminateJobRunProjectJobsRunsCategory$outboundSchema;
-}
 
 /** @internal */
 export const TerminateJobRunProjectJobsRunsResponseBody$inboundSchema:
@@ -251,88 +216,14 @@ export const TerminateJobRunProjectJobsRunsResponseBody$inboundSchema:
       });
 
 /** @internal */
-export type TerminateJobRunProjectJobsRunsResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const TerminateJobRunProjectJobsRunsResponseBody$outboundSchema:
-  z.ZodType<
-    TerminateJobRunProjectJobsRunsResponseBody$Outbound,
-    z.ZodTypeDef,
-    TerminateJobRunProjectJobsRunsResponseBody
-  > = z.instanceof(TerminateJobRunProjectJobsRunsResponseBody)
-    .transform(v => v.data$)
-    .pipe(z.object({
-      code: TerminateJobRunProjectJobsRunsCode$outboundSchema,
-      category: TerminateJobRunProjectJobsRunsCategory$outboundSchema,
-      message: z.string(),
-      retirable: z.boolean(),
-      details: z.any().optional(),
-      correlationId: z.string(),
-    }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunProjectJobsRunsResponseBody$ {
-  /** @deprecated use `TerminateJobRunProjectJobsRunsResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    TerminateJobRunProjectJobsRunsResponseBody$inboundSchema;
-  /** @deprecated use `TerminateJobRunProjectJobsRunsResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    TerminateJobRunProjectJobsRunsResponseBody$outboundSchema;
-  /** @deprecated use `TerminateJobRunProjectJobsRunsResponseBody$Outbound` instead. */
-  export type Outbound = TerminateJobRunProjectJobsRunsResponseBody$Outbound;
-}
-
-/** @internal */
 export const TerminateJobRunCode$inboundSchema: z.ZodNativeEnum<
   typeof TerminateJobRunCode
 > = z.nativeEnum(TerminateJobRunCode);
 
 /** @internal */
-export const TerminateJobRunCode$outboundSchema: z.ZodNativeEnum<
-  typeof TerminateJobRunCode
-> = TerminateJobRunCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunCode$ {
-  /** @deprecated use `TerminateJobRunCode$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunCode$inboundSchema;
-  /** @deprecated use `TerminateJobRunCode$outboundSchema` instead. */
-  export const outboundSchema = TerminateJobRunCode$outboundSchema;
-}
-
-/** @internal */
 export const TerminateJobRunCategory$inboundSchema: z.ZodNativeEnum<
   typeof TerminateJobRunCategory
 > = z.nativeEnum(TerminateJobRunCategory);
-
-/** @internal */
-export const TerminateJobRunCategory$outboundSchema: z.ZodNativeEnum<
-  typeof TerminateJobRunCategory
-> = TerminateJobRunCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunCategory$ {
-  /** @deprecated use `TerminateJobRunCategory$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunCategory$inboundSchema;
-  /** @deprecated use `TerminateJobRunCategory$outboundSchema` instead. */
-  export const outboundSchema = TerminateJobRunCategory$outboundSchema;
-}
 
 /** @internal */
 export const TerminateJobRunResponseBody$inboundSchema: z.ZodType<
@@ -357,42 +248,3 @@ export const TerminateJobRunResponseBody$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type TerminateJobRunResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const TerminateJobRunResponseBody$outboundSchema: z.ZodType<
-  TerminateJobRunResponseBody$Outbound,
-  z.ZodTypeDef,
-  TerminateJobRunResponseBody
-> = z.instanceof(TerminateJobRunResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: TerminateJobRunCode$outboundSchema,
-    category: TerminateJobRunCategory$outboundSchema,
-    message: z.string(),
-    retirable: z.boolean(),
-    details: z.any().optional(),
-    correlationId: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunResponseBody$ {
-  /** @deprecated use `TerminateJobRunResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunResponseBody$inboundSchema;
-  /** @deprecated use `TerminateJobRunResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TerminateJobRunResponseBody$outboundSchema;
-  /** @deprecated use `TerminateJobRunResponseBody$Outbound` instead. */
-  export type Outbound = TerminateJobRunResponseBody$Outbound;
-}

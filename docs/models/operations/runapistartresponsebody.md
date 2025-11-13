@@ -1,6 +1,6 @@
 # RunApiStartResponseBody
 
-Object with user data.
+Run started successfully.
 
 ## Example Usage
 

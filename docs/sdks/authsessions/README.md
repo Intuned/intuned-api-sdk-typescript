@@ -3,7 +3,7 @@
 
 ## Overview
 
-Manage the authentication sessions of your projects
+Manage Auth Sessions
 
 ### Available Operations
 
@@ -13,7 +13,7 @@ Manage the authentication sessions of your projects
 
 ## all
 
-Gets all authentication sessions of project
+Gets all Auth Sessions of project
 
 ### Example Usage
 
@@ -84,7 +84,7 @@ run();
 
 ## one
 
-Gets authentication session of project by ID
+Gets Auth Session of project by ID
 
 ### Example Usage
 
@@ -156,7 +156,7 @@ run();
 
 ## delete
 
-Deletes an authentication session by ID.
+Deletes an Auth Session by ID.
 
 ### Example Usage
 

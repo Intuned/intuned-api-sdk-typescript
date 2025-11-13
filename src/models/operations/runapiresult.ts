@@ -119,6 +119,7 @@ export const RunApiResultType = {
   JobRunTerminated: "job-run-terminated",
   FailedToInitializeJobRun: "failed-to-initialize-job-run",
   ApiAccessDisabled: "api-access-disabled",
+  CancelledUserAction: "cancelled-user-action",
 } as const;
 export type RunApiResultType = ClosedEnum<typeof RunApiResultType>;
 
@@ -161,70 +162,6 @@ export type RunApiResultResponseBody = {
 };
 
 /** @internal */
-export const RunApiResultGlobals$inboundSchema: z.ZodType<
-  RunApiResultGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type RunApiResultGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const RunApiResultGlobals$outboundSchema: z.ZodType<
-  RunApiResultGlobals$Outbound,
-  z.ZodTypeDef,
-  RunApiResultGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiResultGlobals$ {
-  /** @deprecated use `RunApiResultGlobals$inboundSchema` instead. */
-  export const inboundSchema = RunApiResultGlobals$inboundSchema;
-  /** @deprecated use `RunApiResultGlobals$outboundSchema` instead. */
-  export const outboundSchema = RunApiResultGlobals$outboundSchema;
-  /** @deprecated use `RunApiResultGlobals$Outbound` instead. */
-  export type Outbound = RunApiResultGlobals$Outbound;
-}
-
-export function runApiResultGlobalsToJSON(
-  runApiResultGlobals: RunApiResultGlobals,
-): string {
-  return JSON.stringify(
-    RunApiResultGlobals$outboundSchema.parse(runApiResultGlobals),
-  );
-}
-
-export function runApiResultGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<RunApiResultGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RunApiResultGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RunApiResultGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const RunApiResultRequest$inboundSchema: z.ZodType<
-  RunApiResultRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  runId: z.string(),
-});
-
-/** @internal */
 export type RunApiResultRequest$Outbound = {
   projectName: string;
   runId: string;
@@ -240,19 +177,6 @@ export const RunApiResultRequest$outboundSchema: z.ZodType<
   runId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiResultRequest$ {
-  /** @deprecated use `RunApiResultRequest$inboundSchema` instead. */
-  export const inboundSchema = RunApiResultRequest$inboundSchema;
-  /** @deprecated use `RunApiResultRequest$outboundSchema` instead. */
-  export const outboundSchema = RunApiResultRequest$outboundSchema;
-  /** @deprecated use `RunApiResultRequest$Outbound` instead. */
-  export type Outbound = RunApiResultRequest$Outbound;
-}
-
 export function runApiResultRequestToJSON(
   runApiResultRequest: RunApiResultRequest,
 ): string {
@@ -261,36 +185,10 @@ export function runApiResultRequestToJSON(
   );
 }
 
-export function runApiResultRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RunApiResultRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RunApiResultRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RunApiResultRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const RunApiResultStatus$inboundSchema: z.ZodNativeEnum<
   typeof RunApiResultStatus
 > = z.nativeEnum(RunApiResultStatus);
-
-/** @internal */
-export const RunApiResultStatus$outboundSchema: z.ZodNativeEnum<
-  typeof RunApiResultStatus
-> = RunApiResultStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiResultStatus$ {
-  /** @deprecated use `RunApiResultStatus$inboundSchema` instead. */
-  export const inboundSchema = RunApiResultStatus$inboundSchema;
-  /** @deprecated use `RunApiResultStatus$outboundSchema` instead. */
-  export const outboundSchema = RunApiResultStatus$outboundSchema;
-}
 
 /** @internal */
 export const ExtendedPayloads$inboundSchema: z.ZodType<
@@ -302,45 +200,6 @@ export const ExtendedPayloads$inboundSchema: z.ZodType<
   runId: z.string().optional(),
   parameters: z.record(z.any()).optional(),
 });
-
-/** @internal */
-export type ExtendedPayloads$Outbound = {
-  api: string;
-  runId?: string | undefined;
-  parameters?: { [k: string]: any } | undefined;
-};
-
-/** @internal */
-export const ExtendedPayloads$outboundSchema: z.ZodType<
-  ExtendedPayloads$Outbound,
-  z.ZodTypeDef,
-  ExtendedPayloads
-> = z.object({
-  api: z.string(),
-  runId: z.string().optional(),
-  parameters: z.record(z.any()).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ExtendedPayloads$ {
-  /** @deprecated use `ExtendedPayloads$inboundSchema` instead. */
-  export const inboundSchema = ExtendedPayloads$inboundSchema;
-  /** @deprecated use `ExtendedPayloads$outboundSchema` instead. */
-  export const outboundSchema = ExtendedPayloads$outboundSchema;
-  /** @deprecated use `ExtendedPayloads$Outbound` instead. */
-  export type Outbound = ExtendedPayloads$Outbound;
-}
-
-export function extendedPayloadsToJSON(
-  extendedPayloads: ExtendedPayloads,
-): string {
-  return JSON.stringify(
-    ExtendedPayloads$outboundSchema.parse(extendedPayloads),
-  );
-}
 
 export function extendedPayloadsFromJSON(
   jsonString: string,
@@ -358,38 +217,8 @@ export const Code$inboundSchema: z.ZodNativeEnum<typeof Code> = z.nativeEnum(
 );
 
 /** @internal */
-export const Code$outboundSchema: z.ZodNativeEnum<typeof Code> =
-  Code$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Code$ {
-  /** @deprecated use `Code$inboundSchema` instead. */
-  export const inboundSchema = Code$inboundSchema;
-  /** @deprecated use `Code$outboundSchema` instead. */
-  export const outboundSchema = Code$outboundSchema;
-}
-
-/** @internal */
 export const Category$inboundSchema: z.ZodNativeEnum<typeof Category> = z
   .nativeEnum(Category);
-
-/** @internal */
-export const Category$outboundSchema: z.ZodNativeEnum<typeof Category> =
-  Category$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Category$ {
-  /** @deprecated use `Category$inboundSchema` instead. */
-  export const inboundSchema = Category$inboundSchema;
-  /** @deprecated use `Category$outboundSchema` instead. */
-  export const outboundSchema = Category$outboundSchema;
-}
 
 /** @internal */
 export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
@@ -408,54 +237,6 @@ export const ErrorT$inboundSchema: z.ZodType<ErrorT, z.ZodTypeDef, unknown> = z
     });
   });
 
-/** @internal */
-export type ErrorT$Outbound = {
-  message: string;
-  code?: string | undefined;
-  category: string;
-  retirable: boolean;
-  doc_url?: string | undefined;
-  correlation_id?: string | undefined;
-  details?: any | undefined;
-};
-
-/** @internal */
-export const ErrorT$outboundSchema: z.ZodType<
-  ErrorT$Outbound,
-  z.ZodTypeDef,
-  ErrorT
-> = z.object({
-  message: z.string(),
-  code: Code$outboundSchema.optional(),
-  category: Category$outboundSchema,
-  retirable: z.boolean().default(false),
-  docUrl: z.string().optional(),
-  correlationId: z.string().optional(),
-  details: z.any().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    docUrl: "doc_url",
-    correlationId: "correlation_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ErrorT$ {
-  /** @deprecated use `ErrorT$inboundSchema` instead. */
-  export const inboundSchema = ErrorT$inboundSchema;
-  /** @deprecated use `ErrorT$outboundSchema` instead. */
-  export const outboundSchema = ErrorT$outboundSchema;
-  /** @deprecated use `ErrorT$Outbound` instead. */
-  export type Outbound = ErrorT$Outbound;
-}
-
-export function errorToJSON(errorT: ErrorT): string {
-  return JSON.stringify(ErrorT$outboundSchema.parse(errorT));
-}
-
 export function errorFromJSON(
   jsonString: string,
 ): SafeParseResult<ErrorT, SDKValidationError> {
@@ -472,22 +253,6 @@ export const RunApiResultType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(RunApiResultType);
 
 /** @internal */
-export const RunApiResultType$outboundSchema: z.ZodNativeEnum<
-  typeof RunApiResultType
-> = RunApiResultType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiResultType$ {
-  /** @deprecated use `RunApiResultType$inboundSchema` instead. */
-  export const inboundSchema = RunApiResultType$inboundSchema;
-  /** @deprecated use `RunApiResultType$outboundSchema` instead. */
-  export const outboundSchema = RunApiResultType$outboundSchema;
-}
-
-/** @internal */
 export const Reason$inboundSchema: z.ZodType<Reason, z.ZodTypeDef, unknown> = z
   .object({
     type: RunApiResultType$inboundSchema,
@@ -499,47 +264,6 @@ export const Reason$inboundSchema: z.ZodType<Reason, z.ZodTypeDef, unknown> = z
       "doc_url": "docUrl",
     });
   });
-
-/** @internal */
-export type Reason$Outbound = {
-  type: string;
-  message: string;
-  doc_url?: string | undefined;
-  details?: any | undefined;
-};
-
-/** @internal */
-export const Reason$outboundSchema: z.ZodType<
-  Reason$Outbound,
-  z.ZodTypeDef,
-  Reason
-> = z.object({
-  type: RunApiResultType$outboundSchema,
-  message: z.string(),
-  docUrl: z.string().optional(),
-  details: z.any().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    docUrl: "doc_url",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Reason$ {
-  /** @deprecated use `Reason$inboundSchema` instead. */
-  export const inboundSchema = Reason$inboundSchema;
-  /** @deprecated use `Reason$outboundSchema` instead. */
-  export const outboundSchema = Reason$outboundSchema;
-  /** @deprecated use `Reason$Outbound` instead. */
-  export type Outbound = Reason$Outbound;
-}
-
-export function reasonToJSON(reason: Reason): string {
-  return JSON.stringify(Reason$outboundSchema.parse(reason));
-}
 
 export function reasonFromJSON(
   jsonString: string,
@@ -566,54 +290,6 @@ export const RunApiResultResponseBody$inboundSchema: z.ZodType<
   message: z.string().optional(),
   reason: z.lazy(() => Reason$inboundSchema).optional(),
 });
-
-/** @internal */
-export type RunApiResultResponseBody$Outbound = {
-  runId: string;
-  status: string;
-  result?: any | undefined;
-  extendedPayloads?: Array<ExtendedPayloads$Outbound> | undefined;
-  error?: ErrorT$Outbound | undefined;
-  message?: string | undefined;
-  reason?: Reason$Outbound | undefined;
-};
-
-/** @internal */
-export const RunApiResultResponseBody$outboundSchema: z.ZodType<
-  RunApiResultResponseBody$Outbound,
-  z.ZodTypeDef,
-  RunApiResultResponseBody
-> = z.object({
-  runId: z.string(),
-  status: RunApiResultStatus$outboundSchema,
-  result: z.any().optional(),
-  extendedPayloads: z.array(z.lazy(() => ExtendedPayloads$outboundSchema))
-    .optional(),
-  error: z.lazy(() => ErrorT$outboundSchema).optional(),
-  message: z.string().optional(),
-  reason: z.lazy(() => Reason$outboundSchema).optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiResultResponseBody$ {
-  /** @deprecated use `RunApiResultResponseBody$inboundSchema` instead. */
-  export const inboundSchema = RunApiResultResponseBody$inboundSchema;
-  /** @deprecated use `RunApiResultResponseBody$outboundSchema` instead. */
-  export const outboundSchema = RunApiResultResponseBody$outboundSchema;
-  /** @deprecated use `RunApiResultResponseBody$Outbound` instead. */
-  export type Outbound = RunApiResultResponseBody$Outbound;
-}
-
-export function runApiResultResponseBodyToJSON(
-  runApiResultResponseBody: RunApiResultResponseBody,
-): string {
-  return JSON.stringify(
-    RunApiResultResponseBody$outboundSchema.parse(runApiResultResponseBody),
-  );
-}
 
 export function runApiResultResponseBodyFromJSON(
   jsonString: string,

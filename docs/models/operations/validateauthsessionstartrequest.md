@@ -1,14 +1,15 @@
-# StartAuthSessionRecorderRequest
+# ValidateAuthSessionStartRequest
 
 ## Example Usage
 
 ```typescript
-import { StartAuthSessionRecorderRequest } from "@intuned/client/models/operations";
+import { ValidateAuthSessionStartRequest } from "@intuned/client/models/operations";
 
-let value: StartAuthSessionRecorderRequest = {
+let value: ValidateAuthSessionStartRequest = {
   projectName: "my-project",
+  authSessionId: "<id>",
   requestBody: {
-    authSessionId: "auth-session-123",
+    proxy: "http://username:password@domain:port",
   },
 };
 ```
@@ -18,4 +19,5 @@ let value: StartAuthSessionRecorderRequest = {
 | Field                                                                                                            | Type                                                                                                             | Required                                                                                                         | Description                                                                                                      | Example                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
 | `projectName`                                                                                                    | *string*                                                                                                         | :heavy_check_mark:                                                                                               | Your project name. It is the name you provide when creating a project.                                           | my-project                                                                                                       |
-| `requestBody`                                                                                                    | [operations.StartAuthSessionRecorderRequestBody](../../models/operations/startauthsessionrecorderrequestbody.md) | :heavy_check_mark:                                                                                               | Start auth session recorder input schema                                                                         |                                                                                                                  |
+| `authSessionId`                                                                                                  | *string*                                                                                                         | :heavy_check_mark:                                                                                               | Authentication session ID. You can obtain it from the Auth Sessions tab in your project details.                 |                                                                                                                  |
+| `requestBody`                                                                                                    | [operations.ValidateAuthSessionStartRequestBody](../../models/operations/validateauthsessionstartrequestbody.md) | :heavy_check_mark:                                                                                               | Validate auth session input schema                                                                               |                                                                                                                  |

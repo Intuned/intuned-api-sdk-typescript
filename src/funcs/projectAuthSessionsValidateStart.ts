@@ -25,19 +25,20 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Start recorder session for an auth session
+ * Validate Auth Session - Start
  *
  * @remarks
- * create a recording session for a specific auth session
+ * Starts an AuthSession:Validate run to validate an Auth Session.
  */
-export function projectAuthSessionsRecorderStart(
+export function projectAuthSessionsValidateStart(
   client: IntunedClientCore,
   projectName: string,
-  requestBody: operations.StartAuthSessionRecorderRequestBody,
+  authSessionId: string,
+  requestBody: operations.ValidateAuthSessionStartRequestBody,
   options?: RequestOptions,
 ): APIPromise<
   Result<
-    operations.StartAuthSessionRecorderResponseBody,
+    operations.ValidateAuthSessionStartResponseBody,
     | IntunedClientError
     | ResponseValidationError
     | ConnectionError
@@ -51,6 +52,7 @@ export function projectAuthSessionsRecorderStart(
   return new APIPromise($do(
     client,
     projectName,
+    authSessionId,
     requestBody,
     options,
   ));
@@ -59,12 +61,13 @@ export function projectAuthSessionsRecorderStart(
 async function $do(
   client: IntunedClientCore,
   projectName: string,
-  requestBody: operations.StartAuthSessionRecorderRequestBody,
+  authSessionId: string,
+  requestBody: operations.ValidateAuthSessionStartRequestBody,
   options?: RequestOptions,
 ): Promise<
   [
     Result<
-      operations.StartAuthSessionRecorderResponseBody,
+      operations.ValidateAuthSessionStartResponseBody,
       | IntunedClientError
       | ResponseValidationError
       | ConnectionError
@@ -77,15 +80,16 @@ async function $do(
     APICall,
   ]
 > {
-  const input: operations.StartAuthSessionRecorderRequest = {
+  const input: operations.ValidateAuthSessionStartRequest = {
     projectName: projectName,
+    authSessionId: authSessionId,
     requestBody: requestBody,
   };
 
   const parsed = safeParse(
     input,
     (value) =>
-      operations.StartAuthSessionRecorderRequest$outboundSchema.parse(value),
+      operations.ValidateAuthSessionStartRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
   if (!parsed.ok) {
@@ -95,6 +99,10 @@ async function $do(
   const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
   const pathParams = {
+    authSessionId: encodeSimple("authSessionId", payload.authSessionId, {
+      explode: false,
+      charEncoding: "percent",
+    }),
     projectName: encodeSimple("projectName", payload.projectName, {
       explode: false,
       charEncoding: "percent",
@@ -106,7 +114,7 @@ async function $do(
   };
 
   const path = pathToFunc(
-    "/{workspaceId}/projects/{projectName}/auth-sessions/recorder/start",
+    "/{workspaceId}/projects/{projectName}/auth-sessions/{authSessionId}/validate/start",
   )(pathParams);
 
   const headers = new Headers(compactMap({
@@ -121,7 +129,7 @@ async function $do(
   const context = {
     options: client._options,
     baseURL: options?.serverURL ?? client._baseURL ?? "",
-    operationID: "startAuthSessionRecorder",
+    operationID: "ValidateAuthSessionStart",
     oAuth2Scopes: null,
 
     resolvedSecurity: requestSecurity,
@@ -160,7 +168,7 @@ async function $do(
   const response = doResult.value;
 
   const [result] = await M.match<
-    operations.StartAuthSessionRecorderResponseBody,
+    operations.ValidateAuthSessionStartResponseBody,
     | IntunedClientError
     | ResponseValidationError
     | ConnectionError
@@ -170,7 +178,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(201, operations.StartAuthSessionRecorderResponseBody$inboundSchema),
+    M.json(201, operations.ValidateAuthSessionStartResponseBody$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req);

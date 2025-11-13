@@ -29,7 +29,7 @@ export class Jobs extends ClientSDK {
   async all(
     projectName: string,
     options?: RequestOptions,
-  ): Promise<operations.GetJobsResponseBody> {
+  ): Promise<Array<operations.JobDBObjectSchema>> {
     return unwrapAsync(projectJobsAll(
       this,
       projectName,

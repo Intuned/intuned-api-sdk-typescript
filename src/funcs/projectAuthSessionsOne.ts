@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Get Auth Session
  *
  * @remarks
- * Gets authentication session of project by ID
+ * Gets Auth Session of project by ID
  */
 export function projectAuthSessionsOne(
   client: IntunedClientCore,

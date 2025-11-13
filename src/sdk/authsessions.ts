@@ -9,10 +9,15 @@ import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
 import { Create } from "./create.js";
-import { Recorder } from "./recorder.js";
 import { Update } from "./update.js";
+import { Validate } from "./validate.js";
 
 export class AuthSessions extends ClientSDK {
+  private _validate?: Validate;
+  get validate(): Validate {
+    return (this._validate ??= new Validate(this._options));
+  }
+
   private _create?: Create;
   get create(): Create {
     return (this._create ??= new Create(this._options));
@@ -23,16 +28,11 @@ export class AuthSessions extends ClientSDK {
     return (this._update ??= new Update(this._options));
   }
 
-  private _recorder?: Recorder;
-  get recorder(): Recorder {
-    return (this._recorder ??= new Recorder(this._options));
-  }
-
   /**
    * Get Auth Sessions
    *
    * @remarks
-   * Gets all authentication sessions of project
+   * Gets all Auth Sessions of project
    */
   async all(
     projectName: string,
@@ -49,7 +49,7 @@ export class AuthSessions extends ClientSDK {
    * Get Auth Session
    *
    * @remarks
-   * Gets authentication session of project by ID
+   * Gets Auth Session of project by ID
    */
   async one(
     projectName: string,
@@ -68,7 +68,7 @@ export class AuthSessions extends ClientSDK {
    * Delete Auth Session
    *
    * @remarks
-   * Deletes an authentication session by ID.
+   * Deletes an Auth Session by ID.
    */
   async delete(
     projectName: string,

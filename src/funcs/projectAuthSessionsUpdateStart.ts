@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Update Auth Session - Start
  *
  * @remarks
- * Starts updating process of an authentication session.
+ * Starts an AuthSession:Update run to update an existing Auth Session.
  */
 export function projectAuthSessionsUpdateStart(
   client: IntunedClientCore,

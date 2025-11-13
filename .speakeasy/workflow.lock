@@ -1,9 +1,9 @@
-speakeasyVersion: 1.649.0
+speakeasyVersion: 1.656.1
 sources:
     intunedClientApi:
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:92b381aeebefa57c8ded7e6189a43e4481ab92e7246d5384686a936668c8edac
-        sourceBlobDigest: sha256:ad3848dcd8c71c8084cbee89d2adf38764d18c7601727ca5f1ce29fbe238853f
+        sourceRevisionDigest: sha256:0033219ddf4472a21cfae87c7d6ff5cc0bd04cef984ba874d5ca76de407464f6
+        sourceBlobDigest: sha256:88c65434a5852abdef84d6616e64a73d39beb1b4f41fe7259a4a2a57d39a0c64
         tags:
             - latest
             - 0.0.2
@@ -11,10 +11,10 @@ targets:
     my-first-target:
         source: intunedClientApi
         sourceNamespace: intuned-client-api
-        sourceRevisionDigest: sha256:92b381aeebefa57c8ded7e6189a43e4481ab92e7246d5384686a936668c8edac
-        sourceBlobDigest: sha256:ad3848dcd8c71c8084cbee89d2adf38764d18c7601727ca5f1ce29fbe238853f
+        sourceRevisionDigest: sha256:0033219ddf4472a21cfae87c7d6ff5cc0bd04cef984ba874d5ca76de407464f6
+        sourceBlobDigest: sha256:88c65434a5852abdef84d6616e64a73d39beb1b4f41fe7259a4a2a57d39a0c64
         codeSamplesNamespace: intuned-client-api-typescript-code-samples
-        codeSamplesRevisionDigest: sha256:0f6989898328c7d47f04df7b1cddac59dca2a21ebe3c62eb2707b169b8b53be3
+        codeSamplesRevisionDigest: sha256:f38578c48276bdf171979e8d1ce19f306bcf67d2b61b5449fec32bf835440628
     typescript-client-sdk:
         source: intunedClientApi
         sourceNamespace: intuned-client-api

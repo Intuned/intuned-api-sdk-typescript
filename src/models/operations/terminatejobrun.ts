@@ -40,71 +40,6 @@ export type TerminateJobRunResponseBody = {
 };
 
 /** @internal */
-export const TerminateJobRunGlobals$inboundSchema: z.ZodType<
-  TerminateJobRunGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type TerminateJobRunGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const TerminateJobRunGlobals$outboundSchema: z.ZodType<
-  TerminateJobRunGlobals$Outbound,
-  z.ZodTypeDef,
-  TerminateJobRunGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunGlobals$ {
-  /** @deprecated use `TerminateJobRunGlobals$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunGlobals$inboundSchema;
-  /** @deprecated use `TerminateJobRunGlobals$outboundSchema` instead. */
-  export const outboundSchema = TerminateJobRunGlobals$outboundSchema;
-  /** @deprecated use `TerminateJobRunGlobals$Outbound` instead. */
-  export type Outbound = TerminateJobRunGlobals$Outbound;
-}
-
-export function terminateJobRunGlobalsToJSON(
-  terminateJobRunGlobals: TerminateJobRunGlobals,
-): string {
-  return JSON.stringify(
-    TerminateJobRunGlobals$outboundSchema.parse(terminateJobRunGlobals),
-  );
-}
-
-export function terminateJobRunGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<TerminateJobRunGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TerminateJobRunGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TerminateJobRunGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const TerminateJobRunRequest$inboundSchema: z.ZodType<
-  TerminateJobRunRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  jobId: z.string(),
-  jobRunId: z.string(),
-});
-
-/** @internal */
 export type TerminateJobRunRequest$Outbound = {
   projectName: string;
   jobId: string;
@@ -122,34 +57,11 @@ export const TerminateJobRunRequest$outboundSchema: z.ZodType<
   jobRunId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunRequest$ {
-  /** @deprecated use `TerminateJobRunRequest$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunRequest$inboundSchema;
-  /** @deprecated use `TerminateJobRunRequest$outboundSchema` instead. */
-  export const outboundSchema = TerminateJobRunRequest$outboundSchema;
-  /** @deprecated use `TerminateJobRunRequest$Outbound` instead. */
-  export type Outbound = TerminateJobRunRequest$Outbound;
-}
-
 export function terminateJobRunRequestToJSON(
   terminateJobRunRequest: TerminateJobRunRequest,
 ): string {
   return JSON.stringify(
     TerminateJobRunRequest$outboundSchema.parse(terminateJobRunRequest),
-  );
-}
-
-export function terminateJobRunRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<TerminateJobRunRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TerminateJobRunRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TerminateJobRunRequest' from JSON`,
   );
 }
 
@@ -161,43 +73,6 @@ export const TerminateJobRunResponseBody$inboundSchema: z.ZodType<
 > = z.object({
   message: z.string(),
 });
-
-/** @internal */
-export type TerminateJobRunResponseBody$Outbound = {
-  message: string;
-};
-
-/** @internal */
-export const TerminateJobRunResponseBody$outboundSchema: z.ZodType<
-  TerminateJobRunResponseBody$Outbound,
-  z.ZodTypeDef,
-  TerminateJobRunResponseBody
-> = z.object({
-  message: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TerminateJobRunResponseBody$ {
-  /** @deprecated use `TerminateJobRunResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TerminateJobRunResponseBody$inboundSchema;
-  /** @deprecated use `TerminateJobRunResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TerminateJobRunResponseBody$outboundSchema;
-  /** @deprecated use `TerminateJobRunResponseBody$Outbound` instead. */
-  export type Outbound = TerminateJobRunResponseBody$Outbound;
-}
-
-export function terminateJobRunResponseBodyToJSON(
-  terminateJobRunResponseBody: TerminateJobRunResponseBody,
-): string {
-  return JSON.stringify(
-    TerminateJobRunResponseBody$outboundSchema.parse(
-      terminateJobRunResponseBody,
-    ),
-  );
-}
 
 export function terminateJobRunResponseBodyFromJSON(
   jsonString: string,

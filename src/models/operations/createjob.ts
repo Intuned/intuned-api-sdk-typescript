@@ -928,69 +928,6 @@ export type CreateJobResponseBody = {
 };
 
 /** @internal */
-export const CreateJobGlobals$inboundSchema: z.ZodType<
-  CreateJobGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type CreateJobGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const CreateJobGlobals$outboundSchema: z.ZodType<
-  CreateJobGlobals$Outbound,
-  z.ZodTypeDef,
-  CreateJobGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobGlobals$ {
-  /** @deprecated use `CreateJobGlobals$inboundSchema` instead. */
-  export const inboundSchema = CreateJobGlobals$inboundSchema;
-  /** @deprecated use `CreateJobGlobals$outboundSchema` instead. */
-  export const outboundSchema = CreateJobGlobals$outboundSchema;
-  /** @deprecated use `CreateJobGlobals$Outbound` instead. */
-  export type Outbound = CreateJobGlobals$Outbound;
-}
-
-export function createJobGlobalsToJSON(
-  createJobGlobals: CreateJobGlobals,
-): string {
-  return JSON.stringify(
-    CreateJobGlobals$outboundSchema.parse(createJobGlobals),
-  );
-}
-
-export function createJobGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobRetry$inboundSchema: z.ZodType<
-  CreateJobRetry,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  maximumAttempts: z.number().int().default(3),
-});
-
-/** @internal */
 export type CreateJobRetry$Outbound = {
   maximumAttempts: number;
 };
@@ -1004,41 +941,9 @@ export const CreateJobRetry$outboundSchema: z.ZodType<
   maximumAttempts: z.number().int().default(3),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobRetry$ {
-  /** @deprecated use `CreateJobRetry$inboundSchema` instead. */
-  export const inboundSchema = CreateJobRetry$inboundSchema;
-  /** @deprecated use `CreateJobRetry$outboundSchema` instead. */
-  export const outboundSchema = CreateJobRetry$outboundSchema;
-  /** @deprecated use `CreateJobRetry$Outbound` instead. */
-  export type Outbound = CreateJobRetry$Outbound;
-}
-
 export function createJobRetryToJSON(createJobRetry: CreateJobRetry): string {
   return JSON.stringify(CreateJobRetry$outboundSchema.parse(createJobRetry));
 }
-
-export function createJobRetryFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobRetry, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobRetry$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobRetry' from JSON`,
-  );
-}
-
-/** @internal */
-export const Payload$inboundSchema: z.ZodType<Payload, z.ZodTypeDef, unknown> =
-  z.object({
-    parameters: z.record(z.any()),
-    requestTimeout: z.number().int().default(600),
-    retry: z.lazy(() => CreateJobRetry$inboundSchema).optional(),
-    apiName: z.string(),
-  });
 
 /** @internal */
 export type Payload$Outbound = {
@@ -1060,41 +965,9 @@ export const Payload$outboundSchema: z.ZodType<
   apiName: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Payload$ {
-  /** @deprecated use `Payload$inboundSchema` instead. */
-  export const inboundSchema = Payload$inboundSchema;
-  /** @deprecated use `Payload$outboundSchema` instead. */
-  export const outboundSchema = Payload$outboundSchema;
-  /** @deprecated use `Payload$Outbound` instead. */
-  export type Outbound = Payload$Outbound;
-}
-
 export function payloadToJSON(payload: Payload): string {
   return JSON.stringify(Payload$outboundSchema.parse(payload));
 }
-
-export function payloadFromJSON(
-  jsonString: string,
-): SafeParseResult<Payload, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Payload$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Payload' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobProjectJobsRetry$inboundSchema: z.ZodType<
-  CreateJobProjectJobsRetry,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  maximumAttempts: z.number().int().default(3),
-});
 
 /** @internal */
 export type CreateJobProjectJobsRetry$Outbound = {
@@ -1110,19 +983,6 @@ export const CreateJobProjectJobsRetry$outboundSchema: z.ZodType<
   maximumAttempts: z.number().int().default(3),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobProjectJobsRetry$ {
-  /** @deprecated use `CreateJobProjectJobsRetry$inboundSchema` instead. */
-  export const inboundSchema = CreateJobProjectJobsRetry$inboundSchema;
-  /** @deprecated use `CreateJobProjectJobsRetry$outboundSchema` instead. */
-  export const outboundSchema = CreateJobProjectJobsRetry$outboundSchema;
-  /** @deprecated use `CreateJobProjectJobsRetry$Outbound` instead. */
-  export type Outbound = CreateJobProjectJobsRetry$Outbound;
-}
-
 export function createJobProjectJobsRetryToJSON(
   createJobProjectJobsRetry: CreateJobProjectJobsRetry,
 ): string {
@@ -1130,27 +990,6 @@ export function createJobProjectJobsRetryToJSON(
     CreateJobProjectJobsRetry$outboundSchema.parse(createJobProjectJobsRetry),
   );
 }
-
-export function createJobProjectJobsRetryFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobProjectJobsRetry, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobProjectJobsRetry$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobProjectJobsRetry' from JSON`,
-  );
-}
-
-/** @internal */
-export const Configuration$inboundSchema: z.ZodType<
-  Configuration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  retry: z.lazy(() => CreateJobProjectJobsRetry$inboundSchema).optional(),
-  maxConcurrentRequests: z.number().optional(),
-  requestTimeout: z.number().int().default(600),
-});
 
 /** @internal */
 export type Configuration$Outbound = {
@@ -1170,36 +1009,9 @@ export const Configuration$outboundSchema: z.ZodType<
   requestTimeout: z.number().int().default(600),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Configuration$ {
-  /** @deprecated use `Configuration$inboundSchema` instead. */
-  export const inboundSchema = Configuration$inboundSchema;
-  /** @deprecated use `Configuration$outboundSchema` instead. */
-  export const outboundSchema = Configuration$outboundSchema;
-  /** @deprecated use `Configuration$Outbound` instead. */
-  export type Outbound = Configuration$Outbound;
-}
-
 export function configurationToJSON(configuration: Configuration): string {
   return JSON.stringify(Configuration$outboundSchema.parse(configuration));
 }
-
-export function configurationFromJSON(
-  jsonString: string,
-): SafeParseResult<Configuration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Configuration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Configuration' from JSON`,
-  );
-}
-
-/** @internal */
-export const Jitter$inboundSchema: z.ZodType<Jitter, z.ZodTypeDef, unknown> = z
-  .union([z.number().int(), z.string()]);
 
 /** @internal */
 export type Jitter$Outbound = number | string;
@@ -1211,36 +1023,9 @@ export const Jitter$outboundSchema: z.ZodType<
   Jitter
 > = z.union([z.number().int(), z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Jitter$ {
-  /** @deprecated use `Jitter$inboundSchema` instead. */
-  export const inboundSchema = Jitter$inboundSchema;
-  /** @deprecated use `Jitter$outboundSchema` instead. */
-  export const outboundSchema = Jitter$outboundSchema;
-  /** @deprecated use `Jitter$Outbound` instead. */
-  export type Outbound = Jitter$Outbound;
-}
-
 export function jitterToJSON(jitter: Jitter): string {
   return JSON.stringify(Jitter$outboundSchema.parse(jitter));
 }
-
-export function jitterFromJSON(
-  jsonString: string,
-): SafeParseResult<Jitter, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Jitter$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Jitter' from JSON`,
-  );
-}
-
-/** @internal */
-export const Every$inboundSchema: z.ZodType<Every, z.ZodTypeDef, unknown> = z
-  .union([z.number().int(), z.string()]);
 
 /** @internal */
 export type Every$Outbound = number | string;
@@ -1252,41 +1037,9 @@ export const Every$outboundSchema: z.ZodType<
   Every
 > = z.union([z.number().int(), z.string()]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Every$ {
-  /** @deprecated use `Every$inboundSchema` instead. */
-  export const inboundSchema = Every$inboundSchema;
-  /** @deprecated use `Every$outboundSchema` instead. */
-  export const outboundSchema = Every$outboundSchema;
-  /** @deprecated use `Every$Outbound` instead. */
-  export type Outbound = Every$Outbound;
-}
-
 export function everyToJSON(every: Every): string {
   return JSON.stringify(Every$outboundSchema.parse(every));
 }
-
-export function everyFromJSON(
-  jsonString: string,
-): SafeParseResult<Every, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Every$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Every' from JSON`,
-  );
-}
-
-/** @internal */
-export const Intervals$inboundSchema: z.ZodType<
-  Intervals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  every: z.union([z.number().int(), z.string()]),
-});
 
 /** @internal */
 export type Intervals$Outbound = {
@@ -1302,59 +1055,14 @@ export const Intervals$outboundSchema: z.ZodType<
   every: z.union([z.number().int(), z.string()]),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Intervals$ {
-  /** @deprecated use `Intervals$inboundSchema` instead. */
-  export const inboundSchema = Intervals$inboundSchema;
-  /** @deprecated use `Intervals$outboundSchema` instead. */
-  export const outboundSchema = Intervals$outboundSchema;
-  /** @deprecated use `Intervals$Outbound` instead. */
-  export type Outbound = Intervals$Outbound;
-}
-
 export function intervalsToJSON(intervals: Intervals): string {
   return JSON.stringify(Intervals$outboundSchema.parse(intervals));
 }
 
-export function intervalsFromJSON(
-  jsonString: string,
-): SafeParseResult<Intervals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Intervals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Intervals' from JSON`,
-  );
-}
-
 /** @internal */
-export const Five$inboundSchema: z.ZodNativeEnum<typeof Five> = z.nativeEnum(
+export const Five$outboundSchema: z.ZodNativeEnum<typeof Five> = z.nativeEnum(
   Five,
 );
-
-/** @internal */
-export const Five$outboundSchema: z.ZodNativeEnum<typeof Five> =
-  Five$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Five$ {
-  /** @deprecated use `Five$inboundSchema` instead. */
-  export const inboundSchema = Five$inboundSchema;
-  /** @deprecated use `Five$outboundSchema` instead. */
-  export const outboundSchema = Five$outboundSchema;
-}
-
-/** @internal */
-export const Four3$inboundSchema: z.ZodType<Four3, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
 
 /** @internal */
 export type Four3$Outbound = {
@@ -1372,40 +1080,9 @@ export const Four3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four3$ {
-  /** @deprecated use `Four3$inboundSchema` instead. */
-  export const inboundSchema = Four3$inboundSchema;
-  /** @deprecated use `Four3$outboundSchema` instead. */
-  export const outboundSchema = Four3$outboundSchema;
-  /** @deprecated use `Four3$Outbound` instead. */
-  export type Outbound = Four3$Outbound;
-}
-
 export function four3ToJSON(four3: Four3): string {
   return JSON.stringify(Four3$outboundSchema.parse(four3));
 }
-
-export function four3FromJSON(
-  jsonString: string,
-): SafeParseResult<Four3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Four3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Four3' from JSON`,
-  );
-}
-
-/** @internal */
-export const Four2$inboundSchema: z.ZodType<Four2, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
 
 /** @internal */
 export type Four2$Outbound = {
@@ -1425,40 +1102,9 @@ export const Four2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four2$ {
-  /** @deprecated use `Four2$inboundSchema` instead. */
-  export const inboundSchema = Four2$inboundSchema;
-  /** @deprecated use `Four2$outboundSchema` instead. */
-  export const outboundSchema = Four2$outboundSchema;
-  /** @deprecated use `Four2$Outbound` instead. */
-  export type Outbound = Four2$Outbound;
-}
-
 export function four2ToJSON(four2: Four2): string {
   return JSON.stringify(Four2$outboundSchema.parse(four2));
 }
-
-export function four2FromJSON(
-  jsonString: string,
-): SafeParseResult<Four2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Four2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Four2' from JSON`,
-  );
-}
-
-/** @internal */
-export const Four$inboundSchema: z.ZodType<Four, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Four2$inboundSchema),
-    z.lazy(() => Four3$inboundSchema),
-    z.number().int(),
-  ]);
 
 /** @internal */
 export type Four$Outbound = Four2$Outbound | Four3$Outbound | number;
@@ -1471,39 +1117,9 @@ export const Four$outboundSchema: z.ZodType<Four$Outbound, z.ZodTypeDef, Four> =
     z.number().int(),
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four$ {
-  /** @deprecated use `Four$inboundSchema` instead. */
-  export const inboundSchema = Four$inboundSchema;
-  /** @deprecated use `Four$outboundSchema` instead. */
-  export const outboundSchema = Four$outboundSchema;
-  /** @deprecated use `Four$Outbound` instead. */
-  export type Outbound = Four$Outbound;
-}
-
 export function fourToJSON(four: Four): string {
   return JSON.stringify(Four$outboundSchema.parse(four));
 }
-
-export function fourFromJSON(
-  jsonString: string,
-): SafeParseResult<Four, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Four$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Four' from JSON`,
-  );
-}
-
-/** @internal */
-export const Three$inboundSchema: z.ZodType<Three, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
 
 /** @internal */
 export type Three$Outbound = {
@@ -1521,40 +1137,9 @@ export const Three$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Three$ {
-  /** @deprecated use `Three$inboundSchema` instead. */
-  export const inboundSchema = Three$inboundSchema;
-  /** @deprecated use `Three$outboundSchema` instead. */
-  export const outboundSchema = Three$outboundSchema;
-  /** @deprecated use `Three$Outbound` instead. */
-  export type Outbound = Three$Outbound;
-}
-
 export function threeToJSON(three: Three): string {
   return JSON.stringify(Three$outboundSchema.parse(three));
 }
-
-export function threeFromJSON(
-  jsonString: string,
-): SafeParseResult<Three, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Three$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Three' from JSON`,
-  );
-}
-
-/** @internal */
-export const Two$inboundSchema: z.ZodType<Two, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
 
 /** @internal */
 export type Two$Outbound = {
@@ -1571,46 +1156,9 @@ export const Two$outboundSchema: z.ZodType<Two$Outbound, z.ZodTypeDef, Two> = z
     end: z.number().int(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Two$ {
-  /** @deprecated use `Two$inboundSchema` instead. */
-  export const inboundSchema = Two$inboundSchema;
-  /** @deprecated use `Two$outboundSchema` instead. */
-  export const outboundSchema = Two$outboundSchema;
-  /** @deprecated use `Two$Outbound` instead. */
-  export type Outbound = Two$Outbound;
-}
-
 export function twoToJSON(two: Two): string {
   return JSON.stringify(Two$outboundSchema.parse(two));
 }
-
-export function twoFromJSON(
-  jsonString: string,
-): SafeParseResult<Two, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Two$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Two' from JSON`,
-  );
-}
-
-/** @internal */
-export const Second$inboundSchema: z.ZodType<Second, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Two$inboundSchema),
-    z.lazy(() => Three$inboundSchema),
-    z.number().int(),
-    z.array(z.union([
-      z.lazy(() => Four2$inboundSchema),
-      z.lazy(() => Four3$inboundSchema),
-      z.number().int(),
-    ])),
-    Five$inboundSchema,
-  ]);
 
 /** @internal */
 export type Second$Outbound =
@@ -1637,61 +1185,13 @@ export const Second$outboundSchema: z.ZodType<
   Five$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Second$ {
-  /** @deprecated use `Second$inboundSchema` instead. */
-  export const inboundSchema = Second$inboundSchema;
-  /** @deprecated use `Second$outboundSchema` instead. */
-  export const outboundSchema = Second$outboundSchema;
-  /** @deprecated use `Second$Outbound` instead. */
-  export type Outbound = Second$Outbound;
-}
-
 export function secondToJSON(second: Second): string {
   return JSON.stringify(Second$outboundSchema.parse(second));
 }
 
-export function secondFromJSON(
-  jsonString: string,
-): SafeParseResult<Second, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Second$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Second' from JSON`,
-  );
-}
-
 /** @internal */
-export const Minute5$inboundSchema: z.ZodNativeEnum<typeof Minute5> = z
+export const Minute5$outboundSchema: z.ZodNativeEnum<typeof Minute5> = z
   .nativeEnum(Minute5);
-
-/** @internal */
-export const Minute5$outboundSchema: z.ZodNativeEnum<typeof Minute5> =
-  Minute5$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Minute5$ {
-  /** @deprecated use `Minute5$inboundSchema` instead. */
-  export const inboundSchema = Minute5$inboundSchema;
-  /** @deprecated use `Minute5$outboundSchema` instead. */
-  export const outboundSchema = Minute5$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob43$inboundSchema: z.ZodType<
-  CreateJob43,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  end: z.number().int().optional(),
-});
 
 /** @internal */
 export type CreateJob43$Outbound = {
@@ -1709,43 +1209,9 @@ export const CreateJob43$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob43$ {
-  /** @deprecated use `CreateJob43$inboundSchema` instead. */
-  export const inboundSchema = CreateJob43$inboundSchema;
-  /** @deprecated use `CreateJob43$outboundSchema` instead. */
-  export const outboundSchema = CreateJob43$outboundSchema;
-  /** @deprecated use `CreateJob43$Outbound` instead. */
-  export type Outbound = CreateJob43$Outbound;
-}
-
 export function createJob43ToJSON(createJob43: CreateJob43): string {
   return JSON.stringify(CreateJob43$outboundSchema.parse(createJob43));
 }
-
-export function createJob43FromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJob43, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJob43$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob43' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJob42$inboundSchema: z.ZodType<
-  CreateJob42,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  step: z.number().int(),
-  end: z.number().int(),
-});
 
 /** @internal */
 export type CreateJob42$Outbound = {
@@ -1765,40 +1231,9 @@ export const CreateJob42$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob42$ {
-  /** @deprecated use `CreateJob42$inboundSchema` instead. */
-  export const inboundSchema = CreateJob42$inboundSchema;
-  /** @deprecated use `CreateJob42$outboundSchema` instead. */
-  export const outboundSchema = CreateJob42$outboundSchema;
-  /** @deprecated use `CreateJob42$Outbound` instead. */
-  export type Outbound = CreateJob42$Outbound;
-}
-
 export function createJob42ToJSON(createJob42: CreateJob42): string {
   return JSON.stringify(CreateJob42$outboundSchema.parse(createJob42));
 }
-
-export function createJob42FromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJob42, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJob42$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob42' from JSON`,
-  );
-}
-
-/** @internal */
-export const Minute4$inboundSchema: z.ZodType<Minute4, z.ZodTypeDef, unknown> =
-  z.union([
-    z.lazy(() => CreateJob42$inboundSchema),
-    z.lazy(() => CreateJob43$inboundSchema),
-    z.number().int(),
-  ]);
 
 /** @internal */
 export type Minute4$Outbound =
@@ -1817,39 +1252,9 @@ export const Minute4$outboundSchema: z.ZodType<
   z.number().int(),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Minute4$ {
-  /** @deprecated use `Minute4$inboundSchema` instead. */
-  export const inboundSchema = Minute4$inboundSchema;
-  /** @deprecated use `Minute4$outboundSchema` instead. */
-  export const outboundSchema = Minute4$outboundSchema;
-  /** @deprecated use `Minute4$Outbound` instead. */
-  export type Outbound = Minute4$Outbound;
-}
-
 export function minute4ToJSON(minute4: Minute4): string {
   return JSON.stringify(Minute4$outboundSchema.parse(minute4));
 }
-
-export function minute4FromJSON(
-  jsonString: string,
-): SafeParseResult<Minute4, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Minute4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Minute4' from JSON`,
-  );
-}
-
-/** @internal */
-export const Minute3$inboundSchema: z.ZodType<Minute3, z.ZodTypeDef, unknown> =
-  z.object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
 
 /** @internal */
 export type Minute3$Outbound = {
@@ -1867,40 +1272,9 @@ export const Minute3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Minute3$ {
-  /** @deprecated use `Minute3$inboundSchema` instead. */
-  export const inboundSchema = Minute3$inboundSchema;
-  /** @deprecated use `Minute3$outboundSchema` instead. */
-  export const outboundSchema = Minute3$outboundSchema;
-  /** @deprecated use `Minute3$Outbound` instead. */
-  export type Outbound = Minute3$Outbound;
-}
-
 export function minute3ToJSON(minute3: Minute3): string {
   return JSON.stringify(Minute3$outboundSchema.parse(minute3));
 }
-
-export function minute3FromJSON(
-  jsonString: string,
-): SafeParseResult<Minute3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Minute3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Minute3' from JSON`,
-  );
-}
-
-/** @internal */
-export const Minute2$inboundSchema: z.ZodType<Minute2, z.ZodTypeDef, unknown> =
-  z.object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
 
 /** @internal */
 export type Minute2$Outbound = {
@@ -1920,46 +1294,9 @@ export const Minute2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Minute2$ {
-  /** @deprecated use `Minute2$inboundSchema` instead. */
-  export const inboundSchema = Minute2$inboundSchema;
-  /** @deprecated use `Minute2$outboundSchema` instead. */
-  export const outboundSchema = Minute2$outboundSchema;
-  /** @deprecated use `Minute2$Outbound` instead. */
-  export type Outbound = Minute2$Outbound;
-}
-
 export function minute2ToJSON(minute2: Minute2): string {
   return JSON.stringify(Minute2$outboundSchema.parse(minute2));
 }
-
-export function minute2FromJSON(
-  jsonString: string,
-): SafeParseResult<Minute2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Minute2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Minute2' from JSON`,
-  );
-}
-
-/** @internal */
-export const Minute$inboundSchema: z.ZodType<Minute, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Minute2$inboundSchema),
-    z.lazy(() => Minute3$inboundSchema),
-    z.number().int(),
-    z.array(z.union([
-      z.lazy(() => CreateJob42$inboundSchema),
-      z.lazy(() => CreateJob43$inboundSchema),
-      z.number().int(),
-    ])),
-    Minute5$inboundSchema,
-  ]);
 
 /** @internal */
 export type Minute$Outbound =
@@ -1986,62 +1323,14 @@ export const Minute$outboundSchema: z.ZodType<
   Minute5$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Minute$ {
-  /** @deprecated use `Minute$inboundSchema` instead. */
-  export const inboundSchema = Minute$inboundSchema;
-  /** @deprecated use `Minute$outboundSchema` instead. */
-  export const outboundSchema = Minute$outboundSchema;
-  /** @deprecated use `Minute$Outbound` instead. */
-  export type Outbound = Minute$Outbound;
-}
-
 export function minuteToJSON(minute: Minute): string {
   return JSON.stringify(Minute$outboundSchema.parse(minute));
 }
 
-export function minuteFromJSON(
-  jsonString: string,
-): SafeParseResult<Minute, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Minute$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Minute' from JSON`,
-  );
-}
-
 /** @internal */
-export const Hour5$inboundSchema: z.ZodNativeEnum<typeof Hour5> = z.nativeEnum(
+export const Hour5$outboundSchema: z.ZodNativeEnum<typeof Hour5> = z.nativeEnum(
   Hour5,
 );
-
-/** @internal */
-export const Hour5$outboundSchema: z.ZodNativeEnum<typeof Hour5> =
-  Hour5$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Hour5$ {
-  /** @deprecated use `Hour5$inboundSchema` instead. */
-  export const inboundSchema = Hour5$inboundSchema;
-  /** @deprecated use `Hour5$outboundSchema` instead. */
-  export const outboundSchema = Hour5$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobs3$inboundSchema: z.ZodType<
-  CreateJob4ProjectJobs3,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  end: z.number().int().optional(),
-});
 
 /** @internal */
 export type CreateJob4ProjectJobs3$Outbound = {
@@ -2059,19 +1348,6 @@ export const CreateJob4ProjectJobs3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobs3$ {
-  /** @deprecated use `CreateJob4ProjectJobs3$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobs3$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobs3$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobs3$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobs3$Outbound` instead. */
-  export type Outbound = CreateJob4ProjectJobs3$Outbound;
-}
-
 export function createJob4ProjectJobs3ToJSON(
   createJob4ProjectJobs3: CreateJob4ProjectJobs3,
 ): string {
@@ -2079,27 +1355,6 @@ export function createJob4ProjectJobs3ToJSON(
     CreateJob4ProjectJobs3$outboundSchema.parse(createJob4ProjectJobs3),
   );
 }
-
-export function createJob4ProjectJobs3FromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJob4ProjectJobs3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJob4ProjectJobs3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob4ProjectJobs3' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJob4ProjectJobs2$inboundSchema: z.ZodType<
-  CreateJob4ProjectJobs2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  step: z.number().int(),
-  end: z.number().int(),
-});
 
 /** @internal */
 export type CreateJob4ProjectJobs2$Outbound = {
@@ -2119,19 +1374,6 @@ export const CreateJob4ProjectJobs2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobs2$ {
-  /** @deprecated use `CreateJob4ProjectJobs2$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobs2$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobs2$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobs2$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobs2$Outbound` instead. */
-  export type Outbound = CreateJob4ProjectJobs2$Outbound;
-}
-
 export function createJob4ProjectJobs2ToJSON(
   createJob4ProjectJobs2: CreateJob4ProjectJobs2,
 ): string {
@@ -2139,24 +1381,6 @@ export function createJob4ProjectJobs2ToJSON(
     CreateJob4ProjectJobs2$outboundSchema.parse(createJob4ProjectJobs2),
   );
 }
-
-export function createJob4ProjectJobs2FromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJob4ProjectJobs2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJob4ProjectJobs2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob4ProjectJobs2' from JSON`,
-  );
-}
-
-/** @internal */
-export const Hour4$inboundSchema: z.ZodType<Hour4, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => CreateJob4ProjectJobs2$inboundSchema),
-    z.lazy(() => CreateJob4ProjectJobs3$inboundSchema),
-    z.number().int(),
-  ]);
 
 /** @internal */
 export type Hour4$Outbound =
@@ -2175,39 +1399,9 @@ export const Hour4$outboundSchema: z.ZodType<
   z.number().int(),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Hour4$ {
-  /** @deprecated use `Hour4$inboundSchema` instead. */
-  export const inboundSchema = Hour4$inboundSchema;
-  /** @deprecated use `Hour4$outboundSchema` instead. */
-  export const outboundSchema = Hour4$outboundSchema;
-  /** @deprecated use `Hour4$Outbound` instead. */
-  export type Outbound = Hour4$Outbound;
-}
-
 export function hour4ToJSON(hour4: Hour4): string {
   return JSON.stringify(Hour4$outboundSchema.parse(hour4));
 }
-
-export function hour4FromJSON(
-  jsonString: string,
-): SafeParseResult<Hour4, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Hour4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Hour4' from JSON`,
-  );
-}
-
-/** @internal */
-export const Hour3$inboundSchema: z.ZodType<Hour3, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
 
 /** @internal */
 export type Hour3$Outbound = {
@@ -2225,40 +1419,9 @@ export const Hour3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Hour3$ {
-  /** @deprecated use `Hour3$inboundSchema` instead. */
-  export const inboundSchema = Hour3$inboundSchema;
-  /** @deprecated use `Hour3$outboundSchema` instead. */
-  export const outboundSchema = Hour3$outboundSchema;
-  /** @deprecated use `Hour3$Outbound` instead. */
-  export type Outbound = Hour3$Outbound;
-}
-
 export function hour3ToJSON(hour3: Hour3): string {
   return JSON.stringify(Hour3$outboundSchema.parse(hour3));
 }
-
-export function hour3FromJSON(
-  jsonString: string,
-): SafeParseResult<Hour3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Hour3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Hour3' from JSON`,
-  );
-}
-
-/** @internal */
-export const Hour2$inboundSchema: z.ZodType<Hour2, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
 
 /** @internal */
 export type Hour2$Outbound = {
@@ -2278,48 +1441,9 @@ export const Hour2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Hour2$ {
-  /** @deprecated use `Hour2$inboundSchema` instead. */
-  export const inboundSchema = Hour2$inboundSchema;
-  /** @deprecated use `Hour2$outboundSchema` instead. */
-  export const outboundSchema = Hour2$outboundSchema;
-  /** @deprecated use `Hour2$Outbound` instead. */
-  export type Outbound = Hour2$Outbound;
-}
-
 export function hour2ToJSON(hour2: Hour2): string {
   return JSON.stringify(Hour2$outboundSchema.parse(hour2));
 }
-
-export function hour2FromJSON(
-  jsonString: string,
-): SafeParseResult<Hour2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Hour2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Hour2' from JSON`,
-  );
-}
-
-/** @internal */
-export const Hour$inboundSchema: z.ZodType<Hour, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Hour2$inboundSchema),
-    z.lazy(() => Hour3$inboundSchema),
-    z.number().int(),
-    z.array(
-      z.union([
-        z.lazy(() => CreateJob4ProjectJobs2$inboundSchema),
-        z.lazy(() => CreateJob4ProjectJobs3$inboundSchema),
-        z.number().int(),
-      ]),
-    ),
-    Hour5$inboundSchema,
-  ]);
 
 /** @internal */
 export type Hour$Outbound =
@@ -2347,103 +1471,23 @@ export const Hour$outboundSchema: z.ZodType<Hour$Outbound, z.ZodTypeDef, Hour> =
     Hour5$outboundSchema,
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Hour$ {
-  /** @deprecated use `Hour$inboundSchema` instead. */
-  export const inboundSchema = Hour$inboundSchema;
-  /** @deprecated use `Hour$outboundSchema` instead. */
-  export const outboundSchema = Hour$outboundSchema;
-  /** @deprecated use `Hour$Outbound` instead. */
-  export type Outbound = Hour$Outbound;
-}
-
 export function hourToJSON(hour: Hour): string {
   return JSON.stringify(Hour$outboundSchema.parse(hour));
 }
 
-export function hourFromJSON(
-  jsonString: string,
-): SafeParseResult<Hour, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Hour$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Hour' from JSON`,
-  );
-}
-
 /** @internal */
-export const DayOfWeek5$inboundSchema: z.ZodNativeEnum<typeof DayOfWeek5> = z
+export const DayOfWeek5$outboundSchema: z.ZodNativeEnum<typeof DayOfWeek5> = z
   .nativeEnum(DayOfWeek5);
-
-/** @internal */
-export const DayOfWeek5$outboundSchema: z.ZodNativeEnum<typeof DayOfWeek5> =
-  DayOfWeek5$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeek5$ {
-  /** @deprecated use `DayOfWeek5$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeek5$inboundSchema;
-  /** @deprecated use `DayOfWeek5$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeek5$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4Start$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJob4Start
-> = z.nativeEnum(CreateJob4Start);
 
 /** @internal */
 export const CreateJob4Start$outboundSchema: z.ZodNativeEnum<
   typeof CreateJob4Start
-> = CreateJob4Start$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4Start$ {
-  /** @deprecated use `CreateJob4Start$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4Start$inboundSchema;
-  /** @deprecated use `CreateJob4Start$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4Start$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4End$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJob4End
-> = z.nativeEnum(CreateJob4End);
+> = z.nativeEnum(CreateJob4Start);
 
 /** @internal */
 export const CreateJob4End$outboundSchema: z.ZodNativeEnum<
   typeof CreateJob4End
-> = CreateJob4End$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4End$ {
-  /** @deprecated use `CreateJob4End$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4End$inboundSchema;
-  /** @deprecated use `CreateJob4End$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4End$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequest3$inboundSchema: z.ZodType<
-  CreateJob4ProjectJobsRequest3,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: CreateJob4Start$inboundSchema,
-  end: CreateJob4End$inboundSchema.optional(),
-});
+> = z.nativeEnum(CreateJob4End);
 
 /** @internal */
 export type CreateJob4ProjectJobsRequest3$Outbound = {
@@ -2461,19 +1505,6 @@ export const CreateJob4ProjectJobsRequest3$outboundSchema: z.ZodType<
   end: CreateJob4End$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequest3$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequest3$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobsRequest3$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequest3$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobsRequest3$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequest3$Outbound` instead. */
-  export type Outbound = CreateJob4ProjectJobsRequest3$Outbound;
-}
-
 export function createJob4ProjectJobsRequest3ToJSON(
   createJob4ProjectJobsRequest3: CreateJob4ProjectJobsRequest3,
 ): string {
@@ -2484,64 +1515,13 @@ export function createJob4ProjectJobsRequest3ToJSON(
   );
 }
 
-export function createJob4ProjectJobsRequest3FromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJob4ProjectJobsRequest3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJob4ProjectJobsRequest3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob4ProjectJobsRequest3' from JSON`,
-  );
-}
-
 /** @internal */
-export const FourStart$inboundSchema: z.ZodNativeEnum<typeof FourStart> = z
+export const FourStart$outboundSchema: z.ZodNativeEnum<typeof FourStart> = z
   .nativeEnum(FourStart);
 
 /** @internal */
-export const FourStart$outboundSchema: z.ZodNativeEnum<typeof FourStart> =
-  FourStart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FourStart$ {
-  /** @deprecated use `FourStart$inboundSchema` instead. */
-  export const inboundSchema = FourStart$inboundSchema;
-  /** @deprecated use `FourStart$outboundSchema` instead. */
-  export const outboundSchema = FourStart$outboundSchema;
-}
-
-/** @internal */
-export const FourEnd$inboundSchema: z.ZodNativeEnum<typeof FourEnd> = z
+export const FourEnd$outboundSchema: z.ZodNativeEnum<typeof FourEnd> = z
   .nativeEnum(FourEnd);
-
-/** @internal */
-export const FourEnd$outboundSchema: z.ZodNativeEnum<typeof FourEnd> =
-  FourEnd$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace FourEnd$ {
-  /** @deprecated use `FourEnd$inboundSchema` instead. */
-  export const inboundSchema = FourEnd$inboundSchema;
-  /** @deprecated use `FourEnd$outboundSchema` instead. */
-  export const outboundSchema = FourEnd$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequest2$inboundSchema: z.ZodType<
-  CreateJob4ProjectJobsRequest2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: FourStart$inboundSchema,
-  step: z.number().int(),
-  end: FourEnd$inboundSchema,
-});
 
 /** @internal */
 export type CreateJob4ProjectJobsRequest2$Outbound = {
@@ -2561,19 +1541,6 @@ export const CreateJob4ProjectJobsRequest2$outboundSchema: z.ZodType<
   end: FourEnd$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequest2$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequest2$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobsRequest2$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequest2$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobsRequest2$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequest2$Outbound` instead. */
-  export type Outbound = CreateJob4ProjectJobsRequest2$Outbound;
-}
-
 export function createJob4ProjectJobsRequest2ToJSON(
   createJob4ProjectJobsRequest2: CreateJob4ProjectJobsRequest2,
 ): string {
@@ -2584,46 +1551,10 @@ export function createJob4ProjectJobsRequest2ToJSON(
   );
 }
 
-export function createJob4ProjectJobsRequest2FromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJob4ProjectJobsRequest2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJob4ProjectJobsRequest2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob4ProjectJobsRequest2' from JSON`,
-  );
-}
-
 /** @internal */
-export const Four1$inboundSchema: z.ZodNativeEnum<typeof Four1> = z.nativeEnum(
+export const Four1$outboundSchema: z.ZodNativeEnum<typeof Four1> = z.nativeEnum(
   Four1,
 );
-
-/** @internal */
-export const Four1$outboundSchema: z.ZodNativeEnum<typeof Four1> =
-  Four1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Four1$ {
-  /** @deprecated use `Four1$inboundSchema` instead. */
-  export const inboundSchema = Four1$inboundSchema;
-  /** @deprecated use `Four1$outboundSchema` instead. */
-  export const outboundSchema = Four1$outboundSchema;
-}
-
-/** @internal */
-export const DayOfWeek4$inboundSchema: z.ZodType<
-  DayOfWeek4,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => CreateJob4ProjectJobsRequest2$inboundSchema),
-  z.lazy(() => CreateJob4ProjectJobsRequest3$inboundSchema),
-  Four1$inboundSchema,
-]);
 
 /** @internal */
 export type DayOfWeek4$Outbound =
@@ -2642,82 +1573,18 @@ export const DayOfWeek4$outboundSchema: z.ZodType<
   Four1$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeek4$ {
-  /** @deprecated use `DayOfWeek4$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeek4$inboundSchema;
-  /** @deprecated use `DayOfWeek4$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeek4$outboundSchema;
-  /** @deprecated use `DayOfWeek4$Outbound` instead. */
-  export type Outbound = DayOfWeek4$Outbound;
-}
-
 export function dayOfWeek4ToJSON(dayOfWeek4: DayOfWeek4): string {
   return JSON.stringify(DayOfWeek4$outboundSchema.parse(dayOfWeek4));
 }
 
-export function dayOfWeek4FromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfWeek4, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfWeek4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfWeek4' from JSON`,
-  );
-}
-
 /** @internal */
-export const DayOfWeekStart$inboundSchema: z.ZodNativeEnum<
+export const DayOfWeekStart$outboundSchema: z.ZodNativeEnum<
   typeof DayOfWeekStart
 > = z.nativeEnum(DayOfWeekStart);
 
 /** @internal */
-export const DayOfWeekStart$outboundSchema: z.ZodNativeEnum<
-  typeof DayOfWeekStart
-> = DayOfWeekStart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeekStart$ {
-  /** @deprecated use `DayOfWeekStart$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeekStart$inboundSchema;
-  /** @deprecated use `DayOfWeekStart$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeekStart$outboundSchema;
-}
-
-/** @internal */
-export const DayOfWeekEnd$inboundSchema: z.ZodNativeEnum<typeof DayOfWeekEnd> =
-  z.nativeEnum(DayOfWeekEnd);
-
-/** @internal */
 export const DayOfWeekEnd$outboundSchema: z.ZodNativeEnum<typeof DayOfWeekEnd> =
-  DayOfWeekEnd$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeekEnd$ {
-  /** @deprecated use `DayOfWeekEnd$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeekEnd$inboundSchema;
-  /** @deprecated use `DayOfWeekEnd$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeekEnd$outboundSchema;
-}
-
-/** @internal */
-export const DayOfWeek3$inboundSchema: z.ZodType<
-  DayOfWeek3,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: DayOfWeekStart$inboundSchema,
-  end: DayOfWeekEnd$inboundSchema.optional(),
-});
+  z.nativeEnum(DayOfWeekEnd);
 
 /** @internal */
 export type DayOfWeek3$Outbound = {
@@ -2735,81 +1602,19 @@ export const DayOfWeek3$outboundSchema: z.ZodType<
   end: DayOfWeekEnd$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeek3$ {
-  /** @deprecated use `DayOfWeek3$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeek3$inboundSchema;
-  /** @deprecated use `DayOfWeek3$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeek3$outboundSchema;
-  /** @deprecated use `DayOfWeek3$Outbound` instead. */
-  export type Outbound = DayOfWeek3$Outbound;
-}
-
 export function dayOfWeek3ToJSON(dayOfWeek3: DayOfWeek3): string {
   return JSON.stringify(DayOfWeek3$outboundSchema.parse(dayOfWeek3));
 }
 
-export function dayOfWeek3FromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfWeek3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfWeek3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfWeek3' from JSON`,
-  );
-}
-
 /** @internal */
-export const Start$inboundSchema: z.ZodNativeEnum<typeof Start> = z.nativeEnum(
+export const Start$outboundSchema: z.ZodNativeEnum<typeof Start> = z.nativeEnum(
   Start,
 );
 
 /** @internal */
-export const Start$outboundSchema: z.ZodNativeEnum<typeof Start> =
-  Start$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Start$ {
-  /** @deprecated use `Start$inboundSchema` instead. */
-  export const inboundSchema = Start$inboundSchema;
-  /** @deprecated use `Start$outboundSchema` instead. */
-  export const outboundSchema = Start$outboundSchema;
-}
-
-/** @internal */
-export const End$inboundSchema: z.ZodNativeEnum<typeof End> = z.nativeEnum(End);
-
-/** @internal */
-export const End$outboundSchema: z.ZodNativeEnum<typeof End> =
-  End$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace End$ {
-  /** @deprecated use `End$inboundSchema` instead. */
-  export const inboundSchema = End$inboundSchema;
-  /** @deprecated use `End$outboundSchema` instead. */
-  export const outboundSchema = End$outboundSchema;
-}
-
-/** @internal */
-export const DayOfWeek2$inboundSchema: z.ZodType<
-  DayOfWeek2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: Start$inboundSchema,
-  step: z.number().int(),
-  end: End$inboundSchema,
-});
+export const End$outboundSchema: z.ZodNativeEnum<typeof End> = z.nativeEnum(
+  End,
+);
 
 /** @internal */
 export type DayOfWeek2$Outbound = {
@@ -2829,69 +1634,14 @@ export const DayOfWeek2$outboundSchema: z.ZodType<
   end: End$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeek2$ {
-  /** @deprecated use `DayOfWeek2$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeek2$inboundSchema;
-  /** @deprecated use `DayOfWeek2$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeek2$outboundSchema;
-  /** @deprecated use `DayOfWeek2$Outbound` instead. */
-  export type Outbound = DayOfWeek2$Outbound;
-}
-
 export function dayOfWeek2ToJSON(dayOfWeek2: DayOfWeek2): string {
   return JSON.stringify(DayOfWeek2$outboundSchema.parse(dayOfWeek2));
 }
 
-export function dayOfWeek2FromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfWeek2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfWeek2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfWeek2' from JSON`,
-  );
-}
-
 /** @internal */
-export const One$inboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(One);
-
-/** @internal */
-export const One$outboundSchema: z.ZodNativeEnum<typeof One> =
-  One$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace One$ {
-  /** @deprecated use `One$inboundSchema` instead. */
-  export const inboundSchema = One$inboundSchema;
-  /** @deprecated use `One$outboundSchema` instead. */
-  export const outboundSchema = One$outboundSchema;
-}
-
-/** @internal */
-export const DayOfWeek$inboundSchema: z.ZodType<
-  DayOfWeek,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => DayOfWeek2$inboundSchema),
-  z.lazy(() => DayOfWeek3$inboundSchema),
-  One$inboundSchema,
-  z.array(
-    z.union([
-      z.lazy(() => CreateJob4ProjectJobsRequest2$inboundSchema),
-      z.lazy(() => CreateJob4ProjectJobsRequest3$inboundSchema),
-      Four1$inboundSchema,
-    ]),
-  ),
-  DayOfWeek5$inboundSchema,
-]);
+export const One$outboundSchema: z.ZodNativeEnum<typeof One> = z.nativeEnum(
+  One,
+);
 
 /** @internal */
 export type DayOfWeek$Outbound =
@@ -2924,61 +1674,13 @@ export const DayOfWeek$outboundSchema: z.ZodType<
   DayOfWeek5$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfWeek$ {
-  /** @deprecated use `DayOfWeek$inboundSchema` instead. */
-  export const inboundSchema = DayOfWeek$inboundSchema;
-  /** @deprecated use `DayOfWeek$outboundSchema` instead. */
-  export const outboundSchema = DayOfWeek$outboundSchema;
-  /** @deprecated use `DayOfWeek$Outbound` instead. */
-  export type Outbound = DayOfWeek$Outbound;
-}
-
 export function dayOfWeekToJSON(dayOfWeek: DayOfWeek): string {
   return JSON.stringify(DayOfWeek$outboundSchema.parse(dayOfWeek));
 }
 
-export function dayOfWeekFromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfWeek, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfWeek$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfWeek' from JSON`,
-  );
-}
-
 /** @internal */
-export const DayOfMonth5$inboundSchema: z.ZodNativeEnum<typeof DayOfMonth5> = z
+export const DayOfMonth5$outboundSchema: z.ZodNativeEnum<typeof DayOfMonth5> = z
   .nativeEnum(DayOfMonth5);
-
-/** @internal */
-export const DayOfMonth5$outboundSchema: z.ZodNativeEnum<typeof DayOfMonth5> =
-  DayOfMonth5$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfMonth5$ {
-  /** @deprecated use `DayOfMonth5$inboundSchema` instead. */
-  export const inboundSchema = DayOfMonth5$inboundSchema;
-  /** @deprecated use `DayOfMonth5$outboundSchema` instead. */
-  export const outboundSchema = DayOfMonth5$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestRequestBody3$inboundSchema: z.ZodType<
-  CreateJob4ProjectJobsRequestRequestBody3,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  end: z.number().int().optional(),
-});
 
 /** @internal */
 export type CreateJob4ProjectJobsRequestRequestBody3$Outbound = {
@@ -2996,21 +1698,6 @@ export const CreateJob4ProjectJobsRequestRequestBody3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestRequestBody3$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBody3$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateJob4ProjectJobsRequestRequestBody3$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBody3$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestRequestBody3$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBody3$Outbound` instead. */
-  export type Outbound = CreateJob4ProjectJobsRequestRequestBody3$Outbound;
-}
-
 export function createJob4ProjectJobsRequestRequestBody3ToJSON(
   createJob4ProjectJobsRequestRequestBody3:
     CreateJob4ProjectJobsRequestRequestBody3,
@@ -3021,33 +1708,6 @@ export function createJob4ProjectJobsRequestRequestBody3ToJSON(
     ),
   );
 }
-
-export function createJob4ProjectJobsRequestRequestBody3FromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateJob4ProjectJobsRequestRequestBody3,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateJob4ProjectJobsRequestRequestBody3$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateJob4ProjectJobsRequestRequestBody3' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestRequestBody2$inboundSchema: z.ZodType<
-  CreateJob4ProjectJobsRequestRequestBody2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  step: z.number().int(),
-  end: z.number().int(),
-});
 
 /** @internal */
 export type CreateJob4ProjectJobsRequestRequestBody2$Outbound = {
@@ -3067,21 +1727,6 @@ export const CreateJob4ProjectJobsRequestRequestBody2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestRequestBody2$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBody2$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateJob4ProjectJobsRequestRequestBody2$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBody2$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestRequestBody2$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBody2$Outbound` instead. */
-  export type Outbound = CreateJob4ProjectJobsRequestRequestBody2$Outbound;
-}
-
 export function createJob4ProjectJobsRequestRequestBody2ToJSON(
   createJob4ProjectJobsRequestRequestBody2:
     CreateJob4ProjectJobsRequestRequestBody2,
@@ -3092,33 +1737,6 @@ export function createJob4ProjectJobsRequestRequestBody2ToJSON(
     ),
   );
 }
-
-export function createJob4ProjectJobsRequestRequestBody2FromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateJob4ProjectJobsRequestRequestBody2,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateJob4ProjectJobsRequestRequestBody2$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateJob4ProjectJobsRequestRequestBody2' from JSON`,
-  );
-}
-
-/** @internal */
-export const DayOfMonth4$inboundSchema: z.ZodType<
-  DayOfMonth4,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => CreateJob4ProjectJobsRequestRequestBody2$inboundSchema),
-  z.lazy(() => CreateJob4ProjectJobsRequestRequestBody3$inboundSchema),
-  z.number().int(),
-]);
 
 /** @internal */
 export type DayOfMonth4$Outbound =
@@ -3137,42 +1755,9 @@ export const DayOfMonth4$outboundSchema: z.ZodType<
   z.number().int(),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfMonth4$ {
-  /** @deprecated use `DayOfMonth4$inboundSchema` instead. */
-  export const inboundSchema = DayOfMonth4$inboundSchema;
-  /** @deprecated use `DayOfMonth4$outboundSchema` instead. */
-  export const outboundSchema = DayOfMonth4$outboundSchema;
-  /** @deprecated use `DayOfMonth4$Outbound` instead. */
-  export type Outbound = DayOfMonth4$Outbound;
-}
-
 export function dayOfMonth4ToJSON(dayOfMonth4: DayOfMonth4): string {
   return JSON.stringify(DayOfMonth4$outboundSchema.parse(dayOfMonth4));
 }
-
-export function dayOfMonth4FromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfMonth4, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfMonth4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfMonth4' from JSON`,
-  );
-}
-
-/** @internal */
-export const DayOfMonth3$inboundSchema: z.ZodType<
-  DayOfMonth3,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  end: z.number().int().optional(),
-});
 
 /** @internal */
 export type DayOfMonth3$Outbound = {
@@ -3190,43 +1775,9 @@ export const DayOfMonth3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfMonth3$ {
-  /** @deprecated use `DayOfMonth3$inboundSchema` instead. */
-  export const inboundSchema = DayOfMonth3$inboundSchema;
-  /** @deprecated use `DayOfMonth3$outboundSchema` instead. */
-  export const outboundSchema = DayOfMonth3$outboundSchema;
-  /** @deprecated use `DayOfMonth3$Outbound` instead. */
-  export type Outbound = DayOfMonth3$Outbound;
-}
-
 export function dayOfMonth3ToJSON(dayOfMonth3: DayOfMonth3): string {
   return JSON.stringify(DayOfMonth3$outboundSchema.parse(dayOfMonth3));
 }
-
-export function dayOfMonth3FromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfMonth3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfMonth3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfMonth3' from JSON`,
-  );
-}
-
-/** @internal */
-export const DayOfMonth2$inboundSchema: z.ZodType<
-  DayOfMonth2,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  start: z.number().int(),
-  step: z.number().int(),
-  end: z.number().int(),
-});
 
 /** @internal */
 export type DayOfMonth2$Outbound = {
@@ -3246,51 +1797,9 @@ export const DayOfMonth2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfMonth2$ {
-  /** @deprecated use `DayOfMonth2$inboundSchema` instead. */
-  export const inboundSchema = DayOfMonth2$inboundSchema;
-  /** @deprecated use `DayOfMonth2$outboundSchema` instead. */
-  export const outboundSchema = DayOfMonth2$outboundSchema;
-  /** @deprecated use `DayOfMonth2$Outbound` instead. */
-  export type Outbound = DayOfMonth2$Outbound;
-}
-
 export function dayOfMonth2ToJSON(dayOfMonth2: DayOfMonth2): string {
   return JSON.stringify(DayOfMonth2$outboundSchema.parse(dayOfMonth2));
 }
-
-export function dayOfMonth2FromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfMonth2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfMonth2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfMonth2' from JSON`,
-  );
-}
-
-/** @internal */
-export const DayOfMonth$inboundSchema: z.ZodType<
-  DayOfMonth,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => DayOfMonth2$inboundSchema),
-  z.lazy(() => DayOfMonth3$inboundSchema),
-  z.number().int(),
-  z.array(
-    z.union([
-      z.lazy(() => CreateJob4ProjectJobsRequestRequestBody2$inboundSchema),
-      z.lazy(() => CreateJob4ProjectJobsRequestRequestBody3$inboundSchema),
-      z.number().int(),
-    ]),
-  ),
-  DayOfMonth5$inboundSchema,
-]);
 
 /** @internal */
 export type DayOfMonth$Outbound =
@@ -3323,105 +1832,23 @@ export const DayOfMonth$outboundSchema: z.ZodType<
   DayOfMonth5$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DayOfMonth$ {
-  /** @deprecated use `DayOfMonth$inboundSchema` instead. */
-  export const inboundSchema = DayOfMonth$inboundSchema;
-  /** @deprecated use `DayOfMonth$outboundSchema` instead. */
-  export const outboundSchema = DayOfMonth$outboundSchema;
-  /** @deprecated use `DayOfMonth$Outbound` instead. */
-  export type Outbound = DayOfMonth$Outbound;
-}
-
 export function dayOfMonthToJSON(dayOfMonth: DayOfMonth): string {
   return JSON.stringify(DayOfMonth$outboundSchema.parse(dayOfMonth));
 }
 
-export function dayOfMonthFromJSON(
-  jsonString: string,
-): SafeParseResult<DayOfMonth, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => DayOfMonth$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'DayOfMonth' from JSON`,
-  );
-}
-
 /** @internal */
-export const Month5$inboundSchema: z.ZodNativeEnum<typeof Month5> = z
+export const Month5$outboundSchema: z.ZodNativeEnum<typeof Month5> = z
   .nativeEnum(Month5);
-
-/** @internal */
-export const Month5$outboundSchema: z.ZodNativeEnum<typeof Month5> =
-  Month5$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Month5$ {
-  /** @deprecated use `Month5$inboundSchema` instead. */
-  export const inboundSchema = Month5$inboundSchema;
-  /** @deprecated use `Month5$outboundSchema` instead. */
-  export const outboundSchema = Month5$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestStart$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJob4ProjectJobsRequestStart
-> = z.nativeEnum(CreateJob4ProjectJobsRequestStart);
 
 /** @internal */
 export const CreateJob4ProjectJobsRequestStart$outboundSchema: z.ZodNativeEnum<
   typeof CreateJob4ProjectJobsRequestStart
-> = CreateJob4ProjectJobsRequestStart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestStart$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestStart$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobsRequestStart$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestStart$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestStart$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestEnd$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJob4ProjectJobsRequestEnd
-> = z.nativeEnum(CreateJob4ProjectJobsRequestEnd);
+> = z.nativeEnum(CreateJob4ProjectJobsRequestStart);
 
 /** @internal */
 export const CreateJob4ProjectJobsRequestEnd$outboundSchema: z.ZodNativeEnum<
   typeof CreateJob4ProjectJobsRequestEnd
-> = CreateJob4ProjectJobsRequestEnd$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestEnd$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestEnd$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobsRequestEnd$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestEnd$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobsRequestEnd$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema:
-  z.ZodType<
-    CreateJob4ProjectJobsRequestRequestBodySchedule3,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    start: CreateJob4ProjectJobsRequestStart$inboundSchema,
-    end: CreateJob4ProjectJobsRequestEnd$inboundSchema.optional(),
-  });
+> = z.nativeEnum(CreateJob4ProjectJobsRequestEnd);
 
 /** @internal */
 export type CreateJob4ProjectJobsRequestRequestBodySchedule3$Outbound = {
@@ -3440,22 +1867,6 @@ export const CreateJob4ProjectJobsRequestRequestBodySchedule3$outboundSchema:
     end: CreateJob4ProjectJobsRequestEnd$outboundSchema.optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestRequestBodySchedule3$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodySchedule3$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodySchedule3$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodySchedule3$Outbound` instead. */
-  export type Outbound =
-    CreateJob4ProjectJobsRequestRequestBodySchedule3$Outbound;
-}
-
 export function createJob4ProjectJobsRequestRequestBodySchedule3ToJSON(
   createJob4ProjectJobsRequestRequestBodySchedule3:
     CreateJob4ProjectJobsRequestRequestBodySchedule3,
@@ -3467,75 +1878,15 @@ export function createJob4ProjectJobsRequestRequestBodySchedule3ToJSON(
   );
 }
 
-export function createJob4ProjectJobsRequestRequestBodySchedule3FromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateJob4ProjectJobsRequestRequestBodySchedule3,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateJob4ProjectJobsRequestRequestBodySchedule3' from JSON`,
-  );
-}
-
 /** @internal */
-export const CreateJob4ProjectJobsStart$inboundSchema: z.ZodNativeEnum<
+export const CreateJob4ProjectJobsStart$outboundSchema: z.ZodNativeEnum<
   typeof CreateJob4ProjectJobsStart
 > = z.nativeEnum(CreateJob4ProjectJobsStart);
 
 /** @internal */
-export const CreateJob4ProjectJobsStart$outboundSchema: z.ZodNativeEnum<
-  typeof CreateJob4ProjectJobsStart
-> = CreateJob4ProjectJobsStart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsStart$ {
-  /** @deprecated use `CreateJob4ProjectJobsStart$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobsStart$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsStart$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobsStart$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsEnd$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJob4ProjectJobsEnd
-> = z.nativeEnum(CreateJob4ProjectJobsEnd);
-
-/** @internal */
 export const CreateJob4ProjectJobsEnd$outboundSchema: z.ZodNativeEnum<
   typeof CreateJob4ProjectJobsEnd
-> = CreateJob4ProjectJobsEnd$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsEnd$ {
-  /** @deprecated use `CreateJob4ProjectJobsEnd$inboundSchema` instead. */
-  export const inboundSchema = CreateJob4ProjectJobsEnd$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsEnd$outboundSchema` instead. */
-  export const outboundSchema = CreateJob4ProjectJobsEnd$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema:
-  z.ZodType<
-    CreateJob4ProjectJobsRequestRequestBodySchedule2,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    start: CreateJob4ProjectJobsStart$inboundSchema,
-    step: z.number().int(),
-    end: CreateJob4ProjectJobsEnd$inboundSchema,
-  });
+> = z.nativeEnum(CreateJob4ProjectJobsEnd);
 
 /** @internal */
 export type CreateJob4ProjectJobsRequestRequestBodySchedule2$Outbound = {
@@ -3556,22 +1907,6 @@ export const CreateJob4ProjectJobsRequestRequestBodySchedule2$outboundSchema:
     end: CreateJob4ProjectJobsEnd$outboundSchema,
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestRequestBodySchedule2$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodySchedule2$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodySchedule2$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodySchedule2$Outbound` instead. */
-  export type Outbound =
-    CreateJob4ProjectJobsRequestRequestBodySchedule2$Outbound;
-}
-
 export function createJob4ProjectJobsRequestRequestBodySchedule2ToJSON(
   createJob4ProjectJobsRequestRequestBodySchedule2:
     CreateJob4ProjectJobsRequestRequestBodySchedule2,
@@ -3583,52 +1918,9 @@ export function createJob4ProjectJobsRequestRequestBodySchedule2ToJSON(
   );
 }
 
-export function createJob4ProjectJobsRequestRequestBodySchedule2FromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateJob4ProjectJobsRequestRequestBodySchedule2,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateJob4ProjectJobsRequestRequestBodySchedule2' from JSON`,
-  );
-}
-
 /** @internal */
-export const CreateJob41$inboundSchema: z.ZodNativeEnum<typeof CreateJob41> = z
+export const CreateJob41$outboundSchema: z.ZodNativeEnum<typeof CreateJob41> = z
   .nativeEnum(CreateJob41);
-
-/** @internal */
-export const CreateJob41$outboundSchema: z.ZodNativeEnum<typeof CreateJob41> =
-  CreateJob41$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob41$ {
-  /** @deprecated use `CreateJob41$inboundSchema` instead. */
-  export const inboundSchema = CreateJob41$inboundSchema;
-  /** @deprecated use `CreateJob41$outboundSchema` instead. */
-  export const outboundSchema = CreateJob41$outboundSchema;
-}
-
-/** @internal */
-export const Month4$inboundSchema: z.ZodType<Month4, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() =>
-      CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema
-    ),
-    z.lazy(() =>
-      CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema
-    ),
-    CreateJob41$inboundSchema,
-  ]);
 
 /** @internal */
 export type Month4$Outbound =
@@ -3647,81 +1939,19 @@ export const Month4$outboundSchema: z.ZodType<
   CreateJob41$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Month4$ {
-  /** @deprecated use `Month4$inboundSchema` instead. */
-  export const inboundSchema = Month4$inboundSchema;
-  /** @deprecated use `Month4$outboundSchema` instead. */
-  export const outboundSchema = Month4$outboundSchema;
-  /** @deprecated use `Month4$Outbound` instead. */
-  export type Outbound = Month4$Outbound;
-}
-
 export function month4ToJSON(month4: Month4): string {
   return JSON.stringify(Month4$outboundSchema.parse(month4));
 }
 
-export function month4FromJSON(
-  jsonString: string,
-): SafeParseResult<Month4, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Month4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Month4' from JSON`,
-  );
-}
-
 /** @internal */
-export const CreateJobMonthStart$inboundSchema: z.ZodNativeEnum<
+export const CreateJobMonthStart$outboundSchema: z.ZodNativeEnum<
   typeof CreateJobMonthStart
 > = z.nativeEnum(CreateJobMonthStart);
 
 /** @internal */
-export const CreateJobMonthStart$outboundSchema: z.ZodNativeEnum<
-  typeof CreateJobMonthStart
-> = CreateJobMonthStart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobMonthStart$ {
-  /** @deprecated use `CreateJobMonthStart$inboundSchema` instead. */
-  export const inboundSchema = CreateJobMonthStart$inboundSchema;
-  /** @deprecated use `CreateJobMonthStart$outboundSchema` instead. */
-  export const outboundSchema = CreateJobMonthStart$outboundSchema;
-}
-
-/** @internal */
-export const CreateJobMonthEnd$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJobMonthEnd
-> = z.nativeEnum(CreateJobMonthEnd);
-
-/** @internal */
 export const CreateJobMonthEnd$outboundSchema: z.ZodNativeEnum<
   typeof CreateJobMonthEnd
-> = CreateJobMonthEnd$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobMonthEnd$ {
-  /** @deprecated use `CreateJobMonthEnd$inboundSchema` instead. */
-  export const inboundSchema = CreateJobMonthEnd$inboundSchema;
-  /** @deprecated use `CreateJobMonthEnd$outboundSchema` instead. */
-  export const outboundSchema = CreateJobMonthEnd$outboundSchema;
-}
-
-/** @internal */
-export const Month3$inboundSchema: z.ZodType<Month3, z.ZodTypeDef, unknown> = z
-  .object({
-    start: CreateJobMonthStart$inboundSchema,
-    end: CreateJobMonthEnd$inboundSchema.optional(),
-  });
+> = z.nativeEnum(CreateJobMonthEnd);
 
 /** @internal */
 export type Month3$Outbound = {
@@ -3739,78 +1969,17 @@ export const Month3$outboundSchema: z.ZodType<
   end: CreateJobMonthEnd$outboundSchema.optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Month3$ {
-  /** @deprecated use `Month3$inboundSchema` instead. */
-  export const inboundSchema = Month3$inboundSchema;
-  /** @deprecated use `Month3$outboundSchema` instead. */
-  export const outboundSchema = Month3$outboundSchema;
-  /** @deprecated use `Month3$Outbound` instead. */
-  export type Outbound = Month3$Outbound;
-}
-
 export function month3ToJSON(month3: Month3): string {
   return JSON.stringify(Month3$outboundSchema.parse(month3));
 }
 
-export function month3FromJSON(
-  jsonString: string,
-): SafeParseResult<Month3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Month3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Month3' from JSON`,
-  );
-}
-
 /** @internal */
-export const MonthStart$inboundSchema: z.ZodNativeEnum<typeof MonthStart> = z
+export const MonthStart$outboundSchema: z.ZodNativeEnum<typeof MonthStart> = z
   .nativeEnum(MonthStart);
 
 /** @internal */
-export const MonthStart$outboundSchema: z.ZodNativeEnum<typeof MonthStart> =
-  MonthStart$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MonthStart$ {
-  /** @deprecated use `MonthStart$inboundSchema` instead. */
-  export const inboundSchema = MonthStart$inboundSchema;
-  /** @deprecated use `MonthStart$outboundSchema` instead. */
-  export const outboundSchema = MonthStart$outboundSchema;
-}
-
-/** @internal */
-export const MonthEnd$inboundSchema: z.ZodNativeEnum<typeof MonthEnd> = z
+export const MonthEnd$outboundSchema: z.ZodNativeEnum<typeof MonthEnd> = z
   .nativeEnum(MonthEnd);
-
-/** @internal */
-export const MonthEnd$outboundSchema: z.ZodNativeEnum<typeof MonthEnd> =
-  MonthEnd$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace MonthEnd$ {
-  /** @deprecated use `MonthEnd$inboundSchema` instead. */
-  export const inboundSchema = MonthEnd$inboundSchema;
-  /** @deprecated use `MonthEnd$outboundSchema` instead. */
-  export const outboundSchema = MonthEnd$outboundSchema;
-}
-
-/** @internal */
-export const Month2$inboundSchema: z.ZodType<Month2, z.ZodTypeDef, unknown> = z
-  .object({
-    start: MonthStart$inboundSchema,
-    step: z.number().int(),
-    end: MonthEnd$inboundSchema,
-  });
 
 /** @internal */
 export type Month2$Outbound = {
@@ -3830,69 +1999,13 @@ export const Month2$outboundSchema: z.ZodType<
   end: MonthEnd$outboundSchema,
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Month2$ {
-  /** @deprecated use `Month2$inboundSchema` instead. */
-  export const inboundSchema = Month2$inboundSchema;
-  /** @deprecated use `Month2$outboundSchema` instead. */
-  export const outboundSchema = Month2$outboundSchema;
-  /** @deprecated use `Month2$Outbound` instead. */
-  export type Outbound = Month2$Outbound;
-}
-
 export function month2ToJSON(month2: Month2): string {
   return JSON.stringify(Month2$outboundSchema.parse(month2));
 }
 
-export function month2FromJSON(
-  jsonString: string,
-): SafeParseResult<Month2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Month2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Month2' from JSON`,
-  );
-}
-
 /** @internal */
-export const Month1$inboundSchema: z.ZodNativeEnum<typeof Month1> = z
+export const Month1$outboundSchema: z.ZodNativeEnum<typeof Month1> = z
   .nativeEnum(Month1);
-
-/** @internal */
-export const Month1$outboundSchema: z.ZodNativeEnum<typeof Month1> =
-  Month1$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Month1$ {
-  /** @deprecated use `Month1$inboundSchema` instead. */
-  export const inboundSchema = Month1$inboundSchema;
-  /** @deprecated use `Month1$outboundSchema` instead. */
-  export const outboundSchema = Month1$outboundSchema;
-}
-
-/** @internal */
-export const Month$inboundSchema: z.ZodType<Month, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Month2$inboundSchema),
-    z.lazy(() => Month3$inboundSchema),
-    Month1$inboundSchema,
-    z.array(z.union([
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema
-      ),
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema
-      ),
-      CreateJob41$inboundSchema,
-    ])),
-    Month5$inboundSchema,
-  ]);
 
 /** @internal */
 export type Month$Outbound =
@@ -3927,63 +2040,14 @@ export const Month$outboundSchema: z.ZodType<
   Month5$outboundSchema,
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Month$ {
-  /** @deprecated use `Month$inboundSchema` instead. */
-  export const inboundSchema = Month$inboundSchema;
-  /** @deprecated use `Month$outboundSchema` instead. */
-  export const outboundSchema = Month$outboundSchema;
-  /** @deprecated use `Month$Outbound` instead. */
-  export type Outbound = Month$Outbound;
-}
-
 export function monthToJSON(month: Month): string {
   return JSON.stringify(Month$outboundSchema.parse(month));
 }
 
-export function monthFromJSON(
-  jsonString: string,
-): SafeParseResult<Month, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Month$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Month' from JSON`,
-  );
-}
-
 /** @internal */
-export const Year5$inboundSchema: z.ZodNativeEnum<typeof Year5> = z.nativeEnum(
+export const Year5$outboundSchema: z.ZodNativeEnum<typeof Year5> = z.nativeEnum(
   Year5,
 );
-
-/** @internal */
-export const Year5$outboundSchema: z.ZodNativeEnum<typeof Year5> =
-  Year5$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Year5$ {
-  /** @deprecated use `Year5$inboundSchema` instead. */
-  export const inboundSchema = Year5$inboundSchema;
-  /** @deprecated use `Year5$outboundSchema` instead. */
-  export const outboundSchema = Year5$outboundSchema;
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema:
-  z.ZodType<
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
 
 /** @internal */
 export type CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$Outbound =
@@ -4003,22 +2067,6 @@ export const CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$outboundS
     end: z.number().int().optional(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$Outbound` instead. */
-  export type Outbound =
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$Outbound;
-}
-
 export function createJob4ProjectJobsRequestRequestBodyScheduleCalendars3ToJSON(
   createJob4ProjectJobsRequestRequestBodyScheduleCalendars3:
     CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3,
@@ -4028,33 +2076,6 @@ export function createJob4ProjectJobsRequestRequestBodyScheduleCalendars3ToJSON(
       .parse(createJob4ProjectJobsRequestRequestBodyScheduleCalendars3),
   );
 }
-
-export function createJob4ProjectJobsRequestRequestBodyScheduleCalendars3FromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema:
-  z.ZodType<
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2,
-    z.ZodTypeDef,
-    unknown
-  > = z.object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
 
 /** @internal */
 export type CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$Outbound =
@@ -4076,22 +2097,6 @@ export const CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$outboundS
     end: z.number().int(),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$ {
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$outboundSchema;
-  /** @deprecated use `CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$Outbound` instead. */
-  export type Outbound =
-    CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$Outbound;
-}
-
 export function createJob4ProjectJobsRequestRequestBodyScheduleCalendars2ToJSON(
   createJob4ProjectJobsRequestRequestBodyScheduleCalendars2:
     CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2,
@@ -4101,33 +2106,6 @@ export function createJob4ProjectJobsRequestRequestBodyScheduleCalendars2ToJSON(
       .parse(createJob4ProjectJobsRequestRequestBodyScheduleCalendars2),
   );
 }
-
-export function createJob4ProjectJobsRequestRequestBodyScheduleCalendars2FromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema
-        .parse(JSON.parse(x)),
-    `Failed to parse 'CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2' from JSON`,
-  );
-}
-
-/** @internal */
-export const Year4$inboundSchema: z.ZodType<Year4, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() =>
-      CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema
-    ),
-    z.lazy(() =>
-      CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema
-    ),
-    z.number().int(),
-  ]);
 
 /** @internal */
 export type Year4$Outbound =
@@ -4150,39 +2128,9 @@ export const Year4$outboundSchema: z.ZodType<
   z.number().int(),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Year4$ {
-  /** @deprecated use `Year4$inboundSchema` instead. */
-  export const inboundSchema = Year4$inboundSchema;
-  /** @deprecated use `Year4$outboundSchema` instead. */
-  export const outboundSchema = Year4$outboundSchema;
-  /** @deprecated use `Year4$Outbound` instead. */
-  export type Outbound = Year4$Outbound;
-}
-
 export function year4ToJSON(year4: Year4): string {
   return JSON.stringify(Year4$outboundSchema.parse(year4));
 }
-
-export function year4FromJSON(
-  jsonString: string,
-): SafeParseResult<Year4, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Year4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Year4' from JSON`,
-  );
-}
-
-/** @internal */
-export const Year3$inboundSchema: z.ZodType<Year3, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
 
 /** @internal */
 export type Year3$Outbound = {
@@ -4200,40 +2148,9 @@ export const Year3$outboundSchema: z.ZodType<
   end: z.number().int().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Year3$ {
-  /** @deprecated use `Year3$inboundSchema` instead. */
-  export const inboundSchema = Year3$inboundSchema;
-  /** @deprecated use `Year3$outboundSchema` instead. */
-  export const outboundSchema = Year3$outboundSchema;
-  /** @deprecated use `Year3$Outbound` instead. */
-  export type Outbound = Year3$Outbound;
-}
-
 export function year3ToJSON(year3: Year3): string {
   return JSON.stringify(Year3$outboundSchema.parse(year3));
 }
-
-export function year3FromJSON(
-  jsonString: string,
-): SafeParseResult<Year3, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Year3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Year3' from JSON`,
-  );
-}
-
-/** @internal */
-export const Year2$inboundSchema: z.ZodType<Year2, z.ZodTypeDef, unknown> = z
-  .object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
 
 /** @internal */
 export type Year2$Outbound = {
@@ -4253,50 +2170,9 @@ export const Year2$outboundSchema: z.ZodType<
   end: z.number().int(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Year2$ {
-  /** @deprecated use `Year2$inboundSchema` instead. */
-  export const inboundSchema = Year2$inboundSchema;
-  /** @deprecated use `Year2$outboundSchema` instead. */
-  export const outboundSchema = Year2$outboundSchema;
-  /** @deprecated use `Year2$Outbound` instead. */
-  export type Outbound = Year2$Outbound;
-}
-
 export function year2ToJSON(year2: Year2): string {
   return JSON.stringify(Year2$outboundSchema.parse(year2));
 }
-
-export function year2FromJSON(
-  jsonString: string,
-): SafeParseResult<Year2, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Year2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Year2' from JSON`,
-  );
-}
-
-/** @internal */
-export const Year$inboundSchema: z.ZodType<Year, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => Year2$inboundSchema),
-    z.lazy(() => Year3$inboundSchema),
-    z.number().int(),
-    z.array(z.union([
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema
-      ),
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema
-      ),
-      z.number().int(),
-    ])),
-    Year5$inboundSchema,
-  ]);
 
 /** @internal */
 export type Year$Outbound =
@@ -4328,132 +2204,9 @@ export const Year$outboundSchema: z.ZodType<Year$Outbound, z.ZodTypeDef, Year> =
     Year5$outboundSchema,
   ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Year$ {
-  /** @deprecated use `Year$inboundSchema` instead. */
-  export const inboundSchema = Year$inboundSchema;
-  /** @deprecated use `Year$outboundSchema` instead. */
-  export const outboundSchema = Year$outboundSchema;
-  /** @deprecated use `Year$Outbound` instead. */
-  export type Outbound = Year$Outbound;
-}
-
 export function yearToJSON(year: Year): string {
   return JSON.stringify(Year$outboundSchema.parse(year));
 }
-
-export function yearFromJSON(
-  jsonString: string,
-): SafeParseResult<Year, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Year$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Year' from JSON`,
-  );
-}
-
-/** @internal */
-export const Calendars$inboundSchema: z.ZodType<
-  Calendars,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  second: z.union([
-    z.lazy(() => Two$inboundSchema),
-    z.lazy(() => Three$inboundSchema),
-    z.number().int(),
-    z.array(z.union([
-      z.lazy(() => Four2$inboundSchema),
-      z.lazy(() => Four3$inboundSchema),
-      z.number().int(),
-    ])),
-    Five$inboundSchema,
-  ]).optional(),
-  minute: z.union([
-    z.lazy(() => Minute2$inboundSchema),
-    z.lazy(() => Minute3$inboundSchema),
-    z.number().int(),
-    z.array(z.union([
-      z.lazy(() => CreateJob42$inboundSchema),
-      z.lazy(() => CreateJob43$inboundSchema),
-      z.number().int(),
-    ])),
-    Minute5$inboundSchema,
-  ]).optional(),
-  hour: z.union([
-    z.lazy(() => Hour2$inboundSchema),
-    z.lazy(() => Hour3$inboundSchema),
-    z.number().int(),
-    z.array(
-      z.union([
-        z.lazy(() => CreateJob4ProjectJobs2$inboundSchema),
-        z.lazy(() => CreateJob4ProjectJobs3$inboundSchema),
-        z.number().int(),
-      ]),
-    ),
-    Hour5$inboundSchema,
-  ]).optional(),
-  dayOfWeek: z.union([
-    z.lazy(() => DayOfWeek2$inboundSchema),
-    z.lazy(() => DayOfWeek3$inboundSchema),
-    One$inboundSchema,
-    z.array(
-      z.union([
-        z.lazy(() => CreateJob4ProjectJobsRequest2$inboundSchema),
-        z.lazy(() => CreateJob4ProjectJobsRequest3$inboundSchema),
-        Four1$inboundSchema,
-      ]),
-    ),
-    DayOfWeek5$inboundSchema,
-  ]).optional(),
-  dayOfMonth: z.union([
-    z.lazy(() => DayOfMonth2$inboundSchema),
-    z.lazy(() => DayOfMonth3$inboundSchema),
-    z.number().int(),
-    z.array(
-      z.union([
-        z.lazy(() => CreateJob4ProjectJobsRequestRequestBody2$inboundSchema),
-        z.lazy(() => CreateJob4ProjectJobsRequestRequestBody3$inboundSchema),
-        z.number().int(),
-      ]),
-    ),
-    DayOfMonth5$inboundSchema,
-  ]).optional(),
-  month: z.union([
-    z.lazy(() => Month2$inboundSchema),
-    z.lazy(() => Month3$inboundSchema),
-    Month1$inboundSchema,
-    z.array(z.union([
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodySchedule2$inboundSchema
-      ),
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodySchedule3$inboundSchema
-      ),
-      CreateJob41$inboundSchema,
-    ])),
-    Month5$inboundSchema,
-  ]).optional(),
-  year: z.union([
-    z.lazy(() => Year2$inboundSchema),
-    z.lazy(() => Year3$inboundSchema),
-    z.number().int(),
-    z.array(z.union([
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars2$inboundSchema
-      ),
-      z.lazy(() =>
-        CreateJob4ProjectJobsRequestRequestBodyScheduleCalendars3$inboundSchema
-      ),
-      z.number().int(),
-    ])),
-    Year5$inboundSchema,
-  ]).optional(),
-  comment: z.string().optional(),
-});
 
 /** @internal */
 export type Calendars$Outbound = {
@@ -4627,43 +2380,9 @@ export const Calendars$outboundSchema: z.ZodType<
   comment: z.string().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Calendars$ {
-  /** @deprecated use `Calendars$inboundSchema` instead. */
-  export const inboundSchema = Calendars$inboundSchema;
-  /** @deprecated use `Calendars$outboundSchema` instead. */
-  export const outboundSchema = Calendars$outboundSchema;
-  /** @deprecated use `Calendars$Outbound` instead. */
-  export type Outbound = Calendars$Outbound;
-}
-
 export function calendarsToJSON(calendars: Calendars): string {
   return JSON.stringify(Calendars$outboundSchema.parse(calendars));
 }
-
-export function calendarsFromJSON(
-  jsonString: string,
-): SafeParseResult<Calendars, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Calendars$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Calendars' from JSON`,
-  );
-}
-
-/** @internal */
-export const Schedule$inboundSchema: z.ZodType<
-  Schedule,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  jitter: z.union([z.number().int(), z.string()]).optional(),
-  intervals: z.array(z.lazy(() => Intervals$inboundSchema)).optional(),
-  calendars: z.array(z.lazy(() => Calendars$inboundSchema)).optional(),
-});
 
 /** @internal */
 export type Schedule$Outbound = {
@@ -4683,71 +2402,14 @@ export const Schedule$outboundSchema: z.ZodType<
   calendars: z.array(z.lazy(() => Calendars$outboundSchema)).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Schedule$ {
-  /** @deprecated use `Schedule$inboundSchema` instead. */
-  export const inboundSchema = Schedule$inboundSchema;
-  /** @deprecated use `Schedule$outboundSchema` instead. */
-  export const outboundSchema = Schedule$outboundSchema;
-  /** @deprecated use `Schedule$Outbound` instead. */
-  export type Outbound = Schedule$Outbound;
-}
-
 export function scheduleToJSON(schedule: Schedule): string {
   return JSON.stringify(Schedule$outboundSchema.parse(schedule));
 }
 
-export function scheduleFromJSON(
-  jsonString: string,
-): SafeParseResult<Schedule, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Schedule$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Schedule' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobSinkProjectJobsType$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJobSinkProjectJobsType
-> = z.nativeEnum(CreateJobSinkProjectJobsType);
-
 /** @internal */
 export const CreateJobSinkProjectJobsType$outboundSchema: z.ZodNativeEnum<
   typeof CreateJobSinkProjectJobsType
-> = CreateJobSinkProjectJobsType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobSinkProjectJobsType$ {
-  /** @deprecated use `CreateJobSinkProjectJobsType$inboundSchema` instead. */
-  export const inboundSchema = CreateJobSinkProjectJobsType$inboundSchema;
-  /** @deprecated use `CreateJobSinkProjectJobsType$outboundSchema` instead. */
-  export const outboundSchema = CreateJobSinkProjectJobsType$outboundSchema;
-}
-
-/** @internal */
-export const SinkS3SinkConfiguration$inboundSchema: z.ZodType<
-  SinkS3SinkConfiguration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: CreateJobSinkProjectJobsType$inboundSchema,
-  bucket: z.string(),
-  accessKeyId: z.string(),
-  secretAccessKey: z.string(),
-  region: z.string(),
-  prefix: z.string().optional(),
-  skipOnFail: z.boolean().default(false),
-  apisToSend: z.array(z.string()).optional(),
-  endpoint: z.string().optional(),
-  forcePathStyle: z.boolean().optional(),
-});
+> = z.nativeEnum(CreateJobSinkProjectJobsType);
 
 /** @internal */
 export type SinkS3SinkConfiguration$Outbound = {
@@ -4781,19 +2443,6 @@ export const SinkS3SinkConfiguration$outboundSchema: z.ZodType<
   forcePathStyle: z.boolean().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SinkS3SinkConfiguration$ {
-  /** @deprecated use `SinkS3SinkConfiguration$inboundSchema` instead. */
-  export const inboundSchema = SinkS3SinkConfiguration$inboundSchema;
-  /** @deprecated use `SinkS3SinkConfiguration$outboundSchema` instead. */
-  export const outboundSchema = SinkS3SinkConfiguration$outboundSchema;
-  /** @deprecated use `SinkS3SinkConfiguration$Outbound` instead. */
-  export type Outbound = SinkS3SinkConfiguration$Outbound;
-}
-
 export function sinkS3SinkConfigurationToJSON(
   sinkS3SinkConfiguration: SinkS3SinkConfiguration,
 ): string {
@@ -4802,49 +2451,10 @@ export function sinkS3SinkConfigurationToJSON(
   );
 }
 
-export function sinkS3SinkConfigurationFromJSON(
-  jsonString: string,
-): SafeParseResult<SinkS3SinkConfiguration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SinkS3SinkConfiguration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SinkS3SinkConfiguration' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobSinkType$inboundSchema: z.ZodNativeEnum<
-  typeof CreateJobSinkType
-> = z.nativeEnum(CreateJobSinkType);
-
 /** @internal */
 export const CreateJobSinkType$outboundSchema: z.ZodNativeEnum<
   typeof CreateJobSinkType
-> = CreateJobSinkType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobSinkType$ {
-  /** @deprecated use `CreateJobSinkType$inboundSchema` instead. */
-  export const inboundSchema = CreateJobSinkType$inboundSchema;
-  /** @deprecated use `CreateJobSinkType$outboundSchema` instead. */
-  export const outboundSchema = CreateJobSinkType$outboundSchema;
-}
-
-/** @internal */
-export const SinkWebhookSinkConfiguration$inboundSchema: z.ZodType<
-  SinkWebhookSinkConfiguration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: CreateJobSinkType$inboundSchema,
-  url: z.string(),
-  headers: z.record(z.string()).optional(),
-  skipOnFail: z.boolean().default(false),
-  apisToSend: z.array(z.string()).optional(),
-});
+> = z.nativeEnum(CreateJobSinkType);
 
 /** @internal */
 export type SinkWebhookSinkConfiguration$Outbound = {
@@ -4868,19 +2478,6 @@ export const SinkWebhookSinkConfiguration$outboundSchema: z.ZodType<
   apisToSend: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SinkWebhookSinkConfiguration$ {
-  /** @deprecated use `SinkWebhookSinkConfiguration$inboundSchema` instead. */
-  export const inboundSchema = SinkWebhookSinkConfiguration$inboundSchema;
-  /** @deprecated use `SinkWebhookSinkConfiguration$outboundSchema` instead. */
-  export const outboundSchema = SinkWebhookSinkConfiguration$outboundSchema;
-  /** @deprecated use `SinkWebhookSinkConfiguration$Outbound` instead. */
-  export type Outbound = SinkWebhookSinkConfiguration$Outbound;
-}
-
 export function sinkWebhookSinkConfigurationToJSON(
   sinkWebhookSinkConfiguration: SinkWebhookSinkConfiguration,
 ): string {
@@ -4890,26 +2487,6 @@ export function sinkWebhookSinkConfigurationToJSON(
     ),
   );
 }
-
-export function sinkWebhookSinkConfigurationFromJSON(
-  jsonString: string,
-): SafeParseResult<SinkWebhookSinkConfiguration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => SinkWebhookSinkConfiguration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'SinkWebhookSinkConfiguration' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobSink$inboundSchema: z.ZodType<
-  CreateJobSink,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => SinkS3SinkConfiguration$inboundSchema),
-  z.lazy(() => SinkWebhookSinkConfiguration$inboundSchema),
-]);
 
 /** @internal */
 export type CreateJobSink$Outbound =
@@ -4926,43 +2503,9 @@ export const CreateJobSink$outboundSchema: z.ZodType<
   z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobSink$ {
-  /** @deprecated use `CreateJobSink$inboundSchema` instead. */
-  export const inboundSchema = CreateJobSink$inboundSchema;
-  /** @deprecated use `CreateJobSink$outboundSchema` instead. */
-  export const outboundSchema = CreateJobSink$outboundSchema;
-  /** @deprecated use `CreateJobSink$Outbound` instead. */
-  export type Outbound = CreateJobSink$Outbound;
-}
-
 export function createJobSinkToJSON(createJobSink: CreateJobSink): string {
   return JSON.stringify(CreateJobSink$outboundSchema.parse(createJobSink));
 }
-
-export function createJobSinkFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobSink, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobSink$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobSink' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobAuthSession$inboundSchema: z.ZodType<
-  CreateJobAuthSession,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  checkAttempts: z.number().int().default(3),
-  createAttempts: z.number().int().default(3),
-});
 
 /** @internal */
 export type CreateJobAuthSession$Outbound = {
@@ -4982,19 +2525,6 @@ export const CreateJobAuthSession$outboundSchema: z.ZodType<
   createAttempts: z.number().int().default(3),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobAuthSession$ {
-  /** @deprecated use `CreateJobAuthSession$inboundSchema` instead. */
-  export const inboundSchema = CreateJobAuthSession$inboundSchema;
-  /** @deprecated use `CreateJobAuthSession$outboundSchema` instead. */
-  export const outboundSchema = CreateJobAuthSession$outboundSchema;
-  /** @deprecated use `CreateJobAuthSession$Outbound` instead. */
-  export type Outbound = CreateJobAuthSession$Outbound;
-}
-
 export function createJobAuthSessionToJSON(
   createJobAuthSession: CreateJobAuthSession,
 ): string {
@@ -5002,41 +2532,6 @@ export function createJobAuthSessionToJSON(
     CreateJobAuthSession$outboundSchema.parse(createJobAuthSession),
   );
 }
-
-export function createJobAuthSessionFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobAuthSession, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobAuthSession$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobAuthSession' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobRequestBody$inboundSchema: z.ZodType<
-  CreateJobRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  payload: z.array(z.lazy(() => Payload$inboundSchema)),
-  configuration: z.lazy(() => Configuration$inboundSchema),
-  schedule: z.nullable(z.lazy(() => Schedule$inboundSchema)).optional(),
-  sink: z.nullable(
-    z.union([
-      z.lazy(() => SinkS3SinkConfiguration$inboundSchema),
-      z.lazy(() => SinkWebhookSinkConfiguration$inboundSchema),
-    ]),
-  ).optional(),
-  proxy: z.nullable(z.string()).optional(),
-  auth_session: z.nullable(z.lazy(() => CreateJobAuthSession$inboundSchema))
-    .optional(),
-}).transform((v) => {
-  return remap$(v, {
-    "auth_session": "authSession",
-  });
-});
 
 /** @internal */
 export type CreateJobRequestBody$Outbound = {
@@ -5078,19 +2573,6 @@ export const CreateJobRequestBody$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobRequestBody$ {
-  /** @deprecated use `CreateJobRequestBody$inboundSchema` instead. */
-  export const inboundSchema = CreateJobRequestBody$inboundSchema;
-  /** @deprecated use `CreateJobRequestBody$outboundSchema` instead. */
-  export const outboundSchema = CreateJobRequestBody$outboundSchema;
-  /** @deprecated use `CreateJobRequestBody$Outbound` instead. */
-  export type Outbound = CreateJobRequestBody$Outbound;
-}
-
 export function createJobRequestBodyToJSON(
   createJobRequestBody: CreateJobRequestBody,
 ): string {
@@ -5098,30 +2580,6 @@ export function createJobRequestBodyToJSON(
     CreateJobRequestBody$outboundSchema.parse(createJobRequestBody),
   );
 }
-
-export function createJobRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateJobRequest$inboundSchema: z.ZodType<
-  CreateJobRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  RequestBody: z.lazy(() => CreateJobRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateJobRequest$Outbound = {
@@ -5143,19 +2601,6 @@ export const CreateJobRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobRequest$ {
-  /** @deprecated use `CreateJobRequest$inboundSchema` instead. */
-  export const inboundSchema = CreateJobRequest$inboundSchema;
-  /** @deprecated use `CreateJobRequest$outboundSchema` instead. */
-  export const outboundSchema = CreateJobRequest$outboundSchema;
-  /** @deprecated use `CreateJobRequest$Outbound` instead. */
-  export type Outbound = CreateJobRequest$Outbound;
-}
-
 export function createJobRequestToJSON(
   createJobRequest: CreateJobRequest,
 ): string {
@@ -5164,34 +2609,9 @@ export function createJobRequestToJSON(
   );
 }
 
-export function createJobRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateJobRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CreateJobRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateJobRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const Message$inboundSchema: z.ZodNativeEnum<typeof Message> = z
   .nativeEnum(Message);
-
-/** @internal */
-export const Message$outboundSchema: z.ZodNativeEnum<typeof Message> =
-  Message$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Message$ {
-  /** @deprecated use `Message$inboundSchema` instead. */
-  export const inboundSchema = Message$inboundSchema;
-  /** @deprecated use `Message$outboundSchema` instead. */
-  export const outboundSchema = Message$outboundSchema;
-}
 
 /** @internal */
 export const CreateJobResponseBody$inboundSchema: z.ZodType<
@@ -5202,43 +2622,6 @@ export const CreateJobResponseBody$inboundSchema: z.ZodType<
   id: z.string(),
   message: Message$inboundSchema,
 });
-
-/** @internal */
-export type CreateJobResponseBody$Outbound = {
-  id: string;
-  message: string;
-};
-
-/** @internal */
-export const CreateJobResponseBody$outboundSchema: z.ZodType<
-  CreateJobResponseBody$Outbound,
-  z.ZodTypeDef,
-  CreateJobResponseBody
-> = z.object({
-  id: z.string(),
-  message: Message$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateJobResponseBody$ {
-  /** @deprecated use `CreateJobResponseBody$inboundSchema` instead. */
-  export const inboundSchema = CreateJobResponseBody$inboundSchema;
-  /** @deprecated use `CreateJobResponseBody$outboundSchema` instead. */
-  export const outboundSchema = CreateJobResponseBody$outboundSchema;
-  /** @deprecated use `CreateJobResponseBody$Outbound` instead. */
-  export type Outbound = CreateJobResponseBody$Outbound;
-}
-
-export function createJobResponseBodyToJSON(
-  createJobResponseBody: CreateJobResponseBody,
-): string {
-  return JSON.stringify(
-    CreateJobResponseBody$outboundSchema.parse(createJobResponseBody),
-  );
-}
 
 export function createJobResponseBodyFromJSON(
   jsonString: string,

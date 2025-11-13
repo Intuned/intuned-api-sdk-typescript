@@ -13,7 +13,7 @@ export class Update extends ClientSDK {
    * Update Auth Session - Start
    *
    * @remarks
-   * Starts updating process of an authentication session.
+   * Starts an AuthSession:Update run to update an existing Auth Session.
    */
   async start(
     projectName: string,
@@ -34,7 +34,7 @@ export class Update extends ClientSDK {
    * Update Auth Session - Result
    *
    * @remarks
-   * Gets authentication session update operation result.
+   * Gets Auth Session Update result.
    */
   async result(
     projectName: string,

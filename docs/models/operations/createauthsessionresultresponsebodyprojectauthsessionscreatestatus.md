@@ -6,11 +6,11 @@
 import { CreateAuthSessionResultResponseBodyProjectAuthSessionsCreateStatus } from "@intuned/client/models/operations";
 
 let value: CreateAuthSessionResultResponseBodyProjectAuthSessionsCreateStatus =
-  "canceled";
+  "pending";
 ```
 
 ## Values
 
 ```typescript
-"canceled"
+"pending"
 ```

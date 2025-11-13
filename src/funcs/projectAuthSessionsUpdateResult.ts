@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Update Auth Session - Result
  *
  * @remarks
- * Gets authentication session update operation result.
+ * Gets Auth Session Update result.
  */
 export function projectAuthSessionsUpdateResult(
   client: IntunedClientCore,

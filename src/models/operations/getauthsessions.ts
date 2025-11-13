@@ -46,69 +46,6 @@ export type ResponseBody = {
 };
 
 /** @internal */
-export const GetAuthSessionsGlobals$inboundSchema: z.ZodType<
-  GetAuthSessionsGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type GetAuthSessionsGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const GetAuthSessionsGlobals$outboundSchema: z.ZodType<
-  GetAuthSessionsGlobals$Outbound,
-  z.ZodTypeDef,
-  GetAuthSessionsGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionsGlobals$ {
-  /** @deprecated use `GetAuthSessionsGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionsGlobals$inboundSchema;
-  /** @deprecated use `GetAuthSessionsGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionsGlobals$outboundSchema;
-  /** @deprecated use `GetAuthSessionsGlobals$Outbound` instead. */
-  export type Outbound = GetAuthSessionsGlobals$Outbound;
-}
-
-export function getAuthSessionsGlobalsToJSON(
-  getAuthSessionsGlobals: GetAuthSessionsGlobals,
-): string {
-  return JSON.stringify(
-    GetAuthSessionsGlobals$outboundSchema.parse(getAuthSessionsGlobals),
-  );
-}
-
-export function getAuthSessionsGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetAuthSessionsGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetAuthSessionsGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAuthSessionsGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetAuthSessionsRequest$inboundSchema: z.ZodType<
-  GetAuthSessionsRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-});
-
-/** @internal */
 export type GetAuthSessionsRequest$Outbound = {
   projectName: string;
 };
@@ -122,34 +59,11 @@ export const GetAuthSessionsRequest$outboundSchema: z.ZodType<
   projectName: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionsRequest$ {
-  /** @deprecated use `GetAuthSessionsRequest$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionsRequest$inboundSchema;
-  /** @deprecated use `GetAuthSessionsRequest$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionsRequest$outboundSchema;
-  /** @deprecated use `GetAuthSessionsRequest$Outbound` instead. */
-  export type Outbound = GetAuthSessionsRequest$Outbound;
-}
-
 export function getAuthSessionsRequestToJSON(
   getAuthSessionsRequest: GetAuthSessionsRequest,
 ): string {
   return JSON.stringify(
     GetAuthSessionsRequest$outboundSchema.parse(getAuthSessionsRequest),
-  );
-}
-
-export function getAuthSessionsRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetAuthSessionsRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetAuthSessionsRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAuthSessionsRequest' from JSON`,
   );
 }
 
@@ -159,41 +73,9 @@ export const GetAuthSessionsType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetAuthSessionsType);
 
 /** @internal */
-export const GetAuthSessionsType$outboundSchema: z.ZodNativeEnum<
-  typeof GetAuthSessionsType
-> = GetAuthSessionsType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionsType$ {
-  /** @deprecated use `GetAuthSessionsType$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionsType$inboundSchema;
-  /** @deprecated use `GetAuthSessionsType$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionsType$outboundSchema;
-}
-
-/** @internal */
 export const GetAuthSessionsStatus$inboundSchema: z.ZodNativeEnum<
   typeof GetAuthSessionsStatus
 > = z.nativeEnum(GetAuthSessionsStatus);
-
-/** @internal */
-export const GetAuthSessionsStatus$outboundSchema: z.ZodNativeEnum<
-  typeof GetAuthSessionsStatus
-> = GetAuthSessionsStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionsStatus$ {
-  /** @deprecated use `GetAuthSessionsStatus$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionsStatus$inboundSchema;
-  /** @deprecated use `GetAuthSessionsStatus$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionsStatus$outboundSchema;
-}
 
 /** @internal */
 export const ResponseBody$inboundSchema: z.ZodType<
@@ -205,41 +87,6 @@ export const ResponseBody$inboundSchema: z.ZodType<
   type: GetAuthSessionsType$inboundSchema,
   status: GetAuthSessionsStatus$inboundSchema,
 });
-
-/** @internal */
-export type ResponseBody$Outbound = {
-  id: string;
-  type: string;
-  status: string;
-};
-
-/** @internal */
-export const ResponseBody$outboundSchema: z.ZodType<
-  ResponseBody$Outbound,
-  z.ZodTypeDef,
-  ResponseBody
-> = z.object({
-  id: z.string(),
-  type: GetAuthSessionsType$outboundSchema,
-  status: GetAuthSessionsStatus$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBody$ {
-  /** @deprecated use `ResponseBody$inboundSchema` instead. */
-  export const inboundSchema = ResponseBody$inboundSchema;
-  /** @deprecated use `ResponseBody$outboundSchema` instead. */
-  export const outboundSchema = ResponseBody$outboundSchema;
-  /** @deprecated use `ResponseBody$Outbound` instead. */
-  export type Outbound = ResponseBody$Outbound;
-}
-
-export function responseBodyToJSON(responseBody: ResponseBody): string {
-  return JSON.stringify(ResponseBody$outboundSchema.parse(responseBody));
-}
 
 export function responseBodyFromJSON(
   jsonString: string,

@@ -266,41 +266,9 @@ export const GetJobsProjectJobsCode$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetJobsProjectJobsCode);
 
 /** @internal */
-export const GetJobsProjectJobsCode$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobsProjectJobsCode
-> = GetJobsProjectJobsCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsProjectJobsCode$ {
-  /** @deprecated use `GetJobsProjectJobsCode$inboundSchema` instead. */
-  export const inboundSchema = GetJobsProjectJobsCode$inboundSchema;
-  /** @deprecated use `GetJobsProjectJobsCode$outboundSchema` instead. */
-  export const outboundSchema = GetJobsProjectJobsCode$outboundSchema;
-}
-
-/** @internal */
 export const GetJobsProjectJobsCategory$inboundSchema: z.ZodNativeEnum<
   typeof GetJobsProjectJobsCategory
 > = z.nativeEnum(GetJobsProjectJobsCategory);
-
-/** @internal */
-export const GetJobsProjectJobsCategory$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobsProjectJobsCategory
-> = GetJobsProjectJobsCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsProjectJobsCategory$ {
-  /** @deprecated use `GetJobsProjectJobsCategory$inboundSchema` instead. */
-  export const inboundSchema = GetJobsProjectJobsCategory$inboundSchema;
-  /** @deprecated use `GetJobsProjectJobsCategory$outboundSchema` instead. */
-  export const outboundSchema = GetJobsProjectJobsCategory$outboundSchema;
-}
 
 /** @internal */
 export const GetJobsProjectJobsResponseResponseBody$inboundSchema: z.ZodType<
@@ -327,85 +295,13 @@ export const GetJobsProjectJobsResponseResponseBody$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type GetJobsProjectJobsResponseResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const GetJobsProjectJobsResponseResponseBody$outboundSchema: z.ZodType<
-  GetJobsProjectJobsResponseResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetJobsProjectJobsResponseResponseBody
-> = z.instanceof(GetJobsProjectJobsResponseResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: GetJobsProjectJobsCode$outboundSchema,
-    category: GetJobsProjectJobsCategory$outboundSchema,
-    message: z.string(),
-    retirable: z.boolean(),
-    details: z.any().optional(),
-    correlationId: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsProjectJobsResponseResponseBody$ {
-  /** @deprecated use `GetJobsProjectJobsResponseResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    GetJobsProjectJobsResponseResponseBody$inboundSchema;
-  /** @deprecated use `GetJobsProjectJobsResponseResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    GetJobsProjectJobsResponseResponseBody$outboundSchema;
-  /** @deprecated use `GetJobsProjectJobsResponseResponseBody$Outbound` instead. */
-  export type Outbound = GetJobsProjectJobsResponseResponseBody$Outbound;
-}
-
-/** @internal */
 export const GetJobsCode$inboundSchema: z.ZodNativeEnum<typeof GetJobsCode> = z
   .nativeEnum(GetJobsCode);
-
-/** @internal */
-export const GetJobsCode$outboundSchema: z.ZodNativeEnum<typeof GetJobsCode> =
-  GetJobsCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsCode$ {
-  /** @deprecated use `GetJobsCode$inboundSchema` instead. */
-  export const inboundSchema = GetJobsCode$inboundSchema;
-  /** @deprecated use `GetJobsCode$outboundSchema` instead. */
-  export const outboundSchema = GetJobsCode$outboundSchema;
-}
 
 /** @internal */
 export const GetJobsCategory$inboundSchema: z.ZodNativeEnum<
   typeof GetJobsCategory
 > = z.nativeEnum(GetJobsCategory);
-
-/** @internal */
-export const GetJobsCategory$outboundSchema: z.ZodNativeEnum<
-  typeof GetJobsCategory
-> = GetJobsCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsCategory$ {
-  /** @deprecated use `GetJobsCategory$inboundSchema` instead. */
-  export const inboundSchema = GetJobsCategory$inboundSchema;
-  /** @deprecated use `GetJobsCategory$outboundSchema` instead. */
-  export const outboundSchema = GetJobsCategory$outboundSchema;
-}
 
 /** @internal */
 export const GetJobsProjectJobsResponseBody$inboundSchema: z.ZodType<
@@ -432,82 +328,13 @@ export const GetJobsProjectJobsResponseBody$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type GetJobsProjectJobsResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const GetJobsProjectJobsResponseBody$outboundSchema: z.ZodType<
-  GetJobsProjectJobsResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetJobsProjectJobsResponseBody
-> = z.instanceof(GetJobsProjectJobsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: GetJobsCode$outboundSchema,
-    category: GetJobsCategory$outboundSchema,
-    message: z.string(),
-    retirable: z.boolean(),
-    details: z.any().optional(),
-    correlationId: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsProjectJobsResponseBody$ {
-  /** @deprecated use `GetJobsProjectJobsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetJobsProjectJobsResponseBody$inboundSchema;
-  /** @deprecated use `GetJobsProjectJobsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetJobsProjectJobsResponseBody$outboundSchema;
-  /** @deprecated use `GetJobsProjectJobsResponseBody$Outbound` instead. */
-  export type Outbound = GetJobsProjectJobsResponseBody$Outbound;
-}
-
-/** @internal */
 export const Code$inboundSchema: z.ZodNativeEnum<typeof Code> = z.nativeEnum(
   Code,
 );
 
 /** @internal */
-export const Code$outboundSchema: z.ZodNativeEnum<typeof Code> =
-  Code$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Code$ {
-  /** @deprecated use `Code$inboundSchema` instead. */
-  export const inboundSchema = Code$inboundSchema;
-  /** @deprecated use `Code$outboundSchema` instead. */
-  export const outboundSchema = Code$outboundSchema;
-}
-
-/** @internal */
 export const Category$inboundSchema: z.ZodNativeEnum<typeof Category> = z
   .nativeEnum(Category);
-
-/** @internal */
-export const Category$outboundSchema: z.ZodNativeEnum<typeof Category> =
-  Category$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Category$ {
-  /** @deprecated use `Category$inboundSchema` instead. */
-  export const inboundSchema = Category$inboundSchema;
-  /** @deprecated use `Category$outboundSchema` instead. */
-  export const outboundSchema = Category$outboundSchema;
-}
 
 /** @internal */
 export const GetJobsResponseBody$inboundSchema: z.ZodType<
@@ -532,42 +359,3 @@ export const GetJobsResponseBody$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type GetJobsResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const GetJobsResponseBody$outboundSchema: z.ZodType<
-  GetJobsResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetJobsResponseBody
-> = z.instanceof(GetJobsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: Code$outboundSchema,
-    category: Category$outboundSchema,
-    message: z.string(),
-    retirable: z.boolean(),
-    details: z.any().optional(),
-    correlationId: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetJobsResponseBody$ {
-  /** @deprecated use `GetJobsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetJobsResponseBody$inboundSchema;
-  /** @deprecated use `GetJobsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetJobsResponseBody$outboundSchema;
-  /** @deprecated use `GetJobsResponseBody$Outbound` instead. */
-  export type Outbound = GetJobsResponseBody$Outbound;
-}

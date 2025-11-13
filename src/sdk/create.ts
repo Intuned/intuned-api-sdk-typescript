@@ -13,7 +13,7 @@ export class Create extends ClientSDK {
    * Create Auth Session - Start
    *
    * @remarks
-   * Starts creation process of an authentication session for a project with the authentication session creation setting enabled.
+   * Start an AuthSession:Create run to create an Auth Session.
    */
   async start(
     projectName: string,
@@ -32,7 +32,7 @@ export class Create extends ClientSDK {
    * Create Auth Session - Result
    *
    * @remarks
-   * Gets authentication session creation operation result.
+   * Get Auth Session Create result.
    */
   async result(
     projectName: string,

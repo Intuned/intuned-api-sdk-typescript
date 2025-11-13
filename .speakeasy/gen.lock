@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: e405821bd096a33a8eeebb7b7a948210
+  docChecksum: 9e9e5d94ec623dad7436ab49e21ad199
   docVersion: 0.0.2
-  speakeasyVersion: 1.649.0
-  generationVersion: 2.739.1
+  speakeasyVersion: 1.656.1
+  generationVersion: 2.753.1
   releaseVersion: 0.4.1
-  configChecksum: 23e9ac6d6ab8edb992ab6c1911fc551c
+  configChecksum: d368e2f88e372a7b7bef8a087e4d748a
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.0
+    core: 3.26.6
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -134,10 +134,16 @@ generatedFiles:
   - docs/models/operations/createauthsessionresultglobals.md
   - docs/models/operations/createauthsessionresultrequest.md
   - docs/models/operations/createauthsessionresultresponsebody.md
+  - docs/models/operations/createauthsessionresultresponsebodycategory.md
+  - docs/models/operations/createauthsessionresultresponsebodycode.md
+  - docs/models/operations/createauthsessionresultresponsebodyerror.md
+  - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreateresponse200applicationjsonstatus.md
   - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreateresponse200status.md
   - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreateresponsestatus.md
   - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreatestatus.md
+  - docs/models/operations/createauthsessionresultresponsebodyreason.md
   - docs/models/operations/createauthsessionresultresponsebodystatus.md
+  - docs/models/operations/createauthsessionresultresponsebodytype.md
   - docs/models/operations/createjob41.md
   - docs/models/operations/createjob42.md
   - docs/models/operations/createjob43.md
@@ -247,6 +253,7 @@ generatedFiles:
   - docs/models/operations/getjobdayofmonth4.md
   - docs/models/operations/getjobdayofmonth5.md
   - docs/models/operations/getjobdayofweek.md
+  - docs/models/operations/getjobdayofweek1.md
   - docs/models/operations/getjobdayofweek2.md
   - docs/models/operations/getjobdayofweek3.md
   - docs/models/operations/getjobdayofweek4.md
@@ -340,8 +347,8 @@ generatedFiles:
   - docs/models/operations/getjobs4projectjobsresponse200applicationjson3.md
   - docs/models/operations/getjobs4projectjobsresponse200applicationjsonresponsebody2.md
   - docs/models/operations/getjobs4projectjobsresponse200applicationjsonresponsebody3.md
-  - docs/models/operations/getjobs4projectjobsresponse200applicationjsonresponsebodyjobs2.md
-  - docs/models/operations/getjobs4projectjobsresponse200applicationjsonresponsebodyjobs3.md
+  - docs/models/operations/getjobs4projectjobsresponse200applicationjsonresponsebodyschedule2.md
+  - docs/models/operations/getjobs4projectjobsresponse200applicationjsonresponsebodyschedule3.md
   - docs/models/operations/getjobs4projectjobsresponse200end.md
   - docs/models/operations/getjobs4projectjobsresponse200start.md
   - docs/models/operations/getjobs4projectjobsresponse3.md
@@ -359,7 +366,6 @@ generatedFiles:
   - docs/models/operations/getjobsdayofmonth4.md
   - docs/models/operations/getjobsdayofmonth5.md
   - docs/models/operations/getjobsdayofweek.md
-  - docs/models/operations/getjobsdayofweek1.md
   - docs/models/operations/getjobsdayofweek2.md
   - docs/models/operations/getjobsdayofweek3.md
   - docs/models/operations/getjobsdayofweek4.md
@@ -369,6 +375,10 @@ generatedFiles:
   - docs/models/operations/getjobsdayofweekprojectjobsstart.md
   - docs/models/operations/getjobsdayofweekstart.md
   - docs/models/operations/getjobsecond.md
+  - docs/models/operations/getjobsecond2.md
+  - docs/models/operations/getjobsecond3.md
+  - docs/models/operations/getjobsecond4.md
+  - docs/models/operations/getjobsecond5.md
   - docs/models/operations/getjobsevery.md
   - docs/models/operations/getjobsglobals.md
   - docs/models/operations/getjobshour.md
@@ -402,20 +412,15 @@ generatedFiles:
   - docs/models/operations/getjobsprojectjobsretry.md
   - docs/models/operations/getjobsreason.md
   - docs/models/operations/getjobsrequest.md
-  - docs/models/operations/getjobsresponsebody.md
   - docs/models/operations/getjobsretry.md
   - docs/models/operations/getjobsschedule.md
   - docs/models/operations/getjobssecond.md
-  - docs/models/operations/getjobssecond2.md
-  - docs/models/operations/getjobssecond3.md
-  - docs/models/operations/getjobssecond4.md
-  - docs/models/operations/getjobssecond5.md
   - docs/models/operations/getjobssink.md
   - docs/models/operations/getjobssinkprojectjobstype.md
   - docs/models/operations/getjobssinks3sinkconfiguration.md
   - docs/models/operations/getjobssinktype.md
   - docs/models/operations/getjobssinkwebhooksinkconfiguration.md
-  - docs/models/operations/getjobsstate.md
+  - docs/models/operations/getjobstate.md
   - docs/models/operations/getjobstype.md
   - docs/models/operations/getjobsyear.md
   - docs/models/operations/getjobsyear2.md
@@ -502,10 +507,6 @@ generatedFiles:
   - docs/models/operations/sinktype.md
   - docs/models/operations/sinkwebhooksinkconfiguration.md
   - docs/models/operations/start.md
-  - docs/models/operations/startauthsessionrecorderglobals.md
-  - docs/models/operations/startauthsessionrecorderrequest.md
-  - docs/models/operations/startauthsessionrecorderrequestbody.md
-  - docs/models/operations/startauthsessionrecorderresponsebody.md
   - docs/models/operations/state.md
   - docs/models/operations/status.md
   - docs/models/operations/terminatejobrunglobals.md
@@ -520,9 +521,14 @@ generatedFiles:
   - docs/models/operations/updateauthsessionresultglobals.md
   - docs/models/operations/updateauthsessionresultrequest.md
   - docs/models/operations/updateauthsessionresultresponsebody.md
+  - docs/models/operations/updateauthsessionresultresponsebodycanceled.md
   - docs/models/operations/updateauthsessionresultresponsebodycategory.md
   - docs/models/operations/updateauthsessionresultresponsebodycode.md
+  - docs/models/operations/updateauthsessionresultresponsebodydone.md
   - docs/models/operations/updateauthsessionresultresponsebodyerror.md
+  - docs/models/operations/updateauthsessionresultresponsebodyfailed.md
+  - docs/models/operations/updateauthsessionresultresponsebodyinprogress.md
+  - docs/models/operations/updateauthsessionresultresponsebodypending.md
   - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdateresponse200applicationjsonstatus.md
   - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdateresponse200status.md
   - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdateresponsestatus.md
@@ -535,6 +541,18 @@ generatedFiles:
   - docs/models/operations/updateauthsessionstartrequestbody.md
   - docs/models/operations/updateauthsessionstartresponsebody.md
   - docs/models/operations/updateauthsessionstartstatus.md
+  - docs/models/operations/validateauthsessionresultglobals.md
+  - docs/models/operations/validateauthsessionresultrequest.md
+  - docs/models/operations/validateauthsessionresultresponsebody.md
+  - docs/models/operations/validateauthsessionresultresponsebodyprojectauthsessionsvalidateresponse200status.md
+  - docs/models/operations/validateauthsessionresultresponsebodyprojectauthsessionsvalidateresponsestatus.md
+  - docs/models/operations/validateauthsessionresultresponsebodyprojectauthsessionsvalidatestatus.md
+  - docs/models/operations/validateauthsessionresultresponsebodystatus.md
+  - docs/models/operations/validateauthsessionstartglobals.md
+  - docs/models/operations/validateauthsessionstartrequest.md
+  - docs/models/operations/validateauthsessionstartrequestbody.md
+  - docs/models/operations/validateauthsessionstartresponsebody.md
+  - docs/models/operations/validateauthsessionstartstatus.md
   - docs/models/operations/version.md
   - docs/models/operations/webhooksinkconfiguration.md
   - docs/models/operations/year.md
@@ -545,10 +563,10 @@ generatedFiles:
   - docs/sdks/authsessions/README.md
   - docs/sdks/create/README.md
   - docs/sdks/jobs/README.md
-  - docs/sdks/recorder/README.md
   - docs/sdks/run/README.md
   - docs/sdks/runs/README.md
   - docs/sdks/update/README.md
+  - docs/sdks/validate/README.md
   - eslint.config.mjs
   - examples/.env.template
   - examples/README.md
@@ -562,9 +580,10 @@ generatedFiles:
   - src/funcs/projectAuthSessionsCreateStart.ts
   - src/funcs/projectAuthSessionsDelete.ts
   - src/funcs/projectAuthSessionsOne.ts
-  - src/funcs/projectAuthSessionsRecorderStart.ts
   - src/funcs/projectAuthSessionsUpdateResult.ts
   - src/funcs/projectAuthSessionsUpdateStart.ts
+  - src/funcs/projectAuthSessionsValidateResult.ts
+  - src/funcs/projectAuthSessionsValidateStart.ts
   - src/funcs/projectJobsAll.ts
   - src/funcs/projectJobsCreate.ts
   - src/funcs/projectJobsDelete.ts
@@ -630,21 +649,22 @@ generatedFiles:
   - src/models/operations/resumejob.ts
   - src/models/operations/runapiresult.ts
   - src/models/operations/runapistart.ts
-  - src/models/operations/startauthsessionrecorder.ts
   - src/models/operations/terminatejobrun.ts
   - src/models/operations/triggerjob.ts
   - src/models/operations/updateauthsessionresult.ts
   - src/models/operations/updateauthsessionstart.ts
+  - src/models/operations/validateauthsessionresult.ts
+  - src/models/operations/validateauthsessionstart.ts
   - src/sdk/authsessions.ts
   - src/sdk/create.ts
   - src/sdk/index.ts
   - src/sdk/jobs.ts
   - src/sdk/project.ts
-  - src/sdk/recorder.ts
   - src/sdk/run.ts
   - src/sdk/runs.ts
   - src/sdk/sdk.ts
   - src/sdk/update.ts
+  - src/sdk/validate.ts
   - src/types/async.ts
   - src/types/blobs.ts
   - src/types/constdatetime.ts
@@ -666,6 +686,8 @@ examples:
         application/json: {"parameters": {"param1": "value1", "param2": 42, "param3": true}, "proxy": "http://username:password@domain:port", "saveTrace": true, "requestTimeout": 600, "retry": {"maximumAttempts": 3}, "authSession": {"id": "auth-session-123", "autoRecreate": true, "checkAttempts": 3, "createAttempts": 3, "proxy": "http://username:password@domain:port", "requestTimeout": 600}, "sink": {"type": "webhook", "url": "https://example.com/webhook", "headers": {"Content-Type": "application/json", "Authorization": "Bearer token"}, "skipOnFail": false, "apisToSend": ["api1", "api2"]}, "api": "<value>"}
       responses:
         "200":
+          application/json: {"runId": "<id>", "status": "pending"}
+        "201":
           application/json: {"runId": "<id>", "status": "pending"}
   runApiResult:
     speakeasy-default-run-api-result:
@@ -712,7 +734,7 @@ examples:
           projectName: "my-project"
       responses:
         "200":
-          application/json: {"jobs": []}
+          application/json: [{"id": "123e4567-e89b-12d3-a456-426614174000", "workspace_id": "123e4567-e89b-12d3-a456-426614174000", "project_id": "123e4567-e89b-12d3-a456-426614174000", "configuration": {"retry": {"maximumAttempts": 3}, "requestTimeout": 600}, "payload": [], "created_at": "2024-01-01T00:00:00Z", "state": "PAUSED"}]
         "400":
           application/json: {"code": "bad-request", "category": "user", "message": "<value>", "retirable": false, "correlationId": "<id>"}
         "401":
@@ -1031,5 +1053,59 @@ examples:
       responses:
         "201":
           application/json: {"recorder_url": "http://recorder.example.com/session/123"}
+  ValidateAuthSessionStart:
+    speakeasy-default-validate-auth-session-start:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          authSessionId: "<id>"
+      requestBody:
+        application/json: {"autoRecreate": true, "checkAttempts": 3, "createAttempts": 3, "proxy": "http://username:password@domain:port", "requestTimeout": 600}
+      responses:
+        "201":
+          application/json: {"status": "pending", "operationId": "<id>"}
+    started:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          authSessionId: "<id>"
+      requestBody:
+        application/json: {"autoRecreate": true, "checkAttempts": 3, "createAttempts": 3, "proxy": "http://username:password@domain:port", "requestTimeout": 600}
+      responses:
+        "201":
+          application/json: {"status": "pending", "operationId": "aabbccddeeffggh"}
+  validateAuthSessionResult:
+    speakeasy-default-validate-auth-session-result:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          operationId: "aaaabbbCCCCdddd"
+          authSessionId: "<id>"
+      responses:
+        "200":
+          application/json: {"status": "failed", "message": "<value>", "error": {"message": "An error occurred while executing the run", "code": "script-process-crashed", "category": "billing", "retirable": false, "doc_url": "https://docs.intunedhq.com/docs/support/errors#run-execution-error", "correlation_id": "123e4567-e89b-12d3-a456-426614174000"}}
+    done:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          operationId: "aaaabbbCCCCdddd"
+          authSessionId: "<id>"
+      responses:
+        "200":
+          application/json: {"status": "done", "authSessionId": "auth-session-123"}
+    pending:
+      parameters:
+        path:
+          workspaceId: "123e4567-e89b-12d3-a456-426614174000"
+          projectName: "my-project"
+          operationId: "aaaabbbCCCCdddd"
+          authSessionId: "<id>"
+      responses:
+        "200":
+          application/json: {"status": "pending"}
 examplesVersion: 1.0.2
 generatedTests: {}

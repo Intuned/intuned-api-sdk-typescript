@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Delete Auth Session
  *
  * @remarks
- * Deletes an authentication session by ID.
+ * Deletes an Auth Session by ID.
  */
 export function projectAuthSessionsDelete(
   client: IntunedClientCore,

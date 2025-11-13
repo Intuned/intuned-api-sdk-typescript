@@ -184,41 +184,9 @@ export const DeleteJobProjectJobsCode$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(DeleteJobProjectJobsCode);
 
 /** @internal */
-export const DeleteJobProjectJobsCode$outboundSchema: z.ZodNativeEnum<
-  typeof DeleteJobProjectJobsCode
-> = DeleteJobProjectJobsCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteJobProjectJobsCode$ {
-  /** @deprecated use `DeleteJobProjectJobsCode$inboundSchema` instead. */
-  export const inboundSchema = DeleteJobProjectJobsCode$inboundSchema;
-  /** @deprecated use `DeleteJobProjectJobsCode$outboundSchema` instead. */
-  export const outboundSchema = DeleteJobProjectJobsCode$outboundSchema;
-}
-
-/** @internal */
 export const DeleteJobProjectJobsCategory$inboundSchema: z.ZodNativeEnum<
   typeof DeleteJobProjectJobsCategory
 > = z.nativeEnum(DeleteJobProjectJobsCategory);
-
-/** @internal */
-export const DeleteJobProjectJobsCategory$outboundSchema: z.ZodNativeEnum<
-  typeof DeleteJobProjectJobsCategory
-> = DeleteJobProjectJobsCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteJobProjectJobsCategory$ {
-  /** @deprecated use `DeleteJobProjectJobsCategory$inboundSchema` instead. */
-  export const inboundSchema = DeleteJobProjectJobsCategory$inboundSchema;
-  /** @deprecated use `DeleteJobProjectJobsCategory$outboundSchema` instead. */
-  export const outboundSchema = DeleteJobProjectJobsCategory$outboundSchema;
-}
 
 /** @internal */
 export const DeleteJobProjectJobsResponseBody$inboundSchema: z.ZodType<
@@ -245,85 +213,14 @@ export const DeleteJobProjectJobsResponseBody$inboundSchema: z.ZodType<
   });
 
 /** @internal */
-export type DeleteJobProjectJobsResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const DeleteJobProjectJobsResponseBody$outboundSchema: z.ZodType<
-  DeleteJobProjectJobsResponseBody$Outbound,
-  z.ZodTypeDef,
-  DeleteJobProjectJobsResponseBody
-> = z.instanceof(DeleteJobProjectJobsResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: DeleteJobProjectJobsCode$outboundSchema,
-    category: DeleteJobProjectJobsCategory$outboundSchema,
-    message: z.string(),
-    retirable: z.boolean(),
-    details: z.any().optional(),
-    correlationId: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteJobProjectJobsResponseBody$ {
-  /** @deprecated use `DeleteJobProjectJobsResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteJobProjectJobsResponseBody$inboundSchema;
-  /** @deprecated use `DeleteJobProjectJobsResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteJobProjectJobsResponseBody$outboundSchema;
-  /** @deprecated use `DeleteJobProjectJobsResponseBody$Outbound` instead. */
-  export type Outbound = DeleteJobProjectJobsResponseBody$Outbound;
-}
-
-/** @internal */
 export const DeleteJobCode$inboundSchema: z.ZodNativeEnum<
   typeof DeleteJobCode
 > = z.nativeEnum(DeleteJobCode);
 
 /** @internal */
-export const DeleteJobCode$outboundSchema: z.ZodNativeEnum<
-  typeof DeleteJobCode
-> = DeleteJobCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteJobCode$ {
-  /** @deprecated use `DeleteJobCode$inboundSchema` instead. */
-  export const inboundSchema = DeleteJobCode$inboundSchema;
-  /** @deprecated use `DeleteJobCode$outboundSchema` instead. */
-  export const outboundSchema = DeleteJobCode$outboundSchema;
-}
-
-/** @internal */
 export const DeleteJobCategory$inboundSchema: z.ZodNativeEnum<
   typeof DeleteJobCategory
 > = z.nativeEnum(DeleteJobCategory);
-
-/** @internal */
-export const DeleteJobCategory$outboundSchema: z.ZodNativeEnum<
-  typeof DeleteJobCategory
-> = DeleteJobCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteJobCategory$ {
-  /** @deprecated use `DeleteJobCategory$inboundSchema` instead. */
-  export const inboundSchema = DeleteJobCategory$inboundSchema;
-  /** @deprecated use `DeleteJobCategory$outboundSchema` instead. */
-  export const outboundSchema = DeleteJobCategory$outboundSchema;
-}
 
 /** @internal */
 export const DeleteJobResponseBody$inboundSchema: z.ZodType<
@@ -348,42 +245,3 @@ export const DeleteJobResponseBody$inboundSchema: z.ZodType<
       body: v.body$,
     });
   });
-
-/** @internal */
-export type DeleteJobResponseBody$Outbound = {
-  code: string;
-  category: string;
-  message: string;
-  retirable: boolean;
-  details?: any | undefined;
-  correlationId: string;
-};
-
-/** @internal */
-export const DeleteJobResponseBody$outboundSchema: z.ZodType<
-  DeleteJobResponseBody$Outbound,
-  z.ZodTypeDef,
-  DeleteJobResponseBody
-> = z.instanceof(DeleteJobResponseBody)
-  .transform(v => v.data$)
-  .pipe(z.object({
-    code: DeleteJobCode$outboundSchema,
-    category: DeleteJobCategory$outboundSchema,
-    message: z.string(),
-    retirable: z.boolean(),
-    details: z.any().optional(),
-    correlationId: z.string(),
-  }));
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace DeleteJobResponseBody$ {
-  /** @deprecated use `DeleteJobResponseBody$inboundSchema` instead. */
-  export const inboundSchema = DeleteJobResponseBody$inboundSchema;
-  /** @deprecated use `DeleteJobResponseBody$outboundSchema` instead. */
-  export const outboundSchema = DeleteJobResponseBody$outboundSchema;
-  /** @deprecated use `DeleteJobResponseBody$Outbound` instead. */
-  export type Outbound = DeleteJobResponseBody$Outbound;
-}

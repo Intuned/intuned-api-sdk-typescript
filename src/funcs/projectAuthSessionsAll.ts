@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get Auth Sessions
  *
  * @remarks
- * Gets all authentication sessions of project
+ * Gets all Auth Sessions of project
  */
 export function projectAuthSessionsAll(
   client: IntunedClientCore,

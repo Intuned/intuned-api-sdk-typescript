@@ -3,16 +3,16 @@
 
 ## Overview
 
-Run Project's exposed APIs
+Run APIs
 
 ### Available Operations
 
-* [start](#start) - Run API - Async Start
-* [result](#result) - Run API - Async Result
+* [start](#start) - Run API - Start
+* [result](#result) - Run API - Result
 
 ## start
 
-Starts an API run for a specific project in a workspace.
+Starts an API run for a project
 
 ### Example Usage
 
@@ -100,7 +100,7 @@ run();
 
 ## result
 
-Retrieves the result of a started project API run operation.
+Get Run API result.
 
 ### Example Usage
 

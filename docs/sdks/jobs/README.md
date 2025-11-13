@@ -78,7 +78,7 @@ run();
 
 ### Response
 
-**Promise\<[operations.GetJobsResponseBody](../../models/operations/getjobsresponsebody.md)\>**
+**Promise\<[operations.JobDBObjectSchema[]](../../models/.md)\>**
 
 ### Errors
 
