@@ -185,7 +185,7 @@ export type Done = {
 };
 
 /**
- * Get Auth session Validate result
+ * Get AuthSession Validate result
  */
 export type ValidateAuthSessionResultResponseBody =
   | Canceled

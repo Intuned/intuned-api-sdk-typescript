@@ -28,7 +28,7 @@ generation:
     generateNewTests: false
     skipResponseBodyAssertions: false
 typescript:
-  version: 0.4.1
+  version: 0.4.0
   acceptHeaderEnum: true
   additionalDependencies:
     dependencies: {}
@@ -46,6 +46,7 @@ typescript:
   enableMCPServer: false
   enableReactQuery: false
   enumFormat: union
+  envVarPrefix: INTUNED
   exportZodModelNamespace: false
   flattenGlobalSecurity: true
   flatteningOrder: parameters-first

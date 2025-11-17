@@ -92,7 +92,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -122,24 +122,24 @@ run();
 
 #### [project.authSessions](docs/sdks/authsessions/README.md)
 
-* [all](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
-* [one](docs/sdks/authsessions/README.md#one) - Get Auth Session
-* [delete](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
+* [all](docs/sdks/authsessions/README.md#all) - Get AuthSessions
+* [one](docs/sdks/authsessions/README.md#one) - Get AuthSession
+* [delete](docs/sdks/authsessions/README.md#delete) - Delete AuthSession
 
 #### [project.authSessions.create](docs/sdks/create/README.md)
 
-* [start](docs/sdks/create/README.md#start) - Create Auth Session - Start
-* [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
+* [start](docs/sdks/create/README.md#start) - Create AuthSession - Start
+* [result](docs/sdks/create/README.md#result) - Create AuthSession - Result
 
 #### [project.authSessions.update](docs/sdks/update/README.md)
 
-* [start](docs/sdks/update/README.md#start) - Update Auth Session - Start
-* [result](docs/sdks/update/README.md#result) - Update Auth Session - Result
+* [start](docs/sdks/update/README.md#start) - Update AuthSession - Start
+* [result](docs/sdks/update/README.md#result) - Update AuthSession - Result
 
 #### [project.authSessions.validate](docs/sdks/validate/README.md)
 
-* [start](docs/sdks/validate/README.md#start) - Validate Auth Session - Start
-* [result](docs/sdks/validate/README.md#result) - Validate Auth Session - Result
+* [start](docs/sdks/validate/README.md#start) - Validate AuthSession - Start
+* [result](docs/sdks/validate/README.md#result) - Validate AuthSession - Result
 
 #### [project.jobs](docs/sdks/jobs/README.md)
 
@@ -363,7 +363,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -411,7 +411,7 @@ const intunedClient = new IntunedClient({
     retryConnectionErrors: false,
   },
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -444,10 +444,11 @@ For example, you can set `workspaceId` to `"123e4567-e89b-12d3-a456-426614174000
 ### Available Globals
 
 The following global parameter is available.
+Global parameters can also be set via environment variable.
 
-| Name        | Type   | Description                                                                          |
-| ----------- | ------ | ------------------------------------------------------------------------------------ |
-| workspaceId | string | Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)? |
+| Name        | Type   | Description                                                                          | Environment          |
+| ----------- | ------ | ------------------------------------------------------------------------------------ | -------------------- |
+| workspaceId | string | Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)? | INTUNED_WORKSPACE_ID |
 
 ### Example
 
@@ -456,7 +457,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -493,15 +494,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`projectAuthSessionsAll`](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
-- [`projectAuthSessionsCreateResult`](docs/sdks/create/README.md#result) - Create Auth Session - Result
-- [`projectAuthSessionsCreateStart`](docs/sdks/create/README.md#start) - Create Auth Session - Start
-- [`projectAuthSessionsDelete`](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
-- [`projectAuthSessionsOne`](docs/sdks/authsessions/README.md#one) - Get Auth Session
-- [`projectAuthSessionsUpdateResult`](docs/sdks/update/README.md#result) - Update Auth Session - Result
-- [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update Auth Session - Start
-- [`projectAuthSessionsValidateResult`](docs/sdks/validate/README.md#result) - Validate Auth Session - Result
-- [`projectAuthSessionsValidateStart`](docs/sdks/validate/README.md#start) - Validate Auth Session - Start
+- [`projectAuthSessionsAll`](docs/sdks/authsessions/README.md#all) - Get AuthSessions
+- [`projectAuthSessionsCreateResult`](docs/sdks/create/README.md#result) - Create AuthSession - Result
+- [`projectAuthSessionsCreateStart`](docs/sdks/create/README.md#start) - Create AuthSession - Start
+- [`projectAuthSessionsDelete`](docs/sdks/authsessions/README.md#delete) - Delete AuthSession
+- [`projectAuthSessionsOne`](docs/sdks/authsessions/README.md#one) - Get AuthSession
+- [`projectAuthSessionsUpdateResult`](docs/sdks/update/README.md#result) - Update AuthSession - Result
+- [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update AuthSession - Start
+- [`projectAuthSessionsValidateResult`](docs/sdks/validate/README.md#result) - Validate AuthSession - Result
+- [`projectAuthSessionsValidateStart`](docs/sdks/validate/README.md#start) - Validate AuthSession - Start
 - [`projectJobsAll`](docs/sdks/jobs/README.md#all) - Get Jobs
 - [`projectJobsCreate`](docs/sdks/jobs/README.md#create) - Create Job
 - [`projectJobsDelete`](docs/sdks/jobs/README.md#delete) - Delete Job
@@ -533,6 +534,8 @@ import { IntunedClient } from "@intuned/client";
 
 const sdk = new IntunedClient({ debugLogger: console });
 ```
+
+You can also enable a default debug logger by setting an environment variable `INTUNED_DEBUG` to true.
 <!-- End Debugging [debug] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

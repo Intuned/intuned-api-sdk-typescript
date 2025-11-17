@@ -191,7 +191,7 @@ export type ResponseBodyDone = {
 };
 
 /**
- * Auth session creation result
+ * AuthSession creation result
  */
 export type CreateAuthSessionResultResponseBody =
   | ResponseBodyCanceled

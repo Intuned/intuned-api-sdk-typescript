@@ -195,7 +195,7 @@ export type UpdateAuthSessionResultResponseBodyDone = {
 };
 
 /**
- * Auth session update result
+ * AuthSession update result
  */
 export type UpdateAuthSessionResultResponseBody =
   | UpdateAuthSessionResultResponseBodyCanceled

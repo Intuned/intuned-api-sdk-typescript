@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 9e9e5d94ec623dad7436ab49e21ad199
+  docChecksum: 591c2102f18783e0fbdc526f9e6c58b0
   docVersion: 0.0.2
-  speakeasyVersion: 1.656.1
-  generationVersion: 2.753.1
-  releaseVersion: 0.4.1
-  configChecksum: d368e2f88e372a7b7bef8a087e4d748a
+  speakeasyVersion: 1.658.1
+  generationVersion: 2.755.6
+  releaseVersion: 0.4.0
+  configChecksum: d02660af409ad997b5b65762820e2b3e
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.6
+    core: 3.26.7
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -604,6 +604,7 @@ generatedFiles:
   - src/lib/config.ts
   - src/lib/dlv.ts
   - src/lib/encodings.ts
+  - src/lib/env.ts
   - src/lib/files.ts
   - src/lib/http.ts
   - src/lib/is-plain-object.ts

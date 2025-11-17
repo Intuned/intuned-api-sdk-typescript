@@ -7,12 +7,12 @@ Create Auth Session
 
 ### Available Operations
 
-* [start](#start) - Create Auth Session - Start
-* [result](#result) - Create Auth Session - Result
+* [start](#start) - Create AuthSession - Start
+* [result](#result) - Create AuthSession - Result
 
 ## start
 
-Start an AuthSession:Create run to create an Auth Session.
+Start an AuthSession:Create run to create an AuthSession.
 
 ### Example Usage
 
@@ -22,7 +22,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -52,7 +52,7 @@ import { projectAuthSessionsCreateStart } from "@intuned/client/funcs/projectAut
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -79,7 +79,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
-| `requestBody`                                                                                                                                                                  | [operations.CreateOrUpdateAuthSessionStartRequestBody](../../models/operations/createorupdateauthsessionstartrequestbody.md)                                                   | :heavy_check_mark:                                                                                                                                                             | Create auth session input schema                                                                                                                                               |                                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.CreateOrUpdateAuthSessionStartRequestBody](../../models/operations/createorupdateauthsessionstartrequestbody.md)                                                   | :heavy_check_mark:                                                                                                                                                             | Create AuthSession input schema                                                                                                                                                |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -96,7 +96,7 @@ run();
 
 ## result
 
-Get Auth Session Create result.
+Get AuthSession Create result.
 
 ### Example Usage
 
@@ -106,7 +106,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -130,7 +130,7 @@ import { projectAuthSessionsCreateResult } from "@intuned/client/funcs/projectAu
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {

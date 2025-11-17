@@ -10,10 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Validate extends ClientSDK {
   /**
-   * Validate Auth Session - Start
+   * Validate AuthSession - Start
    *
    * @remarks
-   * Starts an AuthSession:Validate run to validate an Auth Session.
+   * Starts an AuthSession:Validate run to validate an AuthSession.
    */
   async start(
     projectName: string,
@@ -31,7 +31,7 @@ export class Validate extends ClientSDK {
   }
 
   /**
-   * Validate Auth Session - Result
+   * Validate AuthSession - Result
    *
    * @remarks
    * Get AuthSession:Validate run result.

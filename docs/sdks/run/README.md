@@ -22,7 +22,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -54,7 +54,7 @@ import { projectRunStart } from "@intuned/client/funcs/projectRunStart.js";
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -110,7 +110,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -134,7 +134,7 @@ import { projectRunResult } from "@intuned/client/funcs/projectRunResult.js";
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {

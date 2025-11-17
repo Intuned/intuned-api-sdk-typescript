@@ -14,7 +14,7 @@ This directory contains example scripts demonstrating how to use the @intuned/cl
    cp .env.template .env
    ```
 
-2. Edit `.env` and add your actual credentials
+2. Edit `.env` and add your actual credentials (API keys, tokens, etc.)
 
 ## Running the Examples
 

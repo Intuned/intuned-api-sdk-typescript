@@ -15,7 +15,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function main() {
