@@ -3,16 +3,16 @@ id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
   docChecksum: 591c2102f18783e0fbdc526f9e6c58b0
   docVersion: 0.0.2
-  speakeasyVersion: 1.658.1
-  generationVersion: 2.755.6
-  releaseVersion: 0.4.0
-  configChecksum: d02660af409ad997b5b65762820e2b3e
+  speakeasyVersion: 1.661.3
+  generationVersion: 2.763.3
+  releaseVersion: 0.4.2
+  configChecksum: 3c95406e710f83b28fb8a9e4e821e89d
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.7
+    core: 3.26.10
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -675,6 +675,7 @@ generatedFiles:
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - src/types/streams.ts
+  - src/types/unrecognized.ts
   - tsconfig.json
 examples:
   runApiStart:

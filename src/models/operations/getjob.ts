@@ -137,8 +137,8 @@ export type GetJobSinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type GetJobSink =
-  | GetJobSinkS3SinkConfiguration
-  | GetJobSinkWebhookSinkConfiguration;
+  | (GetJobSinkS3SinkConfiguration & { type: "s3" })
+  | (GetJobSinkWebhookSinkConfiguration & { type: "webhook" });
 
 /**
  * Current state of the job
@@ -924,8 +924,8 @@ export type GetJobJobDetailsResponse = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | GetJobSinkS3SinkConfiguration
-    | GetJobSinkWebhookSinkConfiguration
+    | (GetJobSinkS3SinkConfiguration & { type: "s3" })
+    | (GetJobSinkWebhookSinkConfiguration & { type: "webhook" })
     | null
     | undefined;
   /**
@@ -1094,8 +1094,12 @@ export const GetJobSink$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetJobSinkS3SinkConfiguration$inboundSchema),
-  z.lazy(() => GetJobSinkWebhookSinkConfiguration$inboundSchema),
+  z.lazy(() => GetJobSinkS3SinkConfiguration$inboundSchema).and(
+    z.object({ type: z.literal("s3") }),
+  ),
+  z.lazy(() => GetJobSinkWebhookSinkConfiguration$inboundSchema).and(
+    z.object({ type: z.literal("webhook") }),
+  ),
 ]);
 
 export function getJobSinkFromJSON(
@@ -2468,8 +2472,12 @@ export const GetJobJobDetailsResponse$inboundSchema: z.ZodType<
   configuration: z.lazy(() => GetJobConfiguration$inboundSchema),
   sink: z.nullable(
     z.union([
-      z.lazy(() => GetJobSinkS3SinkConfiguration$inboundSchema),
-      z.lazy(() => GetJobSinkWebhookSinkConfiguration$inboundSchema),
+      z.lazy(() => GetJobSinkS3SinkConfiguration$inboundSchema).and(
+        z.object({ type: z.literal("s3") }),
+      ),
+      z.lazy(() => GetJobSinkWebhookSinkConfiguration$inboundSchema).and(
+        z.object({ type: z.literal("webhook") }),
+      ),
     ]),
   ).optional(),
   created_at: z.string(),

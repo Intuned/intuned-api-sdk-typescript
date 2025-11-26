@@ -162,8 +162,8 @@ export type GetJobsSinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type GetJobsSink =
-  | GetJobsSinkS3SinkConfiguration
-  | GetJobsSinkWebhookSinkConfiguration;
+  | (GetJobsSinkS3SinkConfiguration & { type: "s3" })
+  | (GetJobsSinkWebhookSinkConfiguration & { type: "webhook" });
 
 export type GetJobsJitter = number | string;
 
@@ -969,8 +969,8 @@ export type JobDBObjectSchema = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | GetJobsSinkS3SinkConfiguration
-    | GetJobsSinkWebhookSinkConfiguration
+    | (GetJobsSinkS3SinkConfiguration & { type: "s3" })
+    | (GetJobsSinkWebhookSinkConfiguration & { type: "webhook" })
     | null
     | undefined;
   /**
@@ -1178,8 +1178,12 @@ export const GetJobsSink$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema),
-  z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema),
+  z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema).and(
+    z.object({ type: z.literal("s3") }),
+  ),
+  z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema).and(
+    z.object({ type: z.literal("webhook") }),
+  ),
 ]);
 
 export function getJobsSinkFromJSON(
@@ -2559,8 +2563,12 @@ export const JobDBObjectSchema$inboundSchema: z.ZodType<
   payload: z.array(z.lazy(() => GetJobsPayload$inboundSchema)),
   sink: z.nullable(
     z.union([
-      z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema),
-      z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema),
+      z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema).and(
+        z.object({ type: z.literal("s3") }),
+      ),
+      z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema).and(
+        z.object({ type: z.literal("webhook") }),
+      ),
     ]),
   ).optional(),
   schedule: z.nullable(z.lazy(() => GetJobsSchedule$inboundSchema)).optional(),

@@ -15,15 +15,7 @@ let value: GetJobJobDetailsResponse = {
   sink: {
     type: "webhook",
     url: "https://example.com/webhook",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer token",
-    },
     skipOnFail: false,
-    apisToSend: [
-      "api1",
-      "api2",
-    ],
   },
   createdAt: "2024-01-01T00:00:00Z",
   nextRunTime: "2024-01-01T00:00:00Z",

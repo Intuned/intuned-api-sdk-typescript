@@ -198,11 +198,11 @@ export type UpdateAuthSessionResultResponseBodyDone = {
  * AuthSession update result
  */
 export type UpdateAuthSessionResultResponseBody =
-  | UpdateAuthSessionResultResponseBodyCanceled
-  | UpdateAuthSessionResultResponseBodyFailed
-  | UpdateAuthSessionResultResponseBodyDone
-  | UpdateAuthSessionResultResponseBodyInProgress
-  | UpdateAuthSessionResultResponseBodyPending;
+  | (UpdateAuthSessionResultResponseBodyCanceled & { status: "canceled" })
+  | (UpdateAuthSessionResultResponseBodyFailed & { status: "failed" })
+  | (UpdateAuthSessionResultResponseBodyDone & { status: "done" })
+  | (UpdateAuthSessionResultResponseBodyInProgress & { status: "in_progress" })
+  | (UpdateAuthSessionResultResponseBodyPending & { status: "pending" });
 
 /** @internal */
 export type UpdateAuthSessionResultRequest$Outbound = {
@@ -495,11 +495,21 @@ export const UpdateAuthSessionResultResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => UpdateAuthSessionResultResponseBodyCanceled$inboundSchema),
-  z.lazy(() => UpdateAuthSessionResultResponseBodyFailed$inboundSchema),
-  z.lazy(() => UpdateAuthSessionResultResponseBodyDone$inboundSchema),
-  z.lazy(() => UpdateAuthSessionResultResponseBodyInProgress$inboundSchema),
-  z.lazy(() => UpdateAuthSessionResultResponseBodyPending$inboundSchema),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyCanceled$inboundSchema).and(
+    z.object({ status: z.literal("canceled") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyFailed$inboundSchema).and(
+    z.object({ status: z.literal("failed") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyDone$inboundSchema).and(
+    z.object({ status: z.literal("done") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyInProgress$inboundSchema).and(
+    z.object({ status: z.literal("in_progress") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyPending$inboundSchema).and(
+    z.object({ status: z.literal("pending") }),
+  ),
 ]);
 
 export function updateAuthSessionResultResponseBodyFromJSON(

@@ -850,8 +850,8 @@ export type SinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type CreateJobSink =
-  | SinkS3SinkConfiguration
-  | SinkWebhookSinkConfiguration;
+  | (SinkS3SinkConfiguration & { type: "s3" })
+  | (SinkWebhookSinkConfiguration & { type: "webhook" });
 
 export type CreateJobAuthSession = {
   id: string;
@@ -889,8 +889,8 @@ export type CreateJobRequestBody = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | SinkS3SinkConfiguration
-    | SinkWebhookSinkConfiguration
+    | (SinkS3SinkConfiguration & { type: "s3" })
+    | (SinkWebhookSinkConfiguration & { type: "webhook" })
     | null
     | undefined;
   /**
@@ -2490,8 +2490,8 @@ export function sinkWebhookSinkConfigurationToJSON(
 
 /** @internal */
 export type CreateJobSink$Outbound =
-  | SinkS3SinkConfiguration$Outbound
-  | SinkWebhookSinkConfiguration$Outbound;
+  | (SinkS3SinkConfiguration$Outbound & { type: "s3" })
+  | (SinkWebhookSinkConfiguration$Outbound & { type: "webhook" });
 
 /** @internal */
 export const CreateJobSink$outboundSchema: z.ZodType<
@@ -2499,8 +2499,12 @@ export const CreateJobSink$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateJobSink
 > = z.union([
-  z.lazy(() => SinkS3SinkConfiguration$outboundSchema),
-  z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema),
+  z.lazy(() => SinkS3SinkConfiguration$outboundSchema).and(
+    z.object({ type: z.literal("s3") }),
+  ),
+  z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema).and(
+    z.object({ type: z.literal("webhook") }),
+  ),
 ]);
 
 export function createJobSinkToJSON(createJobSink: CreateJobSink): string {
@@ -2540,8 +2544,8 @@ export type CreateJobRequestBody$Outbound = {
   configuration: Configuration$Outbound;
   schedule?: Schedule$Outbound | null | undefined;
   sink?:
-    | SinkS3SinkConfiguration$Outbound
-    | SinkWebhookSinkConfiguration$Outbound
+    | (SinkS3SinkConfiguration$Outbound & { type: "s3" })
+    | (SinkWebhookSinkConfiguration$Outbound & { type: "webhook" })
     | null
     | undefined;
   proxy?: string | null | undefined;
@@ -2560,8 +2564,12 @@ export const CreateJobRequestBody$outboundSchema: z.ZodType<
   schedule: z.nullable(z.lazy(() => Schedule$outboundSchema)).optional(),
   sink: z.nullable(
     z.union([
-      z.lazy(() => SinkS3SinkConfiguration$outboundSchema),
-      z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema),
+      z.lazy(() => SinkS3SinkConfiguration$outboundSchema).and(
+        z.object({ type: z.literal("s3") }),
+      ),
+      z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema).and(
+        z.object({ type: z.literal("webhook") }),
+      ),
     ]),
   ).optional(),
   proxy: z.nullable(z.string()).optional(),

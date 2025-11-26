@@ -170,7 +170,9 @@ export type WebhookSinkConfiguration = {
 /**
  * Optional sink configuration for the run. Can be a webhook or S3 sink.
  */
-export type Sink = S3SinkConfiguration | WebhookSinkConfiguration;
+export type Sink =
+  | (S3SinkConfiguration & { type: "s3" })
+  | (WebhookSinkConfiguration & { type: "webhook" });
 
 /**
  * Run API input schema
@@ -203,7 +205,10 @@ export type RunApiStartRequestBody = {
   /**
    * Optional sink configuration for the run. Can be a webhook or S3 sink.
    */
-  sink?: S3SinkConfiguration | WebhookSinkConfiguration | undefined;
+  sink?:
+    | (S3SinkConfiguration & { type: "s3" })
+    | (WebhookSinkConfiguration & { type: "webhook" })
+    | undefined;
   /**
    * The name of the API to be executed. This is the file path relative to the `api` folder inside your project.
    */
@@ -425,14 +430,18 @@ export function webhookSinkConfigurationToJSON(
 
 /** @internal */
 export type Sink$Outbound =
-  | S3SinkConfiguration$Outbound
-  | WebhookSinkConfiguration$Outbound;
+  | (S3SinkConfiguration$Outbound & { type: "s3" })
+  | (WebhookSinkConfiguration$Outbound & { type: "webhook" });
 
 /** @internal */
 export const Sink$outboundSchema: z.ZodType<Sink$Outbound, z.ZodTypeDef, Sink> =
   z.union([
-    z.lazy(() => S3SinkConfiguration$outboundSchema),
-    z.lazy(() => WebhookSinkConfiguration$outboundSchema),
+    z.lazy(() => S3SinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("s3") }),
+    ),
+    z.lazy(() => WebhookSinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("webhook") }),
+    ),
   ]);
 
 export function sinkToJSON(sink: Sink): string {
@@ -451,8 +460,8 @@ export type RunApiStartRequestBody$Outbound = {
     | CredentialsBasedAuthSessionInput$Outbound
     | undefined;
   sink?:
-    | S3SinkConfiguration$Outbound
-    | WebhookSinkConfiguration$Outbound
+    | (S3SinkConfiguration$Outbound & { type: "s3" })
+    | (WebhookSinkConfiguration$Outbound & { type: "webhook" })
     | undefined;
   api: string;
 };
@@ -473,8 +482,12 @@ export const RunApiStartRequestBody$outboundSchema: z.ZodType<
     z.lazy(() => CredentialsBasedAuthSessionInput$outboundSchema),
   ]).optional(),
   sink: z.union([
-    z.lazy(() => S3SinkConfiguration$outboundSchema),
-    z.lazy(() => WebhookSinkConfiguration$outboundSchema),
+    z.lazy(() => S3SinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("s3") }),
+    ),
+    z.lazy(() => WebhookSinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("webhook") }),
+    ),
   ]).optional(),
   api: z.string(),
 });

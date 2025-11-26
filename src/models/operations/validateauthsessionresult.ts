@@ -188,11 +188,11 @@ export type Done = {
  * Get AuthSession Validate result
  */
 export type ValidateAuthSessionResultResponseBody =
-  | Canceled
-  | Failed
-  | Done
-  | InProgress
-  | Pending;
+  | (Canceled & { status: "canceled" })
+  | (Failed & { status: "failed" })
+  | (Done & { status: "done" })
+  | (InProgress & { status: "in_progress" })
+  | (Pending & { status: "pending" });
 
 /** @internal */
 export type ValidateAuthSessionResultRequest$Outbound = {
@@ -428,11 +428,19 @@ export const ValidateAuthSessionResultResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Canceled$inboundSchema),
-  z.lazy(() => Failed$inboundSchema),
-  z.lazy(() => Done$inboundSchema),
-  z.lazy(() => InProgress$inboundSchema),
-  z.lazy(() => Pending$inboundSchema),
+  z.lazy(() => Canceled$inboundSchema).and(
+    z.object({ status: z.literal("canceled") }),
+  ),
+  z.lazy(() => Failed$inboundSchema).and(
+    z.object({ status: z.literal("failed") }),
+  ),
+  z.lazy(() => Done$inboundSchema).and(z.object({ status: z.literal("done") })),
+  z.lazy(() => InProgress$inboundSchema).and(
+    z.object({ status: z.literal("in_progress") }),
+  ),
+  z.lazy(() => Pending$inboundSchema).and(
+    z.object({ status: z.literal("pending") }),
+  ),
 ]);
 
 export function validateAuthSessionResultResponseBodyFromJSON(

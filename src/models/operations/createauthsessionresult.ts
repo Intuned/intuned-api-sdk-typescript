@@ -194,11 +194,11 @@ export type ResponseBodyDone = {
  * AuthSession creation result
  */
 export type CreateAuthSessionResultResponseBody =
-  | ResponseBodyCanceled
-  | ResponseBodyFailed
-  | ResponseBodyDone
-  | ResponseBodyInProgress
-  | ResponseBodyPending;
+  | (ResponseBodyCanceled & { status: "canceled" })
+  | (ResponseBodyFailed & { status: "failed" })
+  | (ResponseBodyDone & { status: "done" })
+  | (ResponseBodyInProgress & { status: "in_progress" })
+  | (ResponseBodyPending & { status: "pending" });
 
 /** @internal */
 export type CreateAuthSessionResultRequest$Outbound = {
@@ -457,11 +457,21 @@ export const CreateAuthSessionResultResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ResponseBodyCanceled$inboundSchema),
-  z.lazy(() => ResponseBodyFailed$inboundSchema),
-  z.lazy(() => ResponseBodyDone$inboundSchema),
-  z.lazy(() => ResponseBodyInProgress$inboundSchema),
-  z.lazy(() => ResponseBodyPending$inboundSchema),
+  z.lazy(() => ResponseBodyCanceled$inboundSchema).and(
+    z.object({ status: z.literal("canceled") }),
+  ),
+  z.lazy(() => ResponseBodyFailed$inboundSchema).and(
+    z.object({ status: z.literal("failed") }),
+  ),
+  z.lazy(() => ResponseBodyDone$inboundSchema).and(
+    z.object({ status: z.literal("done") }),
+  ),
+  z.lazy(() => ResponseBodyInProgress$inboundSchema).and(
+    z.object({ status: z.literal("in_progress") }),
+  ),
+  z.lazy(() => ResponseBodyPending$inboundSchema).and(
+    z.object({ status: z.literal("pending") }),
+  ),
 ]);
 
 export function createAuthSessionResultResponseBodyFromJSON(

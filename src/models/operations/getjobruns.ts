@@ -243,8 +243,8 @@ export type GetJobRunsSinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type GetJobRunsSink =
-  | GetJobRunsSinkS3SinkConfiguration
-  | GetJobRunsSinkWebhookSinkConfiguration;
+  | (GetJobRunsSinkS3SinkConfiguration & { type: "s3" })
+  | (GetJobRunsSinkWebhookSinkConfiguration & { type: "webhook" });
 
 /**
  * Authentication session information for the job
@@ -286,8 +286,8 @@ export type JobConfigurationSnapshot = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | GetJobRunsSinkS3SinkConfiguration
-    | GetJobRunsSinkWebhookSinkConfiguration
+    | (GetJobRunsSinkS3SinkConfiguration & { type: "s3" })
+    | (GetJobRunsSinkWebhookSinkConfiguration & { type: "webhook" })
     | null
     | undefined;
   /**
@@ -596,8 +596,12 @@ export const GetJobRunsSink$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetJobRunsSinkS3SinkConfiguration$inboundSchema),
-  z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$inboundSchema),
+  z.lazy(() => GetJobRunsSinkS3SinkConfiguration$inboundSchema).and(
+    z.object({ type: z.literal("s3") }),
+  ),
+  z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$inboundSchema).and(
+    z.object({ type: z.literal("webhook") }),
+  ),
 ]);
 
 export function getJobRunsSinkFromJSON(
@@ -665,8 +669,12 @@ export const JobConfigurationSnapshot$inboundSchema: z.ZodType<
   configuration: z.lazy(() => GetJobRunsConfiguration$inboundSchema),
   sink: z.nullable(
     z.union([
-      z.lazy(() => GetJobRunsSinkS3SinkConfiguration$inboundSchema),
-      z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$inboundSchema),
+      z.lazy(() => GetJobRunsSinkS3SinkConfiguration$inboundSchema).and(
+        z.object({ type: z.literal("s3") }),
+      ),
+      z.lazy(() => GetJobRunsSinkWebhookSinkConfiguration$inboundSchema).and(
+        z.object({ type: z.literal("webhook") }),
+      ),
     ]),
   ).optional(),
   auth_session: z.nullable(z.lazy(() => GetJobRunsAuthSession$inboundSchema))
