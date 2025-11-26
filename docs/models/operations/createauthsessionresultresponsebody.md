@@ -1,60 +1,60 @@
 # CreateAuthSessionResultResponseBody
 
-Auth session creation result
+AuthSession creation result
 
 
 ## Supported Types
 
-### `operations.Done`
+### `operations.ResponseBodyDone`
 
 ```typescript
-const value: operations.Done = {
+const value: operations.ResponseBodyDone = {
   status: "done",
   authSessionId: "auth-session-123",
 };
 ```
 
-### `operations.Pending`
+### `operations.ResponseBodyPending`
 
 ```typescript
-const value: operations.Pending = {
+const value: operations.ResponseBodyPending = {
   status: "pending",
 };
 ```
 
-### `operations.Canceled`
+### `operations.ResponseBodyCanceled`
 
 ```typescript
-const value: operations.Canceled = {
+const value: operations.ResponseBodyCanceled = {
   status: "canceled",
   message: "<value>",
   reason: {
-    type: "terminated",
+    type: "job-run-paused",
     message: "<value>",
     docUrl: "https://docs.intunedhq.com/docs/support/reasons#terminated",
   },
 };
 ```
 
-### `operations.InProgress`
+### `operations.ResponseBodyInProgress`
 
 ```typescript
-const value: operations.InProgress = {
+const value: operations.ResponseBodyInProgress = {
   status: "in_progress",
   runId: "<id>",
 };
 ```
 
-### `operations.Failed`
+### `operations.ResponseBodyFailed`
 
 ```typescript
-const value: operations.Failed = {
+const value: operations.ResponseBodyFailed = {
   status: "failed",
   message: "<value>",
   error: {
     message: "An error occurred while executing the run",
     code: "script-process-crashed",
-    category: "user",
+    category: "infrastructure",
     docUrl:
       "https://docs.intunedhq.com/docs/support/errors#run-execution-error",
     correlationId: "123e4567-e89b-12d3-a456-426614174000",

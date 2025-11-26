@@ -3,17 +3,17 @@
 
 ## Overview
 
-Manage the authentication sessions of your projects
+Manage Auth Sessions
 
 ### Available Operations
 
-* [all](#all) - Get Auth Sessions
-* [one](#one) - Get Auth Session
-* [delete](#delete) - Delete Auth Session
+* [all](#all) - Get AuthSessions
+* [one](#one) - Get AuthSession
+* [delete](#delete) - Delete AuthSession
 
 ## all
 
-Gets all authentication sessions of project
+Gets all AuthSessions of project
 
 ### Example Usage
 
@@ -23,7 +23,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -47,7 +47,7 @@ import { projectAuthSessionsAll } from "@intuned/client/funcs/projectAuthSession
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -84,7 +84,7 @@ run();
 
 ## one
 
-Gets authentication session of project by ID
+Gets AuthSession of project by ID
 
 ### Example Usage
 
@@ -94,7 +94,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -118,7 +118,7 @@ import { projectAuthSessionsOne } from "@intuned/client/funcs/projectAuthSession
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -156,7 +156,7 @@ run();
 
 ## delete
 
-Deletes an authentication session by ID.
+Deletes an AuthSession by ID.
 
 ### Example Usage
 
@@ -166,7 +166,7 @@ import { IntunedClient } from "@intuned/client";
 
 const intunedClient = new IntunedClient({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {
@@ -190,7 +190,7 @@ import { projectAuthSessionsDelete } from "@intuned/client/funcs/projectAuthSess
 // You can create one instance of it to use across an application.
 const intunedClient = new IntunedClientCore({
   workspaceId: "123e4567-e89b-12d3-a456-426614174000",
-  apiKey: "<YOUR_API_KEY_HERE>",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
 });
 
 async function run() {

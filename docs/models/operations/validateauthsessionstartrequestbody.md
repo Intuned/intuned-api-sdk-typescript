@@ -1,0 +1,23 @@
+# ValidateAuthSessionStartRequestBody
+
+Validate AuthSession input schema
+
+## Example Usage
+
+```typescript
+import { ValidateAuthSessionStartRequestBody } from "@intuned/client/models/operations";
+
+let value: ValidateAuthSessionStartRequestBody = {
+  proxy: "http://username:password@domain:port",
+};
+```
+
+## Fields
+
+| Field                                                                                                                 | Type                                                                                                                  | Required                                                                                                              | Description                                                                                                           | Example                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `autoRecreate`                                                                                                        | *boolean*                                                                                                             | :heavy_minus_sign:                                                                                                    | If true, the auth session will be automatically recreated if the check fails.                                         | true                                                                                                                  |
+| `checkAttempts`                                                                                                       | *number*                                                                                                              | :heavy_minus_sign:                                                                                                    | Number of attempts to check the validity of the auth session before recreating it.                                    | 3                                                                                                                     |
+| `createAttempts`                                                                                                      | *number*                                                                                                              | :heavy_minus_sign:                                                                                                    | Number of attempts to create a new auth session if the current one is invalid or expired.                             | 3                                                                                                                     |
+| `proxy`                                                                                                               | *string*                                                                                                              | :heavy_minus_sign:                                                                                                    | Proxy URL to be used for the API call. This is optional and can be used to route the API call through a proxy server. | http://username:password@domain:port                                                                                  |
+| `requestTimeout`                                                                                                      | *number*                                                                                                              | :heavy_minus_sign:                                                                                                    | Timeout for the API request in seconds. Default is 10 minutes (600 seconds).                                          | 600                                                                                                                   |

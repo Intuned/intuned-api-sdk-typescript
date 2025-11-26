@@ -10,10 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Run extends ClientSDK {
   /**
-   * Run API - Async Start
+   * Run API - Start
    *
    * @remarks
-   * Starts an API run for a specific project in a workspace.
+   * Starts an API run for a project
    */
   async start(
     projectName: string,
@@ -29,10 +29,10 @@ export class Run extends ClientSDK {
   }
 
   /**
-   * Run API - Async Result
+   * Run API - Result
    *
    * @remarks
-   * Retrieves the result of a started project API run operation.
+   * Get Run API result.
    */
   async result(
     projectName: string,

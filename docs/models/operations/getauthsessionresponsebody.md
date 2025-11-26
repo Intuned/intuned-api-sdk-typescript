@@ -1,6 +1,6 @@
 # GetAuthSessionResponseBody
 
-Authentication session details
+AuthSession details
 
 ## Example Usage
 

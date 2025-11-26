@@ -6,7 +6,7 @@
 import { ResponseBodyReason } from "@intuned/client/models/operations";
 
 let value: ResponseBodyReason = {
-  type: "failed-to-initialize-job-run",
+  type: "api-access-disabled",
   message: "<value>",
   docUrl: "https://docs.intunedhq.com/docs/support/reasons#terminated",
 };

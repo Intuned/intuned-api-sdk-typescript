@@ -3,6 +3,7 @@
  */
 
 import * as components from "../models/components/index.js";
+import { env } from "./env.js";
 
 type OAuth2PasswordFlow = {
   username: string;
@@ -246,7 +247,7 @@ export function resolveGlobalSecurity(
       {
         fieldName: "x-api-key",
         type: "apiKey:header",
-        value: security?.apiKey,
+        value: security?.apiKey ?? env().INTUNED_API_KEY,
       },
     ],
   );

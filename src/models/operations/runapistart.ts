@@ -170,7 +170,9 @@ export type WebhookSinkConfiguration = {
 /**
  * Optional sink configuration for the run. Can be a webhook or S3 sink.
  */
-export type Sink = S3SinkConfiguration | WebhookSinkConfiguration;
+export type Sink =
+  | (S3SinkConfiguration & { type: "s3" })
+  | (WebhookSinkConfiguration & { type: "webhook" });
 
 /**
  * Run API input schema
@@ -203,7 +205,10 @@ export type RunApiStartRequestBody = {
   /**
    * Optional sink configuration for the run. Can be a webhook or S3 sink.
    */
-  sink?: S3SinkConfiguration | WebhookSinkConfiguration | undefined;
+  sink?:
+    | (S3SinkConfiguration & { type: "s3" })
+    | (WebhookSinkConfiguration & { type: "webhook" })
+    | undefined;
   /**
    * The name of the API to be executed. This is the file path relative to the `api` folder inside your project.
    */
@@ -227,7 +232,7 @@ export const Status = {
 export type Status = ClosedEnum<typeof Status>;
 
 /**
- * Object with user data.
+ * Run started successfully.
  */
 export type RunApiStartResponseBody = {
   /**
@@ -236,66 +241,6 @@ export type RunApiStartResponseBody = {
   runId: string;
   status: Status;
 };
-
-/** @internal */
-export const RunApiStartGlobals$inboundSchema: z.ZodType<
-  RunApiStartGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type RunApiStartGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const RunApiStartGlobals$outboundSchema: z.ZodType<
-  RunApiStartGlobals$Outbound,
-  z.ZodTypeDef,
-  RunApiStartGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiStartGlobals$ {
-  /** @deprecated use `RunApiStartGlobals$inboundSchema` instead. */
-  export const inboundSchema = RunApiStartGlobals$inboundSchema;
-  /** @deprecated use `RunApiStartGlobals$outboundSchema` instead. */
-  export const outboundSchema = RunApiStartGlobals$outboundSchema;
-  /** @deprecated use `RunApiStartGlobals$Outbound` instead. */
-  export type Outbound = RunApiStartGlobals$Outbound;
-}
-
-export function runApiStartGlobalsToJSON(
-  runApiStartGlobals: RunApiStartGlobals,
-): string {
-  return JSON.stringify(
-    RunApiStartGlobals$outboundSchema.parse(runApiStartGlobals),
-  );
-}
-
-export function runApiStartGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<RunApiStartGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RunApiStartGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RunApiStartGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const Retry$inboundSchema: z.ZodType<Retry, z.ZodTypeDef, unknown> = z
-  .object({
-    maximumAttempts: z.number().int().default(3),
-  });
 
 /** @internal */
 export type Retry$Outbound = {
@@ -311,46 +256,9 @@ export const Retry$outboundSchema: z.ZodType<
   maximumAttempts: z.number().int().default(3),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Retry$ {
-  /** @deprecated use `Retry$inboundSchema` instead. */
-  export const inboundSchema = Retry$inboundSchema;
-  /** @deprecated use `Retry$outboundSchema` instead. */
-  export const outboundSchema = Retry$outboundSchema;
-  /** @deprecated use `Retry$Outbound` instead. */
-  export type Outbound = Retry$Outbound;
-}
-
 export function retryToJSON(retry: Retry): string {
   return JSON.stringify(Retry$outboundSchema.parse(retry));
 }
-
-export function retryFromJSON(
-  jsonString: string,
-): SafeParseResult<Retry, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Retry$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Retry' from JSON`,
-  );
-}
-
-/** @internal */
-export const CredentialsBasedAuthSessionInput$inboundSchema: z.ZodType<
-  CredentialsBasedAuthSessionInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string(),
-  autoRecreate: z.boolean().default(true),
-  checkAttempts: z.number().int().default(3),
-  createAttempts: z.number().int().default(3),
-  proxy: z.nullable(z.string()).optional(),
-  requestTimeout: z.number().int().default(600),
-});
 
 /** @internal */
 export type CredentialsBasedAuthSessionInput$Outbound = {
@@ -376,19 +284,6 @@ export const CredentialsBasedAuthSessionInput$outboundSchema: z.ZodType<
   requestTimeout: z.number().int().default(600),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CredentialsBasedAuthSessionInput$ {
-  /** @deprecated use `CredentialsBasedAuthSessionInput$inboundSchema` instead. */
-  export const inboundSchema = CredentialsBasedAuthSessionInput$inboundSchema;
-  /** @deprecated use `CredentialsBasedAuthSessionInput$outboundSchema` instead. */
-  export const outboundSchema = CredentialsBasedAuthSessionInput$outboundSchema;
-  /** @deprecated use `CredentialsBasedAuthSessionInput$Outbound` instead. */
-  export type Outbound = CredentialsBasedAuthSessionInput$Outbound;
-}
-
 export function credentialsBasedAuthSessionInputToJSON(
   credentialsBasedAuthSessionInput: CredentialsBasedAuthSessionInput,
 ): string {
@@ -398,31 +293,6 @@ export function credentialsBasedAuthSessionInputToJSON(
     ),
   );
 }
-
-export function credentialsBasedAuthSessionInputFromJSON(
-  jsonString: string,
-): SafeParseResult<CredentialsBasedAuthSessionInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => CredentialsBasedAuthSessionInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CredentialsBasedAuthSessionInput' from JSON`,
-  );
-}
-
-/** @internal */
-export const RuntimeBasedAuthSessionInput$inboundSchema: z.ZodType<
-  RuntimeBasedAuthSessionInput,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  autoRecreate: z.boolean().default(true),
-  checkAttempts: z.number().int().default(3),
-  createAttempts: z.number().int().default(3),
-  proxy: z.nullable(z.string()).optional(),
-  requestTimeout: z.number().int().default(600),
-  runtimeInput: z.record(z.any()),
-});
 
 /** @internal */
 export type RuntimeBasedAuthSessionInput$Outbound = {
@@ -450,19 +320,6 @@ export const RuntimeBasedAuthSessionInput$outboundSchema: z.ZodType<
   runtimeInput: z.record(z.any()),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RuntimeBasedAuthSessionInput$ {
-  /** @deprecated use `RuntimeBasedAuthSessionInput$inboundSchema` instead. */
-  export const inboundSchema = RuntimeBasedAuthSessionInput$inboundSchema;
-  /** @deprecated use `RuntimeBasedAuthSessionInput$outboundSchema` instead. */
-  export const outboundSchema = RuntimeBasedAuthSessionInput$outboundSchema;
-  /** @deprecated use `RuntimeBasedAuthSessionInput$Outbound` instead. */
-  export type Outbound = RuntimeBasedAuthSessionInput$Outbound;
-}
-
 export function runtimeBasedAuthSessionInputToJSON(
   runtimeBasedAuthSessionInput: RuntimeBasedAuthSessionInput,
 ): string {
@@ -472,26 +329,6 @@ export function runtimeBasedAuthSessionInputToJSON(
     ),
   );
 }
-
-export function runtimeBasedAuthSessionInputFromJSON(
-  jsonString: string,
-): SafeParseResult<RuntimeBasedAuthSessionInput, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RuntimeBasedAuthSessionInput$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RuntimeBasedAuthSessionInput' from JSON`,
-  );
-}
-
-/** @internal */
-export const AuthSession$inboundSchema: z.ZodType<
-  AuthSession,
-  z.ZodTypeDef,
-  unknown
-> = z.union([
-  z.lazy(() => RuntimeBasedAuthSessionInput$inboundSchema),
-  z.lazy(() => CredentialsBasedAuthSessionInput$inboundSchema),
-]);
 
 /** @internal */
 export type AuthSession$Outbound =
@@ -508,69 +345,13 @@ export const AuthSession$outboundSchema: z.ZodType<
   z.lazy(() => CredentialsBasedAuthSessionInput$outboundSchema),
 ]);
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace AuthSession$ {
-  /** @deprecated use `AuthSession$inboundSchema` instead. */
-  export const inboundSchema = AuthSession$inboundSchema;
-  /** @deprecated use `AuthSession$outboundSchema` instead. */
-  export const outboundSchema = AuthSession$outboundSchema;
-  /** @deprecated use `AuthSession$Outbound` instead. */
-  export type Outbound = AuthSession$Outbound;
-}
-
 export function authSessionToJSON(authSession: AuthSession): string {
   return JSON.stringify(AuthSession$outboundSchema.parse(authSession));
 }
 
-export function authSessionFromJSON(
-  jsonString: string,
-): SafeParseResult<AuthSession, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => AuthSession$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'AuthSession' from JSON`,
-  );
-}
-
 /** @internal */
-export const SinkType$inboundSchema: z.ZodNativeEnum<typeof SinkType> = z
+export const SinkType$outboundSchema: z.ZodNativeEnum<typeof SinkType> = z
   .nativeEnum(SinkType);
-
-/** @internal */
-export const SinkType$outboundSchema: z.ZodNativeEnum<typeof SinkType> =
-  SinkType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace SinkType$ {
-  /** @deprecated use `SinkType$inboundSchema` instead. */
-  export const inboundSchema = SinkType$inboundSchema;
-  /** @deprecated use `SinkType$outboundSchema` instead. */
-  export const outboundSchema = SinkType$outboundSchema;
-}
-
-/** @internal */
-export const S3SinkConfiguration$inboundSchema: z.ZodType<
-  S3SinkConfiguration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: SinkType$inboundSchema,
-  bucket: z.string(),
-  accessKeyId: z.string(),
-  secretAccessKey: z.string(),
-  region: z.string(),
-  prefix: z.string().optional(),
-  skipOnFail: z.boolean().default(false),
-  apisToSend: z.array(z.string()).optional(),
-  endpoint: z.string().optional(),
-  forcePathStyle: z.boolean().optional(),
-});
 
 /** @internal */
 export type S3SinkConfiguration$Outbound = {
@@ -604,19 +385,6 @@ export const S3SinkConfiguration$outboundSchema: z.ZodType<
   forcePathStyle: z.boolean().optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace S3SinkConfiguration$ {
-  /** @deprecated use `S3SinkConfiguration$inboundSchema` instead. */
-  export const inboundSchema = S3SinkConfiguration$inboundSchema;
-  /** @deprecated use `S3SinkConfiguration$outboundSchema` instead. */
-  export const outboundSchema = S3SinkConfiguration$outboundSchema;
-  /** @deprecated use `S3SinkConfiguration$Outbound` instead. */
-  export type Outbound = S3SinkConfiguration$Outbound;
-}
-
 export function s3SinkConfigurationToJSON(
   s3SinkConfiguration: S3SinkConfiguration,
 ): string {
@@ -625,48 +393,10 @@ export function s3SinkConfigurationToJSON(
   );
 }
 
-export function s3SinkConfigurationFromJSON(
-  jsonString: string,
-): SafeParseResult<S3SinkConfiguration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => S3SinkConfiguration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'S3SinkConfiguration' from JSON`,
-  );
-}
-
 /** @internal */
-export const Type$inboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
+export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> = z.nativeEnum(
   Type,
 );
-
-/** @internal */
-export const Type$outboundSchema: z.ZodNativeEnum<typeof Type> =
-  Type$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Type$ {
-  /** @deprecated use `Type$inboundSchema` instead. */
-  export const inboundSchema = Type$inboundSchema;
-  /** @deprecated use `Type$outboundSchema` instead. */
-  export const outboundSchema = Type$outboundSchema;
-}
-
-/** @internal */
-export const WebhookSinkConfiguration$inboundSchema: z.ZodType<
-  WebhookSinkConfiguration,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  type: Type$inboundSchema,
-  url: z.string(),
-  headers: z.record(z.string()).optional(),
-  skipOnFail: z.boolean().default(false),
-  apisToSend: z.array(z.string()).optional(),
-});
 
 /** @internal */
 export type WebhookSinkConfiguration$Outbound = {
@@ -690,19 +420,6 @@ export const WebhookSinkConfiguration$outboundSchema: z.ZodType<
   apisToSend: z.array(z.string()).optional(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace WebhookSinkConfiguration$ {
-  /** @deprecated use `WebhookSinkConfiguration$inboundSchema` instead. */
-  export const inboundSchema = WebhookSinkConfiguration$inboundSchema;
-  /** @deprecated use `WebhookSinkConfiguration$outboundSchema` instead. */
-  export const outboundSchema = WebhookSinkConfiguration$outboundSchema;
-  /** @deprecated use `WebhookSinkConfiguration$Outbound` instead. */
-  export type Outbound = WebhookSinkConfiguration$Outbound;
-}
-
 export function webhookSinkConfigurationToJSON(
   webhookSinkConfiguration: WebhookSinkConfiguration,
 ): string {
@@ -711,83 +428,25 @@ export function webhookSinkConfigurationToJSON(
   );
 }
 
-export function webhookSinkConfigurationFromJSON(
-  jsonString: string,
-): SafeParseResult<WebhookSinkConfiguration, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => WebhookSinkConfiguration$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'WebhookSinkConfiguration' from JSON`,
-  );
-}
-
-/** @internal */
-export const Sink$inboundSchema: z.ZodType<Sink, z.ZodTypeDef, unknown> = z
-  .union([
-    z.lazy(() => S3SinkConfiguration$inboundSchema),
-    z.lazy(() => WebhookSinkConfiguration$inboundSchema),
-  ]);
-
 /** @internal */
 export type Sink$Outbound =
-  | S3SinkConfiguration$Outbound
-  | WebhookSinkConfiguration$Outbound;
+  | (S3SinkConfiguration$Outbound & { type: "s3" })
+  | (WebhookSinkConfiguration$Outbound & { type: "webhook" });
 
 /** @internal */
 export const Sink$outboundSchema: z.ZodType<Sink$Outbound, z.ZodTypeDef, Sink> =
   z.union([
-    z.lazy(() => S3SinkConfiguration$outboundSchema),
-    z.lazy(() => WebhookSinkConfiguration$outboundSchema),
+    z.lazy(() => S3SinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("s3") }),
+    ),
+    z.lazy(() => WebhookSinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("webhook") }),
+    ),
   ]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Sink$ {
-  /** @deprecated use `Sink$inboundSchema` instead. */
-  export const inboundSchema = Sink$inboundSchema;
-  /** @deprecated use `Sink$outboundSchema` instead. */
-  export const outboundSchema = Sink$outboundSchema;
-  /** @deprecated use `Sink$Outbound` instead. */
-  export type Outbound = Sink$Outbound;
-}
 
 export function sinkToJSON(sink: Sink): string {
   return JSON.stringify(Sink$outboundSchema.parse(sink));
 }
-
-export function sinkFromJSON(
-  jsonString: string,
-): SafeParseResult<Sink, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => Sink$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Sink' from JSON`,
-  );
-}
-
-/** @internal */
-export const RunApiStartRequestBody$inboundSchema: z.ZodType<
-  RunApiStartRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parameters: z.record(z.any()),
-  proxy: z.nullable(z.string()).optional(),
-  saveTrace: z.boolean().default(true),
-  requestTimeout: z.number().int().default(600),
-  retry: z.lazy(() => Retry$inboundSchema).optional(),
-  authSession: z.union([
-    z.lazy(() => RuntimeBasedAuthSessionInput$inboundSchema),
-    z.lazy(() => CredentialsBasedAuthSessionInput$inboundSchema),
-  ]).optional(),
-  sink: z.union([
-    z.lazy(() => S3SinkConfiguration$inboundSchema),
-    z.lazy(() => WebhookSinkConfiguration$inboundSchema),
-  ]).optional(),
-  api: z.string(),
-});
 
 /** @internal */
 export type RunApiStartRequestBody$Outbound = {
@@ -801,8 +460,8 @@ export type RunApiStartRequestBody$Outbound = {
     | CredentialsBasedAuthSessionInput$Outbound
     | undefined;
   sink?:
-    | S3SinkConfiguration$Outbound
-    | WebhookSinkConfiguration$Outbound
+    | (S3SinkConfiguration$Outbound & { type: "s3" })
+    | (WebhookSinkConfiguration$Outbound & { type: "webhook" })
     | undefined;
   api: string;
 };
@@ -823,24 +482,15 @@ export const RunApiStartRequestBody$outboundSchema: z.ZodType<
     z.lazy(() => CredentialsBasedAuthSessionInput$outboundSchema),
   ]).optional(),
   sink: z.union([
-    z.lazy(() => S3SinkConfiguration$outboundSchema),
-    z.lazy(() => WebhookSinkConfiguration$outboundSchema),
+    z.lazy(() => S3SinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("s3") }),
+    ),
+    z.lazy(() => WebhookSinkConfiguration$outboundSchema).and(
+      z.object({ type: z.literal("webhook") }),
+    ),
   ]).optional(),
   api: z.string(),
 });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiStartRequestBody$ {
-  /** @deprecated use `RunApiStartRequestBody$inboundSchema` instead. */
-  export const inboundSchema = RunApiStartRequestBody$inboundSchema;
-  /** @deprecated use `RunApiStartRequestBody$outboundSchema` instead. */
-  export const outboundSchema = RunApiStartRequestBody$outboundSchema;
-  /** @deprecated use `RunApiStartRequestBody$Outbound` instead. */
-  export type Outbound = RunApiStartRequestBody$Outbound;
-}
 
 export function runApiStartRequestBodyToJSON(
   runApiStartRequestBody: RunApiStartRequestBody,
@@ -849,30 +499,6 @@ export function runApiStartRequestBodyToJSON(
     RunApiStartRequestBody$outboundSchema.parse(runApiStartRequestBody),
   );
 }
-
-export function runApiStartRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<RunApiStartRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RunApiStartRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RunApiStartRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const RunApiStartRequest$inboundSchema: z.ZodType<
-  RunApiStartRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  RequestBody: z.lazy(() => RunApiStartRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type RunApiStartRequest$Outbound = {
@@ -894,19 +520,6 @@ export const RunApiStartRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiStartRequest$ {
-  /** @deprecated use `RunApiStartRequest$inboundSchema` instead. */
-  export const inboundSchema = RunApiStartRequest$inboundSchema;
-  /** @deprecated use `RunApiStartRequest$outboundSchema` instead. */
-  export const outboundSchema = RunApiStartRequest$outboundSchema;
-  /** @deprecated use `RunApiStartRequest$Outbound` instead. */
-  export type Outbound = RunApiStartRequest$Outbound;
-}
-
 export function runApiStartRequestToJSON(
   runApiStartRequest: RunApiStartRequest,
 ): string {
@@ -915,34 +528,9 @@ export function runApiStartRequestToJSON(
   );
 }
 
-export function runApiStartRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<RunApiStartRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => RunApiStartRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'RunApiStartRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const Status$inboundSchema: z.ZodNativeEnum<typeof Status> = z
   .nativeEnum(Status);
-
-/** @internal */
-export const Status$outboundSchema: z.ZodNativeEnum<typeof Status> =
-  Status$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace Status$ {
-  /** @deprecated use `Status$inboundSchema` instead. */
-  export const inboundSchema = Status$inboundSchema;
-  /** @deprecated use `Status$outboundSchema` instead. */
-  export const outboundSchema = Status$outboundSchema;
-}
 
 /** @internal */
 export const RunApiStartResponseBody$inboundSchema: z.ZodType<
@@ -953,43 +541,6 @@ export const RunApiStartResponseBody$inboundSchema: z.ZodType<
   runId: z.string(),
   status: Status$inboundSchema,
 });
-
-/** @internal */
-export type RunApiStartResponseBody$Outbound = {
-  runId: string;
-  status: string;
-};
-
-/** @internal */
-export const RunApiStartResponseBody$outboundSchema: z.ZodType<
-  RunApiStartResponseBody$Outbound,
-  z.ZodTypeDef,
-  RunApiStartResponseBody
-> = z.object({
-  runId: z.string(),
-  status: Status$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace RunApiStartResponseBody$ {
-  /** @deprecated use `RunApiStartResponseBody$inboundSchema` instead. */
-  export const inboundSchema = RunApiStartResponseBody$inboundSchema;
-  /** @deprecated use `RunApiStartResponseBody$outboundSchema` instead. */
-  export const outboundSchema = RunApiStartResponseBody$outboundSchema;
-  /** @deprecated use `RunApiStartResponseBody$Outbound` instead. */
-  export type Outbound = RunApiStartResponseBody$Outbound;
-}
-
-export function runApiStartResponseBodyToJSON(
-  runApiStartResponseBody: RunApiStartResponseBody,
-): string {
-  return JSON.stringify(
-    RunApiStartResponseBody$outboundSchema.parse(runApiStartResponseBody),
-  );
-}
 
 export function runApiStartResponseBodyFromJSON(
   jsonString: string,

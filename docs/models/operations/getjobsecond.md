@@ -11,39 +11,39 @@ Seconds of the calendar, a number in the range 0 - 59
 const value: number = 128403;
 ```
 
-### `operations.Second2`
+### `operations.GetJobSecond2`
 
 ```typescript
-const value: operations.Second2 = {
-  start: 902361,
-  step: 985700,
-  end: 435538,
+const value: operations.GetJobSecond2 = {
+  start: 710219,
+  step: 778413,
+  end: 633645,
 };
 ```
 
-### `operations.Second3`
+### `operations.GetJobSecond3`
 
 ```typescript
-const value: operations.Second3 = {
-  start: 608812,
+const value: operations.GetJobSecond3 = {
+  start: 646447,
 };
 ```
 
-### `operations.Second4[]`
+### `operations.GetJobSecond4[]`
 
 ```typescript
-const value: operations.Second4[] = [
+const value: operations.GetJobSecond4[] = [
   {
-    start: 12564,
-    step: 74683,
-    end: 857532,
+    start: 135853,
+    step: 627755,
+    end: 509826,
   },
 ];
 ```
 
-### `operations.Second5`
+### `operations.GetJobSecond5`
 
 ```typescript
-const value: operations.Second5 = "*";
+const value: operations.GetJobSecond5 = "*";
 ```
 

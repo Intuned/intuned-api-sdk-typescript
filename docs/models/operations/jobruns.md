@@ -39,15 +39,7 @@ let value: JobRuns = {
     sink: {
       type: "webhook",
       url: "https://example.com/webhook",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer token",
-      },
       skipOnFail: false,
-      apisToSend: [
-        "api1",
-        "api2",
-      ],
     },
     authSession: {
       id: "auth-session-123",

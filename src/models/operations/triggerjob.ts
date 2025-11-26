@@ -40,70 +40,6 @@ export type TriggerJobResponseBody = {
 };
 
 /** @internal */
-export const TriggerJobGlobals$inboundSchema: z.ZodType<
-  TriggerJobGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type TriggerJobGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const TriggerJobGlobals$outboundSchema: z.ZodType<
-  TriggerJobGlobals$Outbound,
-  z.ZodTypeDef,
-  TriggerJobGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerJobGlobals$ {
-  /** @deprecated use `TriggerJobGlobals$inboundSchema` instead. */
-  export const inboundSchema = TriggerJobGlobals$inboundSchema;
-  /** @deprecated use `TriggerJobGlobals$outboundSchema` instead. */
-  export const outboundSchema = TriggerJobGlobals$outboundSchema;
-  /** @deprecated use `TriggerJobGlobals$Outbound` instead. */
-  export type Outbound = TriggerJobGlobals$Outbound;
-}
-
-export function triggerJobGlobalsToJSON(
-  triggerJobGlobals: TriggerJobGlobals,
-): string {
-  return JSON.stringify(
-    TriggerJobGlobals$outboundSchema.parse(triggerJobGlobals),
-  );
-}
-
-export function triggerJobGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<TriggerJobGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TriggerJobGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TriggerJobGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const TriggerJobRequest$inboundSchema: z.ZodType<
-  TriggerJobRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  jobId: z.string(),
-});
-
-/** @internal */
 export type TriggerJobRequest$Outbound = {
   projectName: string;
   jobId: string;
@@ -119,34 +55,11 @@ export const TriggerJobRequest$outboundSchema: z.ZodType<
   jobId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerJobRequest$ {
-  /** @deprecated use `TriggerJobRequest$inboundSchema` instead. */
-  export const inboundSchema = TriggerJobRequest$inboundSchema;
-  /** @deprecated use `TriggerJobRequest$outboundSchema` instead. */
-  export const outboundSchema = TriggerJobRequest$outboundSchema;
-  /** @deprecated use `TriggerJobRequest$Outbound` instead. */
-  export type Outbound = TriggerJobRequest$Outbound;
-}
-
 export function triggerJobRequestToJSON(
   triggerJobRequest: TriggerJobRequest,
 ): string {
   return JSON.stringify(
     TriggerJobRequest$outboundSchema.parse(triggerJobRequest),
-  );
-}
-
-export function triggerJobRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<TriggerJobRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => TriggerJobRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'TriggerJobRequest' from JSON`,
   );
 }
 
@@ -159,43 +72,6 @@ export const TriggerJobResponseBody$inboundSchema: z.ZodType<
   jobRunId: z.string(),
   message: z.string(),
 });
-
-/** @internal */
-export type TriggerJobResponseBody$Outbound = {
-  jobRunId: string;
-  message: string;
-};
-
-/** @internal */
-export const TriggerJobResponseBody$outboundSchema: z.ZodType<
-  TriggerJobResponseBody$Outbound,
-  z.ZodTypeDef,
-  TriggerJobResponseBody
-> = z.object({
-  jobRunId: z.string(),
-  message: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace TriggerJobResponseBody$ {
-  /** @deprecated use `TriggerJobResponseBody$inboundSchema` instead. */
-  export const inboundSchema = TriggerJobResponseBody$inboundSchema;
-  /** @deprecated use `TriggerJobResponseBody$outboundSchema` instead. */
-  export const outboundSchema = TriggerJobResponseBody$outboundSchema;
-  /** @deprecated use `TriggerJobResponseBody$Outbound` instead. */
-  export type Outbound = TriggerJobResponseBody$Outbound;
-}
-
-export function triggerJobResponseBodyToJSON(
-  triggerJobResponseBody: TriggerJobResponseBody,
-): string {
-  return JSON.stringify(
-    TriggerJobResponseBody$outboundSchema.parse(triggerJobResponseBody),
-  );
-}
 
 export function triggerJobResponseBodyFromJSON(
   jsonString: string,

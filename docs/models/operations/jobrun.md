@@ -42,14 +42,7 @@ let value: JobRun = {
       accessKeyId: "AKIAIOSFODNN7EXSSPLE",
       secretAccessKey: "wJalrXUtnFFFI/K7MDENG/bPxRfiCYEXAMPLEKEY",
       region: "us-west-2",
-      prefix: "my-prefix/",
       skipOnFail: false,
-      apisToSend: [
-        "api1",
-        "api2",
-      ],
-      endpoint: "https://s3.custom-endpoint.com",
-      forcePathStyle: true,
     },
     authSession: {
       id: "auth-session-123",

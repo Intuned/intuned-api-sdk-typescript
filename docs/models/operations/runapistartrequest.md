@@ -29,15 +29,7 @@ let value: RunApiStartRequest = {
     sink: {
       type: "webhook",
       url: "https://example.com/webhook",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer token",
-      },
       skipOnFail: false,
-      apisToSend: [
-        "api1",
-        "api2",
-      ],
     },
     api: "<value>",
   },

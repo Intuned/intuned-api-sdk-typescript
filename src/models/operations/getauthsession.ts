@@ -41,7 +41,7 @@ export const GetAuthSessionStatus = {
 export type GetAuthSessionStatus = ClosedEnum<typeof GetAuthSessionStatus>;
 
 /**
- * Authentication session details
+ * AuthSession details
  */
 export type GetAuthSessionResponseBody = {
   /**
@@ -51,70 +51,6 @@ export type GetAuthSessionResponseBody = {
   type: GetAuthSessionType;
   status: GetAuthSessionStatus;
 };
-
-/** @internal */
-export const GetAuthSessionGlobals$inboundSchema: z.ZodType<
-  GetAuthSessionGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type GetAuthSessionGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const GetAuthSessionGlobals$outboundSchema: z.ZodType<
-  GetAuthSessionGlobals$Outbound,
-  z.ZodTypeDef,
-  GetAuthSessionGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionGlobals$ {
-  /** @deprecated use `GetAuthSessionGlobals$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionGlobals$inboundSchema;
-  /** @deprecated use `GetAuthSessionGlobals$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionGlobals$outboundSchema;
-  /** @deprecated use `GetAuthSessionGlobals$Outbound` instead. */
-  export type Outbound = GetAuthSessionGlobals$Outbound;
-}
-
-export function getAuthSessionGlobalsToJSON(
-  getAuthSessionGlobals: GetAuthSessionGlobals,
-): string {
-  return JSON.stringify(
-    GetAuthSessionGlobals$outboundSchema.parse(getAuthSessionGlobals),
-  );
-}
-
-export function getAuthSessionGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<GetAuthSessionGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetAuthSessionGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAuthSessionGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const GetAuthSessionRequest$inboundSchema: z.ZodType<
-  GetAuthSessionRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  authSessionId: z.string(),
-});
 
 /** @internal */
 export type GetAuthSessionRequest$Outbound = {
@@ -132,34 +68,11 @@ export const GetAuthSessionRequest$outboundSchema: z.ZodType<
   authSessionId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionRequest$ {
-  /** @deprecated use `GetAuthSessionRequest$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionRequest$inboundSchema;
-  /** @deprecated use `GetAuthSessionRequest$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionRequest$outboundSchema;
-  /** @deprecated use `GetAuthSessionRequest$Outbound` instead. */
-  export type Outbound = GetAuthSessionRequest$Outbound;
-}
-
 export function getAuthSessionRequestToJSON(
   getAuthSessionRequest: GetAuthSessionRequest,
 ): string {
   return JSON.stringify(
     GetAuthSessionRequest$outboundSchema.parse(getAuthSessionRequest),
-  );
-}
-
-export function getAuthSessionRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<GetAuthSessionRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => GetAuthSessionRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'GetAuthSessionRequest' from JSON`,
   );
 }
 
@@ -169,41 +82,9 @@ export const GetAuthSessionType$inboundSchema: z.ZodNativeEnum<
 > = z.nativeEnum(GetAuthSessionType);
 
 /** @internal */
-export const GetAuthSessionType$outboundSchema: z.ZodNativeEnum<
-  typeof GetAuthSessionType
-> = GetAuthSessionType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionType$ {
-  /** @deprecated use `GetAuthSessionType$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionType$inboundSchema;
-  /** @deprecated use `GetAuthSessionType$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionType$outboundSchema;
-}
-
-/** @internal */
 export const GetAuthSessionStatus$inboundSchema: z.ZodNativeEnum<
   typeof GetAuthSessionStatus
 > = z.nativeEnum(GetAuthSessionStatus);
-
-/** @internal */
-export const GetAuthSessionStatus$outboundSchema: z.ZodNativeEnum<
-  typeof GetAuthSessionStatus
-> = GetAuthSessionStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionStatus$ {
-  /** @deprecated use `GetAuthSessionStatus$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionStatus$inboundSchema;
-  /** @deprecated use `GetAuthSessionStatus$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionStatus$outboundSchema;
-}
 
 /** @internal */
 export const GetAuthSessionResponseBody$inboundSchema: z.ZodType<
@@ -215,45 +96,6 @@ export const GetAuthSessionResponseBody$inboundSchema: z.ZodType<
   type: GetAuthSessionType$inboundSchema,
   status: GetAuthSessionStatus$inboundSchema,
 });
-
-/** @internal */
-export type GetAuthSessionResponseBody$Outbound = {
-  id: string;
-  type: string;
-  status: string;
-};
-
-/** @internal */
-export const GetAuthSessionResponseBody$outboundSchema: z.ZodType<
-  GetAuthSessionResponseBody$Outbound,
-  z.ZodTypeDef,
-  GetAuthSessionResponseBody
-> = z.object({
-  id: z.string(),
-  type: GetAuthSessionType$outboundSchema,
-  status: GetAuthSessionStatus$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace GetAuthSessionResponseBody$ {
-  /** @deprecated use `GetAuthSessionResponseBody$inboundSchema` instead. */
-  export const inboundSchema = GetAuthSessionResponseBody$inboundSchema;
-  /** @deprecated use `GetAuthSessionResponseBody$outboundSchema` instead. */
-  export const outboundSchema = GetAuthSessionResponseBody$outboundSchema;
-  /** @deprecated use `GetAuthSessionResponseBody$Outbound` instead. */
-  export type Outbound = GetAuthSessionResponseBody$Outbound;
-}
-
-export function getAuthSessionResponseBodyToJSON(
-  getAuthSessionResponseBody: GetAuthSessionResponseBody,
-): string {
-  return JSON.stringify(
-    GetAuthSessionResponseBody$outboundSchema.parse(getAuthSessionResponseBody),
-  );
-}
 
 export function getAuthSessionResponseBodyFromJSON(
   jsonString: string,

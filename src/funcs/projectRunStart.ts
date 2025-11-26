@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Run API - Async Start
+ * Run API - Start
  *
  * @remarks
- * Starts an API run for a specific project in a workspace.
+ * Starts an API run for a project
  */
 export function projectRunStart(
   client: IntunedClientCore,
@@ -169,7 +169,7 @@ async function $do(
     | UnexpectedClientError
     | SDKValidationError
   >(
-    M.json(200, operations.RunApiStartResponseBody$inboundSchema),
+    M.json(201, operations.RunApiStartResponseBody$inboundSchema),
     M.fail("4XX"),
     M.fail("5XX"),
   )(response, req);

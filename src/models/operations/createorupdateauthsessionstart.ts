@@ -17,7 +17,7 @@ export type CreateOrUpdateAuthSessionStartGlobals = {
 };
 
 /**
- * Create auth session input schema
+ * Create AuthSession input schema
  */
 export type CreateOrUpdateAuthSessionStartRequestBody = {
   /**
@@ -49,7 +49,7 @@ export type CreateOrUpdateAuthSessionStartRequest = {
    */
   projectName: string;
   /**
-   * Create auth session input schema
+   * Create AuthSession input schema
    */
   requestBody: CreateOrUpdateAuthSessionStartRequestBody;
 };
@@ -62,85 +62,12 @@ export type CreateOrUpdateAuthSessionStartStatus = ClosedEnum<
 >;
 
 /**
- * Create auth session operation started
+ * Create AuthSession operation started
  */
 export type CreateOrUpdateAuthSessionStartResponseBody = {
   status: CreateOrUpdateAuthSessionStartStatus;
   operationId: string;
 };
-
-/** @internal */
-export const CreateOrUpdateAuthSessionStartGlobals$inboundSchema: z.ZodType<
-  CreateOrUpdateAuthSessionStartGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type CreateOrUpdateAuthSessionStartGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const CreateOrUpdateAuthSessionStartGlobals$outboundSchema: z.ZodType<
-  CreateOrUpdateAuthSessionStartGlobals$Outbound,
-  z.ZodTypeDef,
-  CreateOrUpdateAuthSessionStartGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateOrUpdateAuthSessionStartGlobals$ {
-  /** @deprecated use `CreateOrUpdateAuthSessionStartGlobals$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateOrUpdateAuthSessionStartGlobals$inboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartGlobals$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateOrUpdateAuthSessionStartGlobals$outboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartGlobals$Outbound` instead. */
-  export type Outbound = CreateOrUpdateAuthSessionStartGlobals$Outbound;
-}
-
-export function createOrUpdateAuthSessionStartGlobalsToJSON(
-  createOrUpdateAuthSessionStartGlobals: CreateOrUpdateAuthSessionStartGlobals,
-): string {
-  return JSON.stringify(
-    CreateOrUpdateAuthSessionStartGlobals$outboundSchema.parse(
-      createOrUpdateAuthSessionStartGlobals,
-    ),
-  );
-}
-
-export function createOrUpdateAuthSessionStartGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateOrUpdateAuthSessionStartGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateOrUpdateAuthSessionStartGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateOrUpdateAuthSessionStartGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateOrUpdateAuthSessionStartRequestBody$inboundSchema: z.ZodType<
-  CreateOrUpdateAuthSessionStartRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  id: z.string().optional(),
-  parameters: z.record(z.any()),
-  proxy: z.nullable(z.string()).optional(),
-  createAttempts: z.number().int().default(3),
-  checkAttempts: z.number().int().default(3),
-  saveTrace: z.boolean().default(true),
-});
 
 /** @internal */
 export type CreateOrUpdateAuthSessionStartRequestBody$Outbound = {
@@ -167,21 +94,6 @@ export const CreateOrUpdateAuthSessionStartRequestBody$outboundSchema:
     saveTrace: z.boolean().default(true),
   });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateOrUpdateAuthSessionStartRequestBody$ {
-  /** @deprecated use `CreateOrUpdateAuthSessionStartRequestBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateOrUpdateAuthSessionStartRequestBody$inboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateOrUpdateAuthSessionStartRequestBody$outboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartRequestBody$Outbound` instead. */
-  export type Outbound = CreateOrUpdateAuthSessionStartRequestBody$Outbound;
-}
-
 export function createOrUpdateAuthSessionStartRequestBodyToJSON(
   createOrUpdateAuthSessionStartRequestBody:
     CreateOrUpdateAuthSessionStartRequestBody,
@@ -192,38 +104,6 @@ export function createOrUpdateAuthSessionStartRequestBodyToJSON(
     ),
   );
 }
-
-export function createOrUpdateAuthSessionStartRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<
-  CreateOrUpdateAuthSessionStartRequestBody,
-  SDKValidationError
-> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateOrUpdateAuthSessionStartRequestBody$inboundSchema.parse(
-        JSON.parse(x),
-      ),
-    `Failed to parse 'CreateOrUpdateAuthSessionStartRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const CreateOrUpdateAuthSessionStartRequest$inboundSchema: z.ZodType<
-  CreateOrUpdateAuthSessionStartRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  RequestBody: z.lazy(() =>
-    CreateOrUpdateAuthSessionStartRequestBody$inboundSchema
-  ),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type CreateOrUpdateAuthSessionStartRequest$Outbound = {
@@ -247,21 +127,6 @@ export const CreateOrUpdateAuthSessionStartRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateOrUpdateAuthSessionStartRequest$ {
-  /** @deprecated use `CreateOrUpdateAuthSessionStartRequest$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateOrUpdateAuthSessionStartRequest$inboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartRequest$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateOrUpdateAuthSessionStartRequest$outboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartRequest$Outbound` instead. */
-  export type Outbound = CreateOrUpdateAuthSessionStartRequest$Outbound;
-}
-
 export function createOrUpdateAuthSessionStartRequestToJSON(
   createOrUpdateAuthSessionStartRequest: CreateOrUpdateAuthSessionStartRequest,
 ): string {
@@ -272,40 +137,11 @@ export function createOrUpdateAuthSessionStartRequestToJSON(
   );
 }
 
-export function createOrUpdateAuthSessionStartRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<CreateOrUpdateAuthSessionStartRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) =>
-      CreateOrUpdateAuthSessionStartRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'CreateOrUpdateAuthSessionStartRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const CreateOrUpdateAuthSessionStartStatus$inboundSchema:
   z.ZodNativeEnum<typeof CreateOrUpdateAuthSessionStartStatus> = z.nativeEnum(
     CreateOrUpdateAuthSessionStartStatus,
   );
-
-/** @internal */
-export const CreateOrUpdateAuthSessionStartStatus$outboundSchema:
-  z.ZodNativeEnum<typeof CreateOrUpdateAuthSessionStartStatus> =
-    CreateOrUpdateAuthSessionStartStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateOrUpdateAuthSessionStartStatus$ {
-  /** @deprecated use `CreateOrUpdateAuthSessionStartStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateOrUpdateAuthSessionStartStatus$inboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateOrUpdateAuthSessionStartStatus$outboundSchema;
-}
 
 /** @internal */
 export const CreateOrUpdateAuthSessionStartResponseBody$inboundSchema:
@@ -314,49 +150,6 @@ export const CreateOrUpdateAuthSessionStartResponseBody$inboundSchema:
       status: CreateOrUpdateAuthSessionStartStatus$inboundSchema,
       operationId: z.string(),
     });
-
-/** @internal */
-export type CreateOrUpdateAuthSessionStartResponseBody$Outbound = {
-  status: string;
-  operationId: string;
-};
-
-/** @internal */
-export const CreateOrUpdateAuthSessionStartResponseBody$outboundSchema:
-  z.ZodType<
-    CreateOrUpdateAuthSessionStartResponseBody$Outbound,
-    z.ZodTypeDef,
-    CreateOrUpdateAuthSessionStartResponseBody
-  > = z.object({
-    status: CreateOrUpdateAuthSessionStartStatus$outboundSchema,
-    operationId: z.string(),
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace CreateOrUpdateAuthSessionStartResponseBody$ {
-  /** @deprecated use `CreateOrUpdateAuthSessionStartResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    CreateOrUpdateAuthSessionStartResponseBody$inboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    CreateOrUpdateAuthSessionStartResponseBody$outboundSchema;
-  /** @deprecated use `CreateOrUpdateAuthSessionStartResponseBody$Outbound` instead. */
-  export type Outbound = CreateOrUpdateAuthSessionStartResponseBody$Outbound;
-}
-
-export function createOrUpdateAuthSessionStartResponseBodyToJSON(
-  createOrUpdateAuthSessionStartResponseBody:
-    CreateOrUpdateAuthSessionStartResponseBody,
-): string {
-  return JSON.stringify(
-    CreateOrUpdateAuthSessionStartResponseBody$outboundSchema.parse(
-      createOrUpdateAuthSessionStartResponseBody,
-    ),
-  );
-}
 
 export function createOrUpdateAuthSessionStartResponseBodyFromJSON(
   jsonString: string,

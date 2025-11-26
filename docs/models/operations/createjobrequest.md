@@ -16,15 +16,7 @@ let value: CreateJobRequest = {
     sink: {
       type: "webhook",
       url: "https://example.com/webhook",
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer token",
-      },
       skipOnFail: false,
-      apisToSend: [
-        "api1",
-        "api2",
-      ],
     },
     proxy: "http://username:password@proxy.example.com:8080",
     authSession: {

@@ -1,6 +1,6 @@
 # CreateOrUpdateAuthSessionStartResponseBody
 
-Create auth session operation started
+Create AuthSession operation started
 
 ## Example Usage
 

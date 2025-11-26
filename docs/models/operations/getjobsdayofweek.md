@@ -5,10 +5,10 @@ Days of week, one of SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATUR
 
 ## Supported Types
 
-### `operations.GetJobsDayOfWeek1`
+### `operations.DayOfWeek1`
 
 ```typescript
-const value: operations.GetJobsDayOfWeek1 = "TUESDAY";
+const value: operations.DayOfWeek1 = "THURSDAY";
 ```
 
 ### `operations.GetJobsDayOfWeek2`

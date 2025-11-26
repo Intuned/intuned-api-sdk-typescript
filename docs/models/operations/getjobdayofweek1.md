@@ -1,11 +1,11 @@
-# GetJobsDayOfWeek1
+# GetJobDayOfWeek1
 
 ## Example Usage
 
 ```typescript
-import { GetJobsDayOfWeek1 } from "@intuned/client/models/operations";
+import { GetJobDayOfWeek1 } from "@intuned/client/models/operations";
 
-let value: GetJobsDayOfWeek1 = "THURSDAY";
+let value: GetJobDayOfWeek1 = "SATURDAY";
 ```
 
 ## Values

@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Run API - Async Result
+ * Run API - Result
  *
  * @remarks
- * Retrieves the result of a started project API run operation.
+ * Get Run API result.
  */
 export function projectRunResult(
   client: IntunedClientCore,

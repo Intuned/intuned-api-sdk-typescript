@@ -17,7 +17,7 @@ export type UpdateAuthSessionStartGlobals = {
 };
 
 /**
- * Update auth session input schema
+ * Update AuthSession input schema
  */
 export type UpdateAuthSessionStartRequestBody = {
   /**
@@ -49,7 +49,7 @@ export type UpdateAuthSessionStartRequest = {
    */
   authSessionId: string;
   /**
-   * Update auth session input schema
+   * Update AuthSession input schema
    */
   requestBody: UpdateAuthSessionStartRequestBody;
 };
@@ -62,81 +62,12 @@ export type UpdateAuthSessionStartStatus = ClosedEnum<
 >;
 
 /**
- * Update auth session operation started
+ * Update AuthSession operation started
  */
 export type UpdateAuthSessionStartResponseBody = {
   status: UpdateAuthSessionStartStatus;
   operationId: string;
 };
-
-/** @internal */
-export const UpdateAuthSessionStartGlobals$inboundSchema: z.ZodType<
-  UpdateAuthSessionStartGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type UpdateAuthSessionStartGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const UpdateAuthSessionStartGlobals$outboundSchema: z.ZodType<
-  UpdateAuthSessionStartGlobals$Outbound,
-  z.ZodTypeDef,
-  UpdateAuthSessionStartGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionStartGlobals$ {
-  /** @deprecated use `UpdateAuthSessionStartGlobals$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionStartGlobals$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartGlobals$outboundSchema` instead. */
-  export const outboundSchema = UpdateAuthSessionStartGlobals$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartGlobals$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionStartGlobals$Outbound;
-}
-
-export function updateAuthSessionStartGlobalsToJSON(
-  updateAuthSessionStartGlobals: UpdateAuthSessionStartGlobals,
-): string {
-  return JSON.stringify(
-    UpdateAuthSessionStartGlobals$outboundSchema.parse(
-      updateAuthSessionStartGlobals,
-    ),
-  );
-}
-
-export function updateAuthSessionStartGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateAuthSessionStartGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateAuthSessionStartGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateAuthSessionStartGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateAuthSessionStartRequestBody$inboundSchema: z.ZodType<
-  UpdateAuthSessionStartRequestBody,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  parameters: z.record(z.any()),
-  proxy: z.nullable(z.string()).optional(),
-  createAttempts: z.number().int().default(3),
-  checkAttempts: z.number().int().default(3),
-  saveTrace: z.boolean().default(true),
-});
 
 /** @internal */
 export type UpdateAuthSessionStartRequestBody$Outbound = {
@@ -160,20 +91,6 @@ export const UpdateAuthSessionStartRequestBody$outboundSchema: z.ZodType<
   saveTrace: z.boolean().default(true),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionStartRequestBody$ {
-  /** @deprecated use `UpdateAuthSessionStartRequestBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionStartRequestBody$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartRequestBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionStartRequestBody$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartRequestBody$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionStartRequestBody$Outbound;
-}
-
 export function updateAuthSessionStartRequestBodyToJSON(
   updateAuthSessionStartRequestBody: UpdateAuthSessionStartRequestBody,
 ): string {
@@ -183,31 +100,6 @@ export function updateAuthSessionStartRequestBodyToJSON(
     ),
   );
 }
-
-export function updateAuthSessionStartRequestBodyFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateAuthSessionStartRequestBody, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateAuthSessionStartRequestBody$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateAuthSessionStartRequestBody' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateAuthSessionStartRequest$inboundSchema: z.ZodType<
-  UpdateAuthSessionStartRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  authSessionId: z.string(),
-  RequestBody: z.lazy(() => UpdateAuthSessionStartRequestBody$inboundSchema),
-}).transform((v) => {
-  return remap$(v, {
-    "RequestBody": "requestBody",
-  });
-});
 
 /** @internal */
 export type UpdateAuthSessionStartRequest$Outbound = {
@@ -231,19 +123,6 @@ export const UpdateAuthSessionStartRequest$outboundSchema: z.ZodType<
   });
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionStartRequest$ {
-  /** @deprecated use `UpdateAuthSessionStartRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionStartRequest$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateAuthSessionStartRequest$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartRequest$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionStartRequest$Outbound;
-}
-
 export function updateAuthSessionStartRequestToJSON(
   updateAuthSessionStartRequest: UpdateAuthSessionStartRequest,
 ): string {
@@ -254,36 +133,10 @@ export function updateAuthSessionStartRequestToJSON(
   );
 }
 
-export function updateAuthSessionStartRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateAuthSessionStartRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateAuthSessionStartRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateAuthSessionStartRequest' from JSON`,
-  );
-}
-
 /** @internal */
 export const UpdateAuthSessionStartStatus$inboundSchema: z.ZodNativeEnum<
   typeof UpdateAuthSessionStartStatus
 > = z.nativeEnum(UpdateAuthSessionStartStatus);
-
-/** @internal */
-export const UpdateAuthSessionStartStatus$outboundSchema: z.ZodNativeEnum<
-  typeof UpdateAuthSessionStartStatus
-> = UpdateAuthSessionStartStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionStartStatus$ {
-  /** @deprecated use `UpdateAuthSessionStartStatus$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionStartStatus$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartStatus$outboundSchema` instead. */
-  export const outboundSchema = UpdateAuthSessionStartStatus$outboundSchema;
-}
 
 /** @internal */
 export const UpdateAuthSessionStartResponseBody$inboundSchema: z.ZodType<
@@ -294,46 +147,6 @@ export const UpdateAuthSessionStartResponseBody$inboundSchema: z.ZodType<
   status: UpdateAuthSessionStartStatus$inboundSchema,
   operationId: z.string(),
 });
-
-/** @internal */
-export type UpdateAuthSessionStartResponseBody$Outbound = {
-  status: string;
-  operationId: string;
-};
-
-/** @internal */
-export const UpdateAuthSessionStartResponseBody$outboundSchema: z.ZodType<
-  UpdateAuthSessionStartResponseBody$Outbound,
-  z.ZodTypeDef,
-  UpdateAuthSessionStartResponseBody
-> = z.object({
-  status: UpdateAuthSessionStartStatus$outboundSchema,
-  operationId: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionStartResponseBody$ {
-  /** @deprecated use `UpdateAuthSessionStartResponseBody$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionStartResponseBody$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionStartResponseBody$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionStartResponseBody$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionStartResponseBody$Outbound;
-}
-
-export function updateAuthSessionStartResponseBodyToJSON(
-  updateAuthSessionStartResponseBody: UpdateAuthSessionStartResponseBody,
-): string {
-  return JSON.stringify(
-    UpdateAuthSessionStartResponseBody$outboundSchema.parse(
-      updateAuthSessionStartResponseBody,
-    ),
-  );
-}
 
 export function updateAuthSessionStartResponseBodyFromJSON(
   jsonString: string,

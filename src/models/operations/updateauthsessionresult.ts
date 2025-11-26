@@ -26,7 +26,7 @@ export type UpdateAuthSessionResultRequest = {
    */
   authSessionId: string;
   /**
-   * The ID for the requested auth session creation operation. This is obtained from the start request.
+   * The ID for the operation. This is obtained from the start request.
    */
   operationId: string;
 };
@@ -101,7 +101,7 @@ export type UpdateAuthSessionResultResponseBodyError = {
   details?: any | undefined;
 };
 
-export type ResponseBodyFailed = {
+export type UpdateAuthSessionResultResponseBodyFailed = {
   status:
     UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus;
   message: string;
@@ -117,7 +117,7 @@ export type UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse
     typeof UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status
   >;
 
-export type ResponseBodyInProgress = {
+export type UpdateAuthSessionResultResponseBodyInProgress = {
   status:
     UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status;
   /**
@@ -143,6 +143,7 @@ export const UpdateAuthSessionResultResponseBodyType = {
   JobRunTerminated: "job-run-terminated",
   FailedToInitializeJobRun: "failed-to-initialize-job-run",
   ApiAccessDisabled: "api-access-disabled",
+  CancelledUserAction: "cancelled-user-action",
 } as const;
 export type UpdateAuthSessionResultResponseBodyType = ClosedEnum<
   typeof UpdateAuthSessionResultResponseBodyType
@@ -158,7 +159,7 @@ export type UpdateAuthSessionResultResponseBodyReason = {
   details?: any | undefined;
 };
 
-export type ResponseBodyCanceled = {
+export type UpdateAuthSessionResultResponseBodyCanceled = {
   status:
     UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus;
   message: string;
@@ -174,7 +175,7 @@ export type UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus =
     typeof UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus
   >;
 
-export type ResponseBodyPending = {
+export type UpdateAuthSessionResultResponseBodyPending = {
   status: UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus;
 };
 
@@ -185,7 +186,7 @@ export type UpdateAuthSessionResultResponseBodyStatus = ClosedEnum<
   typeof UpdateAuthSessionResultResponseBodyStatus
 >;
 
-export type ResponseBodyDone = {
+export type UpdateAuthSessionResultResponseBodyDone = {
   status: UpdateAuthSessionResultResponseBodyStatus;
   /**
    * The unique identifier for the authentication session
@@ -194,81 +195,14 @@ export type ResponseBodyDone = {
 };
 
 /**
- * Auth session update result
+ * AuthSession update result
  */
 export type UpdateAuthSessionResultResponseBody =
-  | ResponseBodyCanceled
-  | ResponseBodyFailed
-  | ResponseBodyDone
-  | ResponseBodyInProgress
-  | ResponseBodyPending;
-
-/** @internal */
-export const UpdateAuthSessionResultGlobals$inboundSchema: z.ZodType<
-  UpdateAuthSessionResultGlobals,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/** @internal */
-export type UpdateAuthSessionResultGlobals$Outbound = {
-  workspaceId?: string | undefined;
-};
-
-/** @internal */
-export const UpdateAuthSessionResultGlobals$outboundSchema: z.ZodType<
-  UpdateAuthSessionResultGlobals$Outbound,
-  z.ZodTypeDef,
-  UpdateAuthSessionResultGlobals
-> = z.object({
-  workspaceId: z.string().optional(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultGlobals$ {
-  /** @deprecated use `UpdateAuthSessionResultGlobals$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionResultGlobals$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultGlobals$outboundSchema` instead. */
-  export const outboundSchema = UpdateAuthSessionResultGlobals$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultGlobals$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionResultGlobals$Outbound;
-}
-
-export function updateAuthSessionResultGlobalsToJSON(
-  updateAuthSessionResultGlobals: UpdateAuthSessionResultGlobals,
-): string {
-  return JSON.stringify(
-    UpdateAuthSessionResultGlobals$outboundSchema.parse(
-      updateAuthSessionResultGlobals,
-    ),
-  );
-}
-
-export function updateAuthSessionResultGlobalsFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateAuthSessionResultGlobals, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateAuthSessionResultGlobals$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateAuthSessionResultGlobals' from JSON`,
-  );
-}
-
-/** @internal */
-export const UpdateAuthSessionResultRequest$inboundSchema: z.ZodType<
-  UpdateAuthSessionResultRequest,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  projectName: z.string(),
-  authSessionId: z.string(),
-  operationId: z.string(),
-});
+  | (UpdateAuthSessionResultResponseBodyCanceled & { status: "canceled" })
+  | (UpdateAuthSessionResultResponseBodyFailed & { status: "failed" })
+  | (UpdateAuthSessionResultResponseBodyDone & { status: "done" })
+  | (UpdateAuthSessionResultResponseBodyInProgress & { status: "in_progress" })
+  | (UpdateAuthSessionResultResponseBodyPending & { status: "pending" });
 
 /** @internal */
 export type UpdateAuthSessionResultRequest$Outbound = {
@@ -288,19 +222,6 @@ export const UpdateAuthSessionResultRequest$outboundSchema: z.ZodType<
   operationId: z.string(),
 });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultRequest$ {
-  /** @deprecated use `UpdateAuthSessionResultRequest$inboundSchema` instead. */
-  export const inboundSchema = UpdateAuthSessionResultRequest$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultRequest$outboundSchema` instead. */
-  export const outboundSchema = UpdateAuthSessionResultRequest$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultRequest$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionResultRequest$Outbound;
-}
-
 export function updateAuthSessionResultRequestToJSON(
   updateAuthSessionResultRequest: UpdateAuthSessionResultRequest,
 ): string {
@@ -308,16 +229,6 @@ export function updateAuthSessionResultRequestToJSON(
     UpdateAuthSessionResultRequest$outboundSchema.parse(
       updateAuthSessionResultRequest,
     ),
-  );
-}
-
-export function updateAuthSessionResultRequestFromJSON(
-  jsonString: string,
-): SafeParseResult<UpdateAuthSessionResultRequest, SDKValidationError> {
-  return safeParse(
-    jsonString,
-    (x) => UpdateAuthSessionResultRequest$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'UpdateAuthSessionResultRequest' from JSON`,
   );
 }
 
@@ -330,70 +241,14 @@ export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateRespons
   );
 
 /** @internal */
-export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$outboundSchema:
-  z.ZodNativeEnum<
-    typeof UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus
-  > =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$outboundSchema;
-}
-
-/** @internal */
 export const UpdateAuthSessionResultResponseBodyCode$inboundSchema:
   z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyCode> = z
     .nativeEnum(UpdateAuthSessionResultResponseBodyCode);
 
 /** @internal */
-export const UpdateAuthSessionResultResponseBodyCode$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyCode> =
-    UpdateAuthSessionResultResponseBodyCode$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyCode$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyCode$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyCode$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyCode$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyCode$outboundSchema;
-}
-
-/** @internal */
 export const UpdateAuthSessionResultResponseBodyCategory$inboundSchema:
   z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyCategory> = z
     .nativeEnum(UpdateAuthSessionResultResponseBodyCategory);
-
-/** @internal */
-export const UpdateAuthSessionResultResponseBodyCategory$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyCategory> =
-    UpdateAuthSessionResultResponseBodyCategory$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyCategory$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyCategory$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyCategory$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyCategory$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyCategory$outboundSchema;
-}
 
 /** @internal */
 export const UpdateAuthSessionResultResponseBodyError$inboundSchema: z.ZodType<
@@ -415,63 +270,6 @@ export const UpdateAuthSessionResultResponseBodyError$inboundSchema: z.ZodType<
   });
 });
 
-/** @internal */
-export type UpdateAuthSessionResultResponseBodyError$Outbound = {
-  message: string;
-  code?: string | undefined;
-  category: string;
-  retirable: boolean;
-  doc_url?: string | undefined;
-  correlation_id?: string | undefined;
-  details?: any | undefined;
-};
-
-/** @internal */
-export const UpdateAuthSessionResultResponseBodyError$outboundSchema: z.ZodType<
-  UpdateAuthSessionResultResponseBodyError$Outbound,
-  z.ZodTypeDef,
-  UpdateAuthSessionResultResponseBodyError
-> = z.object({
-  message: z.string(),
-  code: UpdateAuthSessionResultResponseBodyCode$outboundSchema.optional(),
-  category: UpdateAuthSessionResultResponseBodyCategory$outboundSchema,
-  retirable: z.boolean().default(false),
-  docUrl: z.string().optional(),
-  correlationId: z.string().optional(),
-  details: z.any().optional(),
-}).transform((v) => {
-  return remap$(v, {
-    docUrl: "doc_url",
-    correlationId: "correlation_id",
-  });
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyError$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyError$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyError$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyError$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyError$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyError$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionResultResponseBodyError$Outbound;
-}
-
-export function updateAuthSessionResultResponseBodyErrorToJSON(
-  updateAuthSessionResultResponseBodyError:
-    UpdateAuthSessionResultResponseBodyError,
-): string {
-  return JSON.stringify(
-    UpdateAuthSessionResultResponseBodyError$outboundSchema.parse(
-      updateAuthSessionResultResponseBodyError,
-    ),
-  );
-}
-
 export function updateAuthSessionResultResponseBodyErrorFromJSON(
   jsonString: string,
 ): SafeParseResult<
@@ -489,8 +287,8 @@ export function updateAuthSessionResultResponseBodyErrorFromJSON(
 }
 
 /** @internal */
-export const ResponseBodyFailed$inboundSchema: z.ZodType<
-  ResponseBodyFailed,
+export const UpdateAuthSessionResultResponseBodyFailed$inboundSchema: z.ZodType<
+  UpdateAuthSessionResultResponseBodyFailed,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -500,53 +298,19 @@ export const ResponseBodyFailed$inboundSchema: z.ZodType<
   error: z.lazy(() => UpdateAuthSessionResultResponseBodyError$inboundSchema),
 });
 
-/** @internal */
-export type ResponseBodyFailed$Outbound = {
-  status: string;
-  message: string;
-  error: UpdateAuthSessionResultResponseBodyError$Outbound;
-};
-
-/** @internal */
-export const ResponseBodyFailed$outboundSchema: z.ZodType<
-  ResponseBodyFailed$Outbound,
-  z.ZodTypeDef,
-  ResponseBodyFailed
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200ApplicationJSONStatus$outboundSchema,
-  message: z.string(),
-  error: z.lazy(() => UpdateAuthSessionResultResponseBodyError$outboundSchema),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBodyFailed$ {
-  /** @deprecated use `ResponseBodyFailed$inboundSchema` instead. */
-  export const inboundSchema = ResponseBodyFailed$inboundSchema;
-  /** @deprecated use `ResponseBodyFailed$outboundSchema` instead. */
-  export const outboundSchema = ResponseBodyFailed$outboundSchema;
-  /** @deprecated use `ResponseBodyFailed$Outbound` instead. */
-  export type Outbound = ResponseBodyFailed$Outbound;
-}
-
-export function responseBodyFailedToJSON(
-  responseBodyFailed: ResponseBodyFailed,
-): string {
-  return JSON.stringify(
-    ResponseBodyFailed$outboundSchema.parse(responseBodyFailed),
-  );
-}
-
-export function responseBodyFailedFromJSON(
+export function updateAuthSessionResultResponseBodyFailedFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseBodyFailed, SDKValidationError> {
+): SafeParseResult<
+  UpdateAuthSessionResultResponseBodyFailed,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => ResponseBodyFailed$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseBodyFailed' from JSON`,
+    (x) =>
+      UpdateAuthSessionResultResponseBodyFailed$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateAuthSessionResultResponseBodyFailed' from JSON`,
   );
 }
 
@@ -559,81 +323,30 @@ export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateRespons
   );
 
 /** @internal */
-export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$outboundSchema:
-  z.ZodNativeEnum<
-    typeof UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status
-  > =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$inboundSchema;
+export const UpdateAuthSessionResultResponseBodyInProgress$inboundSchema:
+  z.ZodType<
+    UpdateAuthSessionResultResponseBodyInProgress,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    status:
+      UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$inboundSchema,
+    runId: z.string(),
+  });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$outboundSchema;
-}
-
-/** @internal */
-export const ResponseBodyInProgress$inboundSchema: z.ZodType<
-  ResponseBodyInProgress,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$inboundSchema,
-  runId: z.string(),
-});
-
-/** @internal */
-export type ResponseBodyInProgress$Outbound = {
-  status: string;
-  runId: string;
-};
-
-/** @internal */
-export const ResponseBodyInProgress$outboundSchema: z.ZodType<
-  ResponseBodyInProgress$Outbound,
-  z.ZodTypeDef,
-  ResponseBodyInProgress
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponse200Status$outboundSchema,
-  runId: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBodyInProgress$ {
-  /** @deprecated use `ResponseBodyInProgress$inboundSchema` instead. */
-  export const inboundSchema = ResponseBodyInProgress$inboundSchema;
-  /** @deprecated use `ResponseBodyInProgress$outboundSchema` instead. */
-  export const outboundSchema = ResponseBodyInProgress$outboundSchema;
-  /** @deprecated use `ResponseBodyInProgress$Outbound` instead. */
-  export type Outbound = ResponseBodyInProgress$Outbound;
-}
-
-export function responseBodyInProgressToJSON(
-  responseBodyInProgress: ResponseBodyInProgress,
-): string {
-  return JSON.stringify(
-    ResponseBodyInProgress$outboundSchema.parse(responseBodyInProgress),
-  );
-}
-
-export function responseBodyInProgressFromJSON(
+export function updateAuthSessionResultResponseBodyInProgressFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseBodyInProgress, SDKValidationError> {
+): SafeParseResult<
+  UpdateAuthSessionResultResponseBodyInProgress,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => ResponseBodyInProgress$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseBodyInProgress' from JSON`,
+    (x) =>
+      UpdateAuthSessionResultResponseBodyInProgress$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateAuthSessionResultResponseBodyInProgress' from JSON`,
   );
 }
 
@@ -646,47 +359,9 @@ export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateRespons
   );
 
 /** @internal */
-export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$outboundSchema:
-  z.ZodNativeEnum<
-    typeof UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus
-  > =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$outboundSchema;
-}
-
-/** @internal */
 export const UpdateAuthSessionResultResponseBodyType$inboundSchema:
   z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyType> = z
     .nativeEnum(UpdateAuthSessionResultResponseBodyType);
-
-/** @internal */
-export const UpdateAuthSessionResultResponseBodyType$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyType> =
-    UpdateAuthSessionResultResponseBodyType$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyType$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyType$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyType$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyType$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyType$outboundSchema;
-}
 
 /** @internal */
 export const UpdateAuthSessionResultResponseBodyReason$inboundSchema: z.ZodType<
@@ -703,57 +378,6 @@ export const UpdateAuthSessionResultResponseBodyReason$inboundSchema: z.ZodType<
     "doc_url": "docUrl",
   });
 });
-
-/** @internal */
-export type UpdateAuthSessionResultResponseBodyReason$Outbound = {
-  type: string;
-  message: string;
-  doc_url?: string | undefined;
-  details?: any | undefined;
-};
-
-/** @internal */
-export const UpdateAuthSessionResultResponseBodyReason$outboundSchema:
-  z.ZodType<
-    UpdateAuthSessionResultResponseBodyReason$Outbound,
-    z.ZodTypeDef,
-    UpdateAuthSessionResultResponseBodyReason
-  > = z.object({
-    type: UpdateAuthSessionResultResponseBodyType$outboundSchema,
-    message: z.string(),
-    docUrl: z.string().optional(),
-    details: z.any().optional(),
-  }).transform((v) => {
-    return remap$(v, {
-      docUrl: "doc_url",
-    });
-  });
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyReason$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyReason$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyReason$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyReason$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyReason$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyReason$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionResultResponseBodyReason$Outbound;
-}
-
-export function updateAuthSessionResultResponseBodyReasonToJSON(
-  updateAuthSessionResultResponseBodyReason:
-    UpdateAuthSessionResultResponseBodyReason,
-): string {
-  return JSON.stringify(
-    UpdateAuthSessionResultResponseBodyReason$outboundSchema.parse(
-      updateAuthSessionResultResponseBodyReason,
-    ),
-  );
-}
 
 export function updateAuthSessionResultResponseBodyReasonFromJSON(
   jsonString: string,
@@ -772,66 +396,33 @@ export function updateAuthSessionResultResponseBodyReasonFromJSON(
 }
 
 /** @internal */
-export const ResponseBodyCanceled$inboundSchema: z.ZodType<
-  ResponseBodyCanceled,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$inboundSchema,
-  message: z.string(),
-  reason: z.lazy(() => UpdateAuthSessionResultResponseBodyReason$inboundSchema),
-});
+export const UpdateAuthSessionResultResponseBodyCanceled$inboundSchema:
+  z.ZodType<
+    UpdateAuthSessionResultResponseBodyCanceled,
+    z.ZodTypeDef,
+    unknown
+  > = z.object({
+    status:
+      UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$inboundSchema,
+    message: z.string(),
+    reason: z.lazy(() =>
+      UpdateAuthSessionResultResponseBodyReason$inboundSchema
+    ),
+  });
 
-/** @internal */
-export type ResponseBodyCanceled$Outbound = {
-  status: string;
-  message: string;
-  reason: UpdateAuthSessionResultResponseBodyReason$Outbound;
-};
-
-/** @internal */
-export const ResponseBodyCanceled$outboundSchema: z.ZodType<
-  ResponseBodyCanceled$Outbound,
-  z.ZodTypeDef,
-  ResponseBodyCanceled
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateResponseStatus$outboundSchema,
-  message: z.string(),
-  reason: z.lazy(() =>
-    UpdateAuthSessionResultResponseBodyReason$outboundSchema
-  ),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBodyCanceled$ {
-  /** @deprecated use `ResponseBodyCanceled$inboundSchema` instead. */
-  export const inboundSchema = ResponseBodyCanceled$inboundSchema;
-  /** @deprecated use `ResponseBodyCanceled$outboundSchema` instead. */
-  export const outboundSchema = ResponseBodyCanceled$outboundSchema;
-  /** @deprecated use `ResponseBodyCanceled$Outbound` instead. */
-  export type Outbound = ResponseBodyCanceled$Outbound;
-}
-
-export function responseBodyCanceledToJSON(
-  responseBodyCanceled: ResponseBodyCanceled,
-): string {
-  return JSON.stringify(
-    ResponseBodyCanceled$outboundSchema.parse(responseBodyCanceled),
-  );
-}
-
-export function responseBodyCanceledFromJSON(
+export function updateAuthSessionResultResponseBodyCanceledFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseBodyCanceled, SDKValidationError> {
+): SafeParseResult<
+  UpdateAuthSessionResultResponseBodyCanceled,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => ResponseBodyCanceled$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseBodyCanceled' from JSON`,
+    (x) =>
+      UpdateAuthSessionResultResponseBodyCanceled$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateAuthSessionResultResponseBodyCanceled' from JSON`,
   );
 }
 
@@ -844,78 +435,26 @@ export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$
   );
 
 /** @internal */
-export const UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$outboundSchema:
-  z.ZodNativeEnum<
-    typeof UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus
-  > =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$inboundSchema;
+export const UpdateAuthSessionResultResponseBodyPending$inboundSchema:
+  z.ZodType<UpdateAuthSessionResultResponseBodyPending, z.ZodTypeDef, unknown> =
+    z.object({
+      status:
+        UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$inboundSchema,
+    });
 
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$outboundSchema;
-}
-
-/** @internal */
-export const ResponseBodyPending$inboundSchema: z.ZodType<
-  ResponseBodyPending,
-  z.ZodTypeDef,
-  unknown
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$inboundSchema,
-});
-
-/** @internal */
-export type ResponseBodyPending$Outbound = {
-  status: string;
-};
-
-/** @internal */
-export const ResponseBodyPending$outboundSchema: z.ZodType<
-  ResponseBodyPending$Outbound,
-  z.ZodTypeDef,
-  ResponseBodyPending
-> = z.object({
-  status:
-    UpdateAuthSessionResultResponseBodyProjectAuthSessionsUpdateStatus$outboundSchema,
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBodyPending$ {
-  /** @deprecated use `ResponseBodyPending$inboundSchema` instead. */
-  export const inboundSchema = ResponseBodyPending$inboundSchema;
-  /** @deprecated use `ResponseBodyPending$outboundSchema` instead. */
-  export const outboundSchema = ResponseBodyPending$outboundSchema;
-  /** @deprecated use `ResponseBodyPending$Outbound` instead. */
-  export type Outbound = ResponseBodyPending$Outbound;
-}
-
-export function responseBodyPendingToJSON(
-  responseBodyPending: ResponseBodyPending,
-): string {
-  return JSON.stringify(
-    ResponseBodyPending$outboundSchema.parse(responseBodyPending),
-  );
-}
-
-export function responseBodyPendingFromJSON(
+export function updateAuthSessionResultResponseBodyPendingFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseBodyPending, SDKValidationError> {
+): SafeParseResult<
+  UpdateAuthSessionResultResponseBodyPending,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => ResponseBodyPending$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseBodyPending' from JSON`,
+    (x) =>
+      UpdateAuthSessionResultResponseBodyPending$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateAuthSessionResultResponseBodyPending' from JSON`,
   );
 }
 
@@ -925,26 +464,8 @@ export const UpdateAuthSessionResultResponseBodyStatus$inboundSchema:
     .nativeEnum(UpdateAuthSessionResultResponseBodyStatus);
 
 /** @internal */
-export const UpdateAuthSessionResultResponseBodyStatus$outboundSchema:
-  z.ZodNativeEnum<typeof UpdateAuthSessionResultResponseBodyStatus> =
-    UpdateAuthSessionResultResponseBodyStatus$inboundSchema;
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBodyStatus$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyStatus$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBodyStatus$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBodyStatus$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBodyStatus$outboundSchema;
-}
-
-/** @internal */
-export const ResponseBodyDone$inboundSchema: z.ZodType<
-  ResponseBodyDone,
+export const UpdateAuthSessionResultResponseBodyDone$inboundSchema: z.ZodType<
+  UpdateAuthSessionResultResponseBodyDone,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -952,50 +473,19 @@ export const ResponseBodyDone$inboundSchema: z.ZodType<
   authSessionId: z.string(),
 });
 
-/** @internal */
-export type ResponseBodyDone$Outbound = {
-  status: string;
-  authSessionId: string;
-};
-
-/** @internal */
-export const ResponseBodyDone$outboundSchema: z.ZodType<
-  ResponseBodyDone$Outbound,
-  z.ZodTypeDef,
-  ResponseBodyDone
-> = z.object({
-  status: UpdateAuthSessionResultResponseBodyStatus$outboundSchema,
-  authSessionId: z.string(),
-});
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace ResponseBodyDone$ {
-  /** @deprecated use `ResponseBodyDone$inboundSchema` instead. */
-  export const inboundSchema = ResponseBodyDone$inboundSchema;
-  /** @deprecated use `ResponseBodyDone$outboundSchema` instead. */
-  export const outboundSchema = ResponseBodyDone$outboundSchema;
-  /** @deprecated use `ResponseBodyDone$Outbound` instead. */
-  export type Outbound = ResponseBodyDone$Outbound;
-}
-
-export function responseBodyDoneToJSON(
-  responseBodyDone: ResponseBodyDone,
-): string {
-  return JSON.stringify(
-    ResponseBodyDone$outboundSchema.parse(responseBodyDone),
-  );
-}
-
-export function responseBodyDoneFromJSON(
+export function updateAuthSessionResultResponseBodyDoneFromJSON(
   jsonString: string,
-): SafeParseResult<ResponseBodyDone, SDKValidationError> {
+): SafeParseResult<
+  UpdateAuthSessionResultResponseBodyDone,
+  SDKValidationError
+> {
   return safeParse(
     jsonString,
-    (x) => ResponseBodyDone$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'ResponseBodyDone' from JSON`,
+    (x) =>
+      UpdateAuthSessionResultResponseBodyDone$inboundSchema.parse(
+        JSON.parse(x),
+      ),
+    `Failed to parse 'UpdateAuthSessionResultResponseBodyDone' from JSON`,
   );
 }
 
@@ -1005,58 +495,22 @@ export const UpdateAuthSessionResultResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => ResponseBodyCanceled$inboundSchema),
-  z.lazy(() => ResponseBodyFailed$inboundSchema),
-  z.lazy(() => ResponseBodyDone$inboundSchema),
-  z.lazy(() => ResponseBodyInProgress$inboundSchema),
-  z.lazy(() => ResponseBodyPending$inboundSchema),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyCanceled$inboundSchema).and(
+    z.object({ status: z.literal("canceled") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyFailed$inboundSchema).and(
+    z.object({ status: z.literal("failed") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyDone$inboundSchema).and(
+    z.object({ status: z.literal("done") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyInProgress$inboundSchema).and(
+    z.object({ status: z.literal("in_progress") }),
+  ),
+  z.lazy(() => UpdateAuthSessionResultResponseBodyPending$inboundSchema).and(
+    z.object({ status: z.literal("pending") }),
+  ),
 ]);
-
-/** @internal */
-export type UpdateAuthSessionResultResponseBody$Outbound =
-  | ResponseBodyCanceled$Outbound
-  | ResponseBodyFailed$Outbound
-  | ResponseBodyDone$Outbound
-  | ResponseBodyInProgress$Outbound
-  | ResponseBodyPending$Outbound;
-
-/** @internal */
-export const UpdateAuthSessionResultResponseBody$outboundSchema: z.ZodType<
-  UpdateAuthSessionResultResponseBody$Outbound,
-  z.ZodTypeDef,
-  UpdateAuthSessionResultResponseBody
-> = z.union([
-  z.lazy(() => ResponseBodyCanceled$outboundSchema),
-  z.lazy(() => ResponseBodyFailed$outboundSchema),
-  z.lazy(() => ResponseBodyDone$outboundSchema),
-  z.lazy(() => ResponseBodyInProgress$outboundSchema),
-  z.lazy(() => ResponseBodyPending$outboundSchema),
-]);
-
-/**
- * @internal
- * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
- */
-export namespace UpdateAuthSessionResultResponseBody$ {
-  /** @deprecated use `UpdateAuthSessionResultResponseBody$inboundSchema` instead. */
-  export const inboundSchema =
-    UpdateAuthSessionResultResponseBody$inboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBody$outboundSchema` instead. */
-  export const outboundSchema =
-    UpdateAuthSessionResultResponseBody$outboundSchema;
-  /** @deprecated use `UpdateAuthSessionResultResponseBody$Outbound` instead. */
-  export type Outbound = UpdateAuthSessionResultResponseBody$Outbound;
-}
-
-export function updateAuthSessionResultResponseBodyToJSON(
-  updateAuthSessionResultResponseBody: UpdateAuthSessionResultResponseBody,
-): string {
-  return JSON.stringify(
-    UpdateAuthSessionResultResponseBody$outboundSchema.parse(
-      updateAuthSessionResultResponseBody,
-    ),
-  );
-}
 
 export function updateAuthSessionResultResponseBodyFromJSON(
   jsonString: string,

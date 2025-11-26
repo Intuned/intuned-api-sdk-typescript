@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update Auth Session - Start
+ * Update AuthSession - Start
  *
  * @remarks
- * Starts updating process of an authentication session.
+ * Starts an AuthSession:Update run to update an existing AuthSession.
  */
 export function projectAuthSessionsUpdateStart(
   client: IntunedClientCore,

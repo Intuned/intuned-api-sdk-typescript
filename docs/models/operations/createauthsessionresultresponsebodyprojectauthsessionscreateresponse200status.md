@@ -7,11 +7,11 @@ import { CreateAuthSessionResultResponseBodyProjectAuthSessionsCreateResponse200
 
 let value:
   CreateAuthSessionResultResponseBodyProjectAuthSessionsCreateResponse200Status =
-    "failed";
+    "in_progress";
 ```
 
 ## Values
 
 ```typescript
-"failed"
+"in_progress"
 ```
