@@ -10,10 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Create extends ClientSDK {
   /**
-   * Create AuthSession - Start
+   * Create Auth Session - Start
    *
    * @remarks
-   * Start an AuthSession:Create run to create an AuthSession.
+   * Start an AuthSession:Create run to create an Auth Session.
    */
   async start(
     projectName: string,
@@ -29,10 +29,10 @@ export class Create extends ClientSDK {
   }
 
   /**
-   * Create AuthSession - Result
+   * Create Auth Session - Result
    *
    * @remarks
-   * Get AuthSession Create result.
+   * Get Auth Session Create result.
    */
   async result(
     projectName: string,

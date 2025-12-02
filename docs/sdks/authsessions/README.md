@@ -7,13 +7,13 @@ Manage Auth Sessions
 
 ### Available Operations
 
-* [all](#all) - Get AuthSessions
-* [one](#one) - Get AuthSession
-* [delete](#delete) - Delete AuthSession
+* [all](#all) - Get Auth Sessions
+* [one](#one) - Get Auth Session
+* [delete](#delete) - Delete Auth Session
 
 ## all
 
-Gets all AuthSessions of project
+Gets all Auth Sessions of project
 
 ### Example Usage
 
@@ -84,7 +84,7 @@ run();
 
 ## one
 
-Gets AuthSession of project by ID
+Gets Auth Session of project by ID
 
 ### Example Usage
 
@@ -156,7 +156,7 @@ run();
 
 ## delete
 
-Deletes an AuthSession by ID.
+Deletes an Auth Session by ID.
 
 ### Example Usage
 

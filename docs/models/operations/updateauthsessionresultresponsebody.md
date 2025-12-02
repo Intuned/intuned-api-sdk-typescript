@@ -1,6 +1,6 @@
 # UpdateAuthSessionResultResponseBody
 
-AuthSession update result
+Auth session update result
 
 
 ## Supported Types

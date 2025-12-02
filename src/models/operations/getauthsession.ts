@@ -41,7 +41,7 @@ export const GetAuthSessionStatus = {
 export type GetAuthSessionStatus = ClosedEnum<typeof GetAuthSessionStatus>;
 
 /**
- * AuthSession details
+ * Auth Session details
  */
 export type GetAuthSessionResponseBody = {
   /**

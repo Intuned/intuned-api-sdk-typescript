@@ -162,18 +162,11 @@ export type GetJobRunConfiguration = {
   requestTimeout?: number | undefined;
 };
 
-export const GetJobRunSinkProjectJobsRunsType = {
-  S3: "s3",
-} as const;
-export type GetJobRunSinkProjectJobsRunsType = ClosedEnum<
-  typeof GetJobRunSinkProjectJobsRunsType
->;
-
 /**
  * Configuration for the S3 sink.
  */
 export type GetJobRunSinkS3SinkConfiguration = {
-  type: GetJobRunSinkProjectJobsRunsType;
+  type: "s3";
   /**
    * The name of the S3 bucket where the data will be stored.
    */
@@ -212,16 +205,11 @@ export type GetJobRunSinkS3SinkConfiguration = {
   forcePathStyle?: boolean | undefined;
 };
 
-export const GetJobRunSinkType = {
-  Webhook: "webhook",
-} as const;
-export type GetJobRunSinkType = ClosedEnum<typeof GetJobRunSinkType>;
-
 /**
  * Configuration for the webhook sink.
  */
 export type GetJobRunSinkWebhookSinkConfiguration = {
-  type: GetJobRunSinkType;
+  type: "webhook";
   /**
    * The URL to which the webhook will send the data.
    */
@@ -244,8 +232,8 @@ export type GetJobRunSinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type GetJobRunSink =
-  | (GetJobRunSinkS3SinkConfiguration & { type: "s3" })
-  | (GetJobRunSinkWebhookSinkConfiguration & { type: "webhook" });
+  | GetJobRunSinkWebhookSinkConfiguration
+  | GetJobRunSinkS3SinkConfiguration;
 
 /**
  * Authentication session information for the job
@@ -287,8 +275,8 @@ export type GetJobRunJobConfigurationSnapshot = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | (GetJobRunSinkS3SinkConfiguration & { type: "s3" })
-    | (GetJobRunSinkWebhookSinkConfiguration & { type: "webhook" })
+    | GetJobRunSinkWebhookSinkConfiguration
+    | GetJobRunSinkS3SinkConfiguration
     | null
     | undefined;
   /**
@@ -531,17 +519,12 @@ export function getJobRunConfigurationFromJSON(
 }
 
 /** @internal */
-export const GetJobRunSinkProjectJobsRunsType$inboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunSinkProjectJobsRunsType
-> = z.nativeEnum(GetJobRunSinkProjectJobsRunsType);
-
-/** @internal */
 export const GetJobRunSinkS3SinkConfiguration$inboundSchema: z.ZodType<
   GetJobRunSinkS3SinkConfiguration,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: GetJobRunSinkProjectJobsRunsType$inboundSchema,
+  type: z.literal("s3"),
   bucket: z.string(),
   accessKeyId: z.string(),
   secretAccessKey: z.string(),
@@ -564,17 +547,12 @@ export function getJobRunSinkS3SinkConfigurationFromJSON(
 }
 
 /** @internal */
-export const GetJobRunSinkType$inboundSchema: z.ZodNativeEnum<
-  typeof GetJobRunSinkType
-> = z.nativeEnum(GetJobRunSinkType);
-
-/** @internal */
 export const GetJobRunSinkWebhookSinkConfiguration$inboundSchema: z.ZodType<
   GetJobRunSinkWebhookSinkConfiguration,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: GetJobRunSinkType$inboundSchema,
+  type: z.literal("webhook"),
   url: z.string(),
   headers: z.record(z.string()).optional(),
   skipOnFail: z.boolean().default(false),
@@ -598,12 +576,8 @@ export const GetJobRunSink$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetJobRunSinkS3SinkConfiguration$inboundSchema).and(
-    z.object({ type: z.literal("s3") }),
-  ),
-  z.lazy(() => GetJobRunSinkWebhookSinkConfiguration$inboundSchema).and(
-    z.object({ type: z.literal("webhook") }),
-  ),
+  z.lazy(() => GetJobRunSinkWebhookSinkConfiguration$inboundSchema),
+  z.lazy(() => GetJobRunSinkS3SinkConfiguration$inboundSchema),
 ]);
 
 export function getJobRunSinkFromJSON(
@@ -671,12 +645,8 @@ export const GetJobRunJobConfigurationSnapshot$inboundSchema: z.ZodType<
   configuration: z.lazy(() => GetJobRunConfiguration$inboundSchema),
   sink: z.nullable(
     z.union([
-      z.lazy(() => GetJobRunSinkS3SinkConfiguration$inboundSchema).and(
-        z.object({ type: z.literal("s3") }),
-      ),
-      z.lazy(() => GetJobRunSinkWebhookSinkConfiguration$inboundSchema).and(
-        z.object({ type: z.literal("webhook") }),
-      ),
+      z.lazy(() => GetJobRunSinkWebhookSinkConfiguration$inboundSchema),
+      z.lazy(() => GetJobRunSinkS3SinkConfiguration$inboundSchema),
     ]),
   ).optional(),
   auth_session: z.nullable(z.lazy(() => GetJobRunAuthSession$inboundSchema))

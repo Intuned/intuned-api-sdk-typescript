@@ -768,18 +768,11 @@ export type Schedule = {
   calendars?: Array<Calendars> | undefined;
 };
 
-export const CreateJobSinkProjectJobsType = {
-  S3: "s3",
-} as const;
-export type CreateJobSinkProjectJobsType = ClosedEnum<
-  typeof CreateJobSinkProjectJobsType
->;
-
 /**
  * Configuration for the S3 sink.
  */
 export type SinkS3SinkConfiguration = {
-  type: CreateJobSinkProjectJobsType;
+  type: "s3";
   /**
    * The name of the S3 bucket where the data will be stored.
    */
@@ -818,16 +811,11 @@ export type SinkS3SinkConfiguration = {
   forcePathStyle?: boolean | undefined;
 };
 
-export const CreateJobSinkType = {
-  Webhook: "webhook",
-} as const;
-export type CreateJobSinkType = ClosedEnum<typeof CreateJobSinkType>;
-
 /**
  * Configuration for the webhook sink.
  */
 export type SinkWebhookSinkConfiguration = {
-  type: CreateJobSinkType;
+  type: "webhook";
   /**
    * The URL to which the webhook will send the data.
    */
@@ -850,8 +838,8 @@ export type SinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type CreateJobSink =
-  | (SinkS3SinkConfiguration & { type: "s3" })
-  | (SinkWebhookSinkConfiguration & { type: "webhook" });
+  | SinkWebhookSinkConfiguration
+  | SinkS3SinkConfiguration;
 
 export type CreateJobAuthSession = {
   id: string;
@@ -889,8 +877,8 @@ export type CreateJobRequestBody = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | (SinkS3SinkConfiguration & { type: "s3" })
-    | (SinkWebhookSinkConfiguration & { type: "webhook" })
+    | SinkWebhookSinkConfiguration
+    | SinkS3SinkConfiguration
     | null
     | undefined;
   /**
@@ -2407,13 +2395,8 @@ export function scheduleToJSON(schedule: Schedule): string {
 }
 
 /** @internal */
-export const CreateJobSinkProjectJobsType$outboundSchema: z.ZodNativeEnum<
-  typeof CreateJobSinkProjectJobsType
-> = z.nativeEnum(CreateJobSinkProjectJobsType);
-
-/** @internal */
 export type SinkS3SinkConfiguration$Outbound = {
-  type: string;
+  type: "s3";
   bucket: string;
   accessKeyId: string;
   secretAccessKey: string;
@@ -2431,7 +2414,7 @@ export const SinkS3SinkConfiguration$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SinkS3SinkConfiguration
 > = z.object({
-  type: CreateJobSinkProjectJobsType$outboundSchema,
+  type: z.literal("s3"),
   bucket: z.string(),
   accessKeyId: z.string(),
   secretAccessKey: z.string(),
@@ -2452,13 +2435,8 @@ export function sinkS3SinkConfigurationToJSON(
 }
 
 /** @internal */
-export const CreateJobSinkType$outboundSchema: z.ZodNativeEnum<
-  typeof CreateJobSinkType
-> = z.nativeEnum(CreateJobSinkType);
-
-/** @internal */
 export type SinkWebhookSinkConfiguration$Outbound = {
-  type: string;
+  type: "webhook";
   url: string;
   headers?: { [k: string]: string } | undefined;
   skipOnFail: boolean;
@@ -2471,7 +2449,7 @@ export const SinkWebhookSinkConfiguration$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   SinkWebhookSinkConfiguration
 > = z.object({
-  type: CreateJobSinkType$outboundSchema,
+  type: z.literal("webhook"),
   url: z.string(),
   headers: z.record(z.string()).optional(),
   skipOnFail: z.boolean().default(false),
@@ -2490,8 +2468,8 @@ export function sinkWebhookSinkConfigurationToJSON(
 
 /** @internal */
 export type CreateJobSink$Outbound =
-  | (SinkS3SinkConfiguration$Outbound & { type: "s3" })
-  | (SinkWebhookSinkConfiguration$Outbound & { type: "webhook" });
+  | SinkWebhookSinkConfiguration$Outbound
+  | SinkS3SinkConfiguration$Outbound;
 
 /** @internal */
 export const CreateJobSink$outboundSchema: z.ZodType<
@@ -2499,12 +2477,8 @@ export const CreateJobSink$outboundSchema: z.ZodType<
   z.ZodTypeDef,
   CreateJobSink
 > = z.union([
-  z.lazy(() => SinkS3SinkConfiguration$outboundSchema).and(
-    z.object({ type: z.literal("s3") }),
-  ),
-  z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema).and(
-    z.object({ type: z.literal("webhook") }),
-  ),
+  z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema),
+  z.lazy(() => SinkS3SinkConfiguration$outboundSchema),
 ]);
 
 export function createJobSinkToJSON(createJobSink: CreateJobSink): string {
@@ -2544,8 +2518,8 @@ export type CreateJobRequestBody$Outbound = {
   configuration: Configuration$Outbound;
   schedule?: Schedule$Outbound | null | undefined;
   sink?:
-    | (SinkS3SinkConfiguration$Outbound & { type: "s3" })
-    | (SinkWebhookSinkConfiguration$Outbound & { type: "webhook" })
+    | SinkWebhookSinkConfiguration$Outbound
+    | SinkS3SinkConfiguration$Outbound
     | null
     | undefined;
   proxy?: string | null | undefined;
@@ -2564,12 +2538,8 @@ export const CreateJobRequestBody$outboundSchema: z.ZodType<
   schedule: z.nullable(z.lazy(() => Schedule$outboundSchema)).optional(),
   sink: z.nullable(
     z.union([
-      z.lazy(() => SinkS3SinkConfiguration$outboundSchema).and(
-        z.object({ type: z.literal("s3") }),
-      ),
-      z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema).and(
-        z.object({ type: z.literal("webhook") }),
-      ),
+      z.lazy(() => SinkWebhookSinkConfiguration$outboundSchema),
+      z.lazy(() => SinkS3SinkConfiguration$outboundSchema),
     ]),
   ).optional(),
   proxy: z.nullable(z.string()).optional(),

@@ -80,18 +80,11 @@ export type GetJobsPayload = {
   apiName: string;
 };
 
-export const GetJobsSinkProjectJobsType = {
-  S3: "s3",
-} as const;
-export type GetJobsSinkProjectJobsType = ClosedEnum<
-  typeof GetJobsSinkProjectJobsType
->;
-
 /**
  * Configuration for the S3 sink.
  */
 export type GetJobsSinkS3SinkConfiguration = {
-  type: GetJobsSinkProjectJobsType;
+  type: "s3";
   /**
    * The name of the S3 bucket where the data will be stored.
    */
@@ -130,16 +123,11 @@ export type GetJobsSinkS3SinkConfiguration = {
   forcePathStyle?: boolean | undefined;
 };
 
-export const GetJobsSinkType = {
-  Webhook: "webhook",
-} as const;
-export type GetJobsSinkType = ClosedEnum<typeof GetJobsSinkType>;
-
 /**
  * Configuration for the webhook sink.
  */
 export type GetJobsSinkWebhookSinkConfiguration = {
-  type: GetJobsSinkType;
+  type: "webhook";
   /**
    * The URL to which the webhook will send the data.
    */
@@ -162,8 +150,8 @@ export type GetJobsSinkWebhookSinkConfiguration = {
  * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
  */
 export type GetJobsSink =
-  | (GetJobsSinkS3SinkConfiguration & { type: "s3" })
-  | (GetJobsSinkWebhookSinkConfiguration & { type: "webhook" });
+  | GetJobsSinkWebhookSinkConfiguration
+  | GetJobsSinkS3SinkConfiguration;
 
 export type GetJobsJitter = number | string;
 
@@ -969,8 +957,8 @@ export type JobDBObjectSchema = {
    * Optional sink configuration for the job. Can be a webhook or S3 Compatible sink.
    */
   sink?:
-    | (GetJobsSinkS3SinkConfiguration & { type: "s3" })
-    | (GetJobsSinkWebhookSinkConfiguration & { type: "webhook" })
+    | GetJobsSinkWebhookSinkConfiguration
+    | GetJobsSinkS3SinkConfiguration
     | null
     | undefined;
   /**
@@ -1111,17 +1099,12 @@ export function getJobsPayloadFromJSON(
 }
 
 /** @internal */
-export const GetJobsSinkProjectJobsType$inboundSchema: z.ZodNativeEnum<
-  typeof GetJobsSinkProjectJobsType
-> = z.nativeEnum(GetJobsSinkProjectJobsType);
-
-/** @internal */
 export const GetJobsSinkS3SinkConfiguration$inboundSchema: z.ZodType<
   GetJobsSinkS3SinkConfiguration,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: GetJobsSinkProjectJobsType$inboundSchema,
+  type: z.literal("s3"),
   bucket: z.string(),
   accessKeyId: z.string(),
   secretAccessKey: z.string(),
@@ -1144,17 +1127,12 @@ export function getJobsSinkS3SinkConfigurationFromJSON(
 }
 
 /** @internal */
-export const GetJobsSinkType$inboundSchema: z.ZodNativeEnum<
-  typeof GetJobsSinkType
-> = z.nativeEnum(GetJobsSinkType);
-
-/** @internal */
 export const GetJobsSinkWebhookSinkConfiguration$inboundSchema: z.ZodType<
   GetJobsSinkWebhookSinkConfiguration,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  type: GetJobsSinkType$inboundSchema,
+  type: z.literal("webhook"),
   url: z.string(),
   headers: z.record(z.string()).optional(),
   skipOnFail: z.boolean().default(false),
@@ -1178,12 +1156,8 @@ export const GetJobsSink$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema).and(
-    z.object({ type: z.literal("s3") }),
-  ),
-  z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema).and(
-    z.object({ type: z.literal("webhook") }),
-  ),
+  z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema),
+  z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema),
 ]);
 
 export function getJobsSinkFromJSON(
@@ -2563,12 +2537,8 @@ export const JobDBObjectSchema$inboundSchema: z.ZodType<
   payload: z.array(z.lazy(() => GetJobsPayload$inboundSchema)),
   sink: z.nullable(
     z.union([
-      z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema).and(
-        z.object({ type: z.literal("s3") }),
-      ),
-      z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema).and(
-        z.object({ type: z.literal("webhook") }),
-      ),
+      z.lazy(() => GetJobsSinkWebhookSinkConfiguration$inboundSchema),
+      z.lazy(() => GetJobsSinkS3SinkConfiguration$inboundSchema),
     ]),
   ).optional(),
   schedule: z.nullable(z.lazy(() => GetJobsSchedule$inboundSchema)).optional(),
