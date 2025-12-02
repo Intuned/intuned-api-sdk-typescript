@@ -17,7 +17,7 @@ export type ValidateAuthSessionStartGlobals = {
 };
 
 /**
- * Validate AuthSession input schema
+ * Validate auth session input schema
  */
 export type ValidateAuthSessionStartRequestBody = {
   /**
@@ -52,7 +52,7 @@ export type ValidateAuthSessionStartRequest = {
    */
   authSessionId: string;
   /**
-   * Validate AuthSession input schema
+   * Validate auth session input schema
    */
   requestBody: ValidateAuthSessionStartRequestBody;
 };
@@ -65,7 +65,7 @@ export type ValidateAuthSessionStartStatus = ClosedEnum<
 >;
 
 /**
- * Validate AuthSession operation started
+ * Validate auth session operation started
  */
 export type ValidateAuthSessionStartResponseBody = {
   status: ValidateAuthSessionStartStatus;

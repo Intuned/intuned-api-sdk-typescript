@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Delete AuthSession
+ * Delete Auth Session
  *
  * @remarks
- * Deletes an AuthSession by ID.
+ * Deletes an Auth Session by ID.
  */
 export function projectAuthSessionsDelete(
   client: IntunedClientCore,

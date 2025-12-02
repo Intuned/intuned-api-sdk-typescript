@@ -17,7 +17,7 @@ export type CreateOrUpdateAuthSessionStartGlobals = {
 };
 
 /**
- * Create AuthSession input schema
+ * Create auth session input schema
  */
 export type CreateOrUpdateAuthSessionStartRequestBody = {
   /**
@@ -49,7 +49,7 @@ export type CreateOrUpdateAuthSessionStartRequest = {
    */
   projectName: string;
   /**
-   * Create AuthSession input schema
+   * Create auth session input schema
    */
   requestBody: CreateOrUpdateAuthSessionStartRequestBody;
 };
@@ -62,7 +62,7 @@ export type CreateOrUpdateAuthSessionStartStatus = ClosedEnum<
 >;
 
 /**
- * Create AuthSession operation started
+ * Create auth session operation started
  */
 export type CreateOrUpdateAuthSessionStartResponseBody = {
   status: CreateOrUpdateAuthSessionStartStatus;

@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Create AuthSession - Start
+ * Create Auth Session - Start
  *
  * @remarks
- * Start an AuthSession:Create run to create an AuthSession.
+ * Start an AuthSession:Create run to create an Auth Session.
  */
 export function projectAuthSessionsCreateStart(
   client: IntunedClientCore,

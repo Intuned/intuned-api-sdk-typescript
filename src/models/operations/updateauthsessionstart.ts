@@ -17,7 +17,7 @@ export type UpdateAuthSessionStartGlobals = {
 };
 
 /**
- * Update AuthSession input schema
+ * Update auth session input schema
  */
 export type UpdateAuthSessionStartRequestBody = {
   /**
@@ -49,7 +49,7 @@ export type UpdateAuthSessionStartRequest = {
    */
   authSessionId: string;
   /**
-   * Update AuthSession input schema
+   * Update auth session input schema
    */
   requestBody: UpdateAuthSessionStartRequestBody;
 };
@@ -62,7 +62,7 @@ export type UpdateAuthSessionStartStatus = ClosedEnum<
 >;
 
 /**
- * Update AuthSession operation started
+ * Update auth session operation started
  */
 export type UpdateAuthSessionStartResponseBody = {
   status: UpdateAuthSessionStartStatus;

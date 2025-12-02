@@ -122,24 +122,24 @@ run();
 
 #### [project.authSessions](docs/sdks/authsessions/README.md)
 
-* [all](docs/sdks/authsessions/README.md#all) - Get AuthSessions
-* [one](docs/sdks/authsessions/README.md#one) - Get AuthSession
-* [delete](docs/sdks/authsessions/README.md#delete) - Delete AuthSession
+* [all](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
+* [one](docs/sdks/authsessions/README.md#one) - Get Auth Session
+* [delete](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
 
 #### [project.authSessions.create](docs/sdks/create/README.md)
 
-* [start](docs/sdks/create/README.md#start) - Create AuthSession - Start
-* [result](docs/sdks/create/README.md#result) - Create AuthSession - Result
+* [start](docs/sdks/create/README.md#start) - Create Auth Session - Start
+* [result](docs/sdks/create/README.md#result) - Create Auth Session - Result
 
 #### [project.authSessions.update](docs/sdks/update/README.md)
 
-* [start](docs/sdks/update/README.md#start) - Update AuthSession - Start
-* [result](docs/sdks/update/README.md#result) - Update AuthSession - Result
+* [start](docs/sdks/update/README.md#start) - Update Auth Session - Start
+* [result](docs/sdks/update/README.md#result) - Update Auth Session - Result
 
 #### [project.authSessions.validate](docs/sdks/validate/README.md)
 
-* [start](docs/sdks/validate/README.md#start) - Validate AuthSession - Start
-* [result](docs/sdks/validate/README.md#result) - Validate AuthSession - Result
+* [start](docs/sdks/validate/README.md#start) - Validate Auth Session - Start
+* [result](docs/sdks/validate/README.md#result) - Validate Auth Session - Result
 
 #### [project.jobs](docs/sdks/jobs/README.md)
 
@@ -494,15 +494,15 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [`projectAuthSessionsAll`](docs/sdks/authsessions/README.md#all) - Get AuthSessions
-- [`projectAuthSessionsCreateResult`](docs/sdks/create/README.md#result) - Create AuthSession - Result
-- [`projectAuthSessionsCreateStart`](docs/sdks/create/README.md#start) - Create AuthSession - Start
-- [`projectAuthSessionsDelete`](docs/sdks/authsessions/README.md#delete) - Delete AuthSession
-- [`projectAuthSessionsOne`](docs/sdks/authsessions/README.md#one) - Get AuthSession
-- [`projectAuthSessionsUpdateResult`](docs/sdks/update/README.md#result) - Update AuthSession - Result
-- [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update AuthSession - Start
-- [`projectAuthSessionsValidateResult`](docs/sdks/validate/README.md#result) - Validate AuthSession - Result
-- [`projectAuthSessionsValidateStart`](docs/sdks/validate/README.md#start) - Validate AuthSession - Start
+- [`projectAuthSessionsAll`](docs/sdks/authsessions/README.md#all) - Get Auth Sessions
+- [`projectAuthSessionsCreateResult`](docs/sdks/create/README.md#result) - Create Auth Session - Result
+- [`projectAuthSessionsCreateStart`](docs/sdks/create/README.md#start) - Create Auth Session - Start
+- [`projectAuthSessionsDelete`](docs/sdks/authsessions/README.md#delete) - Delete Auth Session
+- [`projectAuthSessionsOne`](docs/sdks/authsessions/README.md#one) - Get Auth Session
+- [`projectAuthSessionsUpdateResult`](docs/sdks/update/README.md#result) - Update Auth Session - Result
+- [`projectAuthSessionsUpdateStart`](docs/sdks/update/README.md#start) - Update Auth Session - Start
+- [`projectAuthSessionsValidateResult`](docs/sdks/validate/README.md#result) - Validate Auth Session - Result
+- [`projectAuthSessionsValidateStart`](docs/sdks/validate/README.md#start) - Validate Auth Session - Start
 - [`projectJobsAll`](docs/sdks/jobs/README.md#all) - Get Jobs
 - [`projectJobsCreate`](docs/sdks/jobs/README.md#create) - Create Job
 - [`projectJobsDelete`](docs/sdks/jobs/README.md#delete) - Delete Job

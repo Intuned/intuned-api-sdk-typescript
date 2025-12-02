@@ -25,7 +25,7 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Validate AuthSession - Result
+ * Validate Auth Session - Result
  *
  * @remarks
  * Get AuthSession:Validate run result.

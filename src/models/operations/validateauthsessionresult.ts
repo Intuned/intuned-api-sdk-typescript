@@ -31,15 +31,6 @@ export type ValidateAuthSessionResultRequest = {
   operationId: string;
 };
 
-export const ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status =
-  {
-    Failed: "failed",
-  } as const;
-export type ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status =
-  ClosedEnum<
-    typeof ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status
-  >;
-
 /**
  * Optional error code for more specific error identification
  */
@@ -98,38 +89,18 @@ export type ResponseBodyError = {
 };
 
 export type Failed = {
-  status:
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status;
+  status: "failed";
   message: string;
   error: ResponseBodyError;
 };
 
-export const ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus =
-  {
-    InProgress: "in_progress",
-  } as const;
-export type ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus =
-  ClosedEnum<
-    typeof ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus
-  >;
-
 export type InProgress = {
-  status:
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus;
+  status: "in_progress";
   /**
    * Unique identifier for the run, nanoId of 21 characters
    */
   runId: string;
 };
-
-export const ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus =
-  {
-    Canceled: "canceled",
-  } as const;
-export type ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus =
-  ClosedEnum<
-    typeof ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus
-  >;
 
 export const ResponseBodyType = {
   AuthSessionValidateDependencyFailed:
@@ -154,30 +125,17 @@ export type ResponseBodyReason = {
 };
 
 export type Canceled = {
-  status:
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus;
+  status: "canceled";
   message: string;
   reason: ResponseBodyReason;
 };
 
-export const ValidateAuthSessionResultResponseBodyStatus = {
-  Pending: "pending",
-} as const;
-export type ValidateAuthSessionResultResponseBodyStatus = ClosedEnum<
-  typeof ValidateAuthSessionResultResponseBodyStatus
->;
-
 export type Pending = {
-  status: ValidateAuthSessionResultResponseBodyStatus;
+  status: "pending";
 };
 
-export const ResponseBodyStatus = {
-  Done: "done",
-} as const;
-export type ResponseBodyStatus = ClosedEnum<typeof ResponseBodyStatus>;
-
 export type Done = {
-  status: ResponseBodyStatus;
+  status: "done";
   /**
    * The unique identifier for the authentication session
    */
@@ -185,14 +143,14 @@ export type Done = {
 };
 
 /**
- * Get AuthSession Validate result
+ * Get Auth session Validate result
  */
 export type ValidateAuthSessionResultResponseBody =
-  | (Canceled & { status: "canceled" })
-  | (Failed & { status: "failed" })
-  | (Done & { status: "done" })
-  | (InProgress & { status: "in_progress" })
-  | (Pending & { status: "pending" });
+  | Done
+  | Pending
+  | Canceled
+  | InProgress
+  | Failed;
 
 /** @internal */
 export type ValidateAuthSessionResultRequest$Outbound = {
@@ -221,14 +179,6 @@ export function validateAuthSessionResultRequestToJSON(
     ),
   );
 }
-
-/** @internal */
-export const ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status$inboundSchema:
-  z.ZodNativeEnum<
-    typeof ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status
-  > = z.nativeEnum(
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status,
-  );
 
 /** @internal */
 export const ResponseBodyCode$inboundSchema: z.ZodNativeEnum<
@@ -273,8 +223,7 @@ export function responseBodyErrorFromJSON(
 /** @internal */
 export const Failed$inboundSchema: z.ZodType<Failed, z.ZodTypeDef, unknown> = z
   .object({
-    status:
-      ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponse200Status$inboundSchema,
+    status: z.literal("failed"),
     message: z.string(),
     error: z.lazy(() => ResponseBodyError$inboundSchema),
   });
@@ -290,21 +239,12 @@ export function failedFromJSON(
 }
 
 /** @internal */
-export const ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus$inboundSchema:
-  z.ZodNativeEnum<
-    typeof ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus
-  > = z.nativeEnum(
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus,
-  );
-
-/** @internal */
 export const InProgress$inboundSchema: z.ZodType<
   InProgress,
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status:
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateResponseStatus$inboundSchema,
+  status: z.literal("in_progress"),
   runId: z.string(),
 });
 
@@ -317,14 +257,6 @@ export function inProgressFromJSON(
     `Failed to parse 'InProgress' from JSON`,
   );
 }
-
-/** @internal */
-export const ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus$inboundSchema:
-  z.ZodNativeEnum<
-    typeof ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus
-  > = z.nativeEnum(
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus,
-  );
 
 /** @internal */
 export const ResponseBodyType$inboundSchema: z.ZodNativeEnum<
@@ -363,8 +295,7 @@ export const Canceled$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.object({
-  status:
-    ValidateAuthSessionResultResponseBodyProjectAuthSessionsValidateStatus$inboundSchema,
+  status: z.literal("canceled"),
   message: z.string(),
   reason: z.lazy(() => ResponseBodyReason$inboundSchema),
 });
@@ -380,14 +311,9 @@ export function canceledFromJSON(
 }
 
 /** @internal */
-export const ValidateAuthSessionResultResponseBodyStatus$inboundSchema:
-  z.ZodNativeEnum<typeof ValidateAuthSessionResultResponseBodyStatus> = z
-    .nativeEnum(ValidateAuthSessionResultResponseBodyStatus);
-
-/** @internal */
 export const Pending$inboundSchema: z.ZodType<Pending, z.ZodTypeDef, unknown> =
   z.object({
-    status: ValidateAuthSessionResultResponseBodyStatus$inboundSchema,
+    status: z.literal("pending"),
   });
 
 export function pendingFromJSON(
@@ -401,14 +327,9 @@ export function pendingFromJSON(
 }
 
 /** @internal */
-export const ResponseBodyStatus$inboundSchema: z.ZodNativeEnum<
-  typeof ResponseBodyStatus
-> = z.nativeEnum(ResponseBodyStatus);
-
-/** @internal */
 export const Done$inboundSchema: z.ZodType<Done, z.ZodTypeDef, unknown> = z
   .object({
-    status: ResponseBodyStatus$inboundSchema,
+    status: z.literal("done"),
     authSessionId: z.string(),
   });
 
@@ -428,19 +349,11 @@ export const ValidateAuthSessionResultResponseBody$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Canceled$inboundSchema).and(
-    z.object({ status: z.literal("canceled") }),
-  ),
-  z.lazy(() => Failed$inboundSchema).and(
-    z.object({ status: z.literal("failed") }),
-  ),
-  z.lazy(() => Done$inboundSchema).and(z.object({ status: z.literal("done") })),
-  z.lazy(() => InProgress$inboundSchema).and(
-    z.object({ status: z.literal("in_progress") }),
-  ),
-  z.lazy(() => Pending$inboundSchema).and(
-    z.object({ status: z.literal("pending") }),
-  ),
+  z.lazy(() => Done$inboundSchema),
+  z.lazy(() => Pending$inboundSchema),
+  z.lazy(() => Canceled$inboundSchema),
+  z.lazy(() => InProgress$inboundSchema),
+  z.lazy(() => Failed$inboundSchema),
 ]);
 
 export function validateAuthSessionResultResponseBodyFromJSON(

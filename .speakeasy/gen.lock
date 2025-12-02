@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 47dbe124-c912-4a0e-add0-c2f6f79a46e0
 management:
-  docChecksum: 591c2102f18783e0fbdc526f9e6c58b0
+  docChecksum: f9fa5b3f3dde85e993add3e6bbde8941
   docVersion: 0.0.2
-  speakeasyVersion: 1.661.3
-  generationVersion: 2.763.3
-  releaseVersion: 0.4.2
-  configChecksum: 3c95406e710f83b28fb8a9e4e821e89d
+  speakeasyVersion: 1.666.0
+  generationVersion: 2.768.0
+  releaseVersion: 0.5.0
+  configChecksum: 788a939497b07ce9c1dca6e972f8d15d
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.12
-    core: 3.26.10
+    core: 3.26.13
     defaultEnabledRetries: 0.1.0
     devContainers: 2.90.1
     enumUnions: 0.1.0
@@ -28,8 +28,8 @@ features:
     nullables: 0.1.1
     responseFormat: 0.2.3
     retries: 2.83.0
-    sdkHooks: 0.3.0
-    unions: 2.86.0
+    sdkHooks: 0.4.0
+    unions: 2.86.3
 generatedFiles:
   - .devcontainer/README.md
   - .devcontainer/devcontainer.json
@@ -137,12 +137,7 @@ generatedFiles:
   - docs/models/operations/createauthsessionresultresponsebodycategory.md
   - docs/models/operations/createauthsessionresultresponsebodycode.md
   - docs/models/operations/createauthsessionresultresponsebodyerror.md
-  - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreateresponse200applicationjsonstatus.md
-  - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreateresponse200status.md
-  - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreateresponsestatus.md
-  - docs/models/operations/createauthsessionresultresponsebodyprojectauthsessionscreatestatus.md
   - docs/models/operations/createauthsessionresultresponsebodyreason.md
-  - docs/models/operations/createauthsessionresultresponsebodystatus.md
   - docs/models/operations/createauthsessionresultresponsebodytype.md
   - docs/models/operations/createjob41.md
   - docs/models/operations/createjob42.md
@@ -173,8 +168,6 @@ generatedFiles:
   - docs/models/operations/createjobresponsebody.md
   - docs/models/operations/createjobretry.md
   - docs/models/operations/createjobsink.md
-  - docs/models/operations/createjobsinkprojectjobstype.md
-  - docs/models/operations/createjobsinktype.md
   - docs/models/operations/createorupdateauthsessionstartglobals.md
   - docs/models/operations/createorupdateauthsessionstartrequest.md
   - docs/models/operations/createorupdateauthsessionstartrequestbody.md
@@ -311,9 +304,7 @@ generatedFiles:
   - docs/models/operations/getjobrunserror.md
   - docs/models/operations/getjobrunsglobals.md
   - docs/models/operations/getjobrunsink.md
-  - docs/models/operations/getjobrunsinkprojectjobsrunstype.md
   - docs/models/operations/getjobrunsinks3sinkconfiguration.md
-  - docs/models/operations/getjobrunsinktype.md
   - docs/models/operations/getjobrunsinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobrunsprojectjobsrunstype.md
   - docs/models/operations/getjobrunsproxy.md
@@ -322,9 +313,7 @@ generatedFiles:
   - docs/models/operations/getjobrunsresponsebody.md
   - docs/models/operations/getjobrunsretry.md
   - docs/models/operations/getjobrunssink.md
-  - docs/models/operations/getjobrunssinkprojectjobsrunstype.md
   - docs/models/operations/getjobrunssinks3sinkconfiguration.md
-  - docs/models/operations/getjobrunssinktype.md
   - docs/models/operations/getjobrunssinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobrunsstatus.md
   - docs/models/operations/getjobrunstatus.md
@@ -387,9 +376,7 @@ generatedFiles:
   - docs/models/operations/getjobshour4.md
   - docs/models/operations/getjobshour5.md
   - docs/models/operations/getjobsink.md
-  - docs/models/operations/getjobsinkprojectjobstype.md
   - docs/models/operations/getjobsinks3sinkconfiguration.md
-  - docs/models/operations/getjobsinktype.md
   - docs/models/operations/getjobsinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobsintervals.md
   - docs/models/operations/getjobsjitter.md
@@ -416,9 +403,7 @@ generatedFiles:
   - docs/models/operations/getjobsschedule.md
   - docs/models/operations/getjobssecond.md
   - docs/models/operations/getjobssink.md
-  - docs/models/operations/getjobssinkprojectjobstype.md
   - docs/models/operations/getjobssinks3sinkconfiguration.md
-  - docs/models/operations/getjobssinktype.md
   - docs/models/operations/getjobssinkwebhooksinkconfiguration.md
   - docs/models/operations/getjobstate.md
   - docs/models/operations/getjobstype.md
@@ -477,7 +462,6 @@ generatedFiles:
   - docs/models/operations/responsebodyinprogress.md
   - docs/models/operations/responsebodypending.md
   - docs/models/operations/responsebodyreason.md
-  - docs/models/operations/responsebodystatus.md
   - docs/models/operations/responsebodytype.md
   - docs/models/operations/results.md
   - docs/models/operations/resumejobglobals.md
@@ -504,7 +488,6 @@ generatedFiles:
   - docs/models/operations/second5.md
   - docs/models/operations/sink.md
   - docs/models/operations/sinks3sinkconfiguration.md
-  - docs/models/operations/sinktype.md
   - docs/models/operations/sinkwebhooksinkconfiguration.md
   - docs/models/operations/start.md
   - docs/models/operations/state.md
@@ -517,7 +500,6 @@ generatedFiles:
   - docs/models/operations/triggerjobrequest.md
   - docs/models/operations/triggerjobresponsebody.md
   - docs/models/operations/two.md
-  - docs/models/operations/type.md
   - docs/models/operations/updateauthsessionresultglobals.md
   - docs/models/operations/updateauthsessionresultrequest.md
   - docs/models/operations/updateauthsessionresultresponsebody.md
@@ -529,12 +511,7 @@ generatedFiles:
   - docs/models/operations/updateauthsessionresultresponsebodyfailed.md
   - docs/models/operations/updateauthsessionresultresponsebodyinprogress.md
   - docs/models/operations/updateauthsessionresultresponsebodypending.md
-  - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdateresponse200applicationjsonstatus.md
-  - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdateresponse200status.md
-  - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdateresponsestatus.md
-  - docs/models/operations/updateauthsessionresultresponsebodyprojectauthsessionsupdatestatus.md
   - docs/models/operations/updateauthsessionresultresponsebodyreason.md
-  - docs/models/operations/updateauthsessionresultresponsebodystatus.md
   - docs/models/operations/updateauthsessionresultresponsebodytype.md
   - docs/models/operations/updateauthsessionstartglobals.md
   - docs/models/operations/updateauthsessionstartrequest.md
@@ -544,10 +521,6 @@ generatedFiles:
   - docs/models/operations/validateauthsessionresultglobals.md
   - docs/models/operations/validateauthsessionresultrequest.md
   - docs/models/operations/validateauthsessionresultresponsebody.md
-  - docs/models/operations/validateauthsessionresultresponsebodyprojectauthsessionsvalidateresponse200status.md
-  - docs/models/operations/validateauthsessionresultresponsebodyprojectauthsessionsvalidateresponsestatus.md
-  - docs/models/operations/validateauthsessionresultresponsebodyprojectauthsessionsvalidatestatus.md
-  - docs/models/operations/validateauthsessionresultresponsebodystatus.md
   - docs/models/operations/validateauthsessionstartglobals.md
   - docs/models/operations/validateauthsessionstartrequest.md
   - docs/models/operations/validateauthsessionstartrequestbody.md
