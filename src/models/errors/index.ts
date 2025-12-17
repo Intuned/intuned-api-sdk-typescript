@@ -17,3 +17,4 @@ export * from "./sdkerror.js";
 export * from "./sdkvalidationerror.js";
 export * from "./terminatejobrun.js";
 export * from "./triggerjob.js";
+export * from "./updatejob.js";

@@ -21,5 +21,6 @@ export * from "./terminatejobrun.js";
 export * from "./triggerjob.js";
 export * from "./updateauthsessionresult.js";
 export * from "./updateauthsessionstart.js";
+export * from "./updatejob.js";
 export * from "./validateauthsessionresult.js";
 export * from "./validateauthsessionstart.js";

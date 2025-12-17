@@ -76,7 +76,7 @@ export type CreateAuthSessionResultResponseBodyError = {
    */
   code?: CreateAuthSessionResultResponseBodyCode | undefined;
   category: CreateAuthSessionResultResponseBodyCategory;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional URL to documentation for this error
    */
@@ -145,7 +145,7 @@ export type ResponseBodyDone = {
 };
 
 /**
- * Auth session creation result
+ * AuthSession creation result
  */
 export type CreateAuthSessionResultResponseBody =
   | ResponseBodyDone

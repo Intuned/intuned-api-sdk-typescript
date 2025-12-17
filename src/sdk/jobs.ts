@@ -9,6 +9,7 @@ import { projectJobsOne } from "../funcs/projectJobsOne.js";
 import { projectJobsPause } from "../funcs/projectJobsPause.js";
 import { projectJobsResume } from "../funcs/projectJobsResume.js";
 import { projectJobsTrigger } from "../funcs/projectJobsTrigger.js";
+import { projectJobsUpdate } from "../funcs/projectJobsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -71,6 +72,27 @@ export class Jobs extends ClientSDK {
       this,
       projectName,
       jobId,
+      options,
+    ));
+  }
+
+  /**
+   * Update Job
+   *
+   * @remarks
+   * Updates a job in a project by ID.
+   */
+  async update(
+    projectName: string,
+    jobId: string,
+    requestBody: operations.UpdateJobUpdateJobInputSchema,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateJobResponseBody> {
+    return unwrapAsync(projectJobsUpdate(
+      this,
+      projectName,
+      jobId,
+      requestBody,
       options,
     ));
   }

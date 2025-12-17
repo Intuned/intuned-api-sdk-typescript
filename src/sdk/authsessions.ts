@@ -29,10 +29,10 @@ export class AuthSessions extends ClientSDK {
   }
 
   /**
-   * Get Auth Sessions
+   * Get AuthSessions
    *
    * @remarks
-   * Gets all Auth Sessions of project
+   * Gets all AuthSessions of project
    */
   async all(
     projectName: string,
@@ -46,10 +46,10 @@ export class AuthSessions extends ClientSDK {
   }
 
   /**
-   * Get Auth Session
+   * Get AuthSession
    *
    * @remarks
-   * Gets Auth Session of project by ID
+   * Gets AuthSession of project by ID
    */
   async one(
     projectName: string,
@@ -65,10 +65,10 @@ export class AuthSessions extends ClientSDK {
   }
 
   /**
-   * Delete Auth Session
+   * Delete AuthSession
    *
    * @remarks
-   * Deletes an Auth Session by ID.
+   * Deletes an AuthSession by ID.
    */
   async delete(
     projectName: string,

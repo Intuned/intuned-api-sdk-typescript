@@ -1,6 +1,6 @@
 # ValidateAuthSessionStartResponseBody
 
-Validate auth session operation started
+Validate AuthSession operation started
 
 ## Example Usage
 
