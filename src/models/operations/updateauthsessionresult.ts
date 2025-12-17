@@ -80,7 +80,7 @@ export type UpdateAuthSessionResultResponseBodyError = {
    */
   code?: UpdateAuthSessionResultResponseBodyCode | undefined;
   category: UpdateAuthSessionResultResponseBodyCategory;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional URL to documentation for this error
    */
@@ -149,7 +149,7 @@ export type UpdateAuthSessionResultResponseBodyDone = {
 };
 
 /**
- * Auth session update result
+ * AuthSession update result
  */
 export type UpdateAuthSessionResultResponseBody =
   | UpdateAuthSessionResultResponseBodyDone

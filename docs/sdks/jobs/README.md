@@ -1,5 +1,4 @@
-# Jobs
-(*project.jobs*)
+# Project.Jobs
 
 ## Overview
 
@@ -10,6 +9,7 @@ Project Jobs API
 * [all](#all) - Get Jobs
 * [create](#create) - Create Job
 * [one](#one) - Get Job
+* [update](#update) - Update Job
 * [delete](#delete) - Delete Job
 * [pause](#pause) - Pause Job
 * [resume](#resume) - Resume Job
@@ -268,6 +268,110 @@ run();
 | errors.GetJobProjectJobsResponseBody         | 401                                          | application/json                             |
 | errors.GetJobProjectJobsResponseResponseBody | 404                                          | application/json                             |
 | errors.SDKError                              | 4XX, 5XX                                     | \*/\*                                        |
+
+## update
+
+Updates a job in a project by ID.
+
+### Example Usage
+
+<!-- UsageSnippet language="typescript" operationID="updateJob" method="put" path="/{workspaceId}/projects/{projectName}/jobs/{jobId}" -->
+```typescript
+import { IntunedClient } from "@intuned/client";
+
+const intunedClient = new IntunedClient({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
+});
+
+async function run() {
+  const result = await intunedClient.project.jobs.update("my-project", "my-sample-job", {
+    payload: [
+      {
+        parameters: {
+          "param1": "value1",
+          "param2": 42,
+          "param3": true,
+        },
+        apiName: "my-awesome-api",
+      },
+    ],
+    configuration: {
+      retry: {},
+    },
+  });
+
+  console.log(result);
+}
+
+run();
+```
+
+### Standalone function
+
+The standalone function version of this method:
+
+```typescript
+import { IntunedClientCore } from "@intuned/client/core.js";
+import { projectJobsUpdate } from "@intuned/client/funcs/projectJobsUpdate.js";
+
+// Use `IntunedClientCore` for best tree-shaking performance.
+// You can create one instance of it to use across an application.
+const intunedClient = new IntunedClientCore({
+  workspaceId: "123e4567-e89b-12d3-a456-426614174000",
+  apiKey: process.env["INTUNED_API_KEY"] ?? "",
+});
+
+async function run() {
+  const res = await projectJobsUpdate(intunedClient, "my-project", "my-sample-job", {
+    payload: [
+      {
+        parameters: {
+          "param1": "value1",
+          "param2": 42,
+          "param3": true,
+        },
+        apiName: "my-awesome-api",
+      },
+    ],
+    configuration: {
+      retry: {},
+    },
+  });
+  if (res.ok) {
+    const { value: result } = res;
+    console.log(result);
+  } else {
+    console.log("projectJobsUpdate failed:", res.error);
+  }
+}
+
+run();
+```
+
+### Parameters
+
+| Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
+| `jobId`                                                                                                                                                                        | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your job ID. It is the ID of the job you provide when creating it.                                                                                                             | [object Object]                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.UpdateJobUpdateJobInputSchema](../../models/operations/updatejobupdatejobinputschema.md)                                                                           | :heavy_check_mark:                                                                                                                                                             | Job update input schema                                                                                                                                                        |                                                                                                                                                                                |
+| `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
+| `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
+| `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
+
+### Response
+
+**Promise\<[operations.UpdateJobResponseBody](../../models/operations/updatejobresponsebody.md)\>**
+
+### Errors
+
+| Error Type                                      | Status Code                                     | Content Type                                    |
+| ----------------------------------------------- | ----------------------------------------------- | ----------------------------------------------- |
+| errors.UpdateJobResponseBody                    | 400                                             | application/json                                |
+| errors.UpdateJobProjectJobsResponseBody         | 401                                             | application/json                                |
+| errors.UpdateJobProjectJobsResponseResponseBody | 404                                             | application/json                                |
+| errors.SDKError                                 | 4XX, 5XX                                        | \*/\*                                           |
 
 ## delete
 

@@ -1,5 +1,4 @@
-# Update
-(*project.authSessions.update*)
+# Project.AuthSessions.Update
 
 ## Overview
 
@@ -7,12 +6,12 @@ Update Auth Session
 
 ### Available Operations
 
-* [start](#start) - Update Auth Session - Start
-* [result](#result) - Update Auth Session - Result
+* [start](#start) - Update AuthSession - Start
+* [result](#result) - Update AuthSession - Result
 
 ## start
 
-Starts an AuthSession:Update run to update an existing Auth Session.
+Starts an AuthSession:Update run to update an existing AuthSession.
 
 ### Example Usage
 
@@ -80,7 +79,7 @@ run();
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
 | `authSessionId`                                                                                                                                                                | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Authentication session ID. You can obtain it from the Auth Sessions tab in your project details.                                                                               |                                                                                                                                                                                |
-| `requestBody`                                                                                                                                                                  | [operations.UpdateAuthSessionStartRequestBody](../../models/operations/updateauthsessionstartrequestbody.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | Update auth session input schema                                                                                                                                               |                                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.UpdateAuthSessionStartRequestBody](../../models/operations/updateauthsessionstartrequestbody.md)                                                                   | :heavy_check_mark:                                                                                                                                                             | Update AuthSession input schema                                                                                                                                                |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -97,7 +96,7 @@ run();
 
 ## result
 
-Gets Auth Session Update result.
+Gets AuthSession Update result.
 
 ### Example Usage
 

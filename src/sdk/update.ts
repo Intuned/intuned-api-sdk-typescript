@@ -10,10 +10,10 @@ import { unwrapAsync } from "../types/fp.js";
 
 export class Update extends ClientSDK {
   /**
-   * Update Auth Session - Start
+   * Update AuthSession - Start
    *
    * @remarks
-   * Starts an AuthSession:Update run to update an existing Auth Session.
+   * Starts an AuthSession:Update run to update an existing AuthSession.
    */
   async start(
     projectName: string,
@@ -31,10 +31,10 @@ export class Update extends ClientSDK {
   }
 
   /**
-   * Update Auth Session - Result
+   * Update AuthSession - Result
    *
    * @remarks
-   * Gets Auth Session Update result.
+   * Gets AuthSession Update result.
    */
   async result(
     projectName: string,

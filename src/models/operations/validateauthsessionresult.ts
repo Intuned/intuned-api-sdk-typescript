@@ -76,7 +76,7 @@ export type ResponseBodyError = {
    */
   code?: ResponseBodyCode | undefined;
   category: ResponseBodyCategory;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional URL to documentation for this error
    */
@@ -143,7 +143,7 @@ export type Done = {
 };
 
 /**
- * Get Auth session Validate result
+ * Get AuthSession Validate result
  */
 export type ValidateAuthSessionResultResponseBody =
   | Done

@@ -99,7 +99,7 @@ export type ErrorT = {
    */
   code?: Code | undefined;
   category: Category;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional URL to documentation for this error
    */

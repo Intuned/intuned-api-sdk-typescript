@@ -1,6 +1,6 @@
 # CreateAuthSessionResultResponseBody
 
-Auth session creation result
+AuthSession creation result
 
 
 ## Supported Types

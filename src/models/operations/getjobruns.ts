@@ -97,7 +97,7 @@ export type GetJobRunsError = {
    * Optional correlation ID for tracking the error
    */
   correlationId?: string | undefined;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional documentation URL for more information
    */
@@ -140,7 +140,7 @@ export type GetJobRunsRetry = {
   /**
    * Maximum number of attempts to retry the run in case of failure
    */
-  maximumAttempts?: number | undefined;
+  maximumAttempts: number;
 };
 
 /**
@@ -158,7 +158,7 @@ export type GetJobRunsConfiguration = {
   /**
    * Timeout for the API request in seconds. Default is 10 minutes (600 seconds).
    */
-  requestTimeout?: number | undefined;
+  requestTimeout: number;
 };
 
 /**
@@ -189,7 +189,7 @@ export type GetJobRunsSinkS3SinkConfiguration = {
   /**
    * If enabled, failed payload runs will ***not*** be written to the bucket.
    */
-  skipOnFail?: boolean | undefined;
+  skipOnFail: boolean;
   /**
    * List of API names to be sent to the S3 bucket. If not provided, all APIs will be sent.
    */
@@ -220,7 +220,7 @@ export type GetJobRunsSinkWebhookSinkConfiguration = {
   /**
    * If true, the webhook will not be sent if the API execution fails.
    */
-  skipOnFail?: boolean | undefined;
+  skipOnFail: boolean;
   /**
    * List of API names to be sent to the webhook. If not provided, all APIs will be sent.
    */
@@ -242,11 +242,11 @@ export type GetJobRunsAuthSession = {
   /**
    * Number of attempts to check the validity of the auth session before recreating it.
    */
-  checkAttempts?: number | undefined;
+  checkAttempts: number;
   /**
    * Number of attempts to create a new auth session if the current one is invalid or expired.
    */
-  createAttempts?: number | undefined;
+  createAttempts: number;
 };
 
 export const GetJobRunsVersion = {

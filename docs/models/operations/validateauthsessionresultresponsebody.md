@@ -1,6 +1,6 @@
 # ValidateAuthSessionResultResponseBody
 
-Get Auth session Validate result
+Get AuthSession Validate result
 
 
 ## Supported Types

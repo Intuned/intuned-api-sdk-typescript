@@ -1,5 +1,4 @@
-# Create
-(*project.authSessions.create*)
+# Project.AuthSessions.Create
 
 ## Overview
 
@@ -7,12 +6,12 @@ Create Auth Session
 
 ### Available Operations
 
-* [start](#start) - Create Auth Session - Start
-* [result](#result) - Create Auth Session - Result
+* [start](#start) - Create AuthSession - Start
+* [result](#result) - Create AuthSession - Result
 
 ## start
 
-Start an AuthSession:Create run to create an Auth Session.
+Start an AuthSession:Create run to create an AuthSession.
 
 ### Example Usage
 
@@ -79,7 +78,7 @@ run();
 | Parameter                                                                                                                                                                      | Type                                                                                                                                                                           | Required                                                                                                                                                                       | Description                                                                                                                                                                    | Example                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `projectName`                                                                                                                                                                  | *string*                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                             | Your project name. It is the name you provide when creating a project.                                                                                                         | [object Object]                                                                                                                                                                |
-| `requestBody`                                                                                                                                                                  | [operations.CreateOrUpdateAuthSessionStartRequestBody](../../models/operations/createorupdateauthsessionstartrequestbody.md)                                                   | :heavy_check_mark:                                                                                                                                                             | Create auth session input schema                                                                                                                                               |                                                                                                                                                                                |
+| `requestBody`                                                                                                                                                                  | [operations.CreateOrUpdateAuthSessionStartRequestBody](../../models/operations/createorupdateauthsessionstartrequestbody.md)                                                   | :heavy_check_mark:                                                                                                                                                             | Create AuthSession input schema                                                                                                                                                |                                                                                                                                                                                |
 | `options`                                                                                                                                                                      | RequestOptions                                                                                                                                                                 | :heavy_minus_sign:                                                                                                                                                             | Used to set various options for making HTTP requests.                                                                                                                          |                                                                                                                                                                                |
 | `options.fetchOptions`                                                                                                                                                         | [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/Request/Request#options)                                                                                        | :heavy_minus_sign:                                                                                                                                                             | Options that are passed to the underlying HTTP request. This can be used to inject extra headers for examples. All `Request` options, except `method` and `body`, are allowed. |                                                                                                                                                                                |
 | `options.retries`                                                                                                                                                              | [RetryConfig](../../lib/utils/retryconfig.md)                                                                                                                                  | :heavy_minus_sign:                                                                                                                                                             | Enables retrying HTTP requests under certain failure conditions.                                                                                                               |                                                                                                                                                                                |
@@ -96,7 +95,7 @@ run();
 
 ## result
 
-Get Auth Session Create result.
+Get AuthSession Create result.
 
 ### Example Usage
 
