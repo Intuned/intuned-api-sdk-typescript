@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Run API - Start
  *
  * @remarks
- * Starts an API run for a project
+ * Start a Run for a Project.
  */
 export function projectRunStart(
   client: IntunedClientCore,

@@ -11,7 +11,7 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RunApiStartGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
@@ -31,7 +31,7 @@ export type Retry = {
  */
 export type CredentialsBasedAuthSessionInput = {
   /**
-   * The ID of the auth session to be used.
+   * The ID of the AuthSession to use.
    */
   id: string;
   /**
@@ -202,7 +202,7 @@ export type RunApiStartRequestBody = {
 
 export type RunApiStartRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**

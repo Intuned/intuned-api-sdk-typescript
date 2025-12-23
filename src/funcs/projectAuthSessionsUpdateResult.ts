@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Update Auth Session - Result
+ * Update AuthSession - Result
  *
  * @remarks
- * Gets Auth Session Update result.
+ * Get AuthSession update result.
  */
 export function projectAuthSessionsUpdateResult(
   client: IntunedClientCore,

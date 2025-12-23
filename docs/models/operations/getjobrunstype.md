@@ -1,6 +1,6 @@
 # GetJobRunsType
 
-Type of the job run
+Type of the JobRun.
 
 ## Example Usage
 

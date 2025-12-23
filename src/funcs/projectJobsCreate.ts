@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Create Job
  *
  * @remarks
- * Creates a new job for a project.
+ * Create a new Job for a Project.
  */
 export function projectJobsCreate(
   client: IntunedClientCore,

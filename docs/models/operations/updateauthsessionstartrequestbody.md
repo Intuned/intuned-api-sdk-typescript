@@ -1,6 +1,6 @@
 # UpdateAuthSessionStartRequestBody
 
-Update auth session input schema
+Update AuthSession input schema
 
 ## Example Usage
 

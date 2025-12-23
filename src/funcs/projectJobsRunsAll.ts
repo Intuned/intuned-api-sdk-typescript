@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get Job Runs
  *
  * @remarks
- * Get all job runs of a job.
+ * Get all JobRuns for a Job.
  */
 export function projectJobsRunsAll(
   client: IntunedClientCore,

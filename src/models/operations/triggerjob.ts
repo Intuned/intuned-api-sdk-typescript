@@ -9,18 +9,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TriggerJobGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type TriggerJobRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**
-   * Your job ID. It is the ID of the job you provide when creating it.
+   * The ID you assigned when creating the Job.
    */
   jobId: string;
 };
@@ -30,7 +30,7 @@ export type TriggerJobRequest = {
  */
 export type TriggerJobResponseBody = {
   /**
-   * The ID of the triggered job run.
+   * The ID of the triggered JobRun.
    */
   jobRunId: string;
   /**

@@ -6,14 +6,14 @@ import * as z from "zod/v3";
 
 export type DeleteAuthSessionGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type DeleteAuthSessionRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**

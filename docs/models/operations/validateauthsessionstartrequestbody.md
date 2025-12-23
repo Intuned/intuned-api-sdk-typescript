@@ -1,6 +1,6 @@
 # ValidateAuthSessionStartRequestBody
 
-Validate auth session input schema
+Validate AuthSession input schema
 
 ## Example Usage
 

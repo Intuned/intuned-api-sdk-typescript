@@ -11,18 +11,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetJobRunsGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type GetJobRunsRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**
-   * Your job ID. It is the ID of the job you provide when creating it.
+   * The ID you assigned when creating the Job.
    */
   jobId: string;
   pageSize?: string | undefined;
@@ -31,19 +31,19 @@ export type GetJobRunsRequest = {
 };
 
 /**
- * Type of the job run
+ * Type of the JobRun.
  */
 export const GetJobRunsType = {
   Manual: "MANUAL",
   Scheduled: "SCHEDULED",
 } as const;
 /**
- * Type of the job run
+ * Type of the JobRun.
  */
 export type GetJobRunsType = ClosedEnum<typeof GetJobRunsType>;
 
 /**
- * Current status of the job run
+ * Current status of the JobRun.
  */
 export const GetJobRunsStatus = {
   Canceled: "CANCELED",
@@ -57,7 +57,7 @@ export const GetJobRunsStatus = {
   Completed: "COMPLETED",
 } as const;
 /**
- * Current status of the job run
+ * Current status of the JobRun.
  */
 export type GetJobRunsStatus = ClosedEnum<typeof GetJobRunsStatus>;
 
@@ -97,7 +97,7 @@ export type GetJobRunsError = {
    * Optional correlation ID for tracking the error
    */
   correlationId?: string | undefined;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional documentation URL for more information
    */
@@ -121,7 +121,7 @@ export type GetJobRunsProjectJobsRunsType = ClosedEnum<
 >;
 
 /**
- * Reason for job run  state change, stored as JSONB
+ * Reason for JobRun state change., stored as JSONB
  */
 export type GetJobRunsReason = {
   type: GetJobRunsProjectJobsRunsType;
@@ -140,7 +140,7 @@ export type GetJobRunsRetry = {
   /**
    * Maximum number of attempts to retry the run in case of failure
    */
-  maximumAttempts?: number | undefined;
+  maximumAttempts: number;
 };
 
 /**
@@ -158,7 +158,7 @@ export type GetJobRunsConfiguration = {
   /**
    * Timeout for the API request in seconds. Default is 10 minutes (600 seconds).
    */
-  requestTimeout?: number | undefined;
+  requestTimeout: number;
 };
 
 /**
@@ -189,7 +189,7 @@ export type GetJobRunsSinkS3SinkConfiguration = {
   /**
    * If enabled, failed payload runs will ***not*** be written to the bucket.
    */
-  skipOnFail?: boolean | undefined;
+  skipOnFail: boolean;
   /**
    * List of API names to be sent to the S3 bucket. If not provided, all APIs will be sent.
    */
@@ -220,7 +220,7 @@ export type GetJobRunsSinkWebhookSinkConfiguration = {
   /**
    * If true, the webhook will not be sent if the API execution fails.
    */
-  skipOnFail?: boolean | undefined;
+  skipOnFail: boolean;
   /**
    * List of API names to be sent to the webhook. If not provided, all APIs will be sent.
    */
@@ -242,11 +242,11 @@ export type GetJobRunsAuthSession = {
   /**
    * Number of attempts to check the validity of the auth session before recreating it.
    */
-  checkAttempts?: number | undefined;
+  checkAttempts: number;
   /**
    * Number of attempts to create a new auth session if the current one is invalid or expired.
    */
-  createAttempts?: number | undefined;
+  createAttempts: number;
 };
 
 export const GetJobRunsVersion = {
@@ -290,11 +290,11 @@ export type JobConfigurationSnapshot = {
 
 export type JobRuns = {
   /**
-   * Unique identifier for the job run
+   * Unique identifier for the JobRun.
    */
   id: string;
   /**
-   * Timestamp when the job run started
+   * Timestamp when the JobRun started.
    */
   startTime: string;
   /**
@@ -302,11 +302,11 @@ export type JobRuns = {
    */
   endTime: string | null;
   /**
-   * UUID of the workspace this job run belongs to
+   * UUID of the workspace this JobRun belongs to.
    */
   workspaceId: string;
   /**
-   * UUID of the project this job run belongs to
+   * UUID of the project this JobRun belongs to.
    */
   projectId: string;
   /**
@@ -314,31 +314,31 @@ export type JobRuns = {
    */
   jobId: string;
   /**
-   * Timestamp when the job run was created
+   * Timestamp when the JobRun was created.
    */
   createdAt: string;
   /**
-   * Timestamp when the job run was last updated
+   * Timestamp when the JobRun was last updated.
    */
   updatedAt: string;
   /**
-   * Type of the job run
+   * Type of the JobRun.
    */
   type: GetJobRunsType;
   /**
-   * Current status of the job run
+   * Current status of the JobRun.
    */
   status: GetJobRunsStatus;
   /**
-   * Total number of payloads in the job run
+   * Total number of payloads in the JobRun.
    */
   payloads: number | null;
   /**
-   * Number of successful API calls in the job run
+   * Number of successful API calls in the JobRun.
    */
   successfulRuns: number | null;
   /**
-   * Number of failed API calls in the job run
+   * Number of failed API calls in the JobRun.
    */
   failedRuns: number | null;
   /**
@@ -346,7 +346,7 @@ export type JobRuns = {
    */
   error?: GetJobRunsError | null | undefined;
   /**
-   * Reason for job run  state change, stored as JSONB
+   * Reason for JobRun state change., stored as JSONB
    */
   reason?: GetJobRunsReason | null | undefined;
   /**
@@ -356,12 +356,12 @@ export type JobRuns = {
 };
 
 /**
- * Array of job runs with pagination info
+ * Array of JobRuns with pagination info.
  */
 export type GetJobRunsResponseBody = {
   jobRuns: Array<JobRuns>;
   /**
-   * Total number of job runs available
+   * Total number of JobRuns available.
    */
   totalCount: number;
 };

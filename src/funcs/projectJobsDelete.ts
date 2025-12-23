@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Delete Job
  *
  * @remarks
- * Deletes a job by ID.
+ * Delete a Job by ID.
  */
 export function projectJobsDelete(
   client: IntunedClientCore,

@@ -11,14 +11,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type RunApiResultGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type RunApiResultRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**
@@ -99,7 +99,7 @@ export type ErrorT = {
    */
   code?: Code | undefined;
   category: Category;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional URL to documentation for this error
    */

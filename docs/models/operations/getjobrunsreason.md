@@ -1,6 +1,6 @@
 # GetJobRunsReason
 
-Reason for job run  state change, stored as JSONB
+Reason for JobRun state change., stored as JSONB
 
 ## Example Usage
 

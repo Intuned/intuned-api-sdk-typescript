@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Validate Auth Session - Result
+ * Validate AuthSession - Result
  *
  * @remarks
- * Get AuthSession:Validate run result.
+ * Get AuthSession validation result.
  */
 export function projectAuthSessionsValidateResult(
   client: IntunedClientCore,

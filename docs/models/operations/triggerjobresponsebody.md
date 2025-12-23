@@ -17,5 +17,5 @@ let value: TriggerJobResponseBody = {
 
 | Field                                                  | Type                                                   | Required                                               | Description                                            |
 | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------ |
-| `jobRunId`                                             | *string*                                               | :heavy_check_mark:                                     | The ID of the triggered job run.                       |
+| `jobRunId`                                             | *string*                                               | :heavy_check_mark:                                     | The ID of the triggered JobRun.                        |
 | `message`                                              | *string*                                               | :heavy_check_mark:                                     | A message indicating the result of the trigger action. |

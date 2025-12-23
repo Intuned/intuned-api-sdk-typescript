@@ -1,6 +1,6 @@
 # GetJobRunResponseBody
 
-Job run information and results
+JobRun information and results.
 
 ## Example Usage
 

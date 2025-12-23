@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Resume Job
  *
  * @remarks
- * Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
+ * Resume a paused Job. Resumes any paused JobRuns and the Job schedule if applicable.
  */
 export function projectJobsResume(
   client: IntunedClientCore,

@@ -1,6 +1,6 @@
 # UpdateAuthSessionStartResponseBody
 
-Update auth session operation started
+Update AuthSession operation started
 
 ## Example Usage
 

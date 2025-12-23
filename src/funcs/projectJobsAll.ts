@@ -30,7 +30,7 @@ import { Result } from "../types/fp.js";
  * Get Jobs
  *
  * @remarks
- * Gets all jobs in a project.
+ * Get all Jobs in a Project.
  */
 export function projectJobsAll(
   client: IntunedClientCore,

@@ -9,18 +9,18 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type TerminateJobRunGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type TerminateJobRunRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**
-   * Your job ID. It is the ID of the job you provide when creating it.
+   * The ID you assigned when creating the Job.
    */
   jobId: string;
   /**
@@ -30,11 +30,11 @@ export type TerminateJobRunRequest = {
 };
 
 /**
- * Job run terminated successfully
+ * JobRun terminated successfully.
  */
 export type TerminateJobRunResponseBody = {
   /**
-   * Success message confirming job run termination
+   * Success message confirming JobRun termination.
    */
   message: string;
 };

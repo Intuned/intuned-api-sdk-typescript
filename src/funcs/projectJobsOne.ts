@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Get Job
  *
  * @remarks
- * Gets a job in a project by ID.
+ * Get a Job by ID.
  */
 export function projectJobsOne(
   client: IntunedClientCore,

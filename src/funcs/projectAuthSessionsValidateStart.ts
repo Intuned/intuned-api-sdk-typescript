@@ -25,10 +25,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Validate Auth Session - Start
+ * Validate AuthSession - Start
  *
  * @remarks
- * Starts an AuthSession:Validate run to validate an Auth Session.
+ * Start AuthSession validation.
  */
 export function projectAuthSessionsValidateStart(
   client: IntunedClientCore,

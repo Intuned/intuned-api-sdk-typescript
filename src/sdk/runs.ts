@@ -14,7 +14,7 @@ export class Runs extends ClientSDK {
    * Get Job Runs
    *
    * @remarks
-   * Get all job runs of a job.
+   * Get all JobRuns for a Job.
    */
   async all(
     request: operations.GetJobRunsRequest,
@@ -31,7 +31,7 @@ export class Runs extends ClientSDK {
    * Get Job Run
    *
    * @remarks
-   * Get information and results for a specific job run.
+   * Get information and results for a specific JobRun.
    */
   async one(
     projectName: string,
@@ -52,7 +52,7 @@ export class Runs extends ClientSDK {
    * Terminate Job Run
    *
    * @remarks
-   * Terminate a job run by ID.
+   * Terminate a JobRun by ID.
    */
   async terminate(
     projectName: string,

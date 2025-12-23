@@ -11,14 +11,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type CreateAuthSessionResultGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type CreateAuthSessionResultRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**
@@ -76,7 +76,7 @@ export type CreateAuthSessionResultResponseBodyError = {
    */
   code?: CreateAuthSessionResultResponseBodyCode | undefined;
   category: CreateAuthSessionResultResponseBodyCategory;
-  retirable?: boolean | undefined;
+  retirable: boolean;
   /**
    * Optional URL to documentation for this error
    */
@@ -145,7 +145,7 @@ export type ResponseBodyDone = {
 };
 
 /**
- * Auth session creation result
+ * AuthSession creation result
  */
 export type CreateAuthSessionResultResponseBody =
   | ResponseBodyDone

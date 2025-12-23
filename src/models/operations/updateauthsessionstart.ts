@@ -11,13 +11,13 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type UpdateAuthSessionStartGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 /**
- * Update auth session input schema
+ * Update AuthSession input schema
  */
 export type UpdateAuthSessionStartRequestBody = {
   /**
@@ -41,7 +41,7 @@ export type UpdateAuthSessionStartRequestBody = {
 
 export type UpdateAuthSessionStartRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
   /**
@@ -49,7 +49,7 @@ export type UpdateAuthSessionStartRequest = {
    */
   authSessionId: string;
   /**
-   * Update auth session input schema
+   * Update AuthSession input schema
    */
   requestBody: UpdateAuthSessionStartRequestBody;
 };
@@ -62,7 +62,7 @@ export type UpdateAuthSessionStartStatus = ClosedEnum<
 >;
 
 /**
- * Update auth session operation started
+ * Update AuthSession operation started
  */
 export type UpdateAuthSessionStartResponseBody = {
   status: UpdateAuthSessionStartStatus;

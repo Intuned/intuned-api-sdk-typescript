@@ -11,14 +11,14 @@ import { SDKValidationError } from "../errors/sdkvalidationerror.js";
 
 export type GetJobsGlobals = {
   /**
-   * Your workspace ID. [How to find it](/docs/guides/general/how-to-get-a-workspace-id)?
+   * Your workspace ID. [How to find it](/docs/03-how-to/manage/manage-workspace#how-to-get-your-workspace-id)?
    */
   workspaceId?: string | undefined;
 };
 
 export type GetJobsRequest = {
   /**
-   * Your project name. It is the name you provide when creating a project.
+   * The name you assigned when creating the Project.
    */
   projectName: string;
 };
@@ -30,7 +30,7 @@ export type GetJobsRetry = {
   /**
    * Maximum number of attempts to retry the run in case of failure
    */
-  maximumAttempts?: number | undefined;
+  maximumAttempts: number;
 };
 
 /**
@@ -48,7 +48,7 @@ export type GetJobsConfiguration = {
   /**
    * Timeout for the API request in seconds. Default is 10 minutes (600 seconds).
    */
-  requestTimeout?: number | undefined;
+  requestTimeout: number;
 };
 
 /**
@@ -58,7 +58,7 @@ export type GetJobsProjectJobsRetry = {
   /**
    * Maximum number of attempts to retry the run in case of failure
    */
-  maximumAttempts?: number | undefined;
+  maximumAttempts: number;
 };
 
 export type GetJobsPayload = {
@@ -69,7 +69,7 @@ export type GetJobsPayload = {
   /**
    * Timeout for the API request in seconds. Default is 10 minutes (600 seconds).
    */
-  requestTimeout?: number | undefined;
+  requestTimeout: number;
   /**
    * Retry policy configurations in case of failure.
    */
@@ -108,7 +108,7 @@ export type GetJobsSinkS3SinkConfiguration = {
   /**
    * If enabled, failed payload runs will ***not*** be written to the bucket.
    */
-  skipOnFail?: boolean | undefined;
+  skipOnFail: boolean;
   /**
    * List of API names to be sent to the S3 bucket. If not provided, all APIs will be sent.
    */
@@ -139,7 +139,7 @@ export type GetJobsSinkWebhookSinkConfiguration = {
   /**
    * If true, the webhook will not be sent if the API execution fails.
    */
-  skipOnFail?: boolean | undefined;
+  skipOnFail: boolean;
   /**
    * List of API names to be sent to the webhook. If not provided, all APIs will be sent.
    */
@@ -164,10 +164,10 @@ export type GetJobsIntervals = {
   every: number | string;
 };
 
-export const Second5 = {
+export const GetJobsSecond5 = {
   Wildcard: "*",
 } as const;
-export type Second5 = ClosedEnum<typeof Second5>;
+export type GetJobsSecond5 = ClosedEnum<typeof GetJobsSecond5>;
 
 export type GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3 =
   {
@@ -182,17 +182,17 @@ export type GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule2 =
     end: number;
   };
 
-export type Second4 =
+export type GetJobsSecond4 =
   | GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule2
   | GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3
   | number;
 
-export type Second3 = {
+export type GetJobsSecond3 = {
   start: number;
   end?: number | undefined;
 };
 
-export type Second2 = {
+export type GetJobsSecond2 = {
   start: number;
   step: number;
   end: number;
@@ -202,15 +202,15 @@ export type Second2 = {
  * Seconds of the calendar, a number in the range 0 - 59
  */
 export type GetJobsSecond =
-  | Second2
-  | Second3
+  | GetJobsSecond2
+  | GetJobsSecond3
   | number
   | Array<
     | GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule2
     | GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3
     | number
   >
-  | Second5;
+  | GetJobsSecond5;
 
 export const GetJobsMinute5 = {
   Wildcard: "*",
@@ -429,7 +429,7 @@ export type GetJobsDayOfWeek2 = {
   end: GetJobsDayOfWeekEnd;
 };
 
-export const DayOfWeek1 = {
+export const GetJobsDayOfWeek1 = {
   Sunday: "SUNDAY",
   Monday: "MONDAY",
   Tuesday: "TUESDAY",
@@ -438,7 +438,7 @@ export const DayOfWeek1 = {
   Friday: "FRIDAY",
   Saturday: "SATURDAY",
 } as const;
-export type DayOfWeek1 = ClosedEnum<typeof DayOfWeek1>;
+export type GetJobsDayOfWeek1 = ClosedEnum<typeof GetJobsDayOfWeek1>;
 
 /**
  * Days of week, one of SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY
@@ -446,7 +446,7 @@ export type DayOfWeek1 = ClosedEnum<typeof DayOfWeek1>;
 export type GetJobsDayOfWeek =
   | GetJobsDayOfWeek2
   | GetJobsDayOfWeek3
-  | DayOfWeek1
+  | GetJobsDayOfWeek1
   | Array<
     | GetJobs4ProjectJobsResponse2
     | GetJobs4ProjectJobsResponse3
@@ -768,15 +768,15 @@ export type GetJobsCalendars = {
    * Seconds of the calendar, a number in the range 0 - 59
    */
   second?:
-    | Second2
-    | Second3
+    | GetJobsSecond2
+    | GetJobsSecond3
     | number
     | Array<
       | GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule2
       | GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3
       | number
     >
-    | Second5
+    | GetJobsSecond5
     | undefined;
   /**
    * Minutes of the calendar, a number in the range 0 - 59
@@ -804,7 +804,7 @@ export type GetJobsCalendars = {
   dayOfWeek?:
     | GetJobsDayOfWeek2
     | GetJobsDayOfWeek3
-    | DayOfWeek1
+    | GetJobsDayOfWeek1
     | Array<
       | GetJobs4ProjectJobsResponse2
       | GetJobs4ProjectJobsResponse3
@@ -881,11 +881,11 @@ export type GetJobsAuthSession = {
   /**
    * Number of attempts to check the validity of the auth session before recreating it.
    */
-  checkAttempts?: number | undefined;
+  checkAttempts: number;
   /**
    * Number of attempts to create a new auth session if the current one is invalid or expired.
    */
-  createAttempts?: number | undefined;
+  createAttempts: number;
 };
 
 export const Version = {
@@ -1224,8 +1224,9 @@ export function getJobsIntervalsFromJSON(
 }
 
 /** @internal */
-export const Second5$inboundSchema: z.ZodNativeEnum<typeof Second5> = z
-  .nativeEnum(Second5);
+export const GetJobsSecond5$inboundSchema: z.ZodNativeEnum<
+  typeof GetJobsSecond5
+> = z.nativeEnum(GetJobsSecond5);
 
 /** @internal */
 export const GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3$inboundSchema:
@@ -1281,59 +1282,68 @@ export function getJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedul
 }
 
 /** @internal */
-export const Second4$inboundSchema: z.ZodType<Second4, z.ZodTypeDef, unknown> =
-  z.union([
-    z.lazy(() =>
-      GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule2$inboundSchema
-    ),
-    z.lazy(() =>
-      GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3$inboundSchema
-    ),
-    z.number().int(),
-  ]);
+export const GetJobsSecond4$inboundSchema: z.ZodType<
+  GetJobsSecond4,
+  z.ZodTypeDef,
+  unknown
+> = z.union([
+  z.lazy(() =>
+    GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule2$inboundSchema
+  ),
+  z.lazy(() =>
+    GetJobs4ProjectJobsResponse200ApplicationJSONResponseBodySchedule3$inboundSchema
+  ),
+  z.number().int(),
+]);
 
-export function second4FromJSON(
+export function getJobsSecond4FromJSON(
   jsonString: string,
-): SafeParseResult<Second4, SDKValidationError> {
+): SafeParseResult<GetJobsSecond4, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Second4$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Second4' from JSON`,
+    (x) => GetJobsSecond4$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetJobsSecond4' from JSON`,
   );
 }
 
 /** @internal */
-export const Second3$inboundSchema: z.ZodType<Second3, z.ZodTypeDef, unknown> =
-  z.object({
-    start: z.number().int(),
-    end: z.number().int().optional(),
-  });
+export const GetJobsSecond3$inboundSchema: z.ZodType<
+  GetJobsSecond3,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  start: z.number().int(),
+  end: z.number().int().optional(),
+});
 
-export function second3FromJSON(
+export function getJobsSecond3FromJSON(
   jsonString: string,
-): SafeParseResult<Second3, SDKValidationError> {
+): SafeParseResult<GetJobsSecond3, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Second3$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Second3' from JSON`,
+    (x) => GetJobsSecond3$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetJobsSecond3' from JSON`,
   );
 }
 
 /** @internal */
-export const Second2$inboundSchema: z.ZodType<Second2, z.ZodTypeDef, unknown> =
-  z.object({
-    start: z.number().int(),
-    step: z.number().int(),
-    end: z.number().int(),
-  });
+export const GetJobsSecond2$inboundSchema: z.ZodType<
+  GetJobsSecond2,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  start: z.number().int(),
+  step: z.number().int(),
+  end: z.number().int(),
+});
 
-export function second2FromJSON(
+export function getJobsSecond2FromJSON(
   jsonString: string,
-): SafeParseResult<Second2, SDKValidationError> {
+): SafeParseResult<GetJobsSecond2, SDKValidationError> {
   return safeParse(
     jsonString,
-    (x) => Second2$inboundSchema.parse(JSON.parse(x)),
-    `Failed to parse 'Second2' from JSON`,
+    (x) => GetJobsSecond2$inboundSchema.parse(JSON.parse(x)),
+    `Failed to parse 'GetJobsSecond2' from JSON`,
   );
 }
 
@@ -1343,8 +1353,8 @@ export const GetJobsSecond$inboundSchema: z.ZodType<
   z.ZodTypeDef,
   unknown
 > = z.union([
-  z.lazy(() => Second2$inboundSchema),
-  z.lazy(() => Second3$inboundSchema),
+  z.lazy(() => GetJobsSecond2$inboundSchema),
+  z.lazy(() => GetJobsSecond3$inboundSchema),
   z.number().int(),
   z.array(z.union([
     z.lazy(() =>
@@ -1355,7 +1365,7 @@ export const GetJobsSecond$inboundSchema: z.ZodType<
     ),
     z.number().int(),
   ])),
-  Second5$inboundSchema,
+  GetJobsSecond5$inboundSchema,
 ]);
 
 export function getJobsSecondFromJSON(
@@ -1792,8 +1802,9 @@ export function getJobsDayOfWeek2FromJSON(
 }
 
 /** @internal */
-export const DayOfWeek1$inboundSchema: z.ZodNativeEnum<typeof DayOfWeek1> = z
-  .nativeEnum(DayOfWeek1);
+export const GetJobsDayOfWeek1$inboundSchema: z.ZodNativeEnum<
+  typeof GetJobsDayOfWeek1
+> = z.nativeEnum(GetJobsDayOfWeek1);
 
 /** @internal */
 export const GetJobsDayOfWeek$inboundSchema: z.ZodType<
@@ -1803,14 +1814,12 @@ export const GetJobsDayOfWeek$inboundSchema: z.ZodType<
 > = z.union([
   z.lazy(() => GetJobsDayOfWeek2$inboundSchema),
   z.lazy(() => GetJobsDayOfWeek3$inboundSchema),
-  DayOfWeek1$inboundSchema,
-  z.array(
-    z.union([
-      z.lazy(() => GetJobs4ProjectJobsResponse2$inboundSchema),
-      z.lazy(() => GetJobs4ProjectJobsResponse3$inboundSchema),
-      GetJobs4ProjectJobs1$inboundSchema,
-    ]),
-  ),
+  GetJobsDayOfWeek1$inboundSchema,
+  z.array(z.union([
+    z.lazy(() => GetJobs4ProjectJobsResponse2$inboundSchema),
+    z.lazy(() => GetJobs4ProjectJobsResponse3$inboundSchema),
+    GetJobs4ProjectJobs1$inboundSchema,
+  ])),
   GetJobsDayOfWeek5$inboundSchema,
 ]);
 
@@ -2322,8 +2331,8 @@ export const GetJobsCalendars$inboundSchema: z.ZodType<
   unknown
 > = z.object({
   second: z.union([
-    z.lazy(() => Second2$inboundSchema),
-    z.lazy(() => Second3$inboundSchema),
+    z.lazy(() => GetJobsSecond2$inboundSchema),
+    z.lazy(() => GetJobsSecond3$inboundSchema),
     z.number().int(),
     z.array(z.union([
       z.lazy(() =>
@@ -2334,7 +2343,7 @@ export const GetJobsCalendars$inboundSchema: z.ZodType<
       ),
       z.number().int(),
     ])),
-    Second5$inboundSchema,
+    GetJobsSecond5$inboundSchema,
   ]).optional(),
   minute: z.union([
     z.lazy(() => GetJobsMinute2$inboundSchema),
@@ -2363,14 +2372,12 @@ export const GetJobsCalendars$inboundSchema: z.ZodType<
   dayOfWeek: z.union([
     z.lazy(() => GetJobsDayOfWeek2$inboundSchema),
     z.lazy(() => GetJobsDayOfWeek3$inboundSchema),
-    DayOfWeek1$inboundSchema,
-    z.array(
-      z.union([
-        z.lazy(() => GetJobs4ProjectJobsResponse2$inboundSchema),
-        z.lazy(() => GetJobs4ProjectJobsResponse3$inboundSchema),
-        GetJobs4ProjectJobs1$inboundSchema,
-      ]),
-    ),
+    GetJobsDayOfWeek1$inboundSchema,
+    z.array(z.union([
+      z.lazy(() => GetJobs4ProjectJobsResponse2$inboundSchema),
+      z.lazy(() => GetJobs4ProjectJobsResponse3$inboundSchema),
+      GetJobs4ProjectJobs1$inboundSchema,
+    ])),
     GetJobsDayOfWeek5$inboundSchema,
   ]).optional(),
   dayOfMonth: z.union([

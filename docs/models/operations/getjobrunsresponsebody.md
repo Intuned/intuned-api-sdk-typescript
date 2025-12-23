@@ -1,6 +1,6 @@
 # GetJobRunsResponseBody
 
-Array of job runs with pagination info
+Array of JobRuns with pagination info.
 
 ## Example Usage
 
@@ -18,4 +18,4 @@ let value: GetJobRunsResponseBody = {
 | Field                                                      | Type                                                       | Required                                                   | Description                                                | Example                                                    |
 | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
 | `jobRuns`                                                  | [operations.JobRuns](../../models/operations/jobruns.md)[] | :heavy_check_mark:                                         | N/A                                                        |                                                            |
-| `totalCount`                                               | *number*                                                   | :heavy_check_mark:                                         | Total number of job runs available                         | 150                                                        |
+| `totalCount`                                               | *number*                                                   | :heavy_check_mark:                                         | Total number of JobRuns available.                         | 150                                                        |

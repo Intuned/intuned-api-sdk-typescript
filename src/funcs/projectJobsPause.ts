@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Pause Job
  *
  * @remarks
- * Pauses a job. Will pause any job runs and the job schedule if applicable.
+ * Pause a Job. Pauses any JobRuns and the Job schedule if applicable.
  */
 export function projectJobsPause(
   client: IntunedClientCore,

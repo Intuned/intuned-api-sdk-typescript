@@ -26,10 +26,10 @@ import { APICall, APIPromise } from "../types/async.js";
 import { Result } from "../types/fp.js";
 
 /**
- * Get Auth Sessions
+ * Get AuthSessions
  *
  * @remarks
- * Gets all Auth Sessions of project
+ * Get all AuthSessions in a Project.
  */
 export function projectAuthSessionsAll(
   client: IntunedClientCore,

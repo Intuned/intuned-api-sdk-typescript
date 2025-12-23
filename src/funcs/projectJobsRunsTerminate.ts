@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Terminate Job Run
  *
  * @remarks
- * Terminate a job run by ID.
+ * Terminate a JobRun by ID.
  */
 export function projectJobsRunsTerminate(
   client: IntunedClientCore,

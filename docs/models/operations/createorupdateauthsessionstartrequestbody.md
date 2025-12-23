@@ -1,6 +1,6 @@
 # CreateOrUpdateAuthSessionStartRequestBody
 
-Create auth session input schema
+Create AuthSession input schema
 
 ## Example Usage
 

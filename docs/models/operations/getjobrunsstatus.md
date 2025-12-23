@@ -1,6 +1,6 @@
 # GetJobRunsStatus
 
-Current status of the job run
+Current status of the JobRun.
 
 ## Example Usage
 

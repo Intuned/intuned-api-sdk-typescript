@@ -1,6 +1,6 @@
 # TerminateJobRunResponseBody
 
-Job run terminated successfully
+JobRun terminated successfully.
 
 ## Example Usage
 
@@ -8,7 +8,7 @@ Job run terminated successfully
 import { TerminateJobRunResponseBody } from "@intuned/client/models/operations";
 
 let value: TerminateJobRunResponseBody = {
-  message: "Job run terminated successfully",
+  message: "JobRun terminated successfully.",
 };
 ```
 
@@ -16,4 +16,4 @@ let value: TerminateJobRunResponseBody = {
 
 | Field                                          | Type                                           | Required                                       | Description                                    | Example                                        |
 | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
-| `message`                                      | *string*                                       | :heavy_check_mark:                             | Success message confirming job run termination | Job run terminated successfully                |
+| `message`                                      | *string*                                       | :heavy_check_mark:                             | Success message confirming JobRun termination. | JobRun terminated successfully.                |

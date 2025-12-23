@@ -13,7 +13,7 @@ export class Run extends ClientSDK {
    * Run API - Start
    *
    * @remarks
-   * Starts an API run for a project
+   * Start a Run for a Project.
    */
   async start(
     projectName: string,
@@ -32,7 +32,7 @@ export class Run extends ClientSDK {
    * Run API - Result
    *
    * @remarks
-   * Get Run API result.
+   * Get Run result.
    */
   async result(
     projectName: string,

@@ -29,7 +29,7 @@ import { Result } from "../types/fp.js";
  * Trigger Job
  *
  * @remarks
- * Manually triggers a job run for a job. If the job is paused, the trigger fails.
+ * Manually trigger a JobRun. Fails if the Job is paused.
  */
 export function projectJobsTrigger(
   client: IntunedClientCore,

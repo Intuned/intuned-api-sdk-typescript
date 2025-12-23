@@ -28,7 +28,7 @@ import { Result } from "../types/fp.js";
  * Run API - Result
  *
  * @remarks
- * Get Run API result.
+ * Get Run result.
  */
 export function projectRunResult(
   client: IntunedClientCore,

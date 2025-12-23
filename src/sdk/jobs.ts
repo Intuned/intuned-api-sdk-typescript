@@ -9,6 +9,7 @@ import { projectJobsOne } from "../funcs/projectJobsOne.js";
 import { projectJobsPause } from "../funcs/projectJobsPause.js";
 import { projectJobsResume } from "../funcs/projectJobsResume.js";
 import { projectJobsTrigger } from "../funcs/projectJobsTrigger.js";
+import { projectJobsUpdate } from "../funcs/projectJobsUpdate.js";
 import { ClientSDK, RequestOptions } from "../lib/sdks.js";
 import * as operations from "../models/operations/index.js";
 import { unwrapAsync } from "../types/fp.js";
@@ -24,7 +25,7 @@ export class Jobs extends ClientSDK {
    * Get Jobs
    *
    * @remarks
-   * Gets all jobs in a project.
+   * Get all Jobs in a Project.
    */
   async all(
     projectName: string,
@@ -41,7 +42,7 @@ export class Jobs extends ClientSDK {
    * Create Job
    *
    * @remarks
-   * Creates a new job for a project.
+   * Create a new Job for a Project.
    */
   async create(
     projectName: string,
@@ -60,7 +61,7 @@ export class Jobs extends ClientSDK {
    * Get Job
    *
    * @remarks
-   * Gets a job in a project by ID.
+   * Get a Job by ID.
    */
   async one(
     projectName: string,
@@ -76,10 +77,31 @@ export class Jobs extends ClientSDK {
   }
 
   /**
+   * Update Job
+   *
+   * @remarks
+   * Update a Job by ID.
+   */
+  async update(
+    projectName: string,
+    jobId: string,
+    requestBody: operations.UpdateJobUpdateJobInputSchema,
+    options?: RequestOptions,
+  ): Promise<operations.UpdateJobResponseBody> {
+    return unwrapAsync(projectJobsUpdate(
+      this,
+      projectName,
+      jobId,
+      requestBody,
+      options,
+    ));
+  }
+
+  /**
    * Delete Job
    *
    * @remarks
-   * Deletes a job by ID.
+   * Delete a Job by ID.
    */
   async delete(
     projectName: string,
@@ -98,7 +120,7 @@ export class Jobs extends ClientSDK {
    * Pause Job
    *
    * @remarks
-   * Pauses a job. Will pause any job runs and the job schedule if applicable.
+   * Pause a Job. Pauses any JobRuns and the Job schedule if applicable.
    */
   async pause(
     projectName: string,
@@ -117,7 +139,7 @@ export class Jobs extends ClientSDK {
    * Resume Job
    *
    * @remarks
-   * Resumes a paused job. Will resume any paused job runs and the job schedule if applicable.
+   * Resume a paused Job. Resumes any paused JobRuns and the Job schedule if applicable.
    */
   async resume(
     projectName: string,
@@ -136,7 +158,7 @@ export class Jobs extends ClientSDK {
    * Trigger Job
    *
    * @remarks
-   * Manually triggers a job run for a job. If the job is paused, the trigger fails.
+   * Manually trigger a JobRun. Fails if the Job is paused.
    */
   async trigger(
     projectName: string,
